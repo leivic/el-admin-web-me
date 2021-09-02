@@ -49,7 +49,6 @@ export default {
     this.$nextTick(() => {
       this.initChart()
     })
-    
   },
   beforeDestroy() {
     if (!this.chart) {

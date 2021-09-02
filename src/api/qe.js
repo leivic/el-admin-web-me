@@ -279,6 +279,6 @@ export function fetchListGongwei() {
   return request({
 	  url: 'http://localhost:8000/qe/findAllGongWeiFuHe',
 	  method: 'get',
-    params: {  } //
+    params: { } //
   })
 }

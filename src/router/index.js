@@ -11,7 +11,7 @@ NProgress.configure({ showSpinner: false })// NProgress Configuration
 
 const whiteList = ['/login']// no redirect whitelist
 
-router.beforeEach((to, from, next) => { //路由守卫 路由改变时 拦截器
+router.beforeEach((to, from, next) => { // 路由守卫 路由改变时 拦截器
   if (to.meta.title) {
     document.title = to.meta.title + ' - ' + Config.title
   }
@@ -51,8 +51,8 @@ router.beforeEach((to, from, next) => { //路由守卫 路由改变时 拦截器
   }
 })
 
-export const loadMenus = (next, to) => { //定义一个函数 
-  buildMenus().then(res => { //调用导入的buildMenus方法 
+export const loadMenus = (next, to) => { // 定义一个函数
+  buildMenus().then(res => { // 调用导入的buildMenus方法
     const sdata = JSON.parse(JSON.stringify(res))
     const rdata = JSON.parse(JSON.stringify(res))
     const sidebarRoutes = filterAsyncRouter(sdata)
@@ -63,7 +63,7 @@ export const loadMenus = (next, to) => { //定义一个函数
       router.addRoutes(rewriteRoutes) // 动态添加可访问路由表
       next({ ...to, replace: true })
     })
-    store.dispatch('SetSidebarRouters', sidebarRoutes) //存储上方标签的路由 
+    store.dispatch('SetSidebarRouters', sidebarRoutes) // 存储上方标签的路由
   })
 }
 
