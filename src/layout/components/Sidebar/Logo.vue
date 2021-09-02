@@ -25,7 +25,7 @@ export default {
   },
   data() {
     return {
-      title: 'ELADMIN-后台管理',
+      title: 'Sgmw质量生态文明',
       logo: Logo
     }
   }

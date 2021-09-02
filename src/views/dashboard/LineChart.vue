@@ -6,6 +6,7 @@
 import echarts from 'echarts'
 require('echarts/theme/macarons') // echarts theme
 import resize from './mixins/resize'
+import { fetchListGongwei } from '@/api/qe'
 
 export default {
   mixins: [resize],
@@ -48,6 +49,7 @@ export default {
     this.$nextTick(() => {
       this.initChart()
     })
+    
   },
   beforeDestroy() {
     if (!this.chart) {

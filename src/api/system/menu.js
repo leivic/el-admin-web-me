@@ -31,7 +31,7 @@ export function getChild(id) {
   })
 }
 
-export function buildMenus() {
+export function buildMenus() { //获取路由数据api 
   return request({
     url: 'api/menus/build',
     method: 'get'

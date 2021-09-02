@@ -11,7 +11,7 @@ NProgress.configure({ showSpinner: false })// NProgress Configuration
 
 const whiteList = ['/login']// no redirect whitelist
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, from, next) => { //路由守卫 路由改变时 拦截器
   if (to.meta.title) {
     document.title = to.meta.title + ' - ' + Config.title
   }
@@ -24,7 +24,7 @@ router.beforeEach((to, from, next) => {
     } else {
       if (store.getters.roles.length === 0) { // 判断当前用户是否已拉取完user_info信息
         store.dispatch('GetInfo').then(() => { // 拉取user_info
-          // 动态路由，拉取菜单
+          // 动态路由，拉取菜单 每次路由改变时都会拉取路由
           loadMenus(next, to)
         }).catch(() => {
           store.dispatch('LogOut').then(() => {
@@ -51,19 +51,19 @@ router.beforeEach((to, from, next) => {
   }
 })
 
-export const loadMenus = (next, to) => {
-  buildMenus().then(res => {
+export const loadMenus = (next, to) => { //定义一个函数 
+  buildMenus().then(res => { //调用导入的buildMenus方法 
     const sdata = JSON.parse(JSON.stringify(res))
     const rdata = JSON.parse(JSON.stringify(res))
     const sidebarRoutes = filterAsyncRouter(sdata)
     const rewriteRoutes = filterAsyncRouter(rdata, false, true)
     rewriteRoutes.push({ path: '*', redirect: '/404', hidden: true })
 
-    store.dispatch('GenerateRoutes', rewriteRoutes).then(() => { // 存储路由
+    store.dispatch('GenerateRoutes', rewriteRoutes).then(() => { // 存储侧栏菜单路由
       router.addRoutes(rewriteRoutes) // 动态添加可访问路由表
       next({ ...to, replace: true })
     })
-    store.dispatch('SetSidebarRouters', sidebarRoutes)
+    store.dispatch('SetSidebarRouters', sidebarRoutes) //存储上方标签的路由 
   })
 }
 
