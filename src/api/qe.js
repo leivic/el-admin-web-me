@@ -78,27 +78,20 @@ export function fetchRandomProcessZone(month, xData, yData) {
   })
 }
 
-export function fetchSelfStation(month, xData, yData) {
+export function fetchSelfStation(month) {
   request({
-    url: 'http://localhost:8090/getLastGongWeiData',
+    url: 'http://localhost:8000/qe/getLastGongWeiData',
 	  	method: 'get',
 	  	params: { date: month,
       pingShengXingZhi: '自查'
     }
-  }).then(res => {
-    xData.splice(0, xData.length)
-    yData.splice(0, yData.length)// 清空数组的方法
-    for (const a in res) {
-      xData.push(res[a].stationName)
-      yData.push(res[a].stationPercentage * 100)
-    }
-  })
+  }).then(res =>console.log(res))
 }
 
 /* 抽查工位api*/
 export function fetchRandomStation(month, xData, yData) {
   request({
-    url: 'http://localhost:8090/getLastGongWeiData',
+    url: 'http://localhost:8090/qe/getLastGongWeiData', //；路径别忘了
 	  	method: 'get',
 	  	params: { date: month,
       pingShengXingZhi: '抽查'
