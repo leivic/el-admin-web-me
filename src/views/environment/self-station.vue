@@ -12,11 +12,13 @@
       <Chart height="500px" :chart-data="chartData.ydata" :x-data="chartData.xdata" :title="chartData.title" />
     </el-row>
 
+   
+
   </div>
 </template>
 <script>
 import { mapGetters } from 'vuex'// 使用vuex状态管理器
-import { fetchSelfStation,fetchListGongwei } from '@/api/qe'
+import { fetchSelfStation, fetchListGongwei } from '@/api/qe'
 import SelectMonth from '@/components/SelectMonth'
 import Chart from './components/Chart'
 
@@ -35,16 +37,15 @@ export default {
     }
   },
   created() {
-
-    fetchSelfStation("2021-06")
+    fetchSelfStation('2021-06')
   },
-  
+
   computed: {
     ...mapGetters(['month'])// 使用VUEX状态管理器的getter方法，由此多了个getmonth的计算属性
   },
   watch: {
     month(newval) {
-	    
+
     }
   }
 }

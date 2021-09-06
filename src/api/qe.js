@@ -85,13 +85,13 @@ export function fetchSelfStation(month) {
 	  	params: { date: month,
       pingShengXingZhi: '自查'
     }
-  }).then(res =>console.log(res))
+  }).then(res => console.log(res))
 }
 
 /* 抽查工位api*/
 export function fetchRandomStation(month, xData, yData) {
   request({
-    url: 'http://localhost:8090/qe/getLastGongWeiData', //；路径别忘了
+    url: 'http://localhost:8090/qe/getLastGongWeiData', // ；路径别忘了
 	  	method: 'get',
 	  	params: { date: month,
       pingShengXingZhi: '抽查'
