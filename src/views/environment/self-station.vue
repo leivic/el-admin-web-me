@@ -12,8 +12,6 @@
       <Chart height="500px" :chart-data="chartData.ydata" :x-data="chartData.xdata" :title="chartData.title" />
     </el-row>
 
-   
-
   </div>
 </template>
 <script>
