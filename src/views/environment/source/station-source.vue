@@ -6,9 +6,9 @@
         action="http://localhost:8000/qe/addEnvironmentBaseStation"
         multiple
         :limit="3"
-	:headers="headers"
-	:on-success="getList"
-      > 
+        :headers="headers"
+        :on-success="getList"
+      >
         <el-button :loading="uploadLoading" class="filter-item" type="primary" icon="el-icon-upload" @click="">
           导入
         </el-button>
@@ -61,69 +61,69 @@
         </template>
       </el-table-column>
 
-<el-table-column label="健康水平" align="center">
-      <el-table-column label="人员能力符合要求(10)" width="140px" align="center">
-        <template slot-scope="{row}">
-          <span>{{ row.peopleiscapable }}</span>
-        </template>
+      <el-table-column label="健康水平" align="center">
+        <el-table-column label="人员能力符合要求(10)" width="140px" align="center">
+          <template slot-scope="{row}">
+            <span>{{ row.peopleiscapable }}</span>
+          </template>
+        </el-table-column>
+
+        <el-table-column label="物料、作业文件、工具正确(30)" width="140px" align="center">
+          <template slot-scope="{row}">
+            <span>{{ row.matteriscorrect }}</span>
+          </template>
+        </el-table-column>
+
+        <el-table-column label="员工标准化执行符合率100%(10)" width="140px" align="center">
+          <template slot-scope="{row}">
+            <span>{{ row.wokerisstandard }}</span>
+          </template>
+        </el-table-column>
+
+        <el-table-column label="工位人员稳定性,在岗时间<1个月(-10)" width="140px" align="center">
+          <template slot-scope="{row}">
+            <span>{{ row.wokerstability }}</span>
+          </template>
+        </el-table-column>
+
+        <el-table-column label="工位设备停线时间>3min,发生一次扣-5分(-10)" width="140px" align="center">
+          <template slot-scope="{row}">
+            <span>{{ row.stationshutdown }}</span>
+          </template>
+        </el-table-column>
+
+        <el-table-column label="物料停线时间>3min,发生一次扣-5分(-10)" width="140px" align="center">
+          <template slot-scope="{row}">
+            <span>{{ row.mattershutdown }}</span>
+          </template>
+        </el-table-column>
+
+        <el-table-column label="工位健康水平小计" width="140px" align="center">
+          <template slot-scope="{row}">
+            <span>{{ row.x1 }}</span>
+          </template>
+        </el-table-column>
       </el-table-column>
 
-      <el-table-column label="物料、作业文件、工具正确(30)" width="140px" align="center">
-        <template slot-scope="{row}">
-          <span>{{ row.matteriscorrect }}</span>
-        </template>
-      </el-table-column>
+      <el-table-column label="低碳精益" align="center">
+        <el-table-column label="暂未有详细描述(20)" width="140px" align="center">
+          <template slot-scope="{row}">
+            <span>{{ row.low_carbon_1 }}</span>
+          </template>
+        </el-table-column>
 
-      <el-table-column label="员工标准化执行符合率100%(10)" width="140px" align="center">
-        <template slot-scope="{row}">
-          <span>{{ row.wokerisstandard }}</span>
-        </template>
-      </el-table-column>
+        <el-table-column label="工业电子化实现一致性(5)" width="140px" align="center">
+          <template slot-scope="{row}">
+            <span>{{ row.iso }}</span>
+          </template>
+        </el-table-column>
 
-      <el-table-column label="工位人员稳定性,在岗时间<1个月(-10)" width="140px" align="center">
-        <template slot-scope="{row}">
-          <span>{{ row.wokerstability }}</span>
-        </template>
+        <el-table-column label="工位低碳精益小计" width="140px" align="center">
+          <template slot-scope="{row}">
+            <span>{{ row.x2 }}</span>
+          </template>
+        </el-table-column>
       </el-table-column>
-
-      <el-table-column label="工位设备停线时间>3min,发生一次扣-5分(-10)" width="140px" align="center">
-        <template slot-scope="{row}">
-          <span>{{ row.stationshutdown }}</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column label="物料停线时间>3min,发生一次扣-5分(-10)" width="140px" align="center">
-        <template slot-scope="{row}">
-          <span>{{ row.mattershutdown }}</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column label="工位健康水平小计" width="140px" align="center">
-        <template slot-scope="{row}">
-          <span>{{ row.x1 }}</span>
-        </template>
-      </el-table-column>
-</el-table-column>
-
-<el-table-column label="低碳精益" align="center">
-      <el-table-column label="暂未有详细描述(20)" width="140px" align="center">
-        <template slot-scope="{row}">
-          <span>{{ row.low_carbon_1 }}</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column label="工业电子化实现一致性(5)" width="140px" align="center">
-        <template slot-scope="{row}">
-          <span>{{ row.iso }}</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column label="工位低碳精益小计" width="140px" align="center">
-        <template slot-scope="{row}">
-          <span>{{ row.x2 }}</span>
-        </template>
-      </el-table-column>
-</el-table-column>
 
       <el-table-column label="#" width="100px" align="center">
         <template slot-scope="{row,$index}"><!--最开始的写法是 slot-scope="{row,$index}" 这个$index是vue2.0的key，在vue2.0的时候移除了-->
@@ -140,7 +140,7 @@
 
 <script>
 import { getToken } from '@/utils/auth'
-import { getAllStiation,getAllStiationByZone } from '@/api/qe/environment'
+import { getAllStiation, getAllStiationByZone } from '@/api/qe/environment'
 import Pagination from '@/components/Pagination'// 分页组件
 import { mapGetters } from 'vuex'
 
@@ -173,11 +173,10 @@ export default {
   },
   methods: {
     getList() { // 获取数据
-	this.listLoading = true
-	if ( this.user.roles[0].level == 1 )
-	{
-	 //当用户的第一个角色等级为1时 正常获取所有工位数据 否则采用另一个api获取数据 不采用getAllStiation
-		getAllStiation(this.listQuery.page, this.listQuery.limit, this.listQuery.sort).then(response => {
+      this.listLoading = true
+      if (this.user.roles[0].level == 1) {
+	 // 当用户的第一个角色等级为1时 正常获取所有工位数据 否则采用另一个api获取数据 不采用getAllStiation
+        getAllStiation(this.listQuery.page, this.listQuery.limit, this.listQuery.sort).then(response => {
         	console.log(response)
         	this.list = response.content // 获取真正的sql查询出来的数据
         	// Just to simulate the time of the request
@@ -185,9 +184,9 @@ export default {
         	setTimeout(() => {
           		this.listLoading = false
         	}, 1.5 * 1000)
-      		})	
-	}else{
-		getAllStiationByZone(this.user.dept.name,this.listQuery.page, this.listQuery.limit, this.listQuery.sort).then(response => {
+      		})
+      } else {
+        getAllStiationByZone(this.user.dept.name, this.listQuery.page, this.listQuery.limit, this.listQuery.sort).then(response => {
         	console.log(response)
         	this.list = response.content // 获取真正的sql查询出来的数据
         	// Just to simulate the time of the request
@@ -195,8 +194,8 @@ export default {
         	setTimeout(() => {
           		this.listLoading = false
         	}, 1.5 * 1000)
-      		})		
-	}
+      		})
+      }
     },
 
     sortChange(data) { // 排序改变

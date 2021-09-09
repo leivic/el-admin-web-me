@@ -68,13 +68,13 @@ export default {
   },
   mounted() {
     getAllStiation(1, 2, 'x1').then(res => console.log(res)) // 成功
-    console.log(this.user)  //user的信息已经被存在了vuex状态管理器里面
+    console.log(this.user) // user的信息已经被存在了vuex状态管理器里面
     console.log(this.user.dept.name)
-    console.log(this.user.roles[0].level) //用户第一个角色的角色级别,角色级别是不影响权限的，但是我可以用它做操作 
+    console.log(this.user.roles[0].level) // 用户第一个角色的角色级别,角色级别是不影响权限的，但是我可以用它做操作
   },
   computed: {
     ...mapGetters(['user'])
-  },
+  }
 
 }
 </script>
