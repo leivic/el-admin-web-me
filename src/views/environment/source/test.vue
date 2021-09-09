@@ -2,7 +2,8 @@
   <div>
     数据源
     <!--按钮权限先在菜单添加 在菜单添加god权限后 同样在角色处分配 -->
-    <el-upload v-permission="['god']"  
+    <el-upload
+      v-permission="['god']"
       action="http://localhost:8000/qe/addEnvironmentBaseStation"
       multiple
       :limit="3"
@@ -13,7 +14,8 @@
       </el-button>
     </el-upload><!-- 涉及到跨域，上传文件要用headers携带token -->
 
-    <el-upload v-permission="['god']"
+    <el-upload
+      v-permission="['god']"
       action="http://localhost:8000/qe/addEnvironmentBaseGroup"
       multiple
       :limit="3"
@@ -24,7 +26,8 @@
       </el-button>
     </el-upload><!-- 涉及到跨域，上传文件要用headers携带token -->
 
-    <el-upload v-permission="['god']"
+    <el-upload
+      v-permission="['god']"
       action="http://localhost:8000/qe/addEnvironmentBaseWorkShop"
       multiple
       :limit="3"
@@ -35,7 +38,8 @@
       </el-button>
     </el-upload><!-- 涉及到跨域，上传文件要用headers携带token -->
 
-    <el-upload v-permission="['god']"
+    <el-upload
+      v-permission="['god']"
       action="http://localhost:8000/qe/addEnvironmentBaseZone"
       multiple
       :limit="3"
@@ -61,8 +65,8 @@ export default {
       }
     }
   },
-  mounted(){
-    getAllStiation(0,2,"x1").then(res=>console.log(res)) //成功
+  mounted() {
+    getAllStiation(0, 2, 'x1').then(res => console.log(res)) // 成功
   }
 
 }
