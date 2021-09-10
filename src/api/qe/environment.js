@@ -39,7 +39,7 @@ export function getAllGroup(page, size, sort) {
 
 /* 按区域获取所有班组数据*/
 export function getAllGroupByZone(zone, page, size, sort) {
-	return request({
+  return request({
 	  url: 'http://localhost:8000/qe/findAllEnvironmentBaseGroupByZone',
 	  method: 'get',
 	  params: {	zone: zone,
@@ -47,8 +47,8 @@ export function getAllGroupByZone(zone, page, size, sort) {
 	    size: size,
 	    sort: sort
 					  }
-	})
-      }
+  })
+}
 
 /* 获取所有工段数据*/
 export function getAllWorkshop(page, size, sort) {
@@ -62,9 +62,9 @@ export function getAllWorkshop(page, size, sort) {
   })
 }
 
-/*按区域获取所有工段数据*/
+/* 按区域获取所有工段数据*/
 export function getAllWorkshopByZone(zone, page, size, sort) {
-	return request({
+  return request({
 	  url: 'http://localhost:8000/qe/findAllEnvironmentBaseWorkShopByZone',
 	  method: 'get',
 	  params: {	zone: zone,
@@ -72,9 +72,8 @@ export function getAllWorkshopByZone(zone, page, size, sort) {
 	    size: size,
 	    sort: sort
 					  }
-	})
-      }
-
+  })
+}
 
 /* 获取所有区域数据*/
 export function getAllZone(page, size, sort) {
@@ -88,9 +87,9 @@ export function getAllZone(page, size, sort) {
   })
 }
 
-/*按区域获取所有区域数据*/
+/* 按区域获取所有区域数据*/
 export function getAllZoneByZone(zone, page, size, sort) {
-	return request({
+  return request({
 	  url: 'http://localhost:8000/qe/findAllEnvironmentZoneByZone',
 	  method: 'get',
 	  params: {	zone: zone,
@@ -98,5 +97,5 @@ export function getAllZoneByZone(zone, page, size, sort) {
 	    size: size,
 	    sort: sort
 					  }
-	})
-      }
+  })
+}
