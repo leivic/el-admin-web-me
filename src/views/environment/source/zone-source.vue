@@ -37,7 +37,6 @@
         </template>
       </el-table-column>
 
-
       <el-table-column label="时间" width="80px" align="center">
         <template slot-scope="{row}">
           <span>{{ row.date }}</span>
@@ -100,7 +99,7 @@
         </el-table-column>
       </el-table-column>
 
-	<el-table-column label="系统完整" align="center">
+      <el-table-column label="系统完整" align="center">
         <el-table-column label="车间适用过程识别完整，并有相应过程所有者负责推进(10)" width="140px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.zonesection }}</span>
@@ -119,7 +118,7 @@
           </template>
         </el-table-column>
 
-	<el-table-column label="区域质量生态符合率>95%(20)" width="140px" align="center">
+        <el-table-column label="区域质量生态符合率>95%(20)" width="140px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.ecologicalquality }}</span>
           </template>
@@ -131,7 +130,7 @@
           </template>
         </el-table-column>
 
-	<el-table-column label="区域质量生态符合率<80%(-10)" width="140px" align="center">
+        <el-table-column label="区域质量生态符合率<80%(-10)" width="140px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.lossecologicalquality }}</span>
           </template>
@@ -171,14 +170,13 @@
           </template>
         </el-table-column>
 
-	<el-table-column label="区域所有班组的健康水平差异化<1%(25)" width="140px" align="center">
+        <el-table-column label="区域所有班组的健康水平差异化<1%(25)" width="140px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.healthquthoritygroup }}</span>
           </template>
         </el-table-column>
 
-
-	<el-table-column label="区域所有工段的健康水平差异化>10%(-10)" width="140px" align="center">
+        <el-table-column label="区域所有工段的健康水平差异化>10%(-10)" width="140px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.losshealthquthorityworkshop }}</span>
           </template>
@@ -190,7 +188,7 @@
           </template>
         </el-table-column>
 
-	<el-table-column label="区域均衡发展水平小计" width="140px" align="center">
+        <el-table-column label="区域均衡发展水平小计" width="140px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.x14 }}</span>
           </template>

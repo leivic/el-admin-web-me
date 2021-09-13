@@ -55,7 +55,7 @@
 
 import { getToken } from '@/utils/auth'
 import { getAll } from '@/api/system/role'
-import { getAllStiation } from '@/api/qe/environment'
+import { getAllStiation, getthisYearEnvironmentSystem } from '@/api/qe/environment'
 import { mapGetters } from 'vuex'// 使用vuex状态管理器
 export default {
   data() {
@@ -71,6 +71,7 @@ export default {
     console.log(this.user) // user的信息已经被存在了vuex状态管理器里面
     console.log(this.user.dept.name)
     console.log(this.user.roles[0].level) // 用户第一个角色的角色级别,角色级别是不影响权限的，但是我可以用它做操作
+    getthisYearEnvironmentSystem('2020', '工段').then(res => console.log(res))
   },
   computed: {
     ...mapGetters(['user'])

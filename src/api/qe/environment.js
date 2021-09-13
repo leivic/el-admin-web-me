@@ -99,3 +99,14 @@ export function getAllZoneByZone(zone, page, size, sort) {
 					  }
   })
 }
+/* 获取区域/工段 系统完整图表的数据 */
+export function getthisYearEnvironmentSystem(year, workshoporzone) {
+  return request({
+    url: 'http://localhost:8000/qe/getthisYearEnvironmentSystem',
+    method: 'get',
+    params: {
+      year: year,
+      workshoporzone: workshoporzone
+    }
+  })
+}

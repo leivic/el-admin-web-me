@@ -98,7 +98,7 @@
           </template>
         </el-table-column>
 
-	<el-table-column label="班组业务未按要求执行发现1处－5分(-10)" width="140px" align="center">
+        <el-table-column label="班组业务未按要求执行发现1处－5分(-10)" width="140px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.workshopbusiness }}</span>
           </template>
@@ -111,7 +111,7 @@
         </el-table-column>
       </el-table-column>
 
-	<el-table-column label="系统完整" align="center">
+      <el-table-column label="系统完整" align="center">
         <el-table-column label="工段适用过程识别完整，并有相应过程所有者负责推进(10)" width="140px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.workshopsection }}</span>
@@ -130,7 +130,7 @@
           </template>
         </el-table-column>
 
-	<el-table-column label="过程识别、程序文件、操作类文件识别、质量记录类表单现场抽查发现一处错误－1分(-10)" width="140px" align="center">
+        <el-table-column label="过程识别、程序文件、操作类文件识别、质量记录类表单现场抽查发现一处错误－1分(-10)" width="140px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.lossprogramfiles }}</span>
           </template>
@@ -196,14 +196,13 @@
           </template>
         </el-table-column>
 
-	<el-table-column label="工段所有工位的健康水平差异化<1%(25)" width="140px" align="center">
+        <el-table-column label="工段所有工位的健康水平差异化<1%(25)" width="140px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.healthquthoritystation }}</span>
           </template>
         </el-table-column>
 
-
-	<el-table-column label="工段所有班组的健康水平差异化>10%(-10)" width="140px" align="center">
+        <el-table-column label="工段所有班组的健康水平差异化>10%(-10)" width="140px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.losshealthquthoritygroup }}</span>
           </template>
@@ -215,7 +214,7 @@
           </template>
         </el-table-column>
 
-	<el-table-column label="工段均衡发展水平小计" width="140px" align="center">
+        <el-table-column label="工段均衡发展水平小计" width="140px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.x10 }}</span>
           </template>
