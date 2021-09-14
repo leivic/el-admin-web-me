@@ -27,13 +27,13 @@ export default {
       default: true
     },
     lengenddata: {
-      type: Array,
+      type: Array
     },
-     ydata1: {
-      type: Array,
+    ydata1: {
+      type: Array
     },
     title: {
-     type: String, 
+      type: String
     }
   },
   data() {
@@ -69,14 +69,14 @@ export default {
     setOptions({ expectedData, actualData } = {}) {
       this.chart.setOption({
 
-      title: {
+        title: {
 		  text: this.title,
 		  textStyle: {
             fontSize: 18,
             fontWeight: 'normal',
             fontFamily: 'Courier New'
           },
-		  left: "40px"
+		  left: '40px'
         },
         tooltip: {
 		  trigger: 'axis',
@@ -86,144 +86,144 @@ export default {
         },
 
         tooltip: {
-        trigger: 'axis',
-        axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-            type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-        }
-    },
-    legend: {
-        data: this.lengenddata
-    },
-    grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
-        containLabel: true
-    },
-    xAxis: [
-        {
+          trigger: 'axis',
+          axisPointer: { // 坐标轴指示器，坐标轴触发有效
+            type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+          }
+        },
+        legend: {
+          data: this.lengenddata
+        },
+        grid: {
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
+          containLabel: true
+        },
+        xAxis: [
+          {
             type: 'category',
-            data: ["总计","冲压车间","车身车间","涂装车间","冲压车间","机加车间","装配车间"]
-        }
-    ],
-    yAxis: [
-        {
+            data: ['总计', '冲压车间', '车身车间', '涂装车间', '冲压车间', '机加车间', '装配车间']
+          }
+        ],
+        yAxis: [
+          {
             type: 'value'
-        }
-    ],
-    series: [
-	     
+          }
+        ],
+        series: [
+
 	     {
             name: '01月',
 	    type: 'bar',
-	    stack: '月份', 
+	    stack: '月份',
             emphasis: {
-                focus: 'series'
+              focus: 'series'
             },
-            data: this.ydata1[0] //ydata1是一个二维数组 ydata1[0]也是一个数组
-        },
-        {
+            data: this.ydata1[0] // ydata1是一个二维数组 ydata1[0]也是一个数组
+          },
+          {
             name: '02月',
 	    type: 'bar',
-      stack: '月份',
-      barWidth : 40, 
+            stack: '月份',
+            barWidth: 40,
             emphasis: {
-                focus: 'series'
+              focus: 'series'
             },
             data: this.ydata1[1]
-        },
-        {
+          },
+          {
             name: '03月',
 	    type: 'bar',
-	    stack: '月份', 
+	    stack: '月份',
             emphasis: {
-                focus: 'series'
+              focus: 'series'
             },
             data: this.ydata1[2]
-        },
-         {
+          },
+          {
             name: '04月',
 	    type: 'bar',
-	    stack: '月份', 
+	    stack: '月份',
             emphasis: {
-                focus: 'series'
+              focus: 'series'
             },
             data: this.ydata1[3]
-        },
-        {
+          },
+          {
             name: '05月',
 	    type: 'bar',
-	    stack: '月份', 
+	    stack: '月份',
             emphasis: {
-                focus: 'series'
+              focus: 'series'
             },
             data: this.ydata1[4]
-        },
-        {
+          },
+          {
             name: '06月',
 	    type: 'bar',
-	    stack: '月份', 
+	    stack: '月份',
             emphasis: {
-                focus: 'series'
+              focus: 'series'
             },
             data: this.ydata1[5]
-        },
-        {
+          },
+          {
             name: '07月',
 	    type: 'bar',
-	    stack: '月份', 
+	    stack: '月份',
             emphasis: {
-                focus: 'series'
+              focus: 'series'
             },
             data: this.ydata1[6]
-        },
-        {
-            name: '08月', //这里的值要与lengend里面的值对应才能显示出来
+          },
+          {
+            name: '08月', // 这里的值要与lengend里面的值对应才能显示出来
 	    type: 'bar',
-	    stack: '月份', 
+	    stack: '月份',
             emphasis: {
-                focus: 'series'
+              focus: 'series'
             },
             data: this.ydata1[7]
-        },
-         {
+          },
+          {
             name: '09月',
 	    type: 'bar',
-	    stack: '月份', 
+	    stack: '月份',
             emphasis: {
-                focus: 'series'
+              focus: 'series'
             },
             data: this.ydata1[8]
-        },
-         {
+          },
+          {
             name: '10月',
 	    type: 'bar',
-	    stack: '月份', 
+	    stack: '月份',
             emphasis: {
-                focus: 'series'
+              focus: 'series'
             },
             data: this.ydata1[9]
-	},
+          },
 	 {
             name: '11月',
 	    type: 'bar',
-	    stack: '月份', 
+	    stack: '月份',
             emphasis: {
-                focus: 'series'
+              focus: 'series'
             },
             data: this.ydata1[10]
-	},
+          },
 	 {
             name: '12月',
 	    type: 'bar',
-	    stack: '月份', 
+	    stack: '月份',
             emphasis: {
-                focus: 'series'
+              focus: 'series'
             },
             data: this.ydata1[11]
-	},
-	
-    ]
+          }
+
+        ]
       })
     }
   }

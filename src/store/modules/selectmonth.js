@@ -14,7 +14,7 @@ let month1
 }
 state.month = month1
 
-const mutations = {
+const mutations = { //静态添加数据
   CHANGE_MONTH: (state, month) => {
     state.month = month
   }
