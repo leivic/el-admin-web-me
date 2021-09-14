@@ -116,7 +116,7 @@ export default {
 	     {
             name: '01月',
 	          type: 'bar',
-            barGap: "1%",
+            barGap: '1%',
             emphasis: {
               focus: 'series'
             },

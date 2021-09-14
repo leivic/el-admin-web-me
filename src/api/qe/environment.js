@@ -162,3 +162,40 @@ export function getthisYearEnvironmentHealthZone(year, ydata, lengenddata) {
 	  }
   )
 }
+
+
+/*按照年份和区域获得一个工位的健康水平数组*/
+export function findEnvironmentBaseStationHealthy(year,zone) { //
+  return request({
+	  url: 'http://localhost:8000/qe/findEnvironmentBaseStationHealthy',
+	  method: 'get',
+	  params: {	
+      year:year,
+      zone:zone
+					  }
+  })
+}
+
+/*按照年份和区域获得一个班组的健康水平数组*/
+export function findEnvironmentBaseGroupHealthy(year,zone) { //
+  return request({
+	  url: 'http://localhost:8000/qe/findEnvironmentBaseGroupHealthy',
+	  method: 'get',
+	  params: {	
+      year:year,
+      zone:zone
+					  }
+  })
+}
+
+/*按照年份和区域获得一个工段的健康水平数组*/
+export function findEnvironmentBaseWorkshopHealthy(year,zone) { //
+  return request({
+	  url: 'http://localhost:8000/qe/findEnvironmentBaseWorkshopHealthy',
+	  method: 'get',
+	  params: {	
+      year:year,
+      zone:zone
+					  }
+  })
+}

@@ -35,7 +35,7 @@ export default {
     }
   },
   mounted() {
-	  getthisYearEnvironmentHealthZone(this.year, this.chart1.chartdata, this.chart1.lengenddata).then(()=>this.chart1.listLoading = false) //直接.then(this.chart1.listLoading = false) 里面的代码会直接执行，但是这样可不是回调函数 
+	  getthisYearEnvironmentHealthZone(this.year, this.chart1.chartdata, this.chart1.lengenddata).then(() => this.chart1.listLoading = false) // 直接.then(this.chart1.listLoading = false) 里面的代码会直接执行，但是这样可不是回调函数
   },
   computed: {
     ...mapGetters(['month']),
@@ -50,7 +50,7 @@ export default {
   watch: {
     year(newval) {
       this.chart1.listLoading = true
-      getthisYearEnvironmentHealthZone(newval, this.chart1.chartdata, this.chart1.lengenddata).then(()=>this.chart1.listLoading = false)
+      getthisYearEnvironmentHealthZone(newval, this.chart1.chartdata, this.chart1.lengenddata).then(() => this.chart1.listLoading = false)
     }
   }
 }
