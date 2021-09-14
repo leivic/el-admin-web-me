@@ -12,7 +12,6 @@
       <Barchart :ydata1="chart1.chartdata" :lengenddata="chart1.lengenddata" :title="chart1.title" />
     </el-row>
 
-
   </div>
 </template>
 <script>
@@ -36,7 +35,7 @@ export default {
     }
   },
   mounted() {
-	  getthisYearEnvironmentHealthZone(this.year,this.chart1.chartdata,this.chart1.lengenddata).then(this.chart1.listLoading=false)
+	  getthisYearEnvironmentHealthZone(this.year, this.chart1.chartdata, this.chart1.lengenddata).then(()=>this.chart1.listLoading = false) //直接.then(this.chart1.listLoading = false) 里面的代码会直接执行，但是这样可不是回调函数 
   },
   computed: {
     ...mapGetters(['month']),
@@ -51,7 +50,7 @@ export default {
   watch: {
     year(newval) {
       this.chart1.listLoading = true
-      getthisYearEnvironmentHealthZone(newval,this.chart1.chartdata,this.chart1.lengenddata).then(this.chart1.listLoading=false) 
+      getthisYearEnvironmentHealthZone(newval, this.chart1.chartdata, this.chart1.lengenddata).then(()=>this.chart1.listLoading = false)
     }
   }
 }
@@ -59,17 +58,17 @@ export default {
 <style lang="scss" scoped>
 
 .continue-chart-container {
-  padding: 32px;
+  padding: 16px;
   background-color: rgb(240, 242, 245);
   position: relative;
 
   .chart-wrapper {
     background: #fff;
-    padding: 16px 16px 0;
-    margin-bottom: 32px;
+    padding: 8px 8px 0;
+    margin-bottom: 16px;
   }
   .tool {
-	  margin-bottom: 16px;
+	  margin-bottom: 8px;
   }
 }
 </style>

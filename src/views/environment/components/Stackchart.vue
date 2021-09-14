@@ -68,7 +68,7 @@ export default {
     },
     setOptions({ expectedData, actualData } = {}) {
       this.chart.setOption({
-        color:['#00ABA9','#1BA1E2','#0050EF','#6A00FF','#D80073','#A20025','#E51400','#FA6800','#F0A30A','#E3C800','#825A2C','#6D8764'],
+        color: ['#00ABA9', '#1BA1E2', '#0050EF', '#6A00FF', '#D80073', '#A20025', '#E51400', '#FA6800', '#F0A30A', '#E3C800', '#825A2C', '#6D8764'],
         title: {
 		  text: this.title,
 		  textStyle: {

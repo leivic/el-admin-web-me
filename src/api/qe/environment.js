@@ -138,11 +138,11 @@ export function getthisYearEnvironmentHealthZone(year, ydata, lengenddata) {
     url: 'http://localhost:8000/qe/getthisYearEnvironmentHealthZone',
     method: 'get',
     params: {
-      year: year,
+      year: year
     }
   }).then(
 	  res => {
-      lengenddata.splice(0, lengenddata.length) //标签数据
+      lengenddata.splice(0, lengenddata.length) // 标签数据
       ydata.splice(0, ydata.length) // 如果没有后面一句，这是这样，那么它变成了一维数组，后面的ydata[a].push 就找不到push方法
       for (let index = 0; index < res.length; index++) {
         ydata.push([])

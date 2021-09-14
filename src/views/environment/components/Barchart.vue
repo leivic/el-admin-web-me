@@ -20,7 +20,7 @@ export default {
     },
     height: {
       type: String,
-      default: '500px'
+      default: '600px'
     },
     autoResize: {
       type: Boolean,
@@ -68,11 +68,11 @@ export default {
     },
     setOptions({ expectedData, actualData } = {}) {
       this.chart.setOption({
-	color:['#00ABA9','#1BA1E2','#0050EF','#6A00FF','#D80073','#A20025','#E51400','#FA6800','#F0A30A','#E3C800','#825A2C','#6D8764'],
+        color: ['#00ABA9', '#1BA1E2', '#0050EF', '#6A00FF', '#D80073', '#A20025', '#E51400', '#FA6800', '#F0A30A', '#E3C800', '#825A2C', '#6D8764'],
         title: {
 		  text: this.title,
 		  textStyle: {
-            fontSize: 18,
+            fontSize: 14,
             fontWeight: 'normal',
             fontFamily: 'Courier New'
           },
@@ -115,7 +115,8 @@ export default {
 
 	     {
             name: '01月',
-	    type: 'bar',
+	          type: 'bar',
+            barGap: "1%",
             emphasis: {
               focus: 'series'
             },
@@ -123,7 +124,7 @@ export default {
           },
           {
             name: '02月',
-	    type: 'bar',
+	          type: 'bar',
             emphasis: {
               focus: 'series'
             },
@@ -131,7 +132,7 @@ export default {
           },
           {
             name: '03月',
-	    type: 'bar',
+	          type: 'bar',
             emphasis: {
               focus: 'series'
             },
@@ -216,3 +217,5 @@ export default {
   }
 }
 </script>
+<style scoped>
+</style>
