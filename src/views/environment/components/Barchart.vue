@@ -68,7 +68,7 @@ export default {
     },
     setOptions({ expectedData, actualData } = {}) {
       this.chart.setOption({
-        color:['#00ABA9','#1BA1E2','#0050EF','#6A00FF','#D80073','#A20025','#E51400','#FA6800','#F0A30A','#E3C800','#825A2C','#6D8764'],
+	color:['#00ABA9','#1BA1E2','#0050EF','#6A00FF','#D80073','#A20025','#E51400','#FA6800','#F0A30A','#E3C800','#825A2C','#6D8764'],
         title: {
 		  text: this.title,
 		  textStyle: {
@@ -103,7 +103,7 @@ export default {
         xAxis: [
           {
             type: 'category',
-            data: ['总计', '冲压车间', '车身车间', '涂装车间', '冲压车间', '机加车间', '装配车间']
+            data: ['冲压车间', '车身车间', '涂装车间', '冲压车间', '机加车间', '装配车间']
           }
         ],
         yAxis: [
@@ -116,7 +116,6 @@ export default {
 	     {
             name: '01月',
 	    type: 'bar',
-	    stack: '月份',
             emphasis: {
               focus: 'series'
             },
@@ -125,8 +124,6 @@ export default {
           {
             name: '02月',
 	    type: 'bar',
-            stack: '月份',
-            barWidth: 40,
             emphasis: {
               focus: 'series'
             },
@@ -135,7 +132,6 @@ export default {
           {
             name: '03月',
 	    type: 'bar',
-	    stack: '月份',
             emphasis: {
               focus: 'series'
             },
@@ -144,7 +140,6 @@ export default {
           {
             name: '04月',
 	    type: 'bar',
-	    stack: '月份',
             emphasis: {
               focus: 'series'
             },
@@ -153,7 +148,6 @@ export default {
           {
             name: '05月',
 	    type: 'bar',
-	    stack: '月份',
             emphasis: {
               focus: 'series'
             },
@@ -162,7 +156,6 @@ export default {
           {
             name: '06月',
 	    type: 'bar',
-	    stack: '月份',
             emphasis: {
               focus: 'series'
             },
@@ -171,7 +164,6 @@ export default {
           {
             name: '07月',
 	    type: 'bar',
-	    stack: '月份',
             emphasis: {
               focus: 'series'
             },
@@ -180,7 +172,6 @@ export default {
           {
             name: '08月', // 这里的值要与lengend里面的值对应才能显示出来
 	    type: 'bar',
-	    stack: '月份',
             emphasis: {
               focus: 'series'
             },
@@ -189,7 +180,6 @@ export default {
           {
             name: '09月',
 	    type: 'bar',
-	    stack: '月份',
             emphasis: {
               focus: 'series'
             },
@@ -198,7 +188,6 @@ export default {
           {
             name: '10月',
 	    type: 'bar',
-	    stack: '月份',
             emphasis: {
               focus: 'series'
             },
@@ -207,7 +196,6 @@ export default {
 	 {
             name: '11月',
 	    type: 'bar',
-	    stack: '月份',
             emphasis: {
               focus: 'series'
             },
@@ -216,7 +204,6 @@ export default {
 	 {
             name: '12月',
 	    type: 'bar',
-	    stack: '月份',
             emphasis: {
               focus: 'series'
             },

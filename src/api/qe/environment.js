@@ -131,3 +131,34 @@ export function getthisYearEnvironmentSystem(year, workshoporzone, ydata, lengen
 	  }
   )
 }
+
+/* 获取区域 健康水平图表的数据 */
+export function getthisYearEnvironmentHealthZone(year, ydata, lengenddata) {
+  return request({
+    url: 'http://localhost:8000/qe/getthisYearEnvironmentHealthZone',
+    method: 'get',
+    params: {
+      year: year,
+    }
+  }).then(
+	  res => {
+      lengenddata.splice(0, lengenddata.length) //标签数据
+      ydata.splice(0, ydata.length) // 如果没有后面一句，这是这样，那么它变成了一维数组，后面的ydata[a].push 就找不到push方法
+      for (let index = 0; index < res.length; index++) {
+        ydata.push([])
+      } // 将清空后的一维数组ydata变为二维数组
+      for (const a in res) {
+        ydata[a].push(res[a].chongya)
+        ydata[a].push(res[a].cheshen)
+        ydata[a].push(res[a].tuzhuang)
+        ydata[a].push(res[a].zongzhuang)
+        ydata[a].push(res[a].jijia)
+        ydata[a].push(res[a].zhuangpei)
+
+        if (res[a].chongya !== 0) { // 如果冲压的数据不等于0，就加入一个有几个月的数组 不够稳定
+          lengenddata.push(res[a].date.substring(5, 7) + '月')
+        }
+		      }
+	  }
+  )
+}
