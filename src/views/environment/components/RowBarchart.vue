@@ -33,19 +33,19 @@ export default {
     title: {
       type: String
     },
-     stationdata: {
+    stationdata: {
       type: Array,
       required: true
     },
-     groupdata: {
+    groupdata: {
       type: Array,
       required: true
     },
     workshopdata: {
       type: Array,
-      required: true 
+      required: true
     }
-     
+
   },
   data() {
     return {
@@ -97,58 +97,58 @@ export default {
     },
     setOptions({ expectedData, actualData } = {}) {
       this.chart.setOption({
-	color: ['#00ABA9', '#E51400', '#FA6800'],
+        color: ['#00ABA9', '#E51400', '#FA6800'],
         title: {
-		text: this.title,
-		textStyle: {
-			fontSize: 12,
-			fontWeight: 'normal',
-			fontFamily: 'Courier New'
+          text: this.title,
+          textStyle: {
+            fontSize: 12,
+            fontWeight: 'normal',
+            fontFamily: 'Courier New'
           	},
-		left: '5px'
+          left: '5px'
         },
-	tooltip: {
-		trigger: 'axis',
-		axisPointer: {
-		type: 'shadow'
-		}
-	},
-	legend: {
-		data: ['工位', '班组', '工段'],
-		right: '2px'
-	},
-	grid: {
-		left: '3%',
-		right: '4%',
-		bottom: '3%',
-		containLabel: true
-	},
-	xAxis: {
-		type: 'value',
-		boundaryGap: [0, 0.01]
-	},
-	yAxis: {
-		type: 'category',
-		data:  this.chartData 
-	},
-	series: [
-		{
-		name: '工段',
-		type: 'bar',
-		data: this.workshopdata,
-		barGap: '1%',
-		},
-		{
-		name: '班组',
-		type: 'bar',
-		data: this.groupdata
-		},
-		{
-		name: '工位',
-		type: 'bar',
-		data: this.stationdata
-		}
-	]
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'shadow'
+          }
+        },
+        legend: {
+          data: ['工位', '班组', '工段'],
+          right: '2px'
+        },
+        grid: {
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
+          containLabel: true
+        },
+        xAxis: {
+          type: 'value',
+          boundaryGap: [0, 0.01]
+        },
+        yAxis: {
+          type: 'category',
+          data: this.chartData
+        },
+        series: [
+          {
+            name: '工段',
+            type: 'bar',
+            data: this.workshopdata,
+            barGap: '1%'
+          },
+          {
+            name: '班组',
+            type: 'bar',
+            data: this.groupdata
+          },
+          {
+            name: '工位',
+            type: 'bar',
+            data: this.stationdata
+          }
+        ]
       })
     }
   }
