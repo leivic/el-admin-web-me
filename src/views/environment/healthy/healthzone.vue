@@ -17,7 +17,7 @@
 <script>
 import SelectMonth from '@/components/SelectMonth'
 import { mapGetters } from 'vuex'
-import Barchart from './components/Barchart'
+import Barchart from './../components/Barchart'
 import { getthisYearEnvironmentHealthZone } from '@/api/qe/environment'
 export default {
   components: {

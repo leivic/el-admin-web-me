@@ -163,39 +163,64 @@ export function getthisYearEnvironmentHealthZone(year, ydata, lengenddata) {
   )
 }
 
-
-/*按照年份和区域获得一个工位的健康水平数组*/
-export function findEnvironmentBaseStationHealthy(year,zone) { //
+/* 按照年份和区域获得一个工位的健康水平数组*/
+export function findEnvironmentBaseStationHealthy(year, zone,stationdata,xdata) { //
   return request({
 	  url: 'http://localhost:8000/qe/findEnvironmentBaseStationHealthy',
 	  method: 'get',
-	  params: {	
-      year:year,
-      zone:zone
+	  params: {
+      year: year,
+      zone: zone
 					  }
-  })
+  }).then(
+
+    res=>{
+      stationdata.splice(0, stationdata.length)
+      xdata.splice(0, xdata.length)
+      for (let i=1;i <res.length+1;i++) {
+        stationdata.push(res[i-1]) //循环有多少个数据，然后得到一个数据的数组和月份的数组
+        xdata.push(i+"月") //xdata只需要一次酒醒了
+      }
+    }
+  )
 }
 
-/*按照年份和区域获得一个班组的健康水平数组*/
-export function findEnvironmentBaseGroupHealthy(year,zone) { //
+/* 按照年份和区域获得一个班组的健康水平数组*/
+export function findEnvironmentBaseGroupHealthy(year, zone,groupdata) { //
   return request({
 	  url: 'http://localhost:8000/qe/findEnvironmentBaseGroupHealthy',
 	  method: 'get',
-	  params: {	
-      year:year,
-      zone:zone
+	  params: {
+      year: year,
+      zone: zone
 					  }
-  })
+  }).then(
+
+    res=>{
+      groupdata.splice(0, groupdata.length)
+      for (let i=1;i <res.length+1;i++) {
+        groupdata.push(res[i-1]) 
+      }
+    }
+  )
 }
 
-/*按照年份和区域获得一个工段的健康水平数组*/
-export function findEnvironmentBaseWorkshopHealthy(year,zone) { //
+/* 按照年份和区域获得一个工段的健康水平数组*/
+export function findEnvironmentBaseWorkshopHealthy(year, zone,workshopdata) { //
   return request({
 	  url: 'http://localhost:8000/qe/findEnvironmentBaseWorkshopHealthy',
 	  method: 'get',
-	  params: {	
-      year:year,
-      zone:zone
+	  params: {
+      year: year,
+      zone: zone
 					  }
-  })
+  }).then(
+
+    res=>{
+      workshopdata.splice(0, workshopdata.length)
+      for (let i=1;i <res.length+1;i++) {
+        workshopdata.push(res[i-1]) 
+      }
+    }
+  )
 }
