@@ -3,7 +3,7 @@
     <el-row>
       <el-col :xs="12" :sm="12" :lg="6">
         <div class="tool">
-          <SelectMonth />
+          <SelectYear />
         </div>
       </el-col>
     </el-row>
@@ -47,13 +47,13 @@
   </div>
 </template>
 <script>
-import SelectMonth from '@/components/SelectMonth'
+import SelectYear from '@/components/SelectYear'
 import { mapGetters } from 'vuex'
 import RowBarchart from './../components/RowBarchart'
 import { findEnvironmentBaseStationHealthy, findEnvironmentBaseGroupHealthy, findEnvironmentBaseWorkshopHealthy } from '@/api/qe/environment'
 export default {
   components: {
-    SelectMonth,
+    SelectYear,
     RowBarchart
   },
   data() {
@@ -128,11 +128,12 @@ export default {
       this.chart6.listLoading = false
     })
   },
-  computed: {
+  computed: {/*  
     ...mapGetters(['month']),
     year() {
       return this.month.substring(0, 4)
-    }
+    }曾经的写法 */
+  ...mapGetters(['year']),
 
   },
   methods: {

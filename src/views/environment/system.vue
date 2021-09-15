@@ -3,7 +3,7 @@
     <el-row>
       <el-col :xs="12" :sm="12" :lg="6">
         <div class="tool">
-          <SelectMonth />
+          <SelectYear />
         </div>
       </el-col>
     </el-row>
@@ -19,14 +19,14 @@
   </div>
 </template>
 <script>
-import SelectMonth from '@/components/SelectMonth'
+import SelectYear from '@/components/SelectYear'
 import { mapGetters } from 'vuex'
 import Stackchart from './components/Stackchart'
 import { getthisYearEnvironmentSystem } from '@/api/qe/environment'
 export default {
   components: {
-    SelectMonth,
-    Stackchart
+    Stackchart,
+    SelectYear 
   },
   data() {
     return {
@@ -49,10 +49,8 @@ export default {
     getthisYearEnvironmentSystem(this.year, '工段', this.chart2.chartdata, this.chart2.lengenddata).then(() => this.chart2.listLoading = false)
   },
   computed: {
-    ...mapGetters(['month']),
-    year() {
-      return this.month.substring(0, 4)
-    }
+    ...mapGetters(['year']),
+   
 
   },
   methods: {

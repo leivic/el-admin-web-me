@@ -49,6 +49,9 @@
         导入
       </el-button>
     </el-upload><!-- 涉及到跨域，上传文件要用headers携带token -->
+    <div>
+      <SelectYear></SelectYear>
+    </div>
   </div>
 </template>
 <script>
@@ -56,8 +59,12 @@
 import { getToken } from '@/utils/auth'
 import { getAll } from '@/api/system/role'
 import { getAllStiation, getthisYearEnvironmentSystem, findEnvironmentBaseStationHealthy, findEnvironmentBaseGroupHealthy, findEnvironmentBaseWorkshopHealthy } from '@/api/qe/environment'
+import SelectYear from '@/components/SelectYear'
 import { mapGetters } from 'vuex'// 使用vuex状态管理器
 export default {
+  components: {
+    SelectYear
+  },
   data() {
     return {
       uploadLoading: undefined,
@@ -76,8 +83,12 @@ export default {
     findEnvironmentBaseWorkshopHealthy('2021', '冲压车间').then(res => console.log(res))
   },
   computed: {
-    ...mapGetters(['user'])
+    ...mapGetters(['user','year'])
+  },
+  watch:{
+    year(newval){
+      console.log(newval)
+    }
   }
-
 }
 </script>

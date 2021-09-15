@@ -22,6 +22,7 @@ const getters = {
   swaggerApi: state => state.api.swaggerApi,
   sidebarRouters: state => state.permission.sidebarRouters,
   month: state => state.selectmonth.month,
-  zone: state => state.domain.zone
+  zone: state => state.domain.zone,
+  year: state => state.selectyear.year
 }
 export default getters

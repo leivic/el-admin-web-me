@@ -3,7 +3,7 @@
     <el-row>
       <el-col :xs="12" :sm="12" :lg="6">
         <div class="tool">
-          <SelectMonth />
+          <SelectYear />
         </div>
       </el-col>
     </el-row>
@@ -15,13 +15,13 @@
   </div>
 </template>
 <script>
-import SelectMonth from '@/components/SelectMonth'
+import SelectYear from '@/components/SelectYear'
 import { mapGetters } from 'vuex'
 import Barchart from './../components/Barchart'
 import { getthisYearEnvironmentHealthZone } from '@/api/qe/environment'
 export default {
   components: {
-    SelectMonth,
+    SelectYear,
     Barchart
   },
   data() {
@@ -38,10 +38,7 @@ export default {
 	  getthisYearEnvironmentHealthZone(this.year, this.chart1.chartdata, this.chart1.lengenddata).then(() => this.chart1.listLoading = false) // 直接.then(this.chart1.listLoading = false) 里面的代码会直接执行，但是这样可不是回调函数
   },
   computed: {
-    ...mapGetters(['month']),
-    year() {
-      return this.month.substring(0, 4)
-    }
+    ...mapGetters(['year'])
 
   },
   methods: {

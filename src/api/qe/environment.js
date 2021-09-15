@@ -257,3 +257,36 @@ export function getthisYearIntelligence(year, workshoporzone, ydata, lengenddata
 	  }
   )
 }
+
+/* 获取区域/工段/工位 低碳精益图表的数据 */
+export function getthisYearLowcarbon(year, workshoporzone, ydata, lengenddata) {
+  return request({
+    url: 'http://localhost:8000/qe/getthisYearEnvironmentLowcarbon',
+    method: 'get',
+    params: {
+      year: year,
+      workshoporzone: workshoporzone
+    }
+  }).then(
+	  res => {
+      lengenddata.splice(0, lengenddata.length)
+      ydata.splice(0, ydata.length) // 如果没有后面一句，这是这样，那么它变成了一维数组，后面的ydata[a].push 就找不到push方法
+      for (let index = 0; index < res.length; index++) {
+        ydata.push([])
+      } // 将清空后的一维数组ydata变为二维数组
+      for (const a in res) {
+        ydata[a].push(res[a].total)
+        ydata[a].push(res[a].chognya)
+        ydata[a].push(res[a].cheshen)
+        ydata[a].push(res[a].tuzhuang)
+        ydata[a].push(res[a].zongzhuang)
+        ydata[a].push(res[a].jijia)
+        ydata[a].push(res[a].zhuangpei)
+
+        if (res[a].total !== 0) { // 如果它不等于0，就加入一个有几个月的数组
+          lengenddata.push(res[a].date.substring(5, 7) + '月')
+        }
+		      }
+	  }
+  )
+}
