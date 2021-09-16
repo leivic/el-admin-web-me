@@ -50,16 +50,16 @@ export default {
         title: '工位低碳精益水平', // 会响应式刷新的不只是data里面的数据，还有vuex，vuex里面的数据一旦变化  使用该数据的地方也会刷新
         chartdata: [[], [], [], [], [], [], [], [], [], [], [], []],
         lengenddata: []
-      },
+      }
     }
   },
   created() {
-    getthisYearLowcarbon(this.year,"工段",this.chart1.chartdata,this.chart1.lengenddata).then(()=>this.chart1.listLoading=false)
-    getthisYearLowcarbon(this.year,"班组",this.chart2.chartdata,this.chart2.lengenddata).then(()=>this.chart2.listLoading=false)
-    getthisYearLowcarbon(this.year,"工位",this.chart3.chartdata,this.chart3.lengenddata).then(()=>this.chart3.listLoading=false)
+    getthisYearLowcarbon(this.year, '工段', this.chart1.chartdata, this.chart1.lengenddata).then(() => this.chart1.listLoading = false)
+    getthisYearLowcarbon(this.year, '班组', this.chart2.chartdata, this.chart2.lengenddata).then(() => this.chart2.listLoading = false)
+    getthisYearLowcarbon(this.year, '工位', this.chart3.chartdata, this.chart3.lengenddata).then(() => this.chart3.listLoading = false)
   },
   computed: {
-    ...mapGetters(['year']),
+    ...mapGetters(['year'])
 
   },
   methods: {
@@ -70,9 +70,9 @@ export default {
       this.chart1.listLoading = true
       this.chart2.listLoading = true
       this.chart3.listLoading = true
-      getthisYearLowcarbon(newval,"工段",this.chart1.chartdata,this.chart1.lengenddata).then(()=>this.chart1.listLoading=false)
-      getthisYearLowcarbon(newval,"班组",this.chart2.chartdata,this.chart2.lengenddata).then(()=>this.chart2.listLoading=false)
-      getthisYearLowcarbon(newval,"工位",this.chart3.chartdata,this.chart3.lengenddata).then(()=>this.chart3.listLoading=false)
+      getthisYearLowcarbon(newval, '工段', this.chart1.chartdata, this.chart1.lengenddata).then(() => this.chart1.listLoading = false)
+      getthisYearLowcarbon(newval, '班组', this.chart2.chartdata, this.chart2.lengenddata).then(() => this.chart2.listLoading = false)
+      getthisYearLowcarbon(newval, '工位', this.chart3.chartdata, this.chart3.lengenddata).then(() => this.chart3.listLoading = false)
     }
   }
 }

@@ -261,7 +261,7 @@ export function getthisYearIntelligence(year, workshoporzone, ydata, lengenddata
 /* 获取区域/工段/工位 低碳精益图表的数据 */
 export function getthisYearLowcarbon(year, workshoporzone, ydata, lengenddata) {
   return request({
-    url: 'http://localhost:8000/qe/getthisYearEnvironmentLowcarbon',
+    url: 'http://localhost:8000/qe/getthisYearEnvironmentLowcarbon', //猜测部署的时候，这个localhost要换成ip地址,因为相当于是将代码发到用户的电脑上，渲染成视图 那么那时候的localhost就是用户的电脑本身
     method: 'get',
     params: {
       year: year,
@@ -288,5 +288,73 @@ export function getthisYearLowcarbon(year, workshoporzone, ydata, lengenddata) {
         }
 		      }
 	  }
+  )
+}
+
+/* 按照年份和区域获得一个工位的健康水平数组*/
+export function getStationByZoneAndDate(date,zone,xdata,chartdata) { //
+  return request({
+	  url: 'http://localhost:8000/qe/getStationByZoneAndDate',
+	  method: 'get',
+	  params: {
+      date: date,
+      zone: zone
+					  }
+  }).then(
+    res=>{
+      xdata.splice(0, xdata.length)
+      chartdata.splice(0,chartdata.length)
+
+      for (const a of res) {
+        xdata.push(a.item)
+        chartdata.push(a.fraction) 
+      }
+     
+    }
+  )
+}
+
+/* 按照年份和区域获得一个班组的健康水平数组*/
+export function getGroupByZoneAndDate(date,zone,xdata,chartdata) { //
+  return request({
+	  url: 'http://localhost:8000/qe/getGroupByZoneAndDate',
+	  method: 'get',
+	  params: {
+      date: date,
+      zone: zone
+					  }
+  }).then(
+    res=>{
+      xdata.splice(0, xdata.length)
+      chartdata.splice(0,chartdata.length)
+
+      for (const a of res) {
+        xdata.push(a.item)
+        chartdata.push(a.fraction) 
+      }
+    }
+  )
+
+}
+
+/* 按照年份和区域获得一个工段的健康水平数组*/
+export function getWorkShopByZoneAndDate(date,zone,xdata,chartdata) { //
+  return request({
+	  url: 'http://localhost:8000/qe/getWorkShopByZoneAndDate',
+	  method: 'get',
+	  params: {
+      date: date,
+      zone: zone
+					  }
+  }).then(
+    res=>{
+      xdata.splice(0, xdata.length)
+      chartdata.splice(0,chartdata.length)
+
+      for (const a of res) {
+        xdata.push(a.item)
+        chartdata.push(a.fraction) 
+      }
+    }
   )
 }

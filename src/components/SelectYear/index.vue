@@ -1,5 +1,5 @@
 <template>
-  <div class="block" >
+  <div class="block">
     <span class="demonstration" /> <!---v-model封装的相当于一个输入值的事件和一个绑定属性的值-->
     <el-date-picker
       v-model="value"
@@ -28,8 +28,8 @@ export default {
 	 methods: {
 		 getyear() { // getmon() {} 是 getmon: function(){}的缩写 methods的值是个对象、对象里面是一对对键值对
       const theDate = new Date()
-      
-      this.value = theDate.getFullYear()+'' //为什么＋一个'‘因为 getfullyear（）是date类型的，终究会出奇奇怪怪的问题
+
+      this.value = theDate.getFullYear() + '' // 为什么＋一个'‘因为 getfullyear（）是date类型的，终究会出奇奇怪怪的问题
 		 }
 	 }
 }

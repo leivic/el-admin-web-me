@@ -73,11 +73,11 @@ export default {
         title: {
 		  text: this.title,
 		  textStyle: {
-            fontSize: 22,
+            fontSize: 18,
             fontWeight: 'normal',
             fontFamily: 'Courier New'
           },
-		  left: 'center'
+		  left: '100'
         },
         tooltip: {
 		  trigger: 'axis',
@@ -99,13 +99,13 @@ export default {
 		    data: this.xData,
 		    axisLabel: {
             interval: 0, // 横轴信息全部显示
-            rotate: -50// -30度角倾斜显示
+            rotate: -90// -30度角倾斜显示
 		    }
         },
         yAxis: {
 		    type: 'value',
 		    axisLabel: {
-            formatter: '{value}%'
+            formatter: '{value}/50'
 		    }
         },
         series: [{

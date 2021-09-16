@@ -128,12 +128,12 @@ export default {
       this.chart6.listLoading = false
     })
   },
-  computed: {/*  
+  computed: {/*
     ...mapGetters(['month']),
     year() {
       return this.month.substring(0, 4)
     }曾经的写法 */
-  ...mapGetters(['year']),
+    ...mapGetters(['year'])
 
   },
   methods: {

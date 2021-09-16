@@ -26,7 +26,7 @@ import { getthisYearEnvironmentSystem } from '@/api/qe/environment'
 export default {
   components: {
     Stackchart,
-    SelectYear 
+    SelectYear
   },
   data() {
     return {
@@ -49,8 +49,7 @@ export default {
     getthisYearEnvironmentSystem(this.year, '工段', this.chart2.chartdata, this.chart2.lengenddata).then(() => this.chart2.listLoading = false)
   },
   computed: {
-    ...mapGetters(['year']),
-   
+    ...mapGetters(['year'])
 
   },
   methods: {
