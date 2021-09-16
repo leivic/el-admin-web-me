@@ -12,23 +12,22 @@
         </div>
       </el-col>
     </el-row>
-    <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;" v-loading="chart1.listLoading"><!--第一个图表组件-->
-	<Chart :chartData="chart1.chartData" :xData="chart1.xData" :title="chart1.title" height="400px"></Chart>
+    <el-row v-loading="chart1.listLoading" style="background:#fff;padding:16px 16px 0;margin-bottom:32px;"><!--第一个图表组件-->
+      <Chart :chart-data="chart1.chartData" :x-data="chart1.xData" :title="chart1.title" height="400px" />
     </el-row>
     <el-row :gutter="32"><!--两个个图表组件 布局是elment-ui栅栏布局-->
-      <el-col :xs="24" :sm="24" :lg="12" v-loading="chart2.listLoading"> 
+      <el-col v-loading="chart2.listLoading" :xs="24" :sm="24" :lg="12">
         <div class="chart-wrapper">
-		<Chart :chartData="chart2.chartData" :xData="chart2.xData" :title="chart2.title"></Chart>
+          <Chart :chart-data="chart2.chartData" :x-data="chart2.xData" :title="chart2.title" />
         </div>
       </el-col>
-      <el-col :xs="24" :sm="24" :lg="12" v-loading="chart3.listLoading">
+      <el-col v-loading="chart3.listLoading" :xs="24" :sm="24" :lg="12">
         <div class="chart-wrapper">
-		<Chart :chartData="chart3.chartData" :xData="chart3.xData" :title="chart3.title"></Chart>
+          <Chart :chart-data="chart3.chartData" :x-data="chart3.xData" :title="chart3.title" />
         </div>
       </el-col>
     </el-row>
 
-    
   </div>
 </template>
 <script>
@@ -36,7 +35,7 @@ import SelectDomain from '@/components/SelectDomain'
 import SelectMonth from '@/components/SelectMonth'
 import { mapGetters } from 'vuex'
 import Chart from './../components/Chart'
-import { getStationByZoneAndDate,getGroupByZoneAndDate,getWorkShopByZoneAndDate } from '@/api/qe/environment'
+import { getStationByZoneAndDate, getGroupByZoneAndDate, getWorkShopByZoneAndDate } from '@/api/qe/environment'
 
 export default {
   components: {
@@ -46,47 +45,47 @@ export default {
   },
   data() {
     return {
-      chart1:{
+      chart1: {
 	      title: '各工位健康水平',
 	      chartData: [],
 	      xData: [],
-	      listLoading: true 
+	      listLoading: true
       },
-       chart2:{
-	      title:"各班组健康水平",
+      chart2: {
+	      title: '各班组健康水平',
 	      chartData: [],
 	      xData: [],
-	      listLoading: true  
+	      listLoading: true
       },
-       chart3:{
-	      title:"各工段健康水平",
+      chart3: {
+	      title: '各工段健康水平',
 	      chartData: [],
 	      xData: [],
-	      listLoading: true  
+	      listLoading: true
       }
     }
   },
   mounted() {
-    getStationByZoneAndDate(this.month,this.zone,this.chart1.xData,this.chart1.chartData).then(()=> this.chart1.listLoading=false )
-    getGroupByZoneAndDate(this.month,this.zone,this.chart2.xData,this.chart2.chartData).then(()=> this.chart2.listLoading=false )
-    getWorkShopByZoneAndDate(this.month,this.zone,this.chart3.xData,this.chart3.chartData).then(()=> this.chart3.listLoading=false )
+    getStationByZoneAndDate(this.month, this.zone, this.chart1.xData, this.chart1.chartData).then(() => this.chart1.listLoading = false)
+    getGroupByZoneAndDate(this.month, this.zone, this.chart2.xData, this.chart2.chartData).then(() => this.chart2.listLoading = false)
+    getWorkShopByZoneAndDate(this.month, this.zone, this.chart3.xData, this.chart3.chartData).then(() => this.chart3.listLoading = false)
   },
   computed: {
-	  ...mapGetters(['month','zone'])
+	  ...mapGetters(['month', 'zone'])
   },
   methods: {
-   
+
   },
-  watch:{
-	  month(newval){
-		getStationByZoneAndDate(newval,this.zone,this.chart1.xData,this.chart1.chartData).then(()=> this.chart1.listLoading=false )
-    		getGroupByZoneAndDate(newval,this.zone,this.chart2.xData,this.chart2.chartData).then(()=> this.chart2.listLoading=false )
-    		getWorkShopByZoneAndDate(newval,this.zone,this.chart3.xData,this.chart3.chartData).then(()=> this.chart3.listLoading=false )
+  watch: {
+	  month(newval) {
+      getStationByZoneAndDate(newval, this.zone, this.chart1.xData, this.chart1.chartData).then(() => this.chart1.listLoading = false)
+    		getGroupByZoneAndDate(newval, this.zone, this.chart2.xData, this.chart2.chartData).then(() => this.chart2.listLoading = false)
+    		getWorkShopByZoneAndDate(newval, this.zone, this.chart3.xData, this.chart3.chartData).then(() => this.chart3.listLoading = false)
 	  },
-	  zone(newval){
-		getStationByZoneAndDate(this.month,newval,this.chart1.xData,this.chart1.chartData).then(()=> this.chart1.listLoading=false )
-    		getGroupByZoneAndDate(this.month,newval,this.chart2.xData,this.chart2.chartData).then(()=> this.chart2.listLoading=false )
-   		getWorkShopByZoneAndDate(this.month,newval,this.chart3.xData,this.chart3.chartData).then(()=> this.chart3.listLoading=false )
+	  zone(newval) {
+      getStationByZoneAndDate(this.month, newval, this.chart1.xData, this.chart1.chartData).then(() => this.chart1.listLoading = false)
+    		getGroupByZoneAndDate(this.month, newval, this.chart2.xData, this.chart2.chartData).then(() => this.chart2.listLoading = false)
+   		getWorkShopByZoneAndDate(this.month, newval, this.chart3.xData, this.chart3.chartData).then(() => this.chart3.listLoading = false)
 	  }
   }
 }

@@ -261,7 +261,7 @@ export function getthisYearIntelligence(year, workshoporzone, ydata, lengenddata
 /* 获取区域/工段/工位 低碳精益图表的数据 */
 export function getthisYearLowcarbon(year, workshoporzone, ydata, lengenddata) {
   return request({
-    url: 'http://localhost:8000/qe/getthisYearEnvironmentLowcarbon', //猜测部署的时候，这个localhost要换成ip地址,因为相当于是将代码发到用户的电脑上，渲染成视图 那么那时候的localhost就是用户的电脑本身
+    url: 'http://localhost:8000/qe/getthisYearEnvironmentLowcarbon', // 猜测部署的时候，这个localhost要换成ip地址,因为相当于是将代码发到用户的电脑上，渲染成视图 那么那时候的localhost就是用户的电脑本身
     method: 'get',
     params: {
       year: year,
@@ -292,7 +292,7 @@ export function getthisYearLowcarbon(year, workshoporzone, ydata, lengenddata) {
 }
 
 /* 按照年份和区域获得一个工位的健康水平数组*/
-export function getStationByZoneAndDate(date,zone,xdata,chartdata) { //
+export function getStationByZoneAndDate(date, zone, xdata, chartdata) { //
   return request({
 	  url: 'http://localhost:8000/qe/getStationByZoneAndDate',
 	  method: 'get',
@@ -301,21 +301,20 @@ export function getStationByZoneAndDate(date,zone,xdata,chartdata) { //
       zone: zone
 					  }
   }).then(
-    res=>{
+    res => {
       xdata.splice(0, xdata.length)
-      chartdata.splice(0,chartdata.length)
+      chartdata.splice(0, chartdata.length)
 
       for (const a of res) {
         xdata.push(a.item)
-        chartdata.push(a.fraction) 
+        chartdata.push(a.fraction)
       }
-     
     }
   )
 }
 
 /* 按照年份和区域获得一个班组的健康水平数组*/
-export function getGroupByZoneAndDate(date,zone,xdata,chartdata) { //
+export function getGroupByZoneAndDate(date, zone, xdata, chartdata) { //
   return request({
 	  url: 'http://localhost:8000/qe/getGroupByZoneAndDate',
 	  method: 'get',
@@ -324,21 +323,20 @@ export function getGroupByZoneAndDate(date,zone,xdata,chartdata) { //
       zone: zone
 					  }
   }).then(
-    res=>{
+    res => {
       xdata.splice(0, xdata.length)
-      chartdata.splice(0,chartdata.length)
+      chartdata.splice(0, chartdata.length)
 
       for (const a of res) {
         xdata.push(a.item)
-        chartdata.push(a.fraction) 
+        chartdata.push(a.fraction)
       }
     }
   )
-
 }
 
 /* 按照年份和区域获得一个工段的健康水平数组*/
-export function getWorkShopByZoneAndDate(date,zone,xdata,chartdata) { //
+export function getWorkShopByZoneAndDate(date, zone, xdata, chartdata) { //
   return request({
 	  url: 'http://localhost:8000/qe/getWorkShopByZoneAndDate',
 	  method: 'get',
@@ -347,13 +345,86 @@ export function getWorkShopByZoneAndDate(date,zone,xdata,chartdata) { //
       zone: zone
 					  }
   }).then(
-    res=>{
+    res => {
       xdata.splice(0, xdata.length)
-      chartdata.splice(0,chartdata.length)
+      chartdata.splice(0, chartdata.length)
 
       for (const a of res) {
         xdata.push(a.item)
-        chartdata.push(a.fraction) 
+        chartdata.push(a.fraction)
+      }
+    }
+  )
+}
+
+/* 获取区域 健康水平图表的数据 */
+export function getthisYearEnvironmentDevelopZone(year, ydata, lengenddata) {
+  return request({
+    url: 'http://localhost:8000/qe/getthisYearEnvironmentDevelopZone',
+    method: 'get',
+    params: {
+      year: year
+    }
+  }).then(
+	  res => {
+      lengenddata.splice(0, lengenddata.length) // 标签数据
+      ydata.splice(0, ydata.length) // 如果没有后面一句，这是这样，那么它变成了一维数组，后面的ydata[a].push 就找不到push方法
+      for (let index = 0; index < res.length; index++) {
+        ydata.push([])
+      } // 将清空后的一维数组ydata变为二维数组
+      for (const a in res) {
+        ydata[a].push(res[a].chongya)
+        ydata[a].push(res[a].cheshen)
+        ydata[a].push(res[a].tuzhuang)
+        ydata[a].push(res[a].zongzhuang)
+        ydata[a].push(res[a].jijia)
+        ydata[a].push(res[a].zhuangpei)
+
+        if (res[a].chongya !== 0) { // 如果冲压的数据不等于0，就加入一个有几个月的数组 不够稳定
+          lengenddata.push(res[a].date.substring(5, 7) + '月')
+        }
+		      }
+	  }
+  )
+}
+
+/* 按照年份和区域获得一个班组的均衡发展数组*/
+export function findEnvironmentBaseGroupDelevop(xdata,year, zone, groupdata) { //
+  return request({
+	  url: 'http://localhost:8000/qe/findEnvironmentBaseGroupDelevop',
+	  method: 'get',
+	  params: {
+      year: year,
+      zone: zone
+					  }
+  }).then(
+
+    res => {
+      groupdata.splice(0, groupdata.length)
+      xdata.splice(0, xdata.length)
+      for (let i = 1; i < res.length + 1; i++) {
+        groupdata.push(res[i - 1])
+        xdata.push(i+'月')
+      }
+    }
+  )
+}
+
+/* 按照年份和区域获得一个工段的健康水平数组*/
+export function findEnvironmentBaseWorkshopDelevop(year, zone, workshopdata) { //
+  return request({
+	  url: 'http://localhost:8000/qe/findEnvironmentBaseWorkshopDelevop',
+	  method: 'get',
+	  params: {
+      year: year,
+      zone: zone
+					  }
+  }).then(
+
+    res => {
+      workshopdata.splice(0, workshopdata.length)
+      for (let i = 1; i < res.length + 1; i++) {
+        workshopdata.push(res[i - 1])
       }
     }
   )
