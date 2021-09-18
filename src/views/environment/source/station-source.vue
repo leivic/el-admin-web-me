@@ -127,7 +127,7 @@
 
       <el-table-column label="#" width="100px" align="center">
         <template slot-scope="{row,$index}"><!--最开始的写法是 slot-scope="{row,$index}" 这个$index是vue2.0的key，在vue2.0的时候移除了-->
-          <el-button size="mini" type="danger" @click="">
+          <el-button size="mini" type="danger" @click="handleDelete(row,index,row.id)">
             Delete
           </el-button>
         </template>
@@ -140,9 +140,10 @@
 
 <script>
 import { getToken } from '@/utils/auth'
-import { getAllStiation, getAllStiationByZone } from '@/api/qe/environment'
+import { getAllStiation, getAllStiationByZone,deletestationByid } from '@/api/qe/environment'
 import Pagination from '@/components/Pagination'// 分页组件
 import { mapGetters } from 'vuex'
+
 
 export default {
   components: { Pagination },
@@ -231,7 +232,8 @@ export default {
         type: 'success',
         duration: 2000
       })
-      this.list.splice(index, 1)// data property里面的数据更新，视图即更新
+      deletestationByid(id).then(()=>{this.list.splice(index, 1)})
+      //this.list.splice(index, 1) data property里面的数据更新，视图即更新 否则虽然视图刷新了
     }
 
   },

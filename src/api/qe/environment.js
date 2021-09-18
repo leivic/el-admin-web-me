@@ -389,7 +389,7 @@ export function getthisYearEnvironmentDevelopZone(year, ydata, lengenddata) {
 }
 
 /* 按照年份和区域获得一个班组的均衡发展数组*/
-export function findEnvironmentBaseGroupDelevop(xdata,year, zone, groupdata) { //
+export function findEnvironmentBaseGroupDelevop(xdata, year, zone, groupdata) { //
   return request({
 	  url: 'http://localhost:8000/qe/findEnvironmentBaseGroupDelevop',
 	  method: 'get',
@@ -404,7 +404,7 @@ export function findEnvironmentBaseGroupDelevop(xdata,year, zone, groupdata) { /
       xdata.splice(0, xdata.length)
       for (let i = 1; i < res.length + 1; i++) {
         groupdata.push(res[i - 1])
-        xdata.push(i+'月')
+        xdata.push(i + '月')
       }
     }
   )
@@ -428,4 +428,44 @@ export function findEnvironmentBaseWorkshopDelevop(year, zone, workshopdata) { /
       }
     }
   )
+}
+
+/* 删除工位数据*/
+export function deletestationByid(id) {
+  return request({
+	  url: 'http://localhost:8000/qe/deleteEnvironmentBaseStationByid',
+	  method: 'get',
+	  params: { 	id:id
+	      		}
+  })
+}
+
+/* 删除班组数据*/
+export function deletegroupByid(id) {
+  return request({
+	  url: 'http://localhost:8000/qe/deleteEnvironmentBaseGroupByid',
+	  method: 'get',
+	  params: { 	id:id
+	      		}
+  })
+}
+
+/* 删除工段数据*/
+export function deleteworkshopByid(id) {
+  return request({
+	  url: 'http://localhost:8000/qe/deleteEnvironmentBaseWorkshopByid',
+	  method: 'get',
+	  params: { 	id:id
+	      		}
+  })
+}
+
+/* 删除区域数据*/
+export function deletezoneByid(id) {
+  return request({
+	  url: 'http://localhost:8000/qe/deleteEnvironmentBaseZoneByid',
+	  method: 'get',
+	  params: { 	id:id
+	      		}
+  })
 }
