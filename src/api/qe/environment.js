@@ -435,7 +435,7 @@ export function deletestationByid(id) {
   return request({
 	  url: 'http://localhost:8000/qe/deleteEnvironmentBaseStationByid',
 	  method: 'get',
-	  params: { 	id:id
+	  params: { 	id: id
 	      		}
   })
 }
@@ -445,7 +445,7 @@ export function deletegroupByid(id) {
   return request({
 	  url: 'http://localhost:8000/qe/deleteEnvironmentBaseGroupByid',
 	  method: 'get',
-	  params: { 	id:id
+	  params: { 	id: id
 	      		}
   })
 }
@@ -455,7 +455,7 @@ export function deleteworkshopByid(id) {
   return request({
 	  url: 'http://localhost:8000/qe/deleteEnvironmentBaseWorkshopByid',
 	  method: 'get',
-	  params: { 	id:id
+	  params: { 	id: id
 	      		}
   })
 }
@@ -465,7 +465,16 @@ export function deletezoneByid(id) {
   return request({
 	  url: 'http://localhost:8000/qe/deleteEnvironmentBaseZoneByid',
 	  method: 'get',
-	  params: { 	id:id
+	  params: { 	id: id
+	      		}
+  })
+}
+
+export function getenvironmenttotal(date) {
+  return request({
+	  url: 'http://localhost:8000/qe/getenvironmenttotal',
+	  method: 'get',
+	  params: { 	date:date
 	      		}
   })
 }

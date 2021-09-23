@@ -3,11 +3,13 @@
     <div class="filter-container">
       <!--后端导入班组服务--><!--文件上传成功钩子 绑定属性仍然可以绑定方法 这里不能getList() 会直接调用的，毕竟不是v-on-->
       <el-upload
+        v-permission="['environmentworkshopimport']"
         action="http://localhost:8000/qe/addEnvironmentBaseWorkShop"
         multiple
         :limit="3"
         :headers="headers"
         :on-success="getList"
+        :data="mydata"
       >
         <el-button :loading="uploadLoading" class="filter-item" type="primary" icon="el-icon-upload" @click="">
           导入
@@ -223,7 +225,7 @@
 
       <el-table-column label="#" width="100px" align="center">
         <template slot-scope="{row,$index}"><!--最开始的写法是 slot-scope="{row,$index}" 这个$index是vue2.0的key，在vue2.0的时候移除了-->
-          <el-button size="mini" type="danger" @click="handleDelete(row,index,row.id)">
+          <el-button size="mini" type="danger" @click="handleDelete(row,index,row.id)" v-permission="['environmentworkshopdelete']">
             Delete
           </el-button>
         </template>
@@ -236,7 +238,7 @@
 
 <script>
 import { getToken } from '@/utils/auth'
-import { getAllWorkshop, getAllWorkshopByZone,deleteworkshopByid } from '@/api/qe/environment'
+import { getAllWorkshop, getAllWorkshopByZone, deleteworkshopByid } from '@/api/qe/environment'
 import Pagination from '@/components/Pagination'// 分页组件
 import { mapGetters } from 'vuex'
 
@@ -327,13 +329,17 @@ export default {
         type: 'success',
         duration: 2000
       })
-      deleteworkshopByid(id).then(()=>{this.list.splice(index, 1)})
+      deleteworkshopByid(id).then(() => { this.list.splice(index, 1) })
       // data property里面的数据更新，视图即更新
+      // 
     }
 
   },
   computed: {
-    ...mapGetters(['user'])
+    ...mapGetters(['user']),
+    mydata(){ //这个mydata的属性最好不要在data property里面，因为在dataproperty里面访问不到计算属性，它们是同级的
+      return {nickName:this.user.nickName}
+    }
   }
 }
 </script>

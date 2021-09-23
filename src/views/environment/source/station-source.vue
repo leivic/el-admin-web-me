@@ -3,12 +3,14 @@
     <div class="filter-container">
       <!--后端导入工位服务--><!--文件上传成功钩子 绑定属性仍然可以绑定方法 这里不能getList() 会直接调用的，毕竟不是v-on-->
       <el-upload
+        v-permission="['environmentstationimport']"
         action="http://localhost:8000/qe/addEnvironmentBaseStation"
         multiple
         :limit="3"
         :headers="headers"
         :on-success="getList"
-      >
+        :data="mydata"
+      ><!--data，object类型，上传时附带参数-->
         <el-button :loading="uploadLoading" class="filter-item" type="primary" icon="el-icon-upload" @click="">
           导入
         </el-button>
@@ -125,9 +127,9 @@
         </el-table-column>
       </el-table-column>
 
-      <el-table-column label="#" width="100px" align="center">
+      <el-table-column label="#" width="100px" align="center" >
         <template slot-scope="{row,$index}"><!--最开始的写法是 slot-scope="{row,$index}" 这个$index是vue2.0的key，在vue2.0的时候移除了-->
-          <el-button size="mini" type="danger" @click="handleDelete(row,index,row.id)">
+          <el-button size="mini" type="danger" @click="handleDelete(row,index,row.id)" v-permission="['environmentstationdelete']">
             Delete
           </el-button>
         </template>
@@ -140,10 +142,9 @@
 
 <script>
 import { getToken } from '@/utils/auth'
-import { getAllStiation, getAllStiationByZone,deletestationByid } from '@/api/qe/environment'
+import { getAllStiation, getAllStiationByZone, deletestationByid } from '@/api/qe/environment'
 import Pagination from '@/components/Pagination'// 分页组件
 import { mapGetters } from 'vuex'
-
 
 export default {
   components: { Pagination },
@@ -166,7 +167,6 @@ export default {
       headers: {
         'Authorization': getToken()
       }
-
     }
   },
   created() {
@@ -232,13 +232,16 @@ export default {
         type: 'success',
         duration: 2000
       })
-      deletestationByid(id).then(()=>{this.list.splice(index, 1)})
-      //this.list.splice(index, 1) data property里面的数据更新，视图即更新 否则虽然视图刷新了
+      deletestationByid(id).then(() => { this.list.splice(index, 1) })
+      // this.list.splice(index, 1) data property里面的数据更新，视图即更新 否则虽然视图刷新了
     }
 
   },
   computed: {
-    ...mapGetters(['user'])
+    ...mapGetters(['user']),
+    mydata(){ //这个mydata的属性最好不要在data property里面，因为在dataproperty里面访问不到计算属性，它们是同级的
+      return {nickName:this.user.nickName}
+    }
   }
 }
 </script>

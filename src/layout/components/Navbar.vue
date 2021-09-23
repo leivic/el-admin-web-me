@@ -4,13 +4,9 @@
 
     <breadcrumb id="breadcrumb-container" class="breadcrumb-container" />
 
-    <div class="right-menu">
+    <div class="right-menu"><!--标签栏-->
       <template v-if="device!=='mobile'">
         <search id="header-search" class="right-menu-item" />
-
-        <el-tooltip content="项目文档" effect="dark" placement="bottom">
-          <Doc class="right-menu-item hover-effect" />
-        </el-tooltip>
 
         <el-tooltip content="全屏缩放" effect="dark" placement="bottom">
           <screenfull id="screenfull" class="right-menu-item hover-effect" />

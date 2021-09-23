@@ -1,5 +1,5 @@
 <template>
-  <div class="block">
+  <div class="block" >
     <span class="demonstration" /> <!---v-model封装的相当于一个输入值的事件和一个绑定属性的值-->
     <el-date-picker
       v-model="value"
@@ -39,3 +39,4 @@ export default {
 	 }
 }
 </script>
+

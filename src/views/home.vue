@@ -1,7 +1,6 @@
 <template>
-  <div class="dashboard-container">
+  <div class="dashboard-container"> <!--DASHboard那页-->
     <div class="dashboard-editor-container">
-      <github-corner class="github-corner" />
 
       <panel-group @handleSetLineChartData="handleSetLineChartData" />
 

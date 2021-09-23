@@ -3,7 +3,6 @@
     数据源
     <!--按钮权限先在菜单添加 在菜单添加god权限后 同样在角色处分配 -->
     <el-upload
-      v-permission="['god']"
       action="http://localhost:8000/qe/addEnvironmentBaseStation"
       multiple
       :limit="3"
@@ -15,7 +14,6 @@
     </el-upload><!-- 涉及到跨域，上传文件要用headers携带token -->
 
     <el-upload
-      v-permission="['god']"
       action="http://localhost:8000/qe/addEnvironmentBaseGroup"
       multiple
       :limit="3"
@@ -27,7 +25,6 @@
     </el-upload><!-- 涉及到跨域，上传文件要用headers携带token -->
 
     <el-upload
-      v-permission="['god']"
       action="http://localhost:8000/qe/addEnvironmentBaseWorkShop"
       multiple
       :limit="3"
@@ -39,7 +36,6 @@
     </el-upload><!-- 涉及到跨域，上传文件要用headers携带token -->
 
     <el-upload
-      v-permission="['god']"
       action="http://localhost:8000/qe/addEnvironmentBaseZone"
       multiple
       :limit="3"
@@ -58,7 +54,7 @@
 
 import { getToken } from '@/utils/auth'
 import { getAll } from '@/api/system/role'
-import { getAllStiation, getthisYearEnvironmentSystem, findEnvironmentBaseStationHealthy, findEnvironmentBaseGroupHealthy, findEnvironmentBaseWorkshopHealthy, getStationByZoneAndDate, getGroupByZoneAndDate, getWorkShopByZoneAndDate } from '@/api/qe/environment'
+import { getAllStiation, getthisYearEnvironmentSystem, findEnvironmentBaseStationHealthy, findEnvironmentBaseGroupHealthy, findEnvironmentBaseWorkshopHealthy, getStationByZoneAndDate, getGroupByZoneAndDate, getWorkShopByZoneAndDate,getenvironmenttotal } from '@/api/qe/environment'
 import SelectYear from '@/components/SelectYear'
 import { mapGetters } from 'vuex'// 使用vuex状态管理器
 export default {
@@ -84,6 +80,8 @@ export default {
     getStationByZoneAndDate('2021-07', '冲压车间').then(res => console.log(res))
     getGroupByZoneAndDate('2021-07', '车身车间').then(res => console.log(res))
     getWorkShopByZoneAndDate('2021-08', '冲压车间').then(res => console.log(res))
+    getenvironmenttotal('2021-08').then(res=>console.log(res))
+    console.log(this.user.nickName)
   },
   computed: {
     ...mapGetters(['user', 'year'])
