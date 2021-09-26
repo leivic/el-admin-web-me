@@ -81,7 +81,7 @@
         <el-card class="box-card" shadow="never">
           <div slot="header" class="clearfix">
             <el-tooltip class="item" effect="dark" content="选择指定角色分配菜单" placement="top">
-              <span class="role-span">菜单分配</span>
+              <span class="role-span" style="float: right">菜单分配</span>
             </el-tooltip>
             <el-button
               v-permission="['admin','roles:edit']"
@@ -89,7 +89,7 @@
               :loading="menuLoading"
               icon="el-icon-check"
               size="mini"
-              style="float: right; padding: 6px 9px"
+              style="float: left; padding: 6px 9px"
               type="primary"
               @click="saveMenu"
             >保存</el-button>

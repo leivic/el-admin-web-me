@@ -72,11 +72,11 @@ export default {
         title: {
 		  text: this.title,
 		  textStyle: {
-            fontSize: 14,
+            fontSize: 24,
             fontWeight: 'normal',
             fontFamily: 'Courier New'
           },
-		  left: '40px'
+		  left: '39%'
         },
         tooltip: {
 		  trigger: 'axis',
@@ -92,7 +92,8 @@ export default {
           }
         },
         legend: {
-          data: this.lengenddata
+          data: this.lengenddata,
+          top: 35
         },
         grid: {
           left: '3%',

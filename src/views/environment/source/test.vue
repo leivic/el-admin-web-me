@@ -54,7 +54,7 @@
 
 import { getToken } from '@/utils/auth'
 import { getAll } from '@/api/system/role'
-import { getAllStiation, getthisYearEnvironmentSystem, findEnvironmentBaseStationHealthy, findEnvironmentBaseGroupHealthy, findEnvironmentBaseWorkshopHealthy, getStationByZoneAndDate, getGroupByZoneAndDate, getWorkShopByZoneAndDate,getenvironmenttotal } from '@/api/qe/environment'
+import { getAllStiation, getthisYearEnvironmentSystem, findEnvironmentBaseStationHealthy, findEnvironmentBaseGroupHealthy, findEnvironmentBaseWorkshopHealthy, getStationByZoneAndDate, getGroupByZoneAndDate, getWorkShopByZoneAndDate, getenvironmenttotal } from '@/api/qe/environment'
 import SelectYear from '@/components/SelectYear'
 import { mapGetters } from 'vuex'// 使用vuex状态管理器
 export default {
@@ -80,7 +80,7 @@ export default {
     getStationByZoneAndDate('2021-07', '冲压车间').then(res => console.log(res))
     getGroupByZoneAndDate('2021-07', '车身车间').then(res => console.log(res))
     getWorkShopByZoneAndDate('2021-08', '冲压车间').then(res => console.log(res))
-    getenvironmenttotal('2021-08').then(res=>console.log(res))
+    getenvironmenttotal('2021-08').then(res => console.log(res))
     console.log(this.user.nickName)
   },
   computed: {

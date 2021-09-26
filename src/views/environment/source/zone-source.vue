@@ -199,7 +199,7 @@
 
       <el-table-column label="#" width="100px" align="center">
         <template slot-scope="{row,$index}"><!--最开始的写法是 slot-scope="{row,$index}" 这个$index是vue2.0的key，在vue2.0的时候移除了-->
-          <el-button size="mini" type="danger" @click="handleDelete(row,index,row.id)" v-permission="['environmentzonedelete']">
+          <el-button v-permission="['environmentzonedelete']" size="mini" type="danger" @click="handleDelete(row,index,row.id)">
             Delete
           </el-button>
         </template>
@@ -310,8 +310,8 @@ export default {
   },
   computed: {
     ...mapGetters(['user']),
-    mydata(){ //这个mydata的属性最好不要在data property里面，因为在dataproperty里面访问不到计算属性，它们是同级的
-      return {nickName:this.user.nickName}
+    mydata() { // 这个mydata的属性最好不要在data property里面，因为在dataproperty里面访问不到计算属性，它们是同级的
+      return { nickName: this.user.nickName }
     }
   }
 }

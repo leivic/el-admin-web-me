@@ -225,7 +225,7 @@
 
       <el-table-column label="#" width="100px" align="center">
         <template slot-scope="{row,$index}"><!--最开始的写法是 slot-scope="{row,$index}" 这个$index是vue2.0的key，在vue2.0的时候移除了-->
-          <el-button size="mini" type="danger" @click="handleDelete(row,index,row.id)" v-permission="['environmentworkshopdelete']">
+          <el-button v-permission="['environmentworkshopdelete']" size="mini" type="danger" @click="handleDelete(row,index,row.id)">
             Delete
           </el-button>
         </template>
@@ -331,14 +331,14 @@ export default {
       })
       deleteworkshopByid(id).then(() => { this.list.splice(index, 1) })
       // data property里面的数据更新，视图即更新
-      // 
+      //
     }
 
   },
   computed: {
     ...mapGetters(['user']),
-    mydata(){ //这个mydata的属性最好不要在data property里面，因为在dataproperty里面访问不到计算属性，它们是同级的
-      return {nickName:this.user.nickName}
+    mydata() { // 这个mydata的属性最好不要在data property里面，因为在dataproperty里面访问不到计算属性，它们是同级的
+      return { nickName: this.user.nickName }
     }
   }
 }

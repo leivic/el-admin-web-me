@@ -1,9 +1,9 @@
 import request from '@/utils/request' // 封装好的request方法,参数是一个固定格式的对象
 
 /* 获取所有工位数据*/
-export function getAllStiation(page, size, sort) {
+export function getAllStiation(page, size, sort) { //自己写 'api/qe/findAllEnvironment'的形式失效，未取到 后面再讨论
   return request({
-	  url: 'http://localhost:8000/qe/findAllEnvironmentBaseStation',
+	  url: 'http://localhost:8000/qe/findAllEnvironmentBaseStation', //正式环境http://10.64.19.75:8000
 	  method: 'get',
 	  params: { 	page: page,
       			size: size,
@@ -116,13 +116,13 @@ export function getthisYearEnvironmentSystem(year, workshoporzone, ydata, lengen
         ydata.push([])
       } // 将清空后的一维数组ydata变为二维数组
       for (const a in res) {
-        ydata[a].push(res[a].total)
-        ydata[a].push(res[a].chognya)
-        ydata[a].push(res[a].cheshen)
-        ydata[a].push(res[a].tuzhuang)
-        ydata[a].push(res[a].zongzhuang)
-        ydata[a].push(res[a].jijia)
-        ydata[a].push(res[a].zhuangpei)
+        ydata[a].push((res[a].total+'').substring(0,5)) //位数太多 而且是double类型的，所以不能直接res[a].total.substring() 要先转换成string类型 才可以
+        ydata[a].push((res[a].chognya+'').substring(0,5))
+        ydata[a].push((res[a].cheshen+'').substring(0,5))
+        ydata[a].push((res[a].tuzhuang+'').substring(0,5))
+        ydata[a].push((res[a].zongzhuang+'').substring(0,5))
+        ydata[a].push((res[a].jijia+'').substring(0,5))
+        ydata[a].push((res[a].zhuangpei+'').substring(0,5))
 
         if (res[a].total !== 0) { // 如果它不等于0，就加入一个有几个月的数组
           lengenddata.push(res[a].date.substring(5, 7) + '月')
@@ -242,13 +242,13 @@ export function getthisYearIntelligence(year, workshoporzone, ydata, lengenddata
         ydata.push([])
       } // 将清空后的一维数组ydata变为二维数组
       for (const a in res) {
-        ydata[a].push(res[a].total)
-        ydata[a].push(res[a].chognya)
-        ydata[a].push(res[a].cheshen)
-        ydata[a].push(res[a].tuzhuang)
-        ydata[a].push(res[a].zongzhuang)
-        ydata[a].push(res[a].jijia)
-        ydata[a].push(res[a].zhuangpei)
+        ydata[a].push((res[a].total+'').substring(0,5)) //位数太多 而且是double类型的，所以不能直接res[a].total.substring() 要先转换成string类型 才可以
+        ydata[a].push((res[a].chognya+'').substring(0,5))
+        ydata[a].push((res[a].cheshen+'').substring(0,5))
+        ydata[a].push((res[a].tuzhuang+'').substring(0,5))
+        ydata[a].push((res[a].zongzhuang+'').substring(0,5))
+        ydata[a].push((res[a].jijia+'').substring(0,5))
+        ydata[a].push((res[a].zhuangpei+'').substring(0,5))
 
         if (res[a].total !== 0) { // 如果它不等于0，就加入一个有几个月的数组
           lengenddata.push(res[a].date.substring(5, 7) + '月')
@@ -275,13 +275,13 @@ export function getthisYearLowcarbon(year, workshoporzone, ydata, lengenddata) {
         ydata.push([])
       } // 将清空后的一维数组ydata变为二维数组
       for (const a in res) {
-        ydata[a].push(res[a].total)
-        ydata[a].push(res[a].chognya)
-        ydata[a].push(res[a].cheshen)
-        ydata[a].push(res[a].tuzhuang)
-        ydata[a].push(res[a].zongzhuang)
-        ydata[a].push(res[a].jijia)
-        ydata[a].push(res[a].zhuangpei)
+        ydata[a].push((res[a].total+'').substring(0,5)) //位数太多 而且是double类型的，所以不能直接res[a].total.substring() 要先转换成string类型 才可以
+        ydata[a].push((res[a].chognya+'').substring(0,5))
+        ydata[a].push((res[a].cheshen+'').substring(0,5))
+        ydata[a].push((res[a].tuzhuang+'').substring(0,5))
+        ydata[a].push((res[a].zongzhuang+'').substring(0,5))
+        ydata[a].push((res[a].jijia+'').substring(0,5))
+        ydata[a].push((res[a].zhuangpei+'').substring(0,5))
 
         if (res[a].total !== 0) { // 如果它不等于0，就加入一个有几个月的数组
           lengenddata.push(res[a].date.substring(5, 7) + '月')
@@ -453,7 +453,7 @@ export function deletegroupByid(id) {
 /* 删除工段数据*/
 export function deleteworkshopByid(id) {
   return request({
-	  url: 'http://localhost:8000/qe/deleteEnvironmentBaseWorkshopByid',
+	  url: 'api/qe/deleteEnvironmentBaseWorkshopByid',
 	  method: 'get',
 	  params: { 	id: id
 	      		}
@@ -474,7 +474,7 @@ export function getenvironmenttotal(date) {
   return request({
 	  url: 'http://localhost:8000/qe/getenvironmenttotal',
 	  method: 'get',
-	  params: { 	date:date
+	  params: { 	date: date
 	      		}
   })
 }

@@ -32,13 +32,13 @@ export default {
     return {
       chart1: {
         listLoading: true,
-        title: '车间数智互联水平', // 会响应式刷新的不只是data里面的数据，还有vuex，vuex里面的数据一旦变化  使用该数据的地方也会刷新
+        title: '车间数智网联水平', // 会响应式刷新的不只是data里面的数据，还有vuex，vuex里面的数据一旦变化  使用该数据的地方也会刷新
         chartdata: [[], [], [], [], [], [], [], [], [], [], [], []],
         lengenddata: []
       },
       chart2: {
         listLoading: true,
-        title: '工段数智互联水平', // 会响应式刷新的不只是data里面的数据，还有vuex，vuex里面的数据一旦变化  使用该数据的地方也会刷新
+        title: '工段数智网联水平', // 会响应式刷新的不只是data里面的数据，还有vuex，vuex里面的数据一旦变化  使用该数据的地方也会刷新
         chartdata: [[], [], [], [], [], [], [], [], [], [], [], []],
         lengenddata: []
       }
