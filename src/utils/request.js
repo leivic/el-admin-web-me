@@ -8,12 +8,12 @@ import Cookies from 'js-cookie'
 
 // 创建axios实例
 const service = axios.create({
-  baseURL: process.env.NODE_ENV === 'production' ? process.env.VUE_APP_BASE_API : '/', // api 的 base_url
-  timeout: Config.timeout // 请求超时时间
+  baseURL: process.env.NODE_ENV === 'production' ? process.env.VUE_APP_BASE_API : '/', // api 的 base_url  三元运算符改变生产环境/开发环境 baseurl 不一样 默认创建的axios访问url路径不一样
+  timeout: Config.timeout // 请求超时时间 import的config 配置
 })
 
 // request拦截器
-service.interceptors.request.use(
+service.interceptors.request.use(// axios封装的功能，return的config配置了headers（请求报文头部，请求报文和响应报文自带的东西）
   config => {
     if (getToken()) {
       config.headers['Authorization'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
@@ -26,7 +26,7 @@ service.interceptors.request.use(
   }
 )
 
-// response 拦截器
+// response 拦截器 获取响应时 axios封装的方法来拦截 方法的参数是两个函数的定义
 service.interceptors.response.use(
   response => {
     return response.data

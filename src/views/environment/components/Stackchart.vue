@@ -74,9 +74,9 @@ export default {
 		  textStyle: {
             fontSize: 24,
             fontWeight: 'normal',
-            fontFamily: 'Courier New',
+            fontFamily: 'Courier New'
           },
-      left: '39%'
+          left: '39%'
         },
         tooltip: {
 		  trigger: 'axis',
@@ -123,9 +123,9 @@ export default {
             },
             data: this.ydata1[0], // ydata1是一个二维数组 ydata1[0]也是一个数组,
             label: {
-          show: true,
-          position: 'inside'
-          },
+              show: true,
+              position: 'inside'
+            }
           },
           {
             name: '02月',
@@ -137,9 +137,9 @@ export default {
             },
             data: this.ydata1[1],
             label: {
-          show: true,
-          position: 'inside'
-          },
+              show: true,
+              position: 'inside'
+            }
           },
           {
             name: '03月',
@@ -150,9 +150,9 @@ export default {
             },
             data: this.ydata1[2],
             label: {
-          show: true,
-          position: 'inside'
-          },
+              show: true,
+              position: 'inside'
+            }
           },
           {
             name: '04月',
@@ -163,9 +163,9 @@ export default {
             },
             data: this.ydata1[3],
             label: {
-          show: true,
-          position: 'inside'
-          },
+              show: true,
+              position: 'inside'
+            }
           },
           {
             name: '05月',
@@ -176,9 +176,9 @@ export default {
             },
             data: this.ydata1[4],
             label: {
-          show: true,
-          position: 'inside'
-          },
+              show: true,
+              position: 'inside'
+            }
           },
           {
             name: '06月',
@@ -189,9 +189,9 @@ export default {
             },
             data: this.ydata1[5],
             label: {
-          show: true,
-          position: 'inside'
-          },
+              show: true,
+              position: 'inside'
+            }
           },
           {
             name: '07月',
@@ -202,9 +202,9 @@ export default {
             },
             data: this.ydata1[6],
             label: {
-          show: true,
-          position: 'inside'
-          },
+              show: true,
+              position: 'inside'
+            }
           },
           {
             name: '08月', // 这里的值要与lengend里面的值对应才能显示出来
@@ -215,9 +215,9 @@ export default {
             },
             data: this.ydata1[7],
             label: {
-          show: true,
-          position: 'inside'
-          },
+              show: true,
+              position: 'inside'
+            }
           },
           {
             name: '09月',
@@ -228,9 +228,9 @@ export default {
             },
             data: this.ydata1[8],
             label: {
-          show: true,
-          position: 'inside'
-          },
+              show: true,
+              position: 'inside'
+            }
           },
           {
             name: '10月',
@@ -241,9 +241,9 @@ export default {
             },
             data: this.ydata1[9],
             label: {
-          show: true,
-          position: 'inside'
-          },
+              show: true,
+              position: 'inside'
+            }
           },
 	 {
             name: '11月',
@@ -254,9 +254,9 @@ export default {
             },
             data: this.ydata1[10],
             label: {
-          show: true,
-          position: 'inside'
-          },
+              show: true,
+              position: 'inside'
+            }
           },
 	 {
             name: '12月',
@@ -267,9 +267,9 @@ export default {
             },
             data: this.ydata1[11],
             label: {
-          show: true,
-          position: 'inside'
-          },
+              show: true,
+              position: 'inside'
+            }
           }
 
         ]

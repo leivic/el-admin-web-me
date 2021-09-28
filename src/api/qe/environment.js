@@ -1,9 +1,9 @@
 import request from '@/utils/request' // 封装好的request方法,参数是一个固定格式的对象
 
 /* 获取所有工位数据*/
-export function getAllStiation(page, size, sort) { //自己写 'api/qe/findAllEnvironment'的形式失效，未取到 后面再讨论
-  return request({
-	  url: 'http://localhost:8000/qe/findAllEnvironmentBaseStation', //正式环境http://10.64.19.75:8000
+export function getAllStiation(page, size, sort) { // 自己写 'api/qe/findAllEnvironment'的形式失效，未取到 后面再讨论
+  return request({//即便是url地址 他也是个字符串啊 编程里面就那几种格式罢了
+	  url: process.env.VUE_APP_BASE_API+'/qe/findAllEnvironmentBaseStation', // 正式环境http://10.64.19.75:8000 开发时:http://localhost:8000
 	  method: 'get',
 	  params: { 	page: page,
       			size: size,
@@ -15,7 +15,7 @@ export function getAllStiation(page, size, sort) { //自己写 'api/qe/findAllEn
 /* 按区域获取所有工位数据*/
 export function getAllStiationByZone(zone, page, size, sort) {
   return request({
-    url: 'http://localhost:8000/qe/findAllEnvironmentBaseStationByZone',
+    url: process.env.VUE_APP_BASE_API+'/qe/findAllEnvironmentBaseStationByZone',
     method: 'get',
     params: {	zone: zone,
       page: page,
@@ -28,7 +28,7 @@ export function getAllStiationByZone(zone, page, size, sort) {
 /* 获取所有班组数据*/
 export function getAllGroup(page, size, sort) {
   return request({
-    url: 'http://localhost:8000/qe/findAllEnvironmentBaseGroup',
+    url: process.env.VUE_APP_BASE_API+'/qe/findAllEnvironmentBaseGroup',
     method: 'get',
     params: { 	page: page,
 	    			size: size,
@@ -40,7 +40,7 @@ export function getAllGroup(page, size, sort) {
 /* 按区域获取所有班组数据*/
 export function getAllGroupByZone(zone, page, size, sort) {
   return request({
-	  url: 'http://localhost:8000/qe/findAllEnvironmentBaseGroupByZone',
+	  url: process.env.VUE_APP_BASE_API+'/qe/findAllEnvironmentBaseGroupByZone',
 	  method: 'get',
 	  params: {	zone: zone,
 	    page: page,
@@ -53,7 +53,7 @@ export function getAllGroupByZone(zone, page, size, sort) {
 /* 获取所有工段数据*/
 export function getAllWorkshop(page, size, sort) {
   return request({
-	  url: 'http://localhost:8000/qe/findAllEnvironmentBaseWorkshop',
+	  url: process.env.VUE_APP_BASE_API+'/qe/findAllEnvironmentBaseWorkshop',
 	  method: 'get',
 	  params: { 	page: page,
       			size: size,
@@ -65,7 +65,7 @@ export function getAllWorkshop(page, size, sort) {
 /* 按区域获取所有工段数据*/
 export function getAllWorkshopByZone(zone, page, size, sort) {
   return request({
-	  url: 'http://localhost:8000/qe/findAllEnvironmentBaseWorkShopByZone',
+	  url: process.env.VUE_APP_BASE_API+'/qe/findAllEnvironmentBaseWorkShopByZone',
 	  method: 'get',
 	  params: {	zone: zone,
 	    page: page,
@@ -78,7 +78,7 @@ export function getAllWorkshopByZone(zone, page, size, sort) {
 /* 获取所有区域数据*/
 export function getAllZone(page, size, sort) {
   return request({
-    url: 'http://localhost:8000/qe/findAllEnvironmentBaseZone',
+    url: process.env.VUE_APP_BASE_API+'/qe/findAllEnvironmentBaseZone',
     method: 'get',
     params: { 	page: page,
 	    			size: size,
@@ -90,7 +90,7 @@ export function getAllZone(page, size, sort) {
 /* 按区域获取所有区域数据*/
 export function getAllZoneByZone(zone, page, size, sort) {
   return request({
-	  url: 'http://localhost:8000/qe/findAllEnvironmentZoneByZone',
+	  url: process.env.VUE_APP_BASE_API+'/qe/findAllEnvironmentZoneByZone',
 	  method: 'get',
 	  params: {	zone: zone,
 	    page: page,
@@ -102,7 +102,7 @@ export function getAllZoneByZone(zone, page, size, sort) {
 /* 获取区域/工段 系统完整图表的数据 */
 export function getthisYearEnvironmentSystem(year, workshoporzone, ydata, lengenddata) {
   return request({
-    url: 'http://localhost:8000/qe/getthisYearEnvironmentSystem',
+    url: process.env.VUE_APP_BASE_API+'/qe/getthisYearEnvironmentSystem',
     method: 'get',
     params: {
       year: year,
@@ -116,13 +116,13 @@ export function getthisYearEnvironmentSystem(year, workshoporzone, ydata, lengen
         ydata.push([])
       } // 将清空后的一维数组ydata变为二维数组
       for (const a in res) {
-        ydata[a].push((res[a].total+'').substring(0,5)) //位数太多 而且是double类型的，所以不能直接res[a].total.substring() 要先转换成string类型 才可以
-        ydata[a].push((res[a].chognya+'').substring(0,5))
-        ydata[a].push((res[a].cheshen+'').substring(0,5))
-        ydata[a].push((res[a].tuzhuang+'').substring(0,5))
-        ydata[a].push((res[a].zongzhuang+'').substring(0,5))
-        ydata[a].push((res[a].jijia+'').substring(0,5))
-        ydata[a].push((res[a].zhuangpei+'').substring(0,5))
+        ydata[a].push((res[a].total + '').substring(0, 5)) // 位数太多 而且是double类型的，所以不能直接res[a].total.substring() 要先转换成string类型 才可以
+        ydata[a].push((res[a].chognya + '').substring(0, 5))
+        ydata[a].push((res[a].cheshen + '').substring(0, 5))
+        ydata[a].push((res[a].tuzhuang + '').substring(0, 5))
+        ydata[a].push((res[a].zongzhuang + '').substring(0, 5))
+        ydata[a].push((res[a].jijia + '').substring(0, 5))
+        ydata[a].push((res[a].zhuangpei + '').substring(0, 5))
 
         if (res[a].total !== 0) { // 如果它不等于0，就加入一个有几个月的数组
           lengenddata.push(res[a].date.substring(5, 7) + '月')
@@ -135,7 +135,7 @@ export function getthisYearEnvironmentSystem(year, workshoporzone, ydata, lengen
 /* 获取区域 健康水平图表的数据 */
 export function getthisYearEnvironmentHealthZone(year, ydata, lengenddata) {
   return request({
-    url: 'http://localhost:8000/qe/getthisYearEnvironmentHealthZone',
+    url: process.env.VUE_APP_BASE_API+'/qe/getthisYearEnvironmentHealthZone',
     method: 'get',
     params: {
       year: year
@@ -166,7 +166,7 @@ export function getthisYearEnvironmentHealthZone(year, ydata, lengenddata) {
 /* 按照年份和区域获得一个工位的健康水平数组*/
 export function findEnvironmentBaseStationHealthy(year, zone, stationdata, xdata) { //
   return request({
-	  url: 'http://localhost:8000/qe/findEnvironmentBaseStationHealthy',
+	  url: process.env.VUE_APP_BASE_API+'/qe/findEnvironmentBaseStationHealthy',
 	  method: 'get',
 	  params: {
       year: year,
@@ -188,7 +188,7 @@ export function findEnvironmentBaseStationHealthy(year, zone, stationdata, xdata
 /* 按照年份和区域获得一个班组的健康水平数组*/
 export function findEnvironmentBaseGroupHealthy(year, zone, groupdata) { //
   return request({
-	  url: 'http://localhost:8000/qe/findEnvironmentBaseGroupHealthy',
+	  url: process.env.VUE_APP_BASE_API+'/qe/findEnvironmentBaseGroupHealthy',
 	  method: 'get',
 	  params: {
       year: year,
@@ -208,7 +208,7 @@ export function findEnvironmentBaseGroupHealthy(year, zone, groupdata) { //
 /* 按照年份和区域获得一个工段的健康水平数组*/
 export function findEnvironmentBaseWorkshopHealthy(year, zone, workshopdata) { //
   return request({
-	  url: 'http://localhost:8000/qe/findEnvironmentBaseWorkshopHealthy',
+	  url: process.env.VUE_APP_BASE_API+'/qe/findEnvironmentBaseWorkshopHealthy',
 	  method: 'get',
 	  params: {
       year: year,
@@ -228,7 +228,7 @@ export function findEnvironmentBaseWorkshopHealthy(year, zone, workshopdata) { /
 /* 获取区域/工段 数智互联图表的数据 */
 export function getthisYearIntelligence(year, workshoporzone, ydata, lengenddata) {
   return request({
-    url: 'http://localhost:8000/qe/getthisYearEnvironmentIntelligence',
+    url: process.env.VUE_APP_BASE_API+'/qe/getthisYearEnvironmentIntelligence',
     method: 'get',
     params: {
       year: year,
@@ -242,13 +242,13 @@ export function getthisYearIntelligence(year, workshoporzone, ydata, lengenddata
         ydata.push([])
       } // 将清空后的一维数组ydata变为二维数组
       for (const a in res) {
-        ydata[a].push((res[a].total+'').substring(0,5)) //位数太多 而且是double类型的，所以不能直接res[a].total.substring() 要先转换成string类型 才可以
-        ydata[a].push((res[a].chognya+'').substring(0,5))
-        ydata[a].push((res[a].cheshen+'').substring(0,5))
-        ydata[a].push((res[a].tuzhuang+'').substring(0,5))
-        ydata[a].push((res[a].zongzhuang+'').substring(0,5))
-        ydata[a].push((res[a].jijia+'').substring(0,5))
-        ydata[a].push((res[a].zhuangpei+'').substring(0,5))
+        ydata[a].push((res[a].total + '').substring(0, 5)) // 位数太多 而且是double类型的，所以不能直接res[a].total.substring() 要先转换成string类型 才可以
+        ydata[a].push((res[a].chognya + '').substring(0, 5))
+        ydata[a].push((res[a].cheshen + '').substring(0, 5))
+        ydata[a].push((res[a].tuzhuang + '').substring(0, 5))
+        ydata[a].push((res[a].zongzhuang + '').substring(0, 5))
+        ydata[a].push((res[a].jijia + '').substring(0, 5))
+        ydata[a].push((res[a].zhuangpei + '').substring(0, 5))
 
         if (res[a].total !== 0) { // 如果它不等于0，就加入一个有几个月的数组
           lengenddata.push(res[a].date.substring(5, 7) + '月')
@@ -261,7 +261,7 @@ export function getthisYearIntelligence(year, workshoporzone, ydata, lengenddata
 /* 获取区域/工段/工位 低碳精益图表的数据 */
 export function getthisYearLowcarbon(year, workshoporzone, ydata, lengenddata) {
   return request({
-    url: 'http://localhost:8000/qe/getthisYearEnvironmentLowcarbon', // 猜测部署的时候，这个localhost要换成ip地址,因为相当于是将代码发到用户的电脑上，渲染成视图 那么那时候的localhost就是用户的电脑本身
+    url: process.env.VUE_APP_BASE_API+'/qe/getthisYearEnvironmentLowcarbon', // 猜测部署的时候，这个localhost要换成ip地址,因为相当于是将代码发到用户的电脑上，渲染成视图 那么那时候的localhost就是用户的电脑本身
     method: 'get',
     params: {
       year: year,
@@ -275,13 +275,13 @@ export function getthisYearLowcarbon(year, workshoporzone, ydata, lengenddata) {
         ydata.push([])
       } // 将清空后的一维数组ydata变为二维数组
       for (const a in res) {
-        ydata[a].push((res[a].total+'').substring(0,5)) //位数太多 而且是double类型的，所以不能直接res[a].total.substring() 要先转换成string类型 才可以
-        ydata[a].push((res[a].chognya+'').substring(0,5))
-        ydata[a].push((res[a].cheshen+'').substring(0,5))
-        ydata[a].push((res[a].tuzhuang+'').substring(0,5))
-        ydata[a].push((res[a].zongzhuang+'').substring(0,5))
-        ydata[a].push((res[a].jijia+'').substring(0,5))
-        ydata[a].push((res[a].zhuangpei+'').substring(0,5))
+        ydata[a].push((res[a].total + '').substring(0, 5)) // 位数太多 而且是double类型的，所以不能直接res[a].total.substring() 要先转换成string类型 才可以
+        ydata[a].push((res[a].chognya + '').substring(0, 5))
+        ydata[a].push((res[a].cheshen + '').substring(0, 5))
+        ydata[a].push((res[a].tuzhuang + '').substring(0, 5))
+        ydata[a].push((res[a].zongzhuang + '').substring(0, 5))
+        ydata[a].push((res[a].jijia + '').substring(0, 5))
+        ydata[a].push((res[a].zhuangpei + '').substring(0, 5))
 
         if (res[a].total !== 0) { // 如果它不等于0，就加入一个有几个月的数组
           lengenddata.push(res[a].date.substring(5, 7) + '月')
@@ -294,7 +294,7 @@ export function getthisYearLowcarbon(year, workshoporzone, ydata, lengenddata) {
 /* 按照年份和区域获得一个工位的健康水平数组*/
 export function getStationByZoneAndDate(date, zone, xdata, chartdata) { //
   return request({
-	  url: 'http://localhost:8000/qe/getStationByZoneAndDate',
+	  url: process.env.VUE_APP_BASE_API+'/qe/getStationByZoneAndDate',
 	  method: 'get',
 	  params: {
       date: date,
@@ -316,7 +316,7 @@ export function getStationByZoneAndDate(date, zone, xdata, chartdata) { //
 /* 按照年份和区域获得一个班组的健康水平数组*/
 export function getGroupByZoneAndDate(date, zone, xdata, chartdata) { //
   return request({
-	  url: 'http://localhost:8000/qe/getGroupByZoneAndDate',
+	  url: process.env.VUE_APP_BASE_API+'/qe/getGroupByZoneAndDate',
 	  method: 'get',
 	  params: {
       date: date,
@@ -338,7 +338,7 @@ export function getGroupByZoneAndDate(date, zone, xdata, chartdata) { //
 /* 按照年份和区域获得一个工段的健康水平数组*/
 export function getWorkShopByZoneAndDate(date, zone, xdata, chartdata) { //
   return request({
-	  url: 'http://localhost:8000/qe/getWorkShopByZoneAndDate',
+	  url: process.env.VUE_APP_BASE_API+'/qe/getWorkShopByZoneAndDate',
 	  method: 'get',
 	  params: {
       date: date,
@@ -360,7 +360,7 @@ export function getWorkShopByZoneAndDate(date, zone, xdata, chartdata) { //
 /* 获取区域 健康水平图表的数据 */
 export function getthisYearEnvironmentDevelopZone(year, ydata, lengenddata) {
   return request({
-    url: 'http://localhost:8000/qe/getthisYearEnvironmentDevelopZone',
+    url: process.env.VUE_APP_BASE_API+'/qe/getthisYearEnvironmentDevelopZone',
     method: 'get',
     params: {
       year: year
@@ -391,7 +391,7 @@ export function getthisYearEnvironmentDevelopZone(year, ydata, lengenddata) {
 /* 按照年份和区域获得一个班组的均衡发展数组*/
 export function findEnvironmentBaseGroupDelevop(xdata, year, zone, groupdata) { //
   return request({
-	  url: 'http://localhost:8000/qe/findEnvironmentBaseGroupDelevop',
+	  url: process.env.VUE_APP_BASE_API+'/qe/findEnvironmentBaseGroupDelevop',
 	  method: 'get',
 	  params: {
       year: year,
@@ -413,7 +413,7 @@ export function findEnvironmentBaseGroupDelevop(xdata, year, zone, groupdata) { 
 /* 按照年份和区域获得一个工段的健康水平数组*/
 export function findEnvironmentBaseWorkshopDelevop(year, zone, workshopdata) { //
   return request({
-	  url: 'http://localhost:8000/qe/findEnvironmentBaseWorkshopDelevop',
+	  url: process.env.VUE_APP_BASE_API+'/qe/findEnvironmentBaseWorkshopDelevop',
 	  method: 'get',
 	  params: {
       year: year,
@@ -433,7 +433,7 @@ export function findEnvironmentBaseWorkshopDelevop(year, zone, workshopdata) { /
 /* 删除工位数据*/
 export function deletestationByid(id) {
   return request({
-	  url: 'http://localhost:8000/qe/deleteEnvironmentBaseStationByid',
+	  url: process.env.VUE_APP_BASE_API+'/qe/deleteEnvironmentBaseStationByid',
 	  method: 'get',
 	  params: { 	id: id
 	      		}
@@ -443,7 +443,7 @@ export function deletestationByid(id) {
 /* 删除班组数据*/
 export function deletegroupByid(id) {
   return request({
-	  url: 'http://localhost:8000/qe/deleteEnvironmentBaseGroupByid',
+	  url: process.env.VUE_APP_BASE_API+'/qe/deleteEnvironmentBaseGroupByid',
 	  method: 'get',
 	  params: { 	id: id
 	      		}
@@ -453,7 +453,7 @@ export function deletegroupByid(id) {
 /* 删除工段数据*/
 export function deleteworkshopByid(id) {
   return request({
-	  url: 'api/qe/deleteEnvironmentBaseWorkshopByid',
+	  url: process.env.VUE_APP_BASE_API+'/qe/deleteEnvironmentBaseWorkshopByid',
 	  method: 'get',
 	  params: { 	id: id
 	      		}
@@ -463,7 +463,7 @@ export function deleteworkshopByid(id) {
 /* 删除区域数据*/
 export function deletezoneByid(id) {
   return request({
-	  url: 'http://localhost:8000/qe/deleteEnvironmentBaseZoneByid',
+	  url: process.env.VUE_APP_BASE_API+'/qe/deleteEnvironmentBaseZoneByid',
 	  method: 'get',
 	  params: { 	id: id
 	      		}
@@ -472,7 +472,7 @@ export function deletezoneByid(id) {
 
 export function getenvironmenttotal(date) {
   return request({
-	  url: 'http://localhost:8000/qe/getenvironmenttotal',
+	  url: process.env.VUE_APP_BASE_API+'/qe/getenvironmenttotal',
 	  method: 'get',
 	  params: { 	date: date
 	      		}

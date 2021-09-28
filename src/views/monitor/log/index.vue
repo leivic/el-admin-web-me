@@ -48,12 +48,12 @@
     <pagination />
   </div>
 </template>
- 
+
 <script>
-import Search from './search'//访问本页面报错 不允许访问 找不到这个功能写在哪里，查看控制台，发现网络有报错的api  这里的“不允许访问，是后端的权限来控制的 ”
+import Search from './search'// 访问本页面报错 不允许访问 找不到这个功能写在哪里，查看控制台，发现网络有报错的api  这里的“不允许访问，是后端的权限来控制的 ”
 import { delAllInfo } from '@/api/monitor/log'
 import CRUD, { presenter } from '@crud/crud'
-import crudOperation from '@crud/CRUD.operation' //这样的@是直接访问components目录
+import crudOperation from '@crud/CRUD.operation' // 这样的@是直接访问components目录
 import pagination from '@crud/Pagination'
 
 export default {

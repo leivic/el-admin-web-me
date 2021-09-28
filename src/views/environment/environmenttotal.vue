@@ -85,8 +85,7 @@ export default {
   created() {
     getenvironmenttotal(this.month).then(res => {
       for (const a in res) {
-        if(a > 3){this.tableData[a].address = res[a].toString().substring(0, 5)+'%'}
-        else{this.tableData[a].address = res[a].toString().substring(0, 5)}
+        if (a > 3) { this.tableData[a].address = res[a].toString().substring(0, 5) + '%' } else { this.tableData[a].address = res[a].toString().substring(0, 5) }
       }
     }).then(() => this.listloading = false)
   },
@@ -123,14 +122,14 @@ export default {
           return 'font-size:24px; color:red'
         }
       } else if (columnIndex == 2 && rowIndex == 4) {
-        if (this.tableData[4].address.substring(0,2) >= 90) {
+        if (this.tableData[4].address.substring(0, 2) >= 90) {
           return 'font-size:24px; color:green'
         } else {
           return 'font-size:24px; color:red'
         }
-      }else if (columnIndex == 2 && rowIndex == 5) {
-        if (this.tableData[5].address.substring(0,2) >= 70) {
-          return 'font-size:24px; color:green'  //要知道，｛｝里面的返回值和执行代码完全是两种情况
+      } else if (columnIndex == 2 && rowIndex == 5) {
+        if (this.tableData[5].address.substring(0, 2) >= 70) {
+          return 'font-size:24px; color:green' // 要知道，｛｝里面的返回值和执行代码完全是两种情况
         } else {
           return 'font-size:24px; color:red'
         }

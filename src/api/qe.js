@@ -4,7 +4,7 @@ const xdata = []; const ydata = []
 
 export function fetchData(pageNum) { // export的每一个函数都是一个api,在需要的文件import后,就可直接使用该方法访问服务器、获取数据
   return request({ // request 方法的来源是文档最上方import的方法
-	  url: 'http://localhost:8000/selectAllWenTiQinDan', //正式环境http://10.64.19.75:8000
+	  url: 'http://localhost:8000/selectAllWenTiQinDan', // 正式环境http://10.64.19.75:8000
 	  method: 'get',
 	  params: { pageNum: pageNum } // 这个params就是原生axios的params 所以参数列表里，需要键名和后端参数名对应才行 我不知道它怎么封装的，但是要运用自己的基础，万变不离其宗
   })

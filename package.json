@@ -4,7 +4,7 @@
   "description": "EL-ADMIN 前端源码",
   "author": "Zheng Jie",
   "license": "Apache-2.0",
-  "scripts": {
+  "scripts": { 
     "dev": "vue-cli-service serve",
     "build:prod": "vue-cli-service build",
     "build:stage": "vue-cli-service build --mode staging",
