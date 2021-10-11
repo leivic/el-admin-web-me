@@ -5,10 +5,11 @@
       <el-upload
         v-permission="['environmentstationimport']"
         action="http://localhost:8000/qe/addEnvironmentBaseStation"
+        accept=".xlsx"
         multiple
         :limit="3"
         :headers="headers"
-        :on-success="getList"
+        :on-success="addList"
         :data="mydata"
       ><!--data，object类型，上传时附带参数-->
         <el-button :loading="uploadLoading" class="filter-item" type="primary" icon="el-icon-upload" @click="">
@@ -173,7 +174,48 @@ export default {
     this.getList()
   },
   methods: {
-    getList() { // 获取数据
+    addList(res){ //上传成功与失败的控制功能 当然注意 控制台network也能看前后端数据传递 
+      if(res == 0){
+       this.$notify({ // 封装的通知功能
+        title: 'Error',
+        message: "导入的excel没有sheet1" ,
+        type: 'error',
+        duration: 30000
+      })
+      }
+      else if(res == 1){
+       this.$notify({ // 封装的通知功能
+        title: 'Error',
+        message: "第一行第三个单元格格式只能为 时间:xx年xx月xx日 （年月日都是两位）" ,
+        type: 'error',
+        duration: 30000
+      })
+      }
+      else if(res == 2){
+       this.$notify({ // 封装的通知功能
+        title: 'Error',
+        message: "第一行第六个单元格只能输入 '冲压车间' '车身车间' '涂装车间' '总装车间' '机加车间' '装配车间' 其中之一 " ,
+        type: 'error',
+        duration: 30000
+      })
+      } else if(res == 3){
+       this.$notify({ // 封装的通知功能
+        title: 'Error',
+        message: "工位数据模版有且仅有12行，请检查模版" ,
+        type: 'error',
+        duration: 30000
+      })
+      } else if(res == 99){
+       this.$notify({ // 封装的通知功能
+        title: 'Sucess',
+        message: "导入成功" ,
+        type: 'sucess',
+        duration: 30000
+      })
+      }
+      this.getList()
+    },
+    getList() { // 获取数据 res是el-upload 封装的返回值  consle.log(打印失败，不报错)
       this.listLoading = true
       if (this.user.roles[0].level == 1) {
 	 // 当用户的第一个角色等级为1时 正常获取所有工位数据 否则采用另一个api获取数据 不采用getAllStiation
