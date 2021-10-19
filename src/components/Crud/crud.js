@@ -68,7 +68,7 @@ function CRUD(options) {
       // 添加或编辑状态
       get cu() {
         if (this.add === CRUD.STATUS.NORMAL && this.edit === CRUD.STATUS.NORMAL) {
-          return CRUD.STATUS.NORMAL
+          return CRUD.STATUS.NORMAL //可以想象这三个常量是三个布尔值 所以在几个文件之外使用这个函数的地方 也仅仅是得到了一个布尔值而已 
         } else if (this.add === CRUD.STATUS.PREPARED || this.edit === CRUD.STATUS.PREPARED) {
           return CRUD.STATUS.PREPARED
         } else if (this.add === CRUD.STATUS.PROCESSING || this.edit === CRUD.STATUS.PROCESSING) {
@@ -155,7 +155,7 @@ function CRUD(options) {
     /**
      * 启动添加
      */
-    toAdd() {
+    toAdd() {  //几个文件外的新增 是否可见 其实都是在这个文件里进行计算的 
       crud.resetForm()
       if (!(callVmHook(crud, CRUD.HOOK.beforeToAdd, crud.form) && callVmHook(crud, CRUD.HOOK.beforeToCU, crud.form))) {
         return
@@ -249,7 +249,7 @@ function CRUD(options) {
       })
     },
     /**
-     * 执行添加
+     * 执行添加  函数式编程 将命令式的过程变成一个个函数的组合 
      */
     doAdd() {
       if (!callVmHook(crud, CRUD.HOOK.beforeSubmit)) {
@@ -697,7 +697,7 @@ function presenter(crud) {
 /**
  * 头部
  */
-function header() {
+function header() { //minxin 这里的几个property会和使用这个minxin的组建实例的property合并
   return {
     data() {
       return {

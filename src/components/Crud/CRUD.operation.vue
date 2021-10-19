@@ -11,7 +11,7 @@
         type="primary"
         icon="el-icon-plus"
         @click="crud.toAdd"
-      >
+      ><!--crud.toAdd 而本文件内没看见crud对象 发现下文有导入一个crud import进来的crud对象 仍然可以像定义在本文件内一样使用-->
         新增
       </el-button>
       <el-button

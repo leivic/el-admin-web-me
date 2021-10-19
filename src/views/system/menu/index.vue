@@ -8,10 +8,10 @@
         <date-range-picker v-model="query.createTime" class="date-item" />
         <rrOperation />
       </div>
-      <crudOperation :permission="permission" />
+      <crudOperation :permission="permission" /> <!--新增、修改、删除、导出 四个button组件--><!--点击button新增的方法都在crudOperation的组件内，而crudOperation的组件内仍没有，这个方法是从一个crud.js里面export出来的 在crud0peration组件内import进去-->
     </div>
-    <!--表单渲染-->
-    <el-dialog append-to-body :close-on-click-modal="false" :before-close="crud.cancelCU" :visible.sync="crud.status.cu > 0" :title="crud.status.title" width="580px">
+    <!--表单渲染--><!--el-dialog elment－ui中的弹出框--><!--:visible 是是否显示 .sync是修饰符 指是否显示和数据状态同步改变 crud.status.cu此处是对mixin混入的使用 可没有html表达式中绑定import进来的表达式的先例  -->
+    <el-dialog append-to-body :close-on-click-modal="false" :before-close="crud.cancelCU" :visible.sync="crud.status.cu > 0" :title="crud.status.title" width="580px"><!--:before-close="crud.cancelCU" html中的表达式可以直接调用import的对象/函数?可以吗 应该不可以 这里的crud.cancelCU应该来自mixin混入合并的方法-->
       <el-form ref="form" :inline="true" :model="form" :rules="rules" size="small" label-width="80px">
         <el-form-item label="菜单类型" prop="type">
           <el-radio-group v-model="form.type" size="mini" style="width: 178px">
@@ -94,13 +94,13 @@
       v-loading="crud.loading"
       lazy
       :load="getMenus"
-      :data="crud.data"
+      :data="crud.data"  
       :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
       row-key="id"
       @select="crud.selectChange"
       @select-all="crud.selectAllChange"
       @selection-change="crud.selectionChangeHandler"
-    >
+    ><!--数据源是 crud.data-->
       <el-table-column type="selection" width="55" />
       <el-table-column :show-overflow-tooltip="true" label="菜单标题" width="125px" prop="title" />
       <el-table-column prop="icon" label="图标" align="center" width="60px">
@@ -250,3 +250,4 @@ export default {
     line-height: 30px;
   }
 </style>
+

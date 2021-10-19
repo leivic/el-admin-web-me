@@ -1,18 +1,18 @@
 <template>
   <div class="app-container">
     <el-row :gutter="20">
-      <!--侧边部门数据-->
-      <el-col :xs="9" :sm="6" :md="5" :lg="4" :xl="4">
+      <!--侧边部门数据--><!--我的注释  除了帮助理解的内容 其他都只标需要记忆的基础的地方-->
+      <el-col :xs="9" :sm="6" :md="5" :lg="4" :xl="4"> <!--elment-ui 栅栏布局-->
         <div class="head-container">
-          <el-input
-            v-model="deptName"
+          <el-input 
+            v-model="deptName" 
             clearable
             size="small"
             placeholder="输入部门名称搜索"
             prefix-icon="el-icon-search"
             class="filter-item"
             @input="getDeptDatas"
-          />
+          /> <!--v-model双向绑定键入值和data里面的数据 size等属性是封装给组件的特殊属性 属性值会通过prop传入组件内部使用该属性的地方 或者直接绑定在子组件最外层元素 或者自定义位置 @input input事件触发getDeptDatas函数  -->
         </div>
         <el-tree
           :data="deptDatas"
@@ -21,13 +21,14 @@
           :expand-on-click-node="false"
           lazy
           @node-click="handleNodeClick"
-        />
+        /><!--el-tree左侧树形空间 :data="" 绑定的表达式一般都是有返回值的 有return的methods当然也是有返回值的表达式 -->
+        <!--elment-ui不过是写好的vue组件库罢了 导入便可直接用这些组件 和你自己写子组件是一个道理 而vue是用js写成的-->
       </el-col>
       <!--用户数据-->
       <el-col :xs="15" :sm="18" :md="19" :lg="20" :xl="20">
         <!--工具栏-->
         <div class="head-container">
-          <div v-if="crud.props.searchToggle">
+          <div v-if="crud.props.searchToggle">  <!-- v-if根据布尔值判断显不显示整个工具栏-->
             <!-- 搜索 -->
             <el-input
               v-model="query.blurry"
@@ -37,7 +38,7 @@
               style="width: 200px;"
               class="filter-item"
               @keyup.enter.native="crud.toQuery"
-            />
+            /><!--@keyup .后是事件修饰符号 本事件和下面的@change事件使用的是同一个方法 crud对象的toQuery方法-->
             <date-range-picker v-model="query.createTime" class="date-item" />
             <el-select
               v-model="query.enabled"
@@ -57,7 +58,7 @@
             </el-select>
             <rrOperation />
           </div>
-          <crudOperation show="" :permission="permission" />
+          <crudOperation show="" :permission="permission" /><!--正常使用组件-->
         </div>
         <!--表单渲染-->
         <el-dialog append-to-body :close-on-click-modal="false" :before-close="crud.cancelCU" :visible.sync="crud.status.cu > 0" :title="crud.status.title" width="570px">
@@ -66,7 +67,7 @@
               <el-input v-model="form.username" />
             </el-form-item>
             <el-form-item label="电话" prop="phone">
-              <el-input v-model.number="form.phone" />
+              <el-input v-model.number="form.phone" /><!--vmodel.number .number是修饰符？是指数字类型？-->
             </el-form-item>
             <el-form-item label="昵称" prop="nickName">
               <el-input v-model="form.nickName" />
@@ -193,15 +194,15 @@ import { isvalidPhone } from '@/utils/validate'
 import { getDepts, getDeptSuperior } from '@/api/system/dept'
 import { getAll, getLevel } from '@/api/system/role'
 import { getAllJob } from '@/api/system/job'
-import CRUD, { presenter, header, form, crud } from '@crud/crud'
-import rrOperation from '@crud/RR.operation'
-import crudOperation from '@crud/CRUD.operation'
+import CRUD, { presenter, header, form, crud } from '@crud/crud' //导入一个export default默认的命名为CRUD 再单独导入几个函数 header是个minxin
+import rrOperation from '@crud/RR.operation' //@是从路径components取
+import crudOperation from '@crud/CRUD.operation' //这边是正常的组件 
 import udOperation from '@crud/UD.operation'
 import pagination from '@crud/Pagination'
 import DateRangePicker from '@/components/DateRangePicker'
 import Treeselect from '@riophae/vue-treeselect'
 import { mapGetters } from 'vuex'
-import '@riophae/vue-treeselect/dist/vue-treeselect.css'
+import '@riophae/vue-treeselect/dist/vue-treeselect.css' //就像最原始的，用标签正常导入css  宛如在本文件内多了一段css代码
 import { LOAD_CHILDREN_OPTIONS } from '@riophae/vue-treeselect'
 let userRoles = []
 let userJobs = []
@@ -211,27 +212,27 @@ export default {
   components: { Treeselect, crudOperation, rrOperation, udOperation, pagination, DateRangePicker },
   cruds() {
     return CRUD({ title: '用户', url: 'api/users', crudMethod: { ...crudUser }})
-  },
-  mixins: [presenter(), header(), form(defaultForm), crud()],
-  // 数据字典
+  },//非vue组件实例的property  而是js对象的特性 声明一个组件实例的函数 该函数返回一个对象 
+  mixins: [presenter(), header(), form(defaultForm), crud()], //vue提供的mixin混入  由一个个可复用的mixin对象提供可复用的数据、功能 mixin对象定义时可以包括所有和组建实例property相关的属性  然后使用mixin对象时 之前定义的那些属性以各自规则和本组件实例内的property合并
+  // 数据字典 
   dicts: ['user_status'],
   data() {
-    // 自定义验证
-    const validPhone = (rule, value, callback) => {
+    // 自定义验证 自定义一个验证函数 但是为何要定义在data里面? 而且此处只是定义，要有地方使用
+    const validPhone = (rule, value, callback) => { //看起来这个callback只是形参定义一个函数罢了
       if (!value) {
-        callback(new Error('请输入电话号码'))
+        callback(new Error('请输入电话号码')) //确实不确定传入的形参函数会是哪个，但是传入的那个函数的参数会是new Err..... 是可以这样用的
       } else if (!isvalidPhone(value)) {
         callback(new Error('请输入正确的11位手机号码'))
       } else {
         callback()
       }
     }
-    return {
-      height: document.documentElement.clientHeight - 180 + 'px;',
+    return { 
+      height: document.documentElement.clientHeight - 180 + 'px;', //document 全局对象 比组件实例对象更大 所以能取到
       deptName: '', depts: [], deptDatas: [], jobs: [], level: 3, roles: [],
       jobDatas: [], roleDatas: [], // 多选时使用
       defaultProps: { children: 'children', label: 'name', isLeaf: 'leaf' },
-      permission: {
+      permission: { //eladmin框架的权限控制数据 
         add: ['admin', 'user:add'],
         edit: ['admin', 'user:edit'],
         del: ['admin', 'user:del']
@@ -265,7 +266,7 @@ export default {
     ])
   },
   created() {
-    this.crud.msg.add = '新增成功，默认密码：123456'
+    this.crud.msg.add = '新增成功，默认密码：123456' //这个crud是 mixin混入合并进来的data数据 
   },
   mounted: function() {
     const that = this
@@ -356,9 +357,9 @@ export default {
       crud.form.jobs = userJobs
       return true
     },
-    // 获取左侧部门数据
+    // 获取左侧部门数据 两个形参  并非获得人员信息数据 
     getDeptDatas(node, resolve) {
-      const sort = 'id,desc'
+      const sort = 'id,desc'         
       const params = { sort: sort }
       if (typeof node !== 'object') {
         if (node) {
@@ -367,6 +368,8 @@ export default {
       } else if (node.level !== 0) {
         params['pid'] = node.data.id
       }
+      //以上是排序和左侧节点的处理 
+      //以下是api获取数据 如果是本文件method里面的方法获取数据 应该是this.getDepts
       setTimeout(() => {
         getDepts(params).then(res => {
           if (resolve) {
@@ -378,12 +381,12 @@ export default {
       }, 100)
     },
     getDepts() {
-      getDepts({ enabled: true }).then(res => {
+      getDepts({ enabled: true }).then(res => { //不是递归函数 里面的getDepts是import导入的一个api函数  119
         this.depts = res.content.map(function(obj) {
           if (obj.hasChildren) {
             obj.children = null
           }
-          return obj
+          return obj //返回的数据 最后上面elment-ui组件里的:data 获取的数据
         })
       })
     },
