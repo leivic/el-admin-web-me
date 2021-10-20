@@ -137,7 +137,7 @@
       </el-table-column>
     </el-table>
 
-    <pagination :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
+    <pagination :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" /><!--父组件data里面的 page size sort数据通过prop传入子组件-->
   </div>
 </template>
 

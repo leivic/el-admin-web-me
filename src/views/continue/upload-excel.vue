@@ -1,14 +1,11 @@
 <template>
   <div class="app-container">
-    <crudleivic addisview="true" @enadd="addfile"></crudleivic>
+    <crudleivic addisview="true" @enadd="addfile" />
     <!--工具栏-->
 
     <!--表单渲染--><!--el-dialog elment－ui中的弹出框--><!--:visible 是是否显示 .sync是修饰符 指是否显示和数据状态同步改变 crud.status.cu此处是对mixin混入的使用 可没有html表达式中绑定import进来的表达式的先例  -->
     <el-dialog append-to-body :close-on-click-modal="false" :visible.sync="crud1.status.cu > 0" :title="crud1.status.title" width="580px">
       <el-form ref="form" :inline="true" :model="form" size="small" label-width="80px">
-        <el-form-item label="文件名称" prop="title">
-          <el-input v-model="form.filetitle" style="width: 375px" placeholder="文件名称" />
-        </el-form-item>
         <el-form-item label="文件种类" prop="filetype" required>
           <el-select v-model="form.filetype" placeholder="文件种类">
             <el-option label="废品损失" value="废品损失" />
@@ -51,6 +48,7 @@
           :on-preview="handlePreview"
           :on-remove="handleRemove"
           :auto-upload="false"
+          :limit="1"
         >
           <el-button slot="trigger" size="small" type="primary" style="margin-left:20px">选取文件</el-button>
           <div slot="tip" class="el-upload__tip">文件不超过5mb</div>
@@ -64,71 +62,82 @@
     </el-dialog>
     <!--表格渲染-->
     <el-table
-    v-loading="listloading"
-    :data="tableData"
-    style="width: 100%"
-    max-height="250">
-    <el-table-column
-      fixed
-      prop="id"
-      label="id"
-      width="60">
-    </el-table-column>
-    <el-table-column
-      fixed
-      prop="file_name"
-      label="文件名称"
-      width="150">
-    </el-table-column>
-    <el-table-column
-      prop="file_type"
-      label="文件类型"
-      width="120">
-    </el-table-column>
-    <el-table-column
-      prop="zone"
-      label="区域"
-      width="120">
-    </el-table-column>
-    <el-table-column
-      prop="file_date"
-      label="文件日期"
-      width="120">
-    </el-table-column>
-    <el-table-column
-      prop="create_by"
-      label="创建人"
-      width="120">
-    </el-table-column>
-    <el-table-column
-      prop="create_time"
-      label="创建时间"
-      width="300">
-    </el-table-column>
-    <el-table-column
-      fixed="right"
-      label="操作"
-      width="120">
-      <template slot-scope="{row,$index}">
-        <el-button
-          @click="download(row.id,'',row.file_name)"
-          type="text"
-          size="small">
-          下载
-        </el-button>
-      </template>
-    </el-table-column>
-  </el-table>
+      v-loading="listloading"
+      :data="tableData"
+      style="width: 100%"
+      max-height="600"
+    >
+      <el-table-column
+        fixed
+        prop="id"
+        label="id"
+        width="60"
+      />
+      <el-table-column
+        fixed
+        prop="file_name"
+        label="文件名称"
+        width="150"
+      />
+      <el-table-column
+        prop="file_type"
+        label="文件类型"
+        width="120"
+      />
+      <el-table-column
+        prop="zone"
+        label="区域"
+        width="120"
+      />
+      <el-table-column
+        prop="file_date"
+        label="文件日期"
+        width="120"
+      />
+      <el-table-column
+        prop="create_by"
+        label="创建人"
+        width="120"
+      />
+      <el-table-column
+        prop="create_time"
+        label="创建时间"
+        width="200"
+      />
+      <el-table-column
+        prop="x"
+        label="x数据"
+        width="100"
+      />
+      <el-table-column
+        fixed="right"
+        label="操作"
+        width="120"
+      >
+        <template slot-scope="{row,$index}">
+          <el-button
+            type="text"
+            size="small"
+            @click="download(row.id,'',row.file_name)"
+          >
+            下载
+          </el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+     <pagination :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getfilelist" />
   </div>
 </template>
 
 <script>
-import { upload,findAllContinue,download } from '@/api/qe/continue'
+import { upload, findAllContinue, download } from '@/api/qe/continue'
 import { mapGetters } from 'vuex'
+import Pagination from '@/components/Pagination'// 分页组件
 import crudleivic from '../../components/Crud/CRUD.leivic.vue'
 export default {
-  components:{
-   crudleivic
+  components: {
+    crudleivic,
+    Pagination
   },
   data() {
     return {
@@ -146,16 +155,33 @@ export default {
         }
       },
       tableData: [],
-      listloading:true
+      listloading: true,
+      listQuery: { // 分页相关数据
+        page: 1,
+        limit: 10,
+        importance: undefined,
+        title: undefined,
+        type: undefined,
+        sort: 'id'
+      },
+      total: undefined,
     }
   },
-  created(){
-    findAllContinue().then(res=>{this.tableData=res
-                                  this.listloading=false })
+  created() {
+    this.getfilelist()
   },
   methods: {
-    addfile(){
-      this.crud1.status.cu=1
+    getfilelist() {
+        this.listloading = true
+        findAllContinue(this.listQuery.page,this.listQuery.limit,this.listQuery.sort).then(res => {
+        console.log(res)
+        this.total=res.totalElements
+        this.tableData = res.content
+        this.listloading = false
+    })
+    },
+    addfile() {
+      this.crud1.status.cu = 1
     },
     dialogcancel() {
       this.crud1.status.cu = 0 // 变量改变后保存在内存里，只要没有销毁
@@ -168,39 +194,41 @@ export default {
     },
     upload() {
       const formData = new FormData()
-      let file=this.$refs.upload.uploadFiles.pop().raw; //从html元素取到文件对象
+      const file = this.$refs.upload.uploadFiles.pop().raw // 从html元素取到文件对象
 
-      formData.append('aaa', file) //第一个参数对应java程序里面的形参名
+      formData.append('aaa', file) // 第一个参数对应java程序里面的形参名
       formData.append('file_type', this.form.filetype)
       formData.append('file_date', this.form.date)
       formData.append('zone', this.form.zone)
       formData.append('create_by', this.user.nickName) //
-      let that =this
-      upload(formData).then(res=>{
+      const that = this
+      upload(formData).then(res => {
+        this.crud1.status = 0
         console.log(res)
-        if(res =="1"){
+        if (res == '1') {
           that.$notify({ // 封装的通知功能
             title: 'Success',
             message: '新增成功',
             type: 'success',
-            duration: 2000
-        })
+            duration: 3000
+          })
         }
+        this.getfilelist()
       }) // 上传文件成功 采用formData的形式 这几个参数
     },
-    download(id,openstyle,filetitle) {
-       openstyle="inline" 
-        download(id,openstyle).then(
-        res => {           //返回了一个blob类型的数据  前后端通过网络传输只是传输了一堆字节流罢了 前端获取字节流后然后要将字节流转化成excel
-        let data = res;
-        let url = window.URL.createObjectURL(new Blob([data]));
-        let link = document.createElement('a');
-        link.style.display = 'none';
-        link.href = url;
-        link.setAttribute('download', filetitle+'.xlsx');
-        document.body.appendChild(link);
-        link.click()
-    }
+    download(id, openstyle, filetitle) {
+      openstyle = 'inline'
+      download(id, openstyle).then(
+        res => { // 返回了一个blob类型的数据  前后端通过网络传输只是传输了一堆字节流罢了 前端获取字节流后然后要将字节流转化成excel
+          const data = res
+          const url = window.URL.createObjectURL(new Blob([data]))
+          const link = document.createElement('a')
+          link.style.display = 'none'
+          link.href = url
+          link.setAttribute('download', filetitle + '.xlsx')
+          document.body.appendChild(link)
+          link.click()
+        }
       )
     }
   },

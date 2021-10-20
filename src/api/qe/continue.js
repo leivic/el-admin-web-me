@@ -10,25 +10,29 @@ export function upload(formdata) {
 }
 
 /* 查询所有文件数据*/
-export function findAllContinue() {
+export function findAllContinue(page,size,sort) {
   return request({
     url: process.env.VUE_APP_BASE_API + '/qe/continue/findAllContinue',
     method: 'get',
-    
+    params: {	page:page,
+      size: size,
+      sort: sort
+    },
+
   })
 }
 
-/* 文件下载*/ /*文件下载后端当然不能直接处理完  前端要进行一部分处理 */
-export function download(id,openstyle) {
+/* 文件下载*/ /* 文件下载后端当然不能直接处理完  前端要进行一部分处理 */
+export function download(id, openstyle) {
   return request({
     url: process.env.VUE_APP_BASE_API + '/qe/continue/download',
     method: 'get',
-    params: {	id:id,
-      openStyle:openstyle
-            },
-            responseType: 'blob',   //返回类型 blob类型的数据 
-            headers: {
-            }
-        
+    params: {	id: id,
+      openStyle: openstyle
+    },
+    responseType: 'blob', // 返回类型 blob类型的数据
+    headers: {
+    }
+
   })
 }
