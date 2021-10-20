@@ -252,7 +252,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   .crud-opts {
     padding: 4px 0;
     display: -webkit-flex;

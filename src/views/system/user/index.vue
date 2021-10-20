@@ -4,8 +4,8 @@
       <!--侧边部门数据--><!--我的注释  除了帮助理解的内容 其他都只标需要记忆的基础的地方-->
       <el-col :xs="9" :sm="6" :md="5" :lg="4" :xl="4"> <!--elment-ui 栅栏布局-->
         <div class="head-container">
-          <el-input 
-            v-model="deptName" 
+          <el-input
+            v-model="deptName"
             clearable
             size="small"
             placeholder="输入部门名称搜索"
@@ -194,15 +194,15 @@ import { isvalidPhone } from '@/utils/validate'
 import { getDepts, getDeptSuperior } from '@/api/system/dept'
 import { getAll, getLevel } from '@/api/system/role'
 import { getAllJob } from '@/api/system/job'
-import CRUD, { presenter, header, form, crud } from '@crud/crud' //导入一个export default默认的命名为CRUD 再单独导入几个函数 header是个minxin
-import rrOperation from '@crud/RR.operation' //@是从路径components取
-import crudOperation from '@crud/CRUD.operation' //这边是正常的组件 
+import CRUD, { presenter, header, form, crud } from '@crud/crud' // 导入一个export default默认的命名为CRUD 再单独导入几个函数 header是个minxin
+import rrOperation from '@crud/RR.operation' // @是从路径components取
+import crudOperation from '@crud/CRUD.operation' // 这边是正常的组件
 import udOperation from '@crud/UD.operation'
 import pagination from '@crud/Pagination'
 import DateRangePicker from '@/components/DateRangePicker'
 import Treeselect from '@riophae/vue-treeselect'
 import { mapGetters } from 'vuex'
-import '@riophae/vue-treeselect/dist/vue-treeselect.css' //就像最原始的，用标签正常导入css  宛如在本文件内多了一段css代码
+import '@riophae/vue-treeselect/dist/vue-treeselect.css' // 就像最原始的，用标签正常导入css  宛如在本文件内多了一段css代码
 import { LOAD_CHILDREN_OPTIONS } from '@riophae/vue-treeselect'
 let userRoles = []
 let userJobs = []
@@ -212,27 +212,27 @@ export default {
   components: { Treeselect, crudOperation, rrOperation, udOperation, pagination, DateRangePicker },
   cruds() {
     return CRUD({ title: '用户', url: 'api/users', crudMethod: { ...crudUser }})
-  },//非vue组件实例的property  而是js对象的特性 声明一个组件实例的函数 该函数返回一个对象 
-  mixins: [presenter(), header(), form(defaultForm), crud()], //vue提供的mixin混入  由一个个可复用的mixin对象提供可复用的数据、功能 mixin对象定义时可以包括所有和组建实例property相关的属性  然后使用mixin对象时 之前定义的那些属性以各自规则和本组件实例内的property合并
-  // 数据字典 
+  }, // 非vue组件实例的property  而是js对象的特性 声明一个组件实例的函数 该函数返回一个对象
+  mixins: [presenter(), header(), form(defaultForm), crud()], // vue提供的mixin混入  由一个个可复用的mixin对象提供可复用的数据、功能 mixin对象定义时可以包括所有和组建实例property相关的属性  然后使用mixin对象时 之前定义的那些属性以各自规则和本组件实例内的property合并
+  // 数据字典
   dicts: ['user_status'],
   data() {
     // 自定义验证 自定义一个验证函数 但是为何要定义在data里面? 而且此处只是定义，要有地方使用
-    const validPhone = (rule, value, callback) => { //看起来这个callback只是形参定义一个函数罢了
+    const validPhone = (rule, value, callback) => { // 看起来这个callback只是形参定义一个函数罢了
       if (!value) {
-        callback(new Error('请输入电话号码')) //确实不确定传入的形参函数会是哪个，但是传入的那个函数的参数会是new Err..... 是可以这样用的
+        callback(new Error('请输入电话号码')) // 确实不确定传入的形参函数会是哪个，但是传入的那个函数的参数会是new Err..... 是可以这样用的
       } else if (!isvalidPhone(value)) {
         callback(new Error('请输入正确的11位手机号码'))
       } else {
         callback()
       }
     }
-    return { 
-      height: document.documentElement.clientHeight - 180 + 'px;', //document 全局对象 比组件实例对象更大 所以能取到
+    return {
+      height: document.documentElement.clientHeight - 180 + 'px;', // document 全局对象 比组件实例对象更大 所以能取到
       deptName: '', depts: [], deptDatas: [], jobs: [], level: 3, roles: [],
       jobDatas: [], roleDatas: [], // 多选时使用
       defaultProps: { children: 'children', label: 'name', isLeaf: 'leaf' },
-      permission: { //eladmin框架的权限控制数据 
+      permission: { // eladmin框架的权限控制数据
         add: ['admin', 'user:add'],
         edit: ['admin', 'user:edit'],
         del: ['admin', 'user:del']
@@ -266,7 +266,7 @@ export default {
     ])
   },
   created() {
-    this.crud.msg.add = '新增成功，默认密码：123456' //这个crud是 mixin混入合并进来的data数据 
+    this.crud.msg.add = '新增成功，默认密码：123456' // 这个crud是 mixin混入合并进来的data数据
   },
   mounted: function() {
     const that = this
@@ -357,9 +357,9 @@ export default {
       crud.form.jobs = userJobs
       return true
     },
-    // 获取左侧部门数据 两个形参  并非获得人员信息数据 
+    // 获取左侧部门数据 两个形参  并非获得人员信息数据
     getDeptDatas(node, resolve) {
-      const sort = 'id,desc'         
+      const sort = 'id,desc'
       const params = { sort: sort }
       if (typeof node !== 'object') {
         if (node) {
@@ -368,8 +368,8 @@ export default {
       } else if (node.level !== 0) {
         params['pid'] = node.data.id
       }
-      //以上是排序和左侧节点的处理 
-      //以下是api获取数据 如果是本文件method里面的方法获取数据 应该是this.getDepts
+      // 以上是排序和左侧节点的处理
+      // 以下是api获取数据 如果是本文件method里面的方法获取数据 应该是this.getDepts
       setTimeout(() => {
         getDepts(params).then(res => {
           if (resolve) {
@@ -381,12 +381,12 @@ export default {
       }, 100)
     },
     getDepts() {
-      getDepts({ enabled: true }).then(res => { //不是递归函数 里面的getDepts是import导入的一个api函数  119
+      getDepts({ enabled: true }).then(res => { // 不是递归函数 里面的getDepts是import导入的一个api函数  119
         this.depts = res.content.map(function(obj) {
           if (obj.hasChildren) {
             obj.children = null
           }
-          return obj //返回的数据 最后上面elment-ui组件里的:data 获取的数据
+          return obj // 返回的数据 最后上面elment-ui组件里的:data 获取的数据
         })
       })
     },

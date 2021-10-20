@@ -94,7 +94,7 @@
       v-loading="crud.loading"
       lazy
       :load="getMenus"
-      :data="crud.data"  
+      :data="crud.data"
       :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
       row-key="id"
       @select="crud.selectChange"
