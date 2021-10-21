@@ -40,6 +40,7 @@
 
           </el-select>
         </el-form-item>
+        
         <el-upload
           ref="upload"
           v-model:fileList="form.fileList"
@@ -125,7 +126,7 @@
         </template>
       </el-table-column>
     </el-table>
-     <pagination :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getfilelist" />
+    <pagination :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getfilelist" />
   </div>
 </template>
 
@@ -164,7 +165,7 @@ export default {
         type: undefined,
         sort: 'id'
       },
-      total: undefined,
+      total: undefined
     }
   },
   created() {
@@ -172,13 +173,13 @@ export default {
   },
   methods: {
     getfilelist() {
-        this.listloading = true
-        findAllContinue(this.listQuery.page,this.listQuery.limit,this.listQuery.sort).then(res => {
+      this.listloading = true
+      findAllContinue(this.listQuery.page, this.listQuery.limit, this.listQuery.sort).then(res => {
         console.log(res)
-        this.total=res.totalElements
+        this.total = res.totalElements
         this.tableData = res.content
         this.listloading = false
-    })
+      })
     },
     addfile() {
       this.crud1.status.cu = 1
