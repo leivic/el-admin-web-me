@@ -38,36 +38,36 @@ export function download(id, openstyle) {
 }
 
 /* 查询所有持续的数据源数据*/
-export function findByzoneanddate(zone,date) {
+export function findByzoneanddate(zone, date) {
   return request({
     url: process.env.VUE_APP_BASE_API + '/qe/continue/findByzoneanddate',
     method: 'get',
-    params: {	zone:zone,
-              date:date
+    params: {	zone: zone,
+      date: date
     }
 
   })
 }
 
 /* 更新或者新增数据源数据数据*/
-export function updateorsavecontinuedatasource(zone,date,x1,x2,x3,x4,x5,x6,x7,x8,x9,x10,x11,x12) {
+export function updateorsavecontinuedatasource(zone, date, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12) {
   return request({
     url: process.env.VUE_APP_BASE_API + '/qe/continue/updateorsavecontinuedatasource',
     method: 'post',
-    params: {	zone:zone,
-              date:date,
-              x1:x1,x2:x2,x3:x3,x4:x4,x5:x5,x6:x6,x7:x7,x8:x8,x9:x9,x10:x10,x11:x11,x12:x12,
+    params: {	zone: zone,
+      date: date,
+      x1: x1, x2: x2, x3: x3, x4: x4, x5: x5, x6: x6, x7: x7, x8: x8, x9: x9, x10: x10, x11: x11, x12: x12
     }
 
   })
 }
 
-export function findCountcontinuedatasource(zone,date) {
+export function findCountcontinuedatasource(zone, date) {
   return request({
     url: process.env.VUE_APP_BASE_API + '/qe/continue/findCountcontinuedatasource',
     method: 'get',
-    params: {	zone:zone,
-              date:date
+    params: {	zone: zone,
+      date: date
     }
 
   })

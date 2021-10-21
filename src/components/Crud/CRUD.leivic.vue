@@ -45,7 +45,7 @@
 <script>
 export default {
   emits: ['enadd', 'enupdate', 'endelete', 'enexport'],
-  props: ['addisview'] //在html表达式内 可以绑定的property就那几种 
+  props: ['addisview'] // 在html表达式内 可以绑定的property就那几种
 }
 </script>
 <style scoped>

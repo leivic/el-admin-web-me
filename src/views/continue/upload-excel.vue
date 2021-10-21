@@ -40,7 +40,7 @@
 
           </el-select>
         </el-form-item>
-        
+
         <el-upload
           ref="upload"
           v-model:fileList="form.fileList"
