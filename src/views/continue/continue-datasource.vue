@@ -3,7 +3,7 @@
     <!--表单渲染-->
     <el-dialog append-to-body :close-on-click-modal="false" :visible.sync="dialogvisable" :title="dialogtitle" width="580px">
       <el-form ref="form" :inline="true" :model="form" size="small" label-width="80px">
-        <el-form-item label="日期" required >
+        <el-form-item label="日期" required>
           <el-date-picker
             v-model="form.month"
             type="month"
@@ -24,40 +24,40 @@
           </el-select>
         </el-form-item>
         <el-form-item label="x1" prop="title">
-          <el-input oninput ="value=value.replace(/[^0-9.]/g,'')" v-model="form.x1" placeholder="x1" style="width: 170px" /><!-- oninput ="value=value.replace(/[^0-9.]/g,'')" 限制el-input只能输入数字-->
+          <el-input v-model="form.x1" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x1" style="width: 170px" /><!-- oninput ="value=value.replace(/[^0-9.]/g,'')" 限制el-input只能输入数字-->
         </el-form-item>
         <el-form-item label="x2" prop="title">
-          <el-input oninput ="value=value.replace(/[^0-9.]/g,'')" v-model="form.x2" placeholder="x2" style="width: 170px" />
+          <el-input v-model="form.x2" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x2" style="width: 170px" />
         </el-form-item>
         <el-form-item label="x3" prop="title">
-          <el-input oninput ="value=value.replace(/[^0-9.]/g,'')" v-model="form.x3" placeholder="x3" style="width: 170px" />
+          <el-input v-model="form.x3" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x3" style="width: 170px" />
         </el-form-item>
         <el-form-item label="x4" prop="title">
-          <el-input oninput ="value=value.replace(/[^0-9.]/g,'')" v-model="form.x4" placeholder="x4" style="width: 170px" />
+          <el-input v-model="form.x4" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x4" style="width: 170px" />
         </el-form-item>
         <el-form-item label="x5" prop="title">
-          <el-input oninput ="value=value.replace(/[^0-9.]/g,'')" v-model="form.x5" placeholder="x5" style="width: 170px" />
+          <el-input v-model="form.x5" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x5" style="width: 170px" />
         </el-form-item>
         <el-form-item label="x6" prop="title">
-          <el-input oninput ="value=value.replace(/[^0-9.]/g,'')" v-model="form.x6" placeholder="x6" style="width: 170px" />
+          <el-input v-model="form.x6" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x6" style="width: 170px" />
         </el-form-item>
         <el-form-item label="x7" prop="title">
-          <el-input oninput ="value=value.replace(/[^0-9.]/g,'')" v-model="form.x7" placeholder="x7" style="width: 170px" />
+          <el-input v-model="form.x7" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x7" style="width: 170px" />
         </el-form-item>
         <el-form-item label="x8" prop="title">
-          <el-input oninput ="value=value.replace(/[^0-9.]/g,'')" v-model="form.x8" placeholder="x8" style="width: 170px" />
+          <el-input v-model="form.x8" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x8" style="width: 170px" />
         </el-form-item>
         <el-form-item label="x9" prop="title">
-          <el-input oninput ="value=value.replace(/[^0-9.]/g,'')" v-model="form.x9" placeholder="x9" style="width: 170px" />
+          <el-input v-model="form.x9" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x9" style="width: 170px" />
         </el-form-item>
         <el-form-item label="x10" prop="title">
-          <el-input oninput ="value=value.replace(/[^0-9.]/g,'')" v-model="form.x10" placeholder="x10" style="width: 170px" />
+          <el-input v-model="form.x10" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x10" style="width: 170px" />
         </el-form-item>
         <el-form-item label="x11" prop="title">
-          <el-input oninput ="value=value.replace(/[^0-9.]/g,'')" v-model="form.x11" placeholder="x11" style="width: 170px" />
+          <el-input v-model="form.x11" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x11" style="width: 170px" />
         </el-form-item>
         <el-form-item label="x12" prop="title">
-          <el-input oninput ="value=value.replace(/[^0-9.]/g,'')" v-model="form.x12" placeholder="x12" style="width: 170px" />
+          <el-input v-model="form.x12" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x12" style="width: 170px" />
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -258,16 +258,15 @@ export default {
             duration: 3000
           })
           this.dialogvisable = 0
-           
         }
-      }).then(res=>{ //新增 修改成功后 更新当前界面数据
+      }).then(res => { // 新增 修改成功后 更新当前界面数据
         findCountcontinuedatasource(this.value, this.month).then(res => { // 加载表格数据和改变表单绑定数据的方法
           this.listloading = true
           console.log(res)
           if (res == 1) { // 有且仅有一条这样的数据 才去取数据出来显示
             this.getdatasourceList(this.value, this.month)
-      }
-    })
+          }
+        })
       }
       )
     }
