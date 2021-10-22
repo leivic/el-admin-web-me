@@ -3,40 +3,34 @@
     <el-row>
       <el-col :xs="12" :sm="12" :lg="6">
         <div class="tool">
-	 <SelectYear></SelectYear>
+          <SelectYear />
         </div>
       </el-col>
       <el-col :xs="12" :sm="12" :lg="6">
         <div class="tool">
-        <el-select v-model="value" clearable placeholder="请选择" style="border:none;float: right; margin-right: 5px ;padding: 3px 0;"><!--v-model相当于一个属性绑定和一个事件-->
-	<el-option
-		v-for="item in options"
-		:key="item.value"
-		:label="item.label"
-		:value="item.value"
-	/>
-    	</el-select>
+          <el-select v-model="value" clearable placeholder="请选择" style="border:none;float: right; margin-right: 5px ;padding: 3px 0;"><!--v-model相当于一个属性绑定和一个事件-->
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
         </div>
       </el-col>
     </el-row>
     <el-row v-loading="chart1.listLoading" style="background:#fff;padding:16px 16px 0;margin-bottom:32px;"><!--第一个图表组件-->
-	<lineChart :xdata="chart1.xdata" :chongyadata="chart1.chongyadata" :cheshendata="chart1.cheshendata" :tuzhuangdata="chart1.tuzhuangdata" :fadongjidata="chart1.fadongjidata" :zongzhuangdata="chart1.zongzhuangdata" />
+      <lineChart :xdata="chart1.xdata" :chartdata="chart1.chartdata" />
     </el-row>
     <el-row :gutter="16"><!--两个个图表组件 布局是elment-ui栅栏布局-->
       <el-col v-loading="chart2.listLoading" :xs="24" :sm="24" :lg="8">
-        <div class="chart-wrapper">
-	
-        </div>
+        <div class="chart-wrapper" />
       </el-col>
       <el-col v-loading="chart3.listLoading" :xs="24" :sm="24" :lg="8">
-        <div class="chart-wrapper">
-         
-        </div>
+        <div class="chart-wrapper" />
       </el-col>
       <el-col v-loading="chart4.listLoading" :xs="24" :sm="24" :lg="8">
-        <div class="chart-wrapper">
-         
-        </div>
+        <div class="chart-wrapper" />
       </el-col>
     </el-row>
   </div>
@@ -47,25 +41,21 @@ import lineChart from './components/lineChart'
 import SelectMonth from '@/components/SelectMonth'
 import SelectYear from '@/components/SelectYear'
 import { mapGetters } from 'vuex'
-import {gettotalcontinueBydateandzone} from '@/api/qe/continue'
+import { gettotalcontinueBydateandzone,gettotalcontinueBydate } from '@/api/qe/continue'
 
 export default {
   components: {
 	  SelectMonth,
 	  lineChart,
-	  SelectYear 
+	  SelectYear
   },
   data() {
     return {
       chart1: {
-	      listLoading: false,
-	      a:[],
-	      xdata:[],
-	      chongyadata:[],
-	      cheshendata:[],
-	      tuzhuangdata:[],
-	      zongzhuangdata:[],
-	      fadongjidata:[]
+	      listLoading: true,
+	      a: [],
+	      xdata: [],
+	      chartdata: {}
       },
       chart2: {
 	      listLoading: false
@@ -94,17 +84,26 @@ export default {
         label: '发动机工厂'
       }
       ],
-      value: '冲压车间', // 工具栏下拉框数据
+      value: '冲压车间' // 工具栏下拉框数据
     }
   },
   mounted() {
-	 
+	  this.gettotalcontinueBydate(this.year)
   },
   computed: {
-	  ...mapGetters(['month','year'])
+	  ...mapGetters(['month', 'year'])
   },
   methods: {
-	  /*gettotalcontinueBydateandzone(year){ //之前写的每个区域的数据分别取  报错的代码
+	  gettotalcontinueBydate(year){
+		  this.chart1.listLoading=true
+		  this.chart1.chartdata={}
+		gettotalcontinueBydate(year).then(res=>{
+		  this.chart1.chartdata=res
+		  this.chart1.listLoading=false
+	  })
+	  }
+
+	  /* gettotalcontinueBydateandzone(year){ //之前写的每个区域的数据分别取  报错的代码
 		  let that=this
 		  gettotalcontinueBydateandzone("冲压车间",year).then(res=>{
 			  console.log(res)
@@ -122,13 +121,13 @@ export default {
 			  that.chart1.fadongjidata.splice(0,that.chart1.fadongjidata.length)
 			  this.chart1.chongyadata=JSON.parse(JSON.stringify(response[0]));//深拷贝直接拷贝整个数组的值  而不只是复制一个引用
 			  console.log(this.chart1.chongyadata)//此处的报错是传入子组件时的数据 从
-			 
+
 		  })//promise.all() 返回值是几个promise返回值的和
 	  }*/
   },
   watch: {
-	  year(newval){
-		  
+	  year(newval) {
+		  this.gettotalcontinueBydate(newval)
 	  }
   }
 }

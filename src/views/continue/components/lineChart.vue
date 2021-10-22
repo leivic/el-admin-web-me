@@ -28,28 +28,12 @@ export default {
     },
     xdata: {
       type: Array,
-      required: true    
+      required: true
     },
-    chongyadata: {
-      type: Array,
-      required: true,
-    },
-     cheshendata: {
-      type: Array,
-      required: true    
-    },
-     tuzhuangdata: {
-      type: Array,
-      required: true    
-    },
-     fadongjidata: {
-      type: Array,
-      required: true    
-    },
-     zongzhuangdata: {
-      type: Array,
-      required: true    
-    }
+   chartdata: {
+	type: Object,
+	required: true	   
+   }
   },
   data() {
     return {
@@ -57,13 +41,7 @@ export default {
     }
   },
   watch: {
-    chongyadata: {
-      deep: true,
-      handler(val) {
-        this.setOptions(val)
-      }
-    },
-    xdata: {
+    chartdata: {
       deep: true,
       handler(val) {
         this.setOptions(val)
@@ -85,67 +63,67 @@ export default {
   methods: {
     initChart() {
       this.chart = echarts.init(this.$el, 'macarons')
-      this.setOptions(this.xdata)
+      this.setOptions(this.chartdata)
     },
-		setOptions({ expectedData, actualData } = {}) {
-		this.chart.setOption({
-					title: {
-		text: 'Sgmw重庆分公司质量生态持续等级状态'
-		},
-		tooltip: {
-		trigger: 'axis'
-		},
-		legend: {
-		data: ['冲压车间', '车身车间', '涂装车间', '总装车间', '发动机工厂']
-		},
-		grid: {
-		left: '3%',
-		right: '4%',
-		bottom: '3%',
-		containLabel: true
-		},
-		toolbox: {
-		feature: {
-		saveAsImage: {}
-		}
-		},
-		xAxis: {
-		type: 'category',
-		boundaryGap: false,
-		data: this.xdata
-		},
-		yAxis: {
-		type: 'value'
-		},
-		series: [
-		{
-		name: '冲压车间',
-		type: 'line',
-		data: this.chongyadata
-		},
-		{
-		name: '车身车间',
-		type: 'line',
-		data: this.cheshendata
-		},
-		{
-		name: '涂装车间',
-		type: 'line',
-		data: this.tuzhuangdata
-		},
-		{
-		name: '总装车间',
-		type: 'line',
-		data: this.zongzhuangdata
-		},
-		{
-		name: '发动机工厂',
-		type: 'line',
-		data: this.fadongjidata
-		}
-		]	
+    setOptions({ expectedData, actualData } = {}) {
+      this.chart.setOption({
+        title: {
+          text: 'Sgmw重庆分公司质量生态持续等级状态'
+        },
+        tooltip: {
+          trigger: 'axis'
+        },
+        legend: {
+          data: ['冲压车间', '车身车间', '涂装车间', '总装车间', '发动机工厂']
+        },
+        grid: {
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
+          containLabel: true
+        },
+        toolbox: {
+          feature: {
+            saveAsImage: {}
+          }
+        },
+        xAxis: {
+          type: 'category',
+          boundaryGap: false,
+          data: this.xdata
+        },
+        yAxis: {
+          type: 'value'
+        },
+        series: [
+          {
+            name: '冲压车间',
+            type: 'line',
+            data: this.chartdata.chongyadata
+          },
+          {
+            name: '车身车间',
+            type: 'line',
+            data: this.chartdata.cheshendata
+          },
+          {
+            name: '涂装车间',
+            type: 'line',
+            data: this.chartdata.tuzhuangdata
+          },
+          {
+            name: '总装车间',
+            type: 'line',
+            data: this.chartdata.zongzhuangdata
+          },
+          {
+            name: '发动机工厂',
+            type: 'line',
+            data: this.chartdata.fadongjidata
+          }
+        ]
 
-		})
+      })
     }
   }
 }
