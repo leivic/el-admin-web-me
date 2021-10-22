@@ -73,3 +73,15 @@ export function findCountcontinuedatasource(zone, date) {
   })
 }
 
+export function gettotalcontinueBydateandzone(zone,year) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/continue/gettotalcontinueBydateandzone',
+    method: 'get',
+    params: {	
+      zone:zone,
+      year:year
+    }
+
+  })
+}
+
