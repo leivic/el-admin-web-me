@@ -20,7 +20,7 @@ export default {
     },
     height: {
       type: String,
-      default: '300px'
+      default: '350px'
     },
     autoResize: {
       type: Boolean,
@@ -30,10 +30,10 @@ export default {
       type: Array,
       required: true
     },
-   chartdata: {
-	type: Object,
-	required: true	   
-   }
+    chartdata: {
+      type: Object,
+      required: true
+    }
   },
   data() {
     return {
@@ -67,25 +67,38 @@ export default {
     },
     setOptions({ expectedData, actualData } = {}) {
       this.chart.setOption({
+        color: ['#00ABA9', '#1BA1E2', '#0050EF', '#6A00FF', '#D80073'],
         title: {
-          text: 'Sgmw重庆分公司质量生态持续等级状态'
+          text: 'Sgmw重庆分公司质量生态持续等级状态',
+          textStyle: {
+            fontSize: 24,
+            fontWeight: 'normal',
+            fontFamily: 'Courier New'
+          },
+          left:'28%'
         },
+        
         tooltip: {
           trigger: 'axis'
         },
+        toolbox: {
+		    feature: {
+            dataView: { show: true, readOnly: false },
+            magicType: { show: true, type: ['line', 'bar'] },
+            restore: { show: true },
+            saveAsImage: { show: true }
+		    },
+		    right: '2%'
+        },
         legend: {
-          data: ['冲压车间', '车身车间', '涂装车间', '总装车间', '发动机工厂']
+          data: ['冲压车间', '车身车间', '涂装车间', '总装车间', '发动机工厂'],
+          top:30
         },
         grid: {
           left: '3%',
           right: '4%',
           bottom: '3%',
           containLabel: true
-        },
-        toolbox: {
-          feature: {
-            saveAsImage: {}
-          }
         },
         xAxis: {
           type: 'category',

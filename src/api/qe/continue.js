@@ -84,13 +84,48 @@ export function gettotalcontinueBydateandzone(zone, year) {
 
   })
 }
-
+/*获取质量生态持续分析图表第一个的数据*/
 export function gettotalcontinueBydate(year) {
   return request({
     url: process.env.VUE_APP_BASE_API + '/qe/continue/gettotalcontinueBydate',
     method: 'get',
     params: {
       year: year
+    }
+
+  })
+}
+/*获取质量生态持续分析图表 第二个的数据(左下)*/
+export function getcontinuezhiliangshuipinBydate(year) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/continue/getcontinuezhiliangshuipinBydate',
+    method: 'get',
+    params: {
+      year: year
+    }
+
+  })
+}
+
+/*获取质量提升潜力的数据*/
+export function getzhiliangtishen(month) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/continue/getzhiliangtishen',
+    method: 'get',
+    params: {
+      date: month
+    }
+
+  })
+}
+
+/*获取饼图的数据*/
+export function getContinuePiechartvalue(month) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/continue/getContinuePiechartvalue',
+    method: 'get',
+    params: {
+      month: month
     }
 
   })
