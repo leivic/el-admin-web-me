@@ -26,6 +26,10 @@ export default {
       type: Boolean,
       default: true
     },
+    xdata: {
+      type: Array,
+      required: true
+    },
     chartdata: {
       type: Array,
       required: true
@@ -63,31 +67,52 @@ export default {
     },
     setOptions({ expectedData, actualData } = {}) {
       this.chart.setOption({
+        color: ['#00ABA9', '#1BA1E2', '#0050EF', '#6A00FF', '#D80073'],
         title: {
-          text: 'Referer of a Website',
-          subtext: 'Fake Data',
-          left: 'center'
+          text: 'Sgmw重庆分公司质量生态持续等级状态',
+          textStyle: {
+            fontSize: 24,
+            fontWeight: 'normal',
+            fontFamily: 'Courier New'
+          },
+          left: '28%'
         },
+
         tooltip: {
-          trigger: 'item'
+          trigger: 'axis'
+        },
+        toolbox: {
+		    feature: {
+            dataView: { show: true, readOnly: false },
+            magicType: { show: true, type: ['line', 'bar'] },
+            restore: { show: true },
+            saveAsImage: { show: true }
+		    },
+		    right: '2%'
         },
         legend: {
-          orient: 'vertical',
-          left: 'left'
+          data: ['车间'],
+          top: 30
+        },
+        grid: {
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
+          containLabel: true
+        },
+        xAxis: {
+          type: 'category',
+          boundaryGap: false,
+          data: this.xdata
+        },
+        yAxis: {
+          type: 'value'
         },
         series: [
           {
-            name: 'Access From',
-            type: 'pie',
-            radius: '50%',
-            data: this.chartdata,
-            emphasis: {
-              itemStyle: {
-                shadowBlur: 10,
-                shadowOffsetX: 0,
-                shadowColor: 'rgba(0, 0, 0, 0.5)'
-              }
-            }
+            name: '车间',
+            type: 'line',
+            data: this.chartdata
           }
         ]
 

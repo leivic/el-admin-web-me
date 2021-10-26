@@ -89,7 +89,7 @@ export default {
           }
         },
         legend: {
-          data: ['体验质量','实物质量'],
+          data: ['现状','质量策划','执行'],
           top: 30
         },
         grid: {
@@ -112,32 +112,44 @@ export default {
         series: [
 
 	     {
-            name: '体验质量',
+            name: '现状',
 	    type: 'bar',
 	    stack: '质量',
             emphasis: {
               focus: 'series'
             },
-            data: this.ydata1.tiyanzhiliang, // ydata1是一个二维数组 ydata1[0]也是一个数组,
+            data: this.ydata1.xianzhuang, // ydata1是一个二维数组 ydata1[0]也是一个数组,
             label: {
               show: true,
               position: 'inside'
             }
           },
           {
-            name: '实物质量',
+            name: '质量策划',
 	    type: 'bar',
             stack: '质量',
             emphasis: {
               focus: 'series'
             },
-            data: this.ydata1.shiwuzhiliang,
+            data: this.ydata1.zhiliangcehua,
             label: {
               show: true,
               position: 'inside'
             }
-	  }
-	  
+	  },
+	  {
+            name: '执行',
+	    type: 'bar',
+            stack: '质量',
+            emphasis: {
+              focus: 'series'
+            },
+            data: this.ydata1.zhixing,
+            label: {
+              show: true,
+              position: 'inside'
+            }
+          }
 
         ]
       })

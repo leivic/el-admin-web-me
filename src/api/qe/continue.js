@@ -84,7 +84,7 @@ export function gettotalcontinueBydateandzone(zone, year) {
 
   })
 }
-/*获取质量生态持续分析图表第一个的数据*/
+/* 获取质量生态持续分析图表第一个的数据*/
 export function gettotalcontinueBydate(year) {
   return request({
     url: process.env.VUE_APP_BASE_API + '/qe/continue/gettotalcontinueBydate',
@@ -95,7 +95,7 @@ export function gettotalcontinueBydate(year) {
 
   })
 }
-/*获取质量生态持续分析图表 第二个的数据(左下)*/
+/* 获取质量生态持续分析图表 第二个的数据(左下)*/
 export function getcontinuezhiliangshuipinBydate(year) {
   return request({
     url: process.env.VUE_APP_BASE_API + '/qe/continue/getcontinuezhiliangshuipinBydate',
@@ -107,7 +107,7 @@ export function getcontinuezhiliangshuipinBydate(year) {
   })
 }
 
-/*获取质量提升潜力的数据*/
+/* 获取质量提升潜力的数据*/
 export function getzhiliangtishen(month) {
   return request({
     url: process.env.VUE_APP_BASE_API + '/qe/continue/getzhiliangtishen',
@@ -119,13 +119,46 @@ export function getzhiliangtishen(month) {
   })
 }
 
-/*获取饼图的数据*/
+/* 获取饼图的数据*/
 export function getContinuePiechartvalue(month) {
   return request({
     url: process.env.VUE_APP_BASE_API + '/qe/continue/getContinuePiechartvalue',
     method: 'get',
     params: {
       month: month
+    }
+
+  })
+}
+
+export function getzhiliangshuipin(zone, year) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/continue/getzhiliangshuipin',
+    method: 'get',
+    params: {	zone: zone,
+      year: year
+    }
+
+  })
+}
+
+export function getzhiliangtishenqianli(zone, year) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/continue/getzhiliangtishenqianli',
+    method: 'get',
+    params: {	zone: zone,
+      year: year
+    }
+
+  })
+}
+
+export function getneibusunshi(zone, year) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/continue/getneibusunshi',
+    method: 'get',
+    params: {	zone: zone,
+      year: year
     }
 
   })

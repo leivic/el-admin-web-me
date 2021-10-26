@@ -26,12 +26,12 @@ export default {
       type: Boolean,
       default: true
     },
-    xdata: {
+    chartData: {
       type: Array,
       required: true
     },
-    chartdata: {
-      type: Object,
+    xData: {
+      type: Array,
       required: true
     }
   },
@@ -41,7 +41,7 @@ export default {
     }
   },
   watch: {
-    chartdata: {
+    chartData: {
       deep: true,
       handler(val) {
         this.setOptions(val)
@@ -63,24 +63,25 @@ export default {
   methods: {
     initChart() {
       this.chart = echarts.init(this.$el, 'macarons')
-      this.setOptions(this.chartdata)
+      this.setOptions(this.chartData)
     },
     setOptions({ expectedData, actualData } = {}) {
       this.chart.setOption({
-        color: ['#00ABA9', '#1BA1E2', '#0050EF', '#6A00FF', '#D80073'],
         title: {
-          text: 'Sgmw重庆分公司质量生态持续等级状态',
-          textStyle: {
-            fontSize: 24,
+		  text: '标题',
+		  textStyle: {
+            fontSize: 18,
             fontWeight: 'normal',
             fontFamily: 'Courier New'
           },
-          left: '28%'
+		  left: '100'
         },
-
         tooltip: {
-          trigger: 'axis'
-        },
+		  trigger: 'axis',
+		  axisPointer: {
+		    type: 'shadow'
+		  }
+        }, // 鼠标悬浮的提示框组件
         toolbox: {
 		    feature: {
             dataView: { show: true, readOnly: false },
@@ -88,53 +89,28 @@ export default {
             restore: { show: true },
             saveAsImage: { show: true }
 		    },
-		    right: '2%'
-        },
-        legend: {
-          data: ['冲压车间', '车身车间', '涂装车间', '总装车间', '发动机工厂'],
-          top: 30
-        },
-        grid: {
-          left: '3%',
-          right: '4%',
-          bottom: '3%',
-          containLabel: true
+		    right: '10%'
         },
         xAxis: {
-          type: 'category',
-          boundaryGap: false,
-          data: this.xdata
+		    type: 'category',
+		    data: this.xData,
+		    axisLabel: {
+            interval: 0, // 横轴信息全部显示
+            rotate: -90// -30度角倾斜显示
+		    }
         },
         yAxis: {
-          type: 'value'
+		    type: 'value',
+		    axisLabel: {
+            	formatter: '{value}'
+		    }
         },
-        series: [
-          {
-            name: '冲压车间',
-            type: 'line',
-            data: this.chartdata.chongyadata
-          },
-          {
-            name: '车身车间',
-            type: 'line',
-            data: this.chartdata.cheshendata
-          },
-          {
-            name: '涂装车间',
-            type: 'line',
-            data: this.chartdata.tuzhuangdata
-          },
-          {
-            name: '总装车间',
-            type: 'line',
-            data: this.chartdata.zongzhuangdata
-          },
-          {
-            name: '发动机工厂',
-            type: 'line',
-            data: this.chartdata.fadongjidata
-          }
-        ]
+        series: [{
+		    data: this.chartData, // 不加this 怎么取得到props里面的值呢
+		    type: 'bar',
+		    barCategoryGap: '1%',
+		    barWidth: 20
+        }]// echarts的那些配置 就是一个完整的对象 这个对象的很多属性仍然是对象
 
       })
     }
