@@ -31,6 +31,9 @@ export default {
     },
     xdata: {
       type: Array
+    },
+    title: {
+      type: String
     }
   },
   data() {
@@ -67,13 +70,13 @@ export default {
       this.chart.setOption({
         color: ['#00ABA9', '#1BA1E2', '#0050EF', '#6A00FF', '#D80073', '#A20025', '#E51400', '#FA6800', '#F0A30A', '#E3C800', '#825A2C', '#6D8764'],
         title: {
-		  text: '标题',
+		  text: this.title,
 		  textStyle: {
-            fontSize: 24,
+            fontSize: 16,
             fontWeight: 'normal',
             fontFamily: 'Courier New'
           },
-          left: '39%'
+          left: 'center'
         },
         tooltip: {
 		  trigger: 'axis',
@@ -89,8 +92,14 @@ export default {
           }
         },
         legend: {
-          data: ['体验质量','实物质量'],
+          data: ['体验质量', '实物质量'],
           top: 30
+        },
+        toolbox: {
+		    feature: {
+            saveAsImage: { show: true }
+		    },
+		    right: '2%'
         },
         grid: {
           left: '3%',
@@ -101,8 +110,13 @@ export default {
         xAxis: [
           {
             type: 'category',
-            data: this.xdata
-          }
+            data: this.xdata,
+              axisLabel: {
+            interval: 0, // 横轴信息全部显示
+            rotate: -90// -30度角倾斜显示
+		      }
+          },
+          
         ],
         yAxis: [
           {
@@ -137,7 +151,6 @@ export default {
               position: 'inside'
             }
 	  }
-	  
 
         ]
       })

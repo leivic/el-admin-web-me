@@ -31,6 +31,9 @@ export default {
     },
     xdata: {
       type: Array
+    },
+    title: {
+      type: String
     }
   },
   data() {
@@ -67,13 +70,13 @@ export default {
       this.chart.setOption({
         color: ['#00ABA9', '#1BA1E2', '#0050EF', '#6A00FF', '#D80073', '#A20025', '#E51400', '#FA6800', '#F0A30A', '#E3C800', '#825A2C', '#6D8764'],
         title: {
-		  text: '标题',
+		  text: this.title,
 		  textStyle: {
-            fontSize: 24,
+            fontSize: 16,
             fontWeight: 'normal',
             fontFamily: 'Courier New'
           },
-          left: '39%'
+          left: 'center%'
         },
         tooltip: {
 		  trigger: 'axis',
@@ -88,8 +91,14 @@ export default {
             type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
           }
         },
+        toolbox: {
+		    feature: {
+            saveAsImage: { show: true }
+		    },
+		    right: '2%'
+        },
         legend: {
-          data: ['现状','质量策划','执行'],
+          data: ['现状', '质量策划', '执行'],
           top: 30
         },
         grid: {
@@ -101,7 +110,11 @@ export default {
         xAxis: [
           {
             type: 'category',
-            data: this.xdata
+            data: this.xdata,
+              axisLabel: {
+            interval: 0, // 横轴信息全部显示
+            rotate: -90// -30度角倾斜显示
+		    }
           }
         ],
         yAxis: [

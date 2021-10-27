@@ -6,18 +6,7 @@
           <SelectMonth />
         </div>
       </el-col>
-      <el-col :xs="12" :sm="12" :lg="6">
-        <div class="tool">
-          <el-select v-model="value" clearable placeholder="请选择" style="border:none;float: right; margin-right: 5px ;padding: 3px 0;"><!--v-model相当于一个属性绑定和一个事件-->
-            <el-option
-              v-for="item in options"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            />
-          </el-select>
-        </div>
-      </el-col>
+      
     </el-row>
     <el-row v-loading="chart1.listLoading" style="background:#fff;padding:16px 16px 0;margin-bottom:32px;"><!--第一个图表组件-->
       <lineChart :xdata="chart1.xdata" :chartdata="chart1.chartdata" />
@@ -25,7 +14,7 @@
     <el-row :gutter="16"><!--两个个图表组件 布局是elment-ui栅栏布局-->
       <el-col v-loading="chart2.listLoading" :xs="24" :sm="24" :lg="8">
         <div class="chart-wrapper">
-          <lineChart :xdata="chart2.xdata" :chartdata="chart2.chartdata" />
+          <lineChart1 :xdata="chart2.xdata" :chartdata="chart2.chartdata" />
         </div>
       </el-col>
       <el-col v-loading="chart3.listLoading" :xs="24" :sm="24" :lg="8">
@@ -43,6 +32,7 @@
 </template>
 
 <script>
+import lineChart1 from './components/lineChart1'
 import lineChart from './components/lineChart'
 import barChart from './components/barChart'
 import piechart from './components/piechart'
@@ -57,7 +47,8 @@ export default {
 	  lineChart,
     SelectYear,
     barChart,
-    piechart
+    piechart,
+    lineChart1 
   },
   data() {
     return {
@@ -86,7 +77,7 @@ export default {
         }
       },
       chart3: {
-        title: '标题',
+        title: 'Sgmw重庆分公司各区域质量提升潜力分布',
         listLoading: true,
         chartdata: [],
         xdata: ['冲压车间', '车身车间', '涂装车间', '总装车间', '发动机工厂']
@@ -95,25 +86,7 @@ export default {
         listLoading: true,
         chartdata: []
       },
-      options: [{ // 工具栏下拉框数据
-        value: '冲压车间',
-        label: '冲压车间'
-      }, {
-        value: '车身车间',
-        label: '车身车间'
-
-      }, {
-        value: '涂装车间',
-        label: '涂装车间'
-      }, {
-        value: '总装车间',
-        label: '总装车间'
-      }, {
-        value: '发动机工厂',
-        label: '发动机工厂'
-      }
-      ],
-      value: '冲压车间' // 工具栏下拉框数据
+     
     }
   },
   mounted() {

@@ -57,7 +57,7 @@
           <el-input v-model="form.x11" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x11" style="width: 170px" />
         </el-form-item>
         <el-form-item label="x12" prop="title">
-          <el-input v-model="form.x12" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x12" style="width: 170px" />
+          <el-input v-model="form.x12" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x12" style="width: 170px"  disabled/>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">

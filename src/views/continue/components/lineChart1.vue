@@ -31,11 +31,8 @@ export default {
       required: true
     },
     chartdata: {
-      type: Array,
+      type: Object,
       required: true
-    },
-    title: {
-      type: String
     }
   },
   data() {
@@ -72,13 +69,12 @@ export default {
       this.chart.setOption({
         color: ['#00ABA9', '#1BA1E2', '#0050EF', '#6A00FF', '#D80073'],
         title: {
-          text: this.title,
+          text: 'Sgmw重庆分公司水平分布状态',
           textStyle: {
-            fontSize: 24,
+            fontSize: 16,
             fontWeight: 'normal',
             fontFamily: 'Courier New'
-          },
-          left: '28%'
+          }
         },
 
         tooltip: {
@@ -86,16 +82,14 @@ export default {
         },
         toolbox: {
 		    feature: {
-            dataView: { show: true, readOnly: false },
-            magicType: { show: true, type: ['line', 'bar'] },
-            restore: { show: true },
             saveAsImage: { show: true }
 		    },
 		    right: '2%'
         },
         legend: {
-          data: ['车间'],
-          top: 30
+          data: ['冲压车间', '车身车间', '涂装车间', '总装车间', '发动机工厂'],
+	  top: 20,
+	  itemGap:5
         },
         grid: {
           left: '3%',
@@ -106,16 +100,40 @@ export default {
         xAxis: {
           type: 'category',
           boundaryGap: false,
-          data: this.xdata
+	  data: this.xdata,
+	   axisLabel: {
+            interval: 0, // 横轴信息全部显示
+            rotate: -45// -30度角倾斜显示
+		    	}
         },
         yAxis: {
           type: 'value'
         },
         series: [
           {
-            name: '车间',
+            name: '冲压车间',
             type: 'line',
-            data: this.chartdata
+            data: this.chartdata.chongyadata
+          },
+          {
+            name: '车身车间',
+            type: 'line',
+            data: this.chartdata.cheshendata
+          },
+          {
+            name: '涂装车间',
+            type: 'line',
+            data: this.chartdata.tuzhuangdata
+          },
+          {
+            name: '总装车间',
+            type: 'line',
+            data: this.chartdata.zongzhuangdata
+          },
+          {
+            name: '发动机工厂',
+            type: 'line',
+            data: this.chartdata.fadongjidata
           }
         ]
 

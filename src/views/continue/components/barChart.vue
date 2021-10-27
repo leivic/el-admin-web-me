@@ -73,11 +73,10 @@ export default {
         title: {
 		  text: this.title,
 		  textStyle: {
-            fontSize: 18,
+            fontSize: 13,
             fontWeight: 'normal',
             fontFamily: 'Courier New'
           },
-		  left: '100'
         },
         tooltip: {
 		  trigger: 'axis',
@@ -87,19 +86,16 @@ export default {
         }, // 鼠标悬浮的提示框组件
         toolbox: {
 		    feature: {
-            dataView: { show: true, readOnly: false },
-            magicType: { show: true, type: ['line', 'bar'] },
-            restore: { show: true },
             saveAsImage: { show: true }
 		    },
-		    right: '10%'
+		    right: '2%'
         },
         xAxis: {
 		    type: 'category',
 		    data: this.xData,
 		    axisLabel: {
             interval: 0, // 横轴信息全部显示
-            rotate: -90// -30度角倾斜显示
+            rotate: -45// -30度角倾斜显示
 		    }
         },
         yAxis: {
@@ -112,7 +108,11 @@ export default {
 		    data: this.chartData, // 不加this 怎么取得到props里面的值呢
 		    type: 'bar',
 		    barCategoryGap: '1%',
-		    barWidth: 20
+        barWidth: 20,
+         label: {
+              show: true,
+              position: 'top'
+            }
         }]// echarts的那些配置 就是一个完整的对象 这个对象的很多属性仍然是对象
 
       })

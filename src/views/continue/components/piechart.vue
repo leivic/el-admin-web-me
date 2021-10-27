@@ -64,16 +64,16 @@ export default {
     setOptions({ expectedData, actualData } = {}) {
       this.chart.setOption({
         title: {
-          text: 'Referer of a Website',
-          subtext: 'Fake Data',
-          left: 'center'
+          text: 'Sgmw重庆分公司',
+          subtext: '质量资源分布消耗',
+          left: 'right'
         },
         tooltip: {
           trigger: 'item'
         },
         legend: {
           orient: 'vertical',
-          left: 'left'
+          left: 'left',
         },
         series: [
           {
@@ -87,7 +87,8 @@ export default {
                 shadowOffsetX: 0,
                 shadowColor: 'rgba(0, 0, 0, 0.5)'
               }
-            }
+            },
+            
           }
         ]
 

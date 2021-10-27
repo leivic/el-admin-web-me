@@ -20,22 +20,22 @@
       </el-col>
     </el-row>
     <el-row v-loading="chart1.listLoading" style="background:#fff;padding:16px 16px 0;margin-bottom:32px;"><!--第一个图表组件-->
-      <lineChart2 :xdata="chart1.xdata" :chartdata="chart1.chartdata" />
+      <lineChart2 :xdata="chart1.xdata" :chartdata="chart1.chartdata" :title="chart1.title" />
     </el-row>
     <el-row :gutter="16"><!--两个个图表组件 布局是elment-ui栅栏布局-->
       <el-col v-loading="chart2.listLoading" :xs="24" :sm="24" :lg="8">
         <div class="chart-wrapper">
-          <lineandbarChart :xdata="chart2.xdata" :ydata1="chart2.ydata1" />
+          <lineandbarChart :xdata="chart2.xdata" :ydata1="chart2.ydata1" :title="chart2.title" />
         </div>
       </el-col>
       <el-col v-loading="chart3.listLoading" :xs="24" :sm="24" :lg="8">
         <div class="chart-wrapper">
-          <lineandbarChart2 :xdata="chart3.xdata" :ydata1="chart3.ydata1" />
+          <lineandbarChart2 :xdata="chart3.xdata" :ydata1="chart3.ydata1" :title="chart3.title" />
         </div>
       </el-col>
       <el-col v-loading="chart4.listLoading" :xs="24" :sm="24" :lg="8">
         <div class="chart-wrapper">
-          <barChart2 :chartData="chart4.chartdata" :xData="chart4.xdata" />
+          <barChart2 :chart-data="chart4.chartdata" :x-data="chart4.xdata" :title="chart4.title" />
         </div>
       </el-col>
     </el-row>
@@ -51,7 +51,7 @@ import piechart from './components/piechart'
 import SelectMonth from '@/components/SelectMonth'
 import SelectYear from '@/components/SelectYear'
 import { mapGetters } from 'vuex'
-import { gettotalcontinueBydateandzone,getzhiliangtishenqianli,getzhiliangshuipin,getneibusunshi } from '@/api/qe/continue'
+import { gettotalcontinueBydateandzone, getzhiliangtishenqianli, getzhiliangshuipin, getneibusunshi } from '@/api/qe/continue'
 
 export default {
   components: {
@@ -59,7 +59,7 @@ export default {
 	  lineChart2,
     	 SelectYear,
 	    lineandbarChart,
-	   lineandbarChart2, 
+	   lineandbarChart2,
 	    piechart,
 	    barChart2
   },
@@ -68,30 +68,33 @@ export default {
       chart1: {
 	      listLoading: true,
 	      xdata: [],
-	      chartdata: []
+        chartdata: [],
+        title:"冲压车间各层级质量生态持续状态"
       },
       chart2: {
 	      listLoading: true,
-	      a: [],
+	      title: '冲压车间质量水平各模块状态',
 	      xdata: [],
 	      ydata1: {
-		      shiwuzhilaing:[],
-		      tiyanzhiliang:[]
-	      }
+		      shiwuzhilaing: [],
+		      tiyanzhiliang: []
+        }
       },
       chart3: {
 	      listLoading: true,
-	      xdata: [],
+        xdata: [],
+        title: '冲压车间质量提升潜力各模块状态',
 	      ydata1: {
-		      xianzhuang:[],
-		      zhiliangcehua:[],
-		      zhixing:[]
+		      xianzhuang: [],
+		      zhiliangcehua: [],
+		      zhixing: []
 	      }
       },
       chart4: {
+        title:'冲压车间内部损失趋势图',
         listLoading: true,
-	chartdata: [],
-	xdata:[]
+        chartdata: [],
+        xdata: []
       },
       options: [{ // 工具栏下拉框数据
         value: '冲压车间',
@@ -115,10 +118,10 @@ export default {
     }
   },
   mounted() {
-	  this.gettotalcontinueBydateandzone(this.value,this.year)
-	  this.getzhiliangshuipin(this.value,this.year)
-	  this.getzhiliangtishenqianli(this.value,this.year)
-	  this.getneibusunshi(this.value,this.year)
+	  this.gettotalcontinueBydateandzone(this.value, this.year)
+	  this.getzhiliangshuipin(this.value, this.year)
+	  this.getzhiliangtishenqianli(this.value, this.year)
+	  this.getneibusunshi(this.value, this.year)
   },
   computed: {
     ...mapGetters(['year'])
@@ -126,76 +129,81 @@ export default {
   },
   methods: {
 	  gettotalcontinueBydateandzone(zone, year) {
-		  this.chart1.chartdata.splice(0,this.chart1.chartdata.length)
-		  this.chart1.xdata.splice(0,this.chart1.xdata.length)
-		  this.chart1.listLoading=true
-		  gettotalcontinueBydateandzone(zone,year).then(
-			  res=>{
+		  this.chart1.chartdata.splice(0, this.chart1.chartdata.length)
+		  this.chart1.xdata.splice(0, this.chart1.xdata.length)
+		  this.chart1.listLoading = true
+		  gettotalcontinueBydateandzone(zone, year).then(
+			  res => {
 				  for (let i = 1; i < res.length + 1; i++) {
-					  this.chart1.xdata.push(i + '月') 
+					  this.chart1.xdata.push(i + '月')
 				  }
-				  this.chart1.chartdata=res
-				  this.chart1.listLoading=false
+				  this.chart1.chartdata = res
+				  this.chart1.listLoading = false
 			  }
 		  )
 	  },
-	  getzhiliangshuipin(zone,year) {
-		  this.chart2.listLoading=true
-		  this.chart2.xdata.splice(0,this.chart2.xdata.length)
-		  this.chart2.ydata1={}
-		  getzhiliangshuipin(zone,year).then(
-			  res=>{
+	  getzhiliangshuipin(zone, year) {
+		  this.chart2.listLoading = true
+		  this.chart2.xdata.splice(0, this.chart2.xdata.length)
+		  this.chart2.ydata1 = {}
+		  getzhiliangshuipin(zone, year).then(
+			  res => {
 				 for (let i = 1; i < res.tiyanzhiliang.length + 1; i++) {
-					  this.chart2.xdata.push(i + '月') 
+					  this.chart2.xdata.push(i + '月')
 				  }
-				  this.chart2.ydata1=res
-				  this.chart2.listLoading=false 
+				  this.chart2.ydata1 = res
+				  this.chart2.listLoading = false
 			  }
-		  ) 
+		  )
 	  },
-	   getzhiliangtishenqianli(zone,year) {
-		  this.chart3.listLoading=true
-		  this.chart3.xdata.splice(0,this.chart3.xdata.length)
-		  this.chart3.ydata1={}
-		  getzhiliangtishenqianli(zone,year).then(
-			  res=>{
+	   getzhiliangtishenqianli(zone, year) {
+		  this.chart3.listLoading = true
+		  this.chart3.xdata.splice(0, this.chart3.xdata.length)
+		  this.chart3.ydata1 = {}
+		  getzhiliangtishenqianli(zone, year).then(
+			  res => {
 				  console.log(res)
 				 for (let i = 1; i < res.xianzhuang.length + 1; i++) {
-					  this.chart3.xdata.push(i + '月') 
+					  this.chart3.xdata.push(i + '月')
 				  }
-				  this.chart3.ydata1=res
-				  this.chart3.listLoading=false 
+				  this.chart3.ydata1 = res
+				  this.chart3.listLoading = false
 			  }
-		  ) 
+		  )
 	  },
-	  getneibusunshi(zone,year) {
-		  this.chart4.listLoading=true
-		  this.chart4.xdata.splice(0,this.chart4.xdata.length)
-		  this.chart4.chartdata.splice(0,this.chart4.chartdata.length)
-		  getneibusunshi(zone,year).then(
-			  res=>{
+	  getneibusunshi(zone, year) {
+		  this.chart4.listLoading = true
+		  this.chart4.xdata.splice(0, this.chart4.xdata.length)
+		  this.chart4.chartdata.splice(0, this.chart4.chartdata.length)
+		  getneibusunshi(zone, year).then(
+			  res => {
+          console.log(res)
 				 for (let i = 1; i < res.length + 1; i++) {
-					  this.chart4.xdata.push(i + '月') 
-				  } 
-				  this.chart4.chartdata=res
-				  this.chart4.listLoading=false
+					  this.chart4.xdata.push(i + '月')
+				  }
+				  this.chart4.chartdata = res
+				  this.chart4.listLoading = false
 			  }
 		  )
 	  }
   },
   watch: {
 	  year(newval) {
-		  this.gettotalcontinueBydateandzone(this.value,newval)
-		  this.getzhiliangshuipin(this.value,newval)
-		  this.getzhiliangtishenqianli(this.value,newval)
-		  this.getneibusunshi(this.value,newval)
+		  this.gettotalcontinueBydateandzone(this.value, newval)
+		  this.getzhiliangshuipin(this.value, newval)
+		  this.getzhiliangtishenqianli(this.value, newval)
+		  this.getneibusunshi(this.value, newval)
     },
 	  value(newval) {
-		this.gettotalcontinueBydateandzone(newval,this.year)
-		this.getzhiliangshuipin(newval,this.year)
-		this.getzhiliangtishenqianli(this.value,newval)
-		this.getneibusunshi(this.value,newval)
-	}
+      this.chart1.title=newval+'各层级质量生态持续状态'
+      this.chart2.title=newval+'质量水平各模块状态'
+      this.chart3.title=newval+'质量提升潜力各模块状态'
+      this.chart4.title=newval+'内部损失趋势图'
+      this.gettotalcontinueBydateandzone(newval, this.year)
+      this.getzhiliangshuipin(newval, this.year)
+      this.getzhiliangtishenqianli(newval,this.year)
+      this.getneibusunshi(newval,this.year)
+    }
   }
 }
 </script>

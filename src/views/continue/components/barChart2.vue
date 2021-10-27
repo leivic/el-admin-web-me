@@ -33,6 +33,9 @@ export default {
     xData: {
       type: Array,
       required: true
+    },
+    title: {
+      type: String
     }
   },
   data() {
@@ -68,13 +71,13 @@ export default {
     setOptions({ expectedData, actualData } = {}) {
       this.chart.setOption({
         title: {
-		  text: '标题',
+		  text: this.title,
 		  textStyle: {
-            fontSize: 18,
+            fontSize: 16,
             fontWeight: 'normal',
             fontFamily: 'Courier New'
           },
-		  left: '100'
+		  left: 'center'
         },
         tooltip: {
 		  trigger: 'axis',
@@ -84,12 +87,9 @@ export default {
         }, // 鼠标悬浮的提示框组件
         toolbox: {
 		    feature: {
-            dataView: { show: true, readOnly: false },
-            magicType: { show: true, type: ['line', 'bar'] },
-            restore: { show: true },
             saveAsImage: { show: true }
 		    },
-		    right: '10%'
+		    right: '2%'
         },
         xAxis: {
 		    type: 'category',
