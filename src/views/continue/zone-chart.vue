@@ -25,8 +25,8 @@
     <el-row :gutter="16"><!--两个个图表组件 布局是elment-ui栅栏布局-->
       <el-col v-loading="chart2.listLoading" :xs="24" :sm="24" :lg="8">
         <div class="chart-wrapper">
-          <lineandbarChart :xdata="chart2.xdata" :ydata1="chart2.ydata1" :title="chart2.title" />
-        </div>
+          <lineandbarChart :linearr="chart2.linearr" :xdata="chart2.xdata" :ydata1="chart2.ydata1" :title="chart2.title" />
+        </div> <!--组件数据传值也是动态更新的-->
       </el-col>
       <el-col v-loading="chart3.listLoading" :xs="24" :sm="24" :lg="8">
         <div class="chart-wrapper">
@@ -69,7 +69,7 @@ export default {
 	      listLoading: true,
 	      xdata: [],
         chartdata: [],
-        title:"冲压车间各层级质量生态持续状态"
+        title: '冲压车间各层级质量生态持续状态'
       },
       chart2: {
 	      listLoading: true,
@@ -78,7 +78,8 @@ export default {
 	      ydata1: {
 		      shiwuzhilaing: [],
 		      tiyanzhiliang: []
-        }
+        },
+        linearr: []
       },
       chart3: {
 	      listLoading: true,
@@ -91,7 +92,7 @@ export default {
 	      }
       },
       chart4: {
-        title:'冲压车间内部损失趋势图',
+        title: '冲压车间内部损失趋势图',
         listLoading: true,
         chartdata: [],
         xdata: []
@@ -151,8 +152,8 @@ export default {
 				 for (let i = 1; i < res.tiyanzhiliang.length + 1; i++) {
 					  this.chart2.xdata.push(i + '月')
 				  }
-				  this.chart2.ydata1 = res
-				  this.chart2.listLoading = false
+          this.chart2.ydata1 = res
+          this.chart2.listLoading = false
 			  }
 		  )
 	  },
@@ -185,7 +186,13 @@ export default {
 				  this.chart4.listLoading = false
 			  }
 		  )
-	  }
+    },
+    getlinedata(arr1,arr2,linearr){ 
+      for (let i=0;i<arr1.length;i++) {
+        linearr.push(arr1[i]+arr2[i])
+      }
+      console.log('linearr',linearr)
+    }
   },
   watch: {
 	  year(newval) {
@@ -195,14 +202,14 @@ export default {
 		  this.getneibusunshi(this.value, newval)
     },
 	  value(newval) {
-      this.chart1.title=newval+'各层级质量生态持续状态'
-      this.chart2.title=newval+'质量水平各模块状态'
-      this.chart3.title=newval+'质量提升潜力各模块状态'
-      this.chart4.title=newval+'内部损失趋势图'
+      this.chart1.title = newval + '各层级质量生态持续状态'
+      this.chart2.title = newval + '质量水平各模块状态'
+      this.chart3.title = newval + '质量提升潜力各模块状态'
+      this.chart4.title = newval + '内部损失趋势图'
       this.gettotalcontinueBydateandzone(newval, this.year)
       this.getzhiliangshuipin(newval, this.year)
-      this.getzhiliangtishenqianli(newval,this.year)
-      this.getneibusunshi(newval,this.year)
+      this.getzhiliangtishenqianli(newval, this.year)
+      this.getneibusunshi(newval, this.year)
     }
   }
 }
@@ -229,4 +236,5 @@ export default {
     padding: 8px;
   }
 }
+
 </style>

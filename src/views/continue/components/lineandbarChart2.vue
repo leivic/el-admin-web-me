@@ -111,9 +111,9 @@ export default {
           {
             type: 'category',
             data: this.xdata,
-              axisLabel: {
-            interval: 0, // 横轴信息全部显示
-            rotate: -90// -30度角倾斜显示
+            axisLabel: {
+              interval: 0, // 横轴信息全部显示
+              rotate: -90// -30度角倾斜显示
 		    }
           }
         ],
@@ -138,6 +138,13 @@ export default {
             }
           },
           {
+            stack: '折线', 
+            color: 'black',
+            type: 'line',
+            data: this.ydata1.xianzhuang,
+            smooth: false
+          },
+          {
             name: '质量策划',
 	    type: 'bar',
             stack: '质量',
@@ -149,7 +156,14 @@ export default {
               show: true,
               position: 'inside'
             }
-	  },
+    },
+       {
+            stack: '折线', 
+            color: 'black',
+            type: 'line',
+            data: this.ydata1.zhiliangcehua,
+            smooth: false
+          },
 	  {
             name: '执行',
 	    type: 'bar',
@@ -162,7 +176,15 @@ export default {
               show: true,
               position: 'inside'
             }
-          }
+          },
+          {
+            stack: '折线', 
+            color: 'black',
+            type: 'line',
+            data: this.ydata1.zhixing,
+            smooth: false
+          },
+          
 
         ]
       })

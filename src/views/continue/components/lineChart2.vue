@@ -115,7 +115,8 @@ export default {
           {
             name: '车间',
             type: 'line',
-            data: this.chartdata
+            data: this.chartdata,
+            smooth: false
           }
         ]
 

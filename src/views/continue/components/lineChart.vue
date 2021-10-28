@@ -112,27 +112,32 @@ export default {
           {
             name: '冲压车间',
             type: 'line',
-            data: this.chartdata.chongyadata
+            data: this.chartdata.chongyadata,
+            smooth: false
           },
           {
             name: '车身车间',
             type: 'line',
-            data: this.chartdata.cheshendata
+            data: this.chartdata.cheshendata,
+            smooth: false
           },
           {
             name: '涂装车间',
             type: 'line',
-            data: this.chartdata.tuzhuangdata
+            data: this.chartdata.tuzhuangdata,
+            smooth: false
           },
           {
             name: '总装车间',
             type: 'line',
-            data: this.chartdata.zongzhuangdata
+            data: this.chartdata.zongzhuangdata,
+            smooth: false
           },
           {
             name: '发动机工厂',
             type: 'line',
-            data: this.chartdata.fadongjidata
+            data: this.chartdata.fadongjidata,
+            smooth: false
           }
         ]
 

@@ -109,7 +109,11 @@ export default {
 		    data: this.chartData, // 不加this 怎么取得到props里面的值呢
 		    type: 'bar',
 		    barCategoryGap: '1%',
-		    barWidth: 20
+        barWidth: 20,
+        label: {
+              show: true,
+              position: 'inside'
+            }
         }]// echarts的那些配置 就是一个完整的对象 这个对象的很多属性仍然是对象
 
       })

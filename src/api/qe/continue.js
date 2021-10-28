@@ -163,3 +163,19 @@ export function getneibusunshi(zone, year) {
 
   })
 }
+
+/* 按条件查询文件数据*/
+export function findAllBydatetypeAndZone(page, size, sort,date,type,zone) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/continue/findAllBydatetypeAndZone',
+    method: 'get',
+    params: {	page: page,
+      size: size,
+      sort: sort,
+      date: date,
+      type: type,
+      zone: zone
+    }
+
+  })
+}

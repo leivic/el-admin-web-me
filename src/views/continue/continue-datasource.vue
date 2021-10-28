@@ -2,7 +2,7 @@
   <div><!--template 只能有一个根节点-->
     <!--表单渲染-->
     <el-dialog append-to-body :close-on-click-modal="false" :visible.sync="dialogvisable" :title="dialogtitle" width="580px">
-      <el-form ref="form" :inline="true" :model="form" size="small" label-width="80px">
+      <el-form ref="form" :inline="true" :model="form" size="small" label-width="170px">
         <el-form-item label="日期" required>
           <el-date-picker
             v-model="form.month"
@@ -14,7 +14,7 @@
           />
         </el-form-item>
         <el-form-item label="区域" prop="zone" required>
-          <el-select v-model="form.zone" placeholder="区域" style="width: 200px" disabled>
+          <el-select v-model="form.zone" placeholder="区域" style="width: 100%" disabled>
             <el-option label="冲压车间" value="冲压车间" />
             <el-option label="车身车间" value="车身车间" />
             <el-option label="涂装车间" value="涂装车间" />
@@ -23,41 +23,41 @@
 
           </el-select>
         </el-form-item>
-        <el-form-item label="x1" prop="title">
-          <el-input v-model="form.x1" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x1" style="width: 170px" /><!-- oninput ="value=value.replace(/[^0-9.]/g,'')" 限制el-input只能输入数字-->
+        <el-form-item label="x1:废品损失" prop="title">
+          <el-input v-model="form.x1" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x1" style="width: 80px" /><!-- oninput ="value=value.replace(/[^0-9.]/g,'')" 限制el-input只能输入数字-->
         </el-form-item>
-        <el-form-item label="x2" prop="title">
-          <el-input v-model="form.x2" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x2" style="width: 170px" />
+        <el-form-item label="x2:物料损耗" prop="title">
+          <el-input v-model="form.x2" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x2" style="width: 80px" />
         </el-form-item>
-        <el-form-item label="x3" prop="title">
-          <el-input v-model="form.x3" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x3" style="width: 170px" />
+        <el-form-item label="x3:质量停线" prop="title">
+          <el-input v-model="form.x3" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x3" style="width: 80px" />
         </el-form-item>
-        <el-form-item label="x4" prop="title">
-          <el-input v-model="form.x4" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x4" style="width: 170px" />
+        <el-form-item label="x4:物料管理" prop="title">
+          <el-input v-model="form.x4" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x4" style="width: 80px" />
         </el-form-item>
-        <el-form-item label="x5" prop="title">
-          <el-input v-model="form.x5" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x5" style="width: 170px" />
+        <el-form-item label="x5:问题拦截" prop="title">
+          <el-input v-model="form.x5" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x5" style="width: 80px" />
         </el-form-item>
-        <el-form-item label="x6" prop="title">
-          <el-input v-model="form.x6" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x6" style="width: 170px" />
+        <el-form-item label="x6:质量资源损失(结果)" prop="title">
+          <el-input v-model="form.x6" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x6" style="width: 80px" />
         </el-form-item>
-        <el-form-item label="x7" prop="title">
-          <el-input v-model="form.x7" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x7" style="width: 170px" />
+        <el-form-item label="x7:质量资源损失(过程)" prop="title">
+          <el-input v-model="form.x7" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x7" style="width: 80px" />
         </el-form-item>
-        <el-form-item label="x8" prop="title">
-          <el-input v-model="form.x8" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x8" style="width: 170px" />
+        <el-form-item label="x8:体验质量" prop="title">
+          <el-input v-model="form.x8" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x8" style="width: 80px" />
         </el-form-item>
-        <el-form-item label="x9" prop="title">
-          <el-input v-model="form.x9" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x9" style="width: 170px" />
+        <el-form-item label="x9:实物质量" prop="title">
+          <el-input v-model="form.x9" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x9" style="width: 80px" />
         </el-form-item>
-        <el-form-item label="x10" prop="title">
-          <el-input v-model="form.x10" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x10" style="width: 170px" />
+        <el-form-item label="x10:质量策划" prop="title">
+          <el-input v-model="form.x10" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x10" style="width: 80px" />
         </el-form-item>
-        <el-form-item label="x11" prop="title">
-          <el-input v-model="form.x11" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x11" style="width: 170px" />
+        <el-form-item label="x11:方案执行" prop="title">
+          <el-input v-model="form.x11" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x11" style="width: 80px" />
         </el-form-item>
-        <el-form-item label="x12" prop="title">
-          <el-input v-model="form.x12" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x12" style="width: 170px"  disabled/>
+        <el-form-item label="x12:现状" prop="title">
+          <el-input v-model="form.x12" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x12" style="width: 80px" disabled />
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -295,7 +295,32 @@ export default {
           this.getdatasourceList(this.value, this.month)
         }
       })
-    }
+    },
+     'form.x6': { //深度监听 监听嵌套数据
+        handler(newVal, oldVal) {
+        console.log(newVal)
+        this.form.x12=(((this.form.x8+this.form.x9)/200)+newVal/100)*20
+        console.log('x12的值是 ：'+this.form.x12)
+    },
+    deep: true
+    },
+    'form.x8': { //深度监听 监听嵌套数据
+        handler(newVal, oldVal) {
+        console.log(newVal)
+        this.form.x12=(((newVal+this.form.x9)/200)+(this.form.x6/100))*20
+        console.log('x12的值是 ：'+this.form.x12)
+    },
+    deep: true
+    },  
+    'form.x9': { //深度监听 监听嵌套数据
+        handler(newVal, oldVal) {
+        console.log(newVal)
+        this.form.x12=(((this.form.x8+newVal)/200)+(this.form.x6/100))*20
+        console.log('x12的值是 ：'+this.form.x12)
+    },
+    deep: true
+    },    
+
   }
 }
 </script>

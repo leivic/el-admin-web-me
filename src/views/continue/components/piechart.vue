@@ -73,7 +73,7 @@ export default {
         },
         legend: {
           orient: 'vertical',
-          left: 'left',
+          left: 'left'
         },
         series: [
           {
@@ -87,8 +87,8 @@ export default {
                 shadowOffsetX: 0,
                 shadowColor: 'rgba(0, 0, 0, 0.5)'
               }
-            },
-            
+            }
+
           }
         ]
 

@@ -45,9 +45,18 @@ export default {
     ydata1: {
       deep: true,
       handler(val) {
-        this.setOptions(val)
+        this.setOptions(val)//
       }
+    },
+    linearr: {
+      deep: true,
+      handler(val) {
+        this.setOptions(val)//
+      } 
     }
+  },
+  created() {
+    //this.getlinedata(this.ydata1.tiyanzhiliang,this.ydata1.shiwuzhiliang,this.linearr) 
   },
   mounted() {
     this.$nextTick(() => {
@@ -62,13 +71,19 @@ export default {
     this.chart = null
   },
   methods: {
+    /*getlinedata(arr1,arr2,linearr){ //传入三个数组 合并两个数组的方法  这当然也是个vue文件啊 只要环境正确 一切环境下最基础的方法当然都可以用
+      for (let i=0;i<arr1.length;i++) {
+        linearr.push(arr1[i]+arr2[i])
+      }
+      console.log('linearr',linearr)
+    } */ //数据储存在本页面内 有数据的重载和重新加载视图的问题 导致储存在本页面的datapropety里面的数据不能动态更新   
     initChart() {
       this.chart = echarts.init(this.$el, 'macarons')
       this.setOptions(this.chartData)
     },
     setOptions({ expectedData, actualData } = {}) {
       this.chart.setOption({
-        color: ['#00ABA9', '#1BA1E2', '#0050EF', '#6A00FF', '#D80073', '#A20025', '#E51400', '#FA6800', '#F0A30A', '#E3C800', '#825A2C', '#6D8764'],
+        color: ['#00ABA9', '#1BA1E2', '#0050EF'],
         title: {
 		  text: this.title,
 		  textStyle: {
@@ -111,12 +126,12 @@ export default {
           {
             type: 'category',
             data: this.xdata,
-              axisLabel: {
-            interval: 0, // 横轴信息全部显示
-            rotate: -90// -30度角倾斜显示
+            axisLabel: {
+              interval: 0, // 横轴信息全部显示
+              rotate: -90// -30度角倾斜显示
 		      }
-          },
-          
+          }
+
         ],
         yAxis: [
           {
@@ -138,6 +153,13 @@ export default {
               position: 'inside'
             }
           },
+           {
+            stack: '折线', 
+            color: 'black',
+            type: 'line',
+            data: this.ydata1.tiyanzhiliang,
+            smooth: false
+          },
           {
             name: '实物质量',
 	    type: 'bar',
@@ -150,7 +172,14 @@ export default {
               show: true,
               position: 'inside'
             }
-	  }
+    },
+     {      
+            stack: '折线',
+            color: 'black',
+            type: 'line',
+            data: this.ydata1.shiwuzhiliang,
+            smooth: false
+          },
 
         ]
       })

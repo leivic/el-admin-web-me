@@ -89,7 +89,7 @@ export default {
         legend: {
           data: ['冲压车间', '车身车间', '涂装车间', '总装车间', '发动机工厂'],
 	  top: 20,
-	  itemGap:5
+	  itemGap: 5
         },
         grid: {
           left: '3%',
