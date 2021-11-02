@@ -296,30 +296,30 @@ export default {
         }
       })
     },
-     'form.x6': { //深度监听 监听嵌套数据
-        handler(newVal, oldVal) {
+    'form.x6': { // 深度监听 监听嵌套数据
+      handler(newVal, oldVal) {
         console.log(newVal)
-        this.form.x12=(((this.form.x8+this.form.x9)/200)+newVal/100)*20
-        console.log('x12的值是 ：'+this.form.x12)
+        this.form.x12 = (((this.form.x8 + this.form.x9) / 200) + newVal / 100) * 20
+        console.log('x12的值是 ：' + this.form.x12)
+      },
+      deep: true
     },
-    deep: true
-    },
-    'form.x8': { //深度监听 监听嵌套数据
-        handler(newVal, oldVal) {
+    'form.x8': { // 深度监听 监听嵌套数据
+      handler(newVal, oldVal) {
         console.log(newVal)
-        this.form.x12=(((newVal+this.form.x9)/200)+(this.form.x6/100))*20
-        console.log('x12的值是 ：'+this.form.x12)
+        this.form.x12 = (((newVal + this.form.x9) / 200) + (this.form.x6 / 100)) * 20
+        console.log('x12的值是 ：' + this.form.x12)
+      },
+      deep: true
     },
-    deep: true
-    },  
-    'form.x9': { //深度监听 监听嵌套数据
-        handler(newVal, oldVal) {
+    'form.x9': { // 深度监听 监听嵌套数据
+      handler(newVal, oldVal) {
         console.log(newVal)
-        this.form.x12=(((this.form.x8+newVal)/200)+(this.form.x6/100))*20
-        console.log('x12的值是 ：'+this.form.x12)
-    },
-    deep: true
-    },    
+        this.form.x12 = (((this.form.x8 + newVal) / 200) + (this.form.x6 / 100)) * 20
+        console.log('x12的值是 ：' + this.form.x12)
+      },
+      deep: true
+    }
 
   }
 }

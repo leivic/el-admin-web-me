@@ -9,9 +9,9 @@
 
     </el-row>
     <el-row v-loading="chart1.listLoading" style="background:#fff;padding:16px 16px 0;margin-bottom:32px;"><!--第一个图表组件-->
-       <div class="chart1label">
-        <div style="background: #00ABA9">月度最佳:{{best}}</div>
-        <div style="background: #D80073">月度最差:{{lowest}}</div>
+      <div class="chart1label">
+        <div style="background: #00ABA9">月度最佳:{{ best }}</div>
+        <div style="background: #D80073">月度最差:{{ lowest }}</div>
       </div>
       <lineChart :xdata="chart1.xdata" :chartdata="chart1.chartdata" />
     </el-row>
@@ -56,8 +56,8 @@ export default {
   },
   data() {
     return {
-      best:undefined,
-      lowest:undefined,
+      best: undefined,
+      lowest: undefined,
       chart1: {
 	      listLoading: true,
 	      a: [],
@@ -127,9 +127,9 @@ export default {
 
         this.chart1.chartdata = res // 这样写应该是引用复制 浅拷贝 等于地址 而不是直接拷贝值的等于
         this.chart1.listLoading = false
-        console.log("总数据",res)
-        let arr=[res.chongyadata[res.chongyadata.length-1],res.cheshendata[res.cheshendata.length-1],res.tuzhuangdata[res.tuzhuangdata.length-1],res.zongzhuangdata[res.zongzhuangdata.length-1],res.fadongjidata[res.fadongjidata.length-1]]
-        console.log('arr',arr)
+        console.log('总数据', res)
+        const arr = [res.chongyadata[res.chongyadata.length - 1], res.cheshendata[res.cheshendata.length - 1], res.tuzhuangdata[res.tuzhuangdata.length - 1], res.zongzhuangdata[res.zongzhuangdata.length - 1], res.fadongjidata[res.fadongjidata.length - 1]]
+        console.log('arr', arr)
         this.getIndexMAx(arr)
       })
     },
@@ -147,53 +147,53 @@ export default {
         console.log(res)
       })
     },
-    getIndexMAx (arr) { //基于es6的解构  获取数组的最大最小值和键名 getMaxMin = (data, key) => {}的形式在vue的method方法里不可用
-    const maxNum = Math.max(...arr)
-    const minNum = Math.min(...arr)
-    const [maxIndex, minIndex] = [arr.indexOf(maxNum), arr.indexOf(minNum)]
-    console.log('maxmin',maxNum, minNum, maxIndex, minIndex)
-     switch(minIndex){
-      case 0:
-        this.lowest="冲压车间"
-        break
-      case 1:
-        this.lowest="车身车间"
-        break
-      case 2:
-        this.lowest="涂装车间"
-        break
-      case 3:
-        this.lowest="总装车间"
-        break
-      case 4:
-        this.lowest="发动机工厂"
-        break
-      default:
-        this.lowest="NAN"
-        break
-    }
-    switch(maxIndex){
-      case 0:
-        this.best="冲压车间"
-        break
-      case 1:
-        this.best="车身车间"
-        break
-      case 2:
-        this.best="涂装车间"
-        break
-      case 3:
-        this.best="总装车间"
-        break
-      case 4:
-        this.best="发动机工厂"
-        best
-      default:
-        this.best="NAN"
-        break
-    }
-    console.log('lowets',this.lowest)
-},
+    getIndexMAx(arr) { // 基于es6的解构  获取数组的最大最小值和键名 getMaxMin = (data, key) => {}的形式在vue的method方法里不可用
+      const maxNum = Math.max(...arr)
+      const minNum = Math.min(...arr)
+      const [maxIndex, minIndex] = [arr.indexOf(maxNum), arr.indexOf(minNum)]
+      console.log('maxmin', maxNum, minNum, maxIndex, minIndex)
+      switch (minIndex) {
+        case 0:
+          this.lowest = '冲压车间'
+          break
+        case 1:
+          this.lowest = '车身车间'
+          break
+        case 2:
+          this.lowest = '涂装车间'
+          break
+        case 3:
+          this.lowest = '总装车间'
+          break
+        case 4:
+          this.lowest = '发动机工厂'
+          break
+        default:
+          this.lowest = 'NAN'
+          break
+      }
+      switch (maxIndex) {
+        case 0:
+          this.best = '冲压车间'
+          break
+        case 1:
+          this.best = '车身车间'
+          break
+        case 2:
+          this.best = '涂装车间'
+          break
+        case 3:
+          this.best = '总装车间'
+          break
+        case 4:
+          this.best = '发动机工厂'
+          best
+        default:
+          this.best = 'NAN'
+          break
+      }
+      console.log('lowets', this.lowest)
+    },
     getContinuePiechartvalue(month) {
       this.chart4.listLoading = true
       this.chart4.chartdata.splice(0, this.chart4.chartdata)

@@ -52,11 +52,11 @@ export default {
       deep: true,
       handler(val) {
         this.setOptions(val)//
-      } 
+      }
     }
   },
   created() {
-    //this.getlinedata(this.ydata1.tiyanzhiliang,this.ydata1.shiwuzhiliang,this.linearr) 
+    // this.getlinedata(this.ydata1.tiyanzhiliang,this.ydata1.shiwuzhiliang,this.linearr)
   },
   mounted() {
     this.$nextTick(() => {
@@ -71,12 +71,12 @@ export default {
     this.chart = null
   },
   methods: {
-    /*getlinedata(arr1,arr2,linearr){ //传入三个数组 合并两个数组的方法  这当然也是个vue文件啊 只要环境正确 一切环境下最基础的方法当然都可以用
+    /* getlinedata(arr1,arr2,linearr){ //传入三个数组 合并两个数组的方法  这当然也是个vue文件啊 只要环境正确 一切环境下最基础的方法当然都可以用
       for (let i=0;i<arr1.length;i++) {
         linearr.push(arr1[i]+arr2[i])
       }
       console.log('linearr',linearr)
-    } */ //数据储存在本页面内 有数据的重载和重新加载视图的问题 导致储存在本页面的datapropety里面的数据不能动态更新   
+    } */ // 数据储存在本页面内 有数据的重载和重新加载视图的问题 导致储存在本页面的datapropety里面的数据不能动态更新
     initChart() {
       this.chart = echarts.init(this.$el, 'macarons')
       this.setOptions(this.chartData)
@@ -153,8 +153,8 @@ export default {
               position: 'inside'
             }
           },
-           {
-            stack: '折线', 
+          {
+            stack: '折线',
             color: 'black',
             type: 'line',
             data: this.ydata1.tiyanzhiliang,
@@ -172,14 +172,14 @@ export default {
               show: true,
               position: 'inside'
             }
-    },
-     {      
+          },
+          {
             stack: '折线',
             color: 'black',
             type: 'line',
             data: this.ydata1.shiwuzhiliang,
             smooth: false
-          },
+          }
 
         ]
       })

@@ -1,45 +1,45 @@
 <template>
   <div class="app-container">
-   
-    <el-form :inline="true">
-      <el-form-item label="文件种类" prop="filetype"  >
-          <el-select v-model="querybox.type" placeholder="文件种类" style="float:left">
-            <el-option label="废品损失" value="废品损失" />
-            <el-option label="物料损耗" value="物料损耗" />
-            <el-option label="质量停线" value="质量停线" />
-            <el-option label="物料管理" value="物料管理" />
-            <el-option label="问题拦截" value="问题拦截" />
-            <el-option label="质量资源损失(结果导向，指标完成)" value="质量资源损失(结果导向，指标完成)" />
-            <el-option label="质量资源损失(过程一致性)" value="质量资源损失(过程一致性)" />
-            <el-option label="体验质量" value="体验质量" />
-            <el-option label="实物质量" value="实物质量" />
-            <el-option label="质量策划" value="质量策划" />
-            <el-option label="方案执行" value="方案执行" />
-          </el-select>
-        </el-form-item>
-        <el-form-item label="日期"  style="float:left">
-          <el-date-picker
-            v-model="querybox.date"
-            type="month"
-            placeholder="Pick a date"
-            style="width: 200px;float: left"
-            value-format="yyyy-MM"
-          />
-        </el-form-item>
-        <el-form-item label="区域" prop="zone" >
-          <el-select v-model="querybox.zone" placeholder="区域" style="float: left">
-            <el-option label="冲压车间" value="冲压车间" />
-            <el-option label="车身车间" value="车身车间" />
-            <el-option label="涂装车间" value="涂装车间" />
-            <el-option label="总装车间" value="总装车间" />
-            <el-option label="发动机工厂" value="发动机工厂" />
 
-          </el-select>
-        </el-form-item>
-        <el-button :loading="crud1.status.cu === 2" type="primary" @click="queryfilebyparm">查询</el-button>
-        <el-button :loading="crud1.status.cu === 2" type="primary" @click="resetquery">重置</el-button>  
-    </el-form> 
-    
+    <el-form :inline="true">
+      <el-form-item label="文件种类" prop="filetype">
+        <el-select v-model="querybox.type" placeholder="文件种类" style="float:left">
+          <el-option label="废品损失" value="废品损失" />
+          <el-option label="物料损耗" value="物料损耗" />
+          <el-option label="质量停线" value="质量停线" />
+          <el-option label="物料管理" value="物料管理" />
+          <el-option label="问题拦截" value="问题拦截" />
+          <el-option label="质量资源损失(结果导向，指标完成)" value="质量资源损失(结果导向，指标完成)" />
+          <el-option label="质量资源损失(过程一致性)" value="质量资源损失(过程一致性)" />
+          <el-option label="体验质量" value="体验质量" />
+          <el-option label="实物质量" value="实物质量" />
+          <el-option label="质量策划" value="质量策划" />
+          <el-option label="方案执行" value="方案执行" />
+        </el-select>
+      </el-form-item>
+      <el-form-item label="日期" style="float:left">
+        <el-date-picker
+          v-model="querybox.date"
+          type="month"
+          placeholder="Pick a date"
+          style="width: 200px;float: left"
+          value-format="yyyy-MM"
+        />
+      </el-form-item>
+      <el-form-item label="区域" prop="zone">
+        <el-select v-model="querybox.zone" placeholder="区域" style="float: left">
+          <el-option label="冲压车间" value="冲压车间" />
+          <el-option label="车身车间" value="车身车间" />
+          <el-option label="涂装车间" value="涂装车间" />
+          <el-option label="总装车间" value="总装车间" />
+          <el-option label="发动机工厂" value="发动机工厂" />
+
+        </el-select>
+      </el-form-item>
+      <el-button :loading="crud1.status.cu === 2" type="primary" @click="queryfilebyparm">查询</el-button>
+      <el-button :loading="crud1.status.cu === 2" type="primary" @click="resetquery">重置</el-button>
+    </el-form>
+
     <!--toolbox-->
     <crudleivic addisview="true" @enadd="addfile" />
     <!--工具栏-->
@@ -172,7 +172,7 @@
 </template>
 
 <script>
-import { upload, findAllContinue, download,findAllBydatetypeAndZone } from '@/api/qe/continue'
+import { upload, findAllContinue, download, findAllBydatetypeAndZone } from '@/api/qe/continue'
 import { mapGetters } from 'vuex'
 import Pagination from '@/components/Pagination'// 分页组件
 import crudleivic from '../../components/Crud/CRUD.leivic.vue'
@@ -183,15 +183,15 @@ export default {
   },
   data() {
     return {
-      status:0,  //0 1 状态来存储现在是用哪个方法查询数据 （带参的还是不带参的）
+      status: 0, // 0 1 状态来存储现在是用哪个方法查询数据 （带参的还是不带参的）
       querybox: {
-        zone:'',
-        type:'',
-        date:''
+        zone: '',
+        type: '',
+        date: ''
       },
       form: {
 			  filetitle: '',
-			  filetype: undefined, //变量在内存里面未被销毁时  这个变量自然一直存在 全局上下文中的基本数据类型只有在window关闭时才销毁
+			  filetype: undefined, // 变量在内存里面未被销毁时  这个变量自然一直存在 全局上下文中的基本数据类型只有在window关闭时才销毁
 			  date: undefined,
 			  zone: undefined,
 			  fileList: undefined
@@ -213,26 +213,26 @@ export default {
         sort: 'id'
       },
       total: undefined,
-      selectstatus:0  //一个变量来判断当前查询的状态 为0是没有条件查询的全查 为1是有条件查询  加载这个组件时  会触发组件的生命周期 在某个生命周期中会加载dataproperty中的数据  所以你每次重新加载这个组件 会触发一次这个生命周期 然后数据就会重置
+      selectstatus: 0 // 一个变量来判断当前查询的状态 为0是没有条件查询的全查 为1是有条件查询  加载这个组件时  会触发组件的生命周期 在某个生命周期中会加载dataproperty中的数据  所以你每次重新加载这个组件 会触发一次这个生命周期 然后数据就会重置
     }
   },
   created() {
     this.totalgetlist()
   },
   methods: {
-    resetquery(){
-      this.querybox.zone=''
-      this.querybox.date=''
-      this.querybox.type=''
+    resetquery() {
+      this.querybox.zone = ''
+      this.querybox.date = ''
+      this.querybox.type = ''
       this.totalgetlist()
     },
-    queryfilebyparm(){
+    queryfilebyparm() {
       this.status = 1
       this.totalgetlist()
     },
-    totalgetlist(){ //这个方法来判断当前状态
+    totalgetlist() { // 这个方法来判断当前状态
       this.listloading = true
-      if (this.status ==0) {
+      if (this.status == 0) {
         this.getfilelist()
       } else {
         this.getfilelistbyparm()
@@ -246,13 +246,14 @@ export default {
         this.listloading = false
       })
     },
-    getfilelistbyparm(){
-      findAllBydatetypeAndZone(this.listQuery.page, this.listQuery.limit, this.listQuery.sort,this.querybox.date,this.querybox.type,this.querybox.zone).then(res=>{
+    getfilelistbyparm() {
+      findAllBydatetypeAndZone(this.listQuery.page, this.listQuery.limit, this.listQuery.sort, this.querybox.date, this.querybox.type, this.querybox.zone).then(res => {
         this.total = res.totalElements
         this.tableData = res.content
-        this.listloading = false }
+        this.listloading = false
+      }
       )
-    }, 
+    },
     addfile() {
       this.crud1.status.cu = 1
     },

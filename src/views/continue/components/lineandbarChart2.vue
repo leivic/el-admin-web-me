@@ -138,7 +138,7 @@ export default {
             }
           },
           {
-            stack: '折线', 
+            stack: '折线',
             color: 'black',
             type: 'line',
             data: this.ydata1.xianzhuang,
@@ -156,9 +156,9 @@ export default {
               show: true,
               position: 'inside'
             }
-    },
-       {
-            stack: '折线', 
+          },
+          {
+            stack: '折线',
             color: 'black',
             type: 'line',
             data: this.ydata1.zhiliangcehua,
@@ -178,13 +178,12 @@ export default {
             }
           },
           {
-            stack: '折线', 
+            stack: '折线',
             color: 'black',
             type: 'line',
             data: this.ydata1.zhixing,
             smooth: false
-          },
-          
+          }
 
         ]
       })

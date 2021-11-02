@@ -187,11 +187,11 @@ export default {
 			  }
 		  )
     },
-    getlinedata(arr1,arr2,linearr){ 
-      for (let i=0;i<arr1.length;i++) {
-        linearr.push(arr1[i]+arr2[i])
+    getlinedata(arr1, arr2, linearr) {
+      for (let i = 0; i < arr1.length; i++) {
+        linearr.push(arr1[i] + arr2[i])
       }
-      console.log('linearr',linearr)
+      console.log('linearr', linearr)
     }
   },
   watch: {
