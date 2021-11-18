@@ -71,7 +71,7 @@ export default {
     setOptions({ expectedData, actualData } = {}) {
       this.chart.setOption({
         title: {
-		  text: this.title,
+		  text: this.title, //this.title
 		  textStyle: {
             fontSize: 13,
             fontWeight: 'normal',

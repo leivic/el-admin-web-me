@@ -156,7 +156,7 @@
         label="操作"
         width="120"
       >
-        <template slot-scope="{row,$index}">
+        <template slot-scope="{row,$index}"> <!--插槽的使用-->
           <el-button
             type="text"
             size="small"
@@ -276,7 +276,7 @@ export default {
       formData.append('zone', this.form.zone)
       formData.append('create_by', this.user.nickName) //
       const that = this
-      upload(formData).then(res => {
+      upload(formData).then(res => {  
         this.crud1.status = 0
         console.log(res)
         if (res == '1') {
@@ -301,7 +301,7 @@ export default {
           link.href = url
           link.setAttribute('download', filetitle + '.xlsx')
           document.body.appendChild(link)
-          link.click()
+          link.click() 
         }
       )
     }
@@ -309,7 +309,7 @@ export default {
   computed: {
     ...mapGetters(['user']),
     mydata() { // 这个mydata的属性最好不要在data property里面，因为在dataproperty里面访问不到计算属性，它们是同级的
-      return { nickName: this.user.nickName }
+      return { nickName: this.user.nickName } 
     }
   }
 }
