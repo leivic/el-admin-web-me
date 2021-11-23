@@ -10,15 +10,9 @@
       <el-form ref="form" :inline="true" :model="form" size="small" label-width="80px">
         <el-form-item label="文件种类" prop="filetype" required>
           <el-select v-model="form.filetype" placeholder="文件种类">
-            <el-option label="PPSR系统管理问题" value="PPSR系统管理问题" />
-            <el-option label="重复发生的问题" value="重复发生的问题" />
-            <el-option label="生产一致性问题管理" value="生产一致性问题管理" />
-            <el-option label="法规项问题管理" value="法规项问题管理" />
-            <el-option label="售后反馈质量问题" value="售后反馈质量问题" />
-            <el-option label="涉嫌违规车辆问题管理" value="涉嫌违规车辆问题管理" />
-            <el-option label="外部抽查问题管理" value="外部抽查问题管理" />
-            <el-option label="工位互检发生问题" value="工位互检发生问题" />
-            <el-option label="各车间发现的上工序问题" value="各车间发现的上工序问题" />
+            <el-option label="售后问题整改措施落实情况" value="售后问题整改措施落实情况" />
+            <el-option label="区域发生问题汇总分析" value="区域发生问题汇总分析" />
+            <el-option label="质量问题记录、跟踪和落实情况" value="质量问题记录、跟踪和落实情况" />
           </el-select>
         </el-form-item>
         <el-form-item label="日期" required>
@@ -93,25 +87,11 @@
         label="区域"
         width="120"
       />
-      <el-table-column
-        prop="wentimiaoshu"
-        label="问题描述"
-        width="120"
-      />
-      <el-table-column
-        prop="dengji"
-        label="等级"
-        width="200"
-      />
-      <el-table-column
-        prop="shifouchongfu"
-        label="是否重复发生"
-        width="100"
-      />
+      
       <el-table-column
         fixed="right"
-        prop="zerenquyu"
-        label="责任区域"
+        prop="fenshu"
+        label="分数"
         width="120"
       />
 
@@ -121,7 +101,7 @@
   </div>
 </template>
 <script>
-import { upload1, findAlldatasource1,findAllgongweilistBydate } from '@/api/qe/reponsibility'
+import { upload2, findAlldatasource2 } from '@/api/qe/reponsibility'
 import { mapGetters } from 'vuex'
 import Pagination from '@/components/Pagination'// 分页组件
 import crudleivic from '../../components/Crud/CRUD.leivic.vue'
@@ -160,11 +140,10 @@ export default { // 其实也就是个对象罢了
   },
   created() {
     this.getfilelist()
-    findAllgongweilistBydate("2021-01").then(res=>console.log(res))
   },
   methods: { // 一个拥有很多方法的对象
     getfilelist() {
-      findAlldatasource1(this.listQuery.page, this.listQuery.limit, this.listQuery.sort).then(res => {
+      findAlldatasource2(this.listQuery.page, this.listQuery.limit, this.listQuery.sort).then(res => {
         console.log(res)
         this.total = res.totalElements
         this.tableData = res.content
@@ -193,7 +172,7 @@ export default { // 其实也就是个对象罢了
       formData.append('level', this.form.level)
       formData.append('create_by', this.user.nickName) //
       const that = this
-      upload1(formData).then(res => { // upload1来自于import的方法
+      upload2(formData).then(res => { // upload1来自于import的方法
         this.crud1.status = 0
         console.log(res)
         if (res == 1) {
