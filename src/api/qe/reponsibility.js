@@ -43,12 +43,23 @@ export function findAlldatasource2(page, size, sort) {
   })
 }
 
-/*得到车间数据源数据*/
-export function findAllgongweilistBydate(date) {
+/* 得到车间数据源数据*/
+export function findAllchejianlistBydate(date) {
   return request({
-	  url: process.env.VUE_APP_BASE_API + '/qe/reponsibility/findAllgongweilistBydate',
+	  url: process.env.VUE_APP_BASE_API + '/qe/reponsibility/findAllchejianlistBydate',
 	  method: 'get',
-	  params: {	date:date
+	  params: {	date: date
+	  }
+
+  })
+}
+
+/* 得到车间数据源数据*/
+export function findAllgongduanlistBydate(date) {
+  return request({
+	  url: process.env.VUE_APP_BASE_API + '/qe/reponsibility/findAllgongduanlistBydate',
+	  method: 'get',
+	  params: {	date: date
 	  }
 
   })

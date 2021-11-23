@@ -90,7 +90,12 @@
       />
       <el-table-column
         prop="zone"
-        label="区域"
+        label="车间"
+        width="120"
+      />
+      <el-table-column
+        prop="zone2"
+        label="工段/班组/工位"
         width="120"
       />
       <el-table-column
@@ -121,7 +126,7 @@
   </div>
 </template>
 <script>
-import { upload1, findAlldatasource1,findAllgongweilistBydate } from '@/api/qe/reponsibility'
+import { upload1, findAlldatasource1, findAllchejianlistBydate,findAllgongduanlistBydate } from '@/api/qe/reponsibility'
 import { mapGetters } from 'vuex'
 import Pagination from '@/components/Pagination'// 分页组件
 import crudleivic from '../../components/Crud/CRUD.leivic.vue'
@@ -160,7 +165,8 @@ export default { // 其实也就是个对象罢了
   },
   created() {
     this.getfilelist()
-    findAllgongweilistBydate("2021-01").then(res=>console.log(res))
+    findAllchejianlistBydate('2021-01').then(res => console.log(res))
+    findAllgongduanlistBydate('2021-02').then(res=>console.log(res))
   },
   methods: { // 一个拥有很多方法的对象
     getfilelist() {

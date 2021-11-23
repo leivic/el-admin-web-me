@@ -87,7 +87,12 @@
         label="区域"
         width="120"
       />
-      
+      <el-table-column
+        prop="zone2"
+        label="工段/班组/工位"
+        width="120"
+      />
+
       <el-table-column
         fixed="right"
         prop="fenshu"
