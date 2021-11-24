@@ -1,6 +1,5 @@
 <template>
   <div>
-    <p>hello</p>
     <!--toolbox-->
     <crudleivic addisview="true" @enadd="addfile" /><!--enadd是监听子组件模板中的新增按钮，方法是本文件中定义的方法-->
     <!--工具栏-->
@@ -70,7 +69,7 @@
         fixed
         prop="file_type"
         label="文件类型"
-        width="150"
+        width="250"
       />
       <el-table-column
         prop="date"

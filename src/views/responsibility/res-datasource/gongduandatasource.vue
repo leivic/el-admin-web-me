@@ -15,16 +15,16 @@
 			>
 			<el-table-column
 				fixed
-				prop="chejian"
-				label="车间"
+				prop="gongduan"
+				label="工段"
 				width="80"
 				align="center"
 			/>
 			<el-table-column
 				fixed
-				prop="jichufen"
-				label="基础分"
-				width="60"
+				prop="chejian"
+				label="车间"
+				width="80"
 				align="center"
 			/>
 			<el-table-column
@@ -67,6 +67,7 @@
 				width="100"
 				align="center"
 			/>
+			
 			
 			</el-table-column>
 			<el-table-column
@@ -133,7 +134,7 @@
 	</div>
 </template>
 <script>
-import { findAllchejianlistBydate } from '@/api/qe/reponsibility'
+import { findAllgongduanlistBydate } from '@/api/qe/reponsibility'
 import { mapGetters } from 'vuex'
 import SelectMonth from '@/components/SelectMonth'
 
@@ -151,7 +152,7 @@ export default {
 		...mapGetters(['month']) //每加载一个页面会重新加载导入的数据 就算这个时候内存里面是有month的..但是重新加载了vuex里面的初始赋值代码 内存里面的变量值也变回了原有状态
 	},
 	created(){
-		findAllchejianlistBydate(this.month).then(res=>{
+		findAllgongduanlistBydate(this.month).then(res=>{
 			console.log(res)
 			this.tabledata=res//加载的时候有一次创造节点的生命周期,每加载一次页面 created里面的方法只执行一次
 			this.listloading=false
@@ -160,7 +161,7 @@ export default {
 	watch:{
 		month(newval){
 			this.listloading=true
-			findAllchejianlistBydate(newval).then(res=>{
+			findAllgongduanlistBydate(newval).then(res=>{
 				this.tabledata=res
 				this.listloading=false
 			})

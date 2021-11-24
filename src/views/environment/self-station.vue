@@ -39,7 +39,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['month'])// 使用VUEX状态管理器的getter方法，由此多了个getmonth的计算属性
+    ...mapGetters(['month'])
   },
   watch: {
     month(newval) {

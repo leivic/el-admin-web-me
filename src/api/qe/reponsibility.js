@@ -54,7 +54,7 @@ export function findAllchejianlistBydate(date) {
   })
 }
 
-/* 得到车间数据源数据*/
+/* 得到工段数据源数据*/
 export function findAllgongduanlistBydate(date) {
   return request({
 	  url: process.env.VUE_APP_BASE_API + '/qe/reponsibility/findAllgongduanlistBydate',
@@ -64,3 +64,25 @@ export function findAllgongduanlistBydate(date) {
 
   })
 }
+
+/* 得到班组数据源数据*/
+export function findAllbanzulistBydate(date) {
+	return request({
+		url: process.env.VUE_APP_BASE_API + '/qe/reponsibility/findAllbanzulistBydate',
+		method: 'get',
+		params: {	date: date
+		}
+      
+	})
+      }
+
+/* 得到工位数据源数据*/
+export function findAllgongweilistBydate(date) {
+	return request({
+		url: process.env.VUE_APP_BASE_API + '/qe/reponsibility/findAllgongweilistBydate',
+		method: 'get',
+		params: {	date: date
+		}
+      
+	})
+      }

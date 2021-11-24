@@ -1,6 +1,5 @@
 <template>
   <div>
-    <p>hello</p>
     <!--toolbox-->
     <crudleivic addisview="true" @enadd="addfile" /><!--enadd是监听子组件模板中的新增按钮，方法是本文件中定义的方法-->
     <!--工具栏-->
@@ -76,7 +75,7 @@
         fixed
         prop="file_type"
         label="文件类型"
-        width="150"
+        width="200"
       />
       <el-table-column
         prop="date"
@@ -85,7 +84,7 @@
       />
       <el-table-column
         prop="level"
-        label="范围"
+        label="级别"
         width="120"
       />
       <el-table-column
@@ -101,12 +100,12 @@
       <el-table-column
         prop="wentimiaoshu"
         label="问题描述"
-        width="120"
+        width="300"
       />
       <el-table-column
         prop="dengji"
         label="等级"
-        width="200"
+        width="100"
       />
       <el-table-column
         prop="shifouchongfu"
@@ -126,7 +125,7 @@
   </div>
 </template>
 <script>
-import { upload1, findAlldatasource1, findAllchejianlistBydate,findAllgongduanlistBydate } from '@/api/qe/reponsibility'
+import { upload1, findAlldatasource1, findAllchejianlistBydate, findAllgongduanlistBydate } from '@/api/qe/reponsibility'
 import { mapGetters } from 'vuex'
 import Pagination from '@/components/Pagination'// 分页组件
 import crudleivic from '../../components/Crud/CRUD.leivic.vue'
@@ -166,7 +165,7 @@ export default { // 其实也就是个对象罢了
   created() {
     this.getfilelist()
     findAllchejianlistBydate('2021-01').then(res => console.log(res))
-    findAllgongduanlistBydate('2021-02').then(res=>console.log(res))
+    findAllgongduanlistBydate('2021-02').then(res => console.log(res))
   },
   methods: { // 一个拥有很多方法的对象
     getfilelist() {
