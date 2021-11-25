@@ -67,22 +67,22 @@ export function findAllgongduanlistBydate(date) {
 
 /* 得到班组数据源数据*/
 export function findAllbanzulistBydate(date) {
-	return request({
-		url: process.env.VUE_APP_BASE_API + '/qe/reponsibility/findAllbanzulistBydate',
-		method: 'get',
-		params: {	date: date
-		}
-      
-	})
-      }
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/reponsibility/findAllbanzulistBydate',
+    method: 'get',
+    params: {	date: date
+    }
+
+  })
+}
 
 /* 得到工位数据源数据*/
 export function findAllgongweilistBydate(date) {
-	return request({
-		url: process.env.VUE_APP_BASE_API + '/qe/reponsibility/findAllgongweilistBydate',
-		method: 'get',
-		params: {	date: date
-		}
-      
-	})
-      }
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/reponsibility/findAllgongweilistBydate',
+    method: 'get',
+    params: {	date: date
+    }
+
+  })
+}

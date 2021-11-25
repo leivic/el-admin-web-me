@@ -8,14 +8,14 @@ const state = {
 const theDate = new Date()
 let month1
         		if (theDate.getMonth() < 9) {
-          			month1 = theDate.getFullYear() + '-' + '0' + (theDate.getMonth()+1 )
+          			month1 = theDate.getFullYear() + '-' + '0' + (theDate.getMonth() + 1)
         		} else {
-          			month1 = theDate.getFullYear() + '-' + (theDate.getMonth()+1 )
+          			month1 = theDate.getFullYear() + '-' + (theDate.getMonth() + 1)
 }
 state.month = month1
 
 const mutations = { // 静态添加数据
-  CHANGE_MONTH: (state, month) => { //添加数据的一个方法
+  CHANGE_MONTH: (state, month) => { // 添加数据的一个方法
     state.month = month
   }
 }
