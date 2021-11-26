@@ -86,3 +86,47 @@ export function findAllgongweilistBydate(date) {
 
   })
 }
+
+/* 得到前端总览总计数据图表数据*/
+export function getzonglanzongjichartdata(date) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/reponsibility/getzonglanzongjichartdata',
+    method: 'get',
+    params: {	year: date
+    }
+
+  })
+}
+
+/* 得到前端总览缺陷拦截数据图表数据*/
+export function getzonglanquexianchartdata(date) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/reponsibility/getzonglanquexianchartdata',
+    method: 'get',
+    params: {	year: date
+    }
+
+  })
+}
+
+/* 得到前端总览安全保障数据图表数据*/
+export function getzonglananquanchartdata(date) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/reponsibility/getzonglananquanchartdata',
+    method: 'get',
+    params: {	year: date
+    }
+
+  })
+}
+
+/* 得到前端总览质量防御数据图表数据*/
+export function getzonglanzhiliangchartdata(date) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/reponsibility/getzonglanzhiliangchartdata',
+    method: 'get',
+    params: {	year: date
+    }
+
+  })
+}
