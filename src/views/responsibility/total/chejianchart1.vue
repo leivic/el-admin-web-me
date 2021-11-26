@@ -1,9 +1,9 @@
 <template>
   <div class="continue-chart-container">
-<el-row>
-    <SelectYear />
-</el-row>
-<el-row v-loading="listLoading1" style="background:#fff;padding:16px 16px 0;margin-bottom:32px;"><!--第一个图表组件-->
+    <el-row>
+      <SelectYear />
+    </el-row>
+    <el-row v-loading="listLoading1" style="background:#fff;padding:16px 16px 0;margin-bottom:32px;"><!--第一个图表组件-->
       <lineChart :xdata="zhenchart_datasoure.xdata" :chartdata="zhenchart_datasoure" />
     </el-row>
   </div>
@@ -21,7 +21,7 @@ export default {
   },
   data() {
     return {
-      	listLoading1:true,
+      	listLoading1: true,
       chart_datasource: {
         chongyadata: [], // 冲压车间1到当前月每个月责任的分数总计
         cheshendata: [],
@@ -31,8 +31,8 @@ export default {
         zhuangpeidata: [],
         xdata: []
       },
-      zhenchart_datasoure:{
-        chongyadata: [], 
+      zhenchart_datasoure: {
+        chongyadata: [],
         cheshendata: [],
         tuzhuangdata: [],
         zongzhuangdata: [],
@@ -90,7 +90,7 @@ export default {
     },
     getchartdata(i, count) { // 由于异步同步代码执行顺序的区别 for循环里面的异步代码顺序会乱 想保持顺序的话就只能用函数的递归调用的方式
 			     // for(let i=1;i<this.getdatecount()+1;i++){   这个i用不到then（）里面 里面是异步代码了 执行顺序是乱的 同步优先 异步靠边 所以异步貌似就不能用for循环  而是用递归函数？
-          //
+      //
       return findAllchejianlistBydate(this.getdate(i)).then( // 此时i还是1 但是最后i＋＋了 可能这个回调函数里面的异步代码还没执行完（i＋＋在这个函数的外面） i就往外面加了 并且开始了第二次回调
         res => {
           if (res.length == 0) {
@@ -166,7 +166,7 @@ export default {
 			*/
     },
     getfirstchartdata(i, count) { // 加一个方法在每次获取之前的数据前更新数据
-      this.listLoading1=true
+      this.listLoading1 = true
       this.chart_datasource = {
         chongyadata: [], // 冲压车间1到当前月每个月责任的分数总计
         cheshendata: [],
@@ -184,9 +184,9 @@ export default {
       this.chart_datasource.zhuangpeidata.splice(0, this.chart_datasource.zhuangpeidata.length)
       this.chart_datasource.xdata.splice(0, this.chart_datasource.xdata.length)
       console.log(this.chart_datasource)
-      this.getchartdata(i, count).then(res=>{
-      this.zhenchart_datasoure=this.chart_datasource
-      this.listLoading1=false
+      this.getchartdata(i, count).then(res => {
+        this.zhenchart_datasoure = this.chart_datasource
+        this.listLoading1 = false
       })
       console.log('车身数据', this.chart_datasource.cheshendata)
       console.log('冲压数据', this.chart_datasource.chongyadata)
@@ -195,9 +195,8 @@ export default {
       console.log('机加数据', this.chart_datasource.jijiadata)
       console.log('装配数据', this.chart_datasource.zhuangpeidata)
       console.log('横轴数据', this.chart_datasource.xdata)
-      
     }
-    	
+
   },
   computed: {
     ...mapGetters(['month', 'year'])

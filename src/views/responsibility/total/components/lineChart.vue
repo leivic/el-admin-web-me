@@ -92,7 +92,7 @@ export default {
 		    right: '2%'
         },
         legend: {
-          data: ['冲压车间', '车身车间', '涂装车间', '总装车间', '机加车间','装配车间'],
+          data: ['冲压车间', '车身车间', '涂装车间', '总装车间', '机加车间', '装配车间'],
           top: 30
         },
         grid: {
@@ -114,37 +114,37 @@ export default {
             name: '冲压车间',
             type: 'line',
             data: this.chartdata.chongyachejiandata,
-            smooth:true 
+            smooth: true
           },
           {
             name: '车身车间',
             type: 'line',
             data: this.chartdata.cheshenchejiandata,
-            smooth:true 
+            smooth: true
           },
           {
             name: '涂装车间',
             type: 'line',
             data: this.chartdata.tuzhuangchejiandata,
-            smooth:true 
+            smooth: true
           },
           {
             name: '总装车间',
             type: 'line',
             data: this.chartdata.zongzhuangchejiandata,
-            smooth:true 
+            smooth: true
           },
           {
             name: '机加车间',
             type: 'line',
             data: this.chartdata.jijiachejiandata,
-            smooth:true 
+            smooth: true
           },
           {
             name: '装配车间',
             type: 'line',
             data: this.chartdata.zhuangpeichejiandata,
-            smooth:true 
+            smooth: true
           }
         ]
 
