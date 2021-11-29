@@ -16,7 +16,7 @@
       <barChart :chart-data="quexian" :title="chart2.title" />
 
     </el-row>
-  
+
     <el-row v-loading="chart4.listloading" style="background:#fff;padding:16px 16px 0;margin-bottom:32px;"><!--第一个图表组件-->
       <barChart :chart-data="zhiliang" :title="chart4.title" />
 
@@ -52,7 +52,7 @@ export default {
         xdata: [],
         ydata: []
       },
-     
+
       chart4: {
         listloading: true,
         title: '工位质量防御能力'
@@ -114,7 +114,7 @@ export default {
         }
       }).then(res => this.chart2.listloading = false)// 直接这样深层赋值是可以的
 		 },
-    
+
 		 getzhiliangdata(date) {
       this.zhiliang.xdata.splice(0, this.zhiliang.xdata.length)
       this.zhiliang.ydata.splice(0, this.zhiliang.ydata.length)

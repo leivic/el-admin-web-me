@@ -130,3 +130,141 @@ export function getzonglanzhiliangchartdata(date) {
 
   })
 }
+
+/* 查找前端分析报表所有车间ppsr的数据*/
+export function getfenxippsrchartdata(date) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/reponsibility/getfenxippsrchartdata',
+    method: 'get',
+    params: {	year: date
+    }
+
+  })
+}
+
+/* 查找前端分析报表所有车间ppsr重复的数据*/
+export function getfenxippsrchongfuchartdata(date) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/reponsibility/getfenxippsrchongfuchartdata',
+    method: 'get',
+    params: {	year: date
+    }
+
+  })
+}
+
+/* 查找前端分析报表所有车间生产一致性问题管理的数据*/
+export function getfenxishenchanyizhichartdata(date) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/reponsibility/getfenxishenchanyizhichartdata',
+    method: 'get',
+    params: {	year: date
+    }
+
+  })
+}
+
+/* 查找前端分析报表所有车间法规项问题管理的数据*/
+export function getfenxifaguixiangchartdata(date) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/reponsibility/getfenxifaguixiangchartdata',
+    method: 'get',
+    params: {	year: date
+    }
+
+  })
+}
+
+/* 查找前端分析报表所有车间涉嫌车辆违规问题管理的数据*/
+export function getfenxishexiancheliangweiguichartdata(date) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/reponsibility/getfenxishexiancheliangweiguichartdata',
+    method: 'get',
+    params: {	year: date
+    }
+
+  })
+}
+
+/* 查找前端分析报表所有车间售后反馈问题管理的数据*/
+export function getfenxishouhoufankuichartdata(date) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/reponsibility/getfenxishouhoufankuichartdata',
+    method: 'get',
+    params: {	year: date
+    }
+
+  })
+}
+
+/* 查找前端分析报表所有车间外部抽查问题管理的数据*/
+export function getfenxiwaibuchouchachartdata(date) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/reponsibility/getfenxiwaibuchouchachartdata',
+    method: 'get',
+    params: {	year: date
+    }
+
+  })
+}
+
+
+
+/* 查找前端分析报表所有车间工位互检问题管理的数据*/
+export function getfenxigongweihujianchartdata(date) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/reponsibility/getfenxigongweihujianchartdata',
+    method: 'get',
+    params: {	year: date
+    }
+
+  })
+}
+
+/* 查找前端分析报表所有车间各车间上工序的数据*/
+export function getfenxigechejianshanggongxuchartdata(date) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/reponsibility/getfenxigechejianshanggongxuchartdata',
+    method: 'get',
+    params: {	year: date
+    }
+
+  })
+}
+
+/* 查找前端分析报表售后问题整改措施落实情况的数据*/
+export function getfenxishouhouwentichartdata(date) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/reponsibility/getfenxishouhouwentichartdata',
+    method: 'get',
+    params: {	year: date
+    }
+
+  })
+}
+
+/* 查找前端分析区域发生的数据*/
+export function getfenxiquyufashengchartdata(date) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/reponsibility/getfenxiquyufashengchartdata',
+    method: 'get',
+    params: {	year: date
+    }
+
+  })
+}
+
+/* 查找前端分析质量问题纪录的数据*/
+export function getfenxizhiliangwentijiluchartdata(date) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/reponsibility/getfenxizhiliangwentijiluchartdata',
+    method: 'get',
+    params: {	year: date
+    }
+
+  })
+}
+
+
+
+

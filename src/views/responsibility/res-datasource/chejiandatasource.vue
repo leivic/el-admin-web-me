@@ -159,6 +159,7 @@ export default {
       this.listloading = true
       findAllchejianlistBydate(newval).then(res => {
         this.tabledata = res
+        console.log(res)
         this.listloading = false
       })
     }
