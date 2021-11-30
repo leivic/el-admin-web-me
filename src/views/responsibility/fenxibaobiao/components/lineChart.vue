@@ -26,14 +26,14 @@ export default {
       type: Boolean,
       default: true
     },
-    xdata:{
+    xdata: {
       type: Array,
       required: true
     },
     chartdata: {
       type: Array,
       required: true
-    },
+    }
   },
   data() {
     return {
@@ -114,7 +114,7 @@ export default {
             type: 'line',
             data: this.chartdata,
             smooth: true
-          },
+          }
         ]
 
       })

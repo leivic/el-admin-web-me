@@ -94,7 +94,7 @@ export default {
           }
         },
         legend: {
-          data: ['ppsr系统管理问题', '重复发生的问题', '生产一致性问题管理', '法规项问题管理'],
+          data: ['工位互检发生问题', '各车间发现的上工序问题', '售后问题整改措施落实情况','区域发生汇总分析','质量问题记录、跟踪和落实情况'],
           top: 35
         },
         grid: {
@@ -117,37 +117,45 @@ export default {
         series: [
 
 	     {
-            name: 'ppsr系统管理问题',
+            name: '工位互检发生问题',
 	          type: 'bar',
             barGap: '1%',
             emphasis: {
               focus: 'series'
             },
-            data: this.ydata1.ppsr // ydata1是一个二维数组 ydata1[0]也是一个数组
+            data: this.ydata1.gongweihujian // ydata1是一个二维数组 ydata1[0]也是一个数组
           },
           {
-            name: '重复发生的问题',
+            name: '各车间发现的上工序问题',
 	          type: 'bar',
             emphasis: {
               focus: 'series'
             },
-            data: this.ydata1.ppsrchongfu
+            data: this.ydata1.gechejianshanggongxu
           },
           {
-            name: '生产一致性问题管理',
+            name: '售后问题整改措施落实情况',
 	          type: 'bar',
             emphasis: {
               focus: 'series'
             },
-            data: this.ydata1.shenchanyizhi
+            data: this.ydata1.shouhouwenti
           },
-          {
-            name: '法规项问题管理',
-	    type: 'bar',
+            {
+            name: '区域发生汇总分析',
+	          type: 'bar',
             emphasis: {
               focus: 'series'
             },
-            data: this.ydata1.faguixiang
+            data: this.ydata1.quyufasheng
+          },
+            {
+            name: '质量问题记录、跟踪和落实情况',
+	          type: 'bar',
+            emphasis: {
+              focus: 'series'
+            },
+            data: this.ydata1.zhiliangwentijilu
           }
 
         ]

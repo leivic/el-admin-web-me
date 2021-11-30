@@ -208,8 +208,6 @@ export function getfenxiwaibuchouchachartdata(date) {
   })
 }
 
-
-
 /* 查找前端分析报表所有车间工位互检问题管理的数据*/
 export function getfenxigongweihujianchartdata(date) {
   return request({
@@ -264,7 +262,4 @@ export function getfenxizhiliangwentijiluchartdata(date) {
 
   })
 }
-
-
-
 

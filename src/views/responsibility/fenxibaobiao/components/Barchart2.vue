@@ -26,13 +26,13 @@ export default {
       type: Boolean,
       default: true
     },
-    xdata: { //x轴数据 多少个月
+    xdata: { // x轴数据 多少个月
       type: Array,
       required: true
     },
-    ydata1: { //所有y轴数据
+    ydata1: { // 所有y轴数据
       type: Object,
-      required: true 
+      required: true
     },
     title: {
       type: String
@@ -94,7 +94,7 @@ export default {
           }
         },
         legend: {
-          data: ['售后反馈质量问题','涉嫌违规车辆问题管理','外部抽查问题管理'],
+          data: ['售后反馈质量问题', '涉嫌违规车辆问题管理', '外部抽查问题管理'],
           top: 35
         },
         grid: {
@@ -140,9 +140,8 @@ export default {
               focus: 'series'
             },
             data: this.ydata1.waibuchoucha
-          },
-        
-         
+          }
+
         ]
       })
     }
