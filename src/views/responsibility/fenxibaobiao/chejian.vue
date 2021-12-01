@@ -43,7 +43,7 @@ export default {
     lineChart,
     Barchart1,
     Barchart2,
-    Barchart3 
+    Barchart3
   },
   data() {
     return {
@@ -51,8 +51,9 @@ export default {
       listloading2: true,
       listloading3: true,
       listloading4: true,
-      title1: '',
-      title2: '',
+      title1: '车间缺陷拦截能力',
+      title2: '车间安全保障能力',
+      title3:'车间质量防御能力',
       zongji: {
         xdata: [],
         zongji: []
@@ -167,7 +168,7 @@ export default {
       this.listloading2 = true
       return Promise.all([getfenxippsrchartdata(this.year), getfenxippsrchongfuchartdata(this.year), getfenxishenchanyizhichartdata(this.year), getfenxifaguixiangchartdata(this.year)]).then(
         res => {
-          console.log('缺陷第一层数据',res)
+          console.log('缺陷第一层数据', res)
           switch (this.zone) {
             case '冲压车间':
               this.quexian.ppsr = res[0].chongyachejiandata
@@ -209,7 +210,7 @@ export default {
         })
     },
     getanquanchartdata() {
-      this.listloading3=true
+      this.listloading3 = true
       return Promise.all([getfenxishouhoufankuichartdata(this.year), getfenxishexiancheliangweiguichartdata(this.year), getfenxiwaibuchouchachartdata(this.year)]).then(
         res => {
           switch (this.zone) {

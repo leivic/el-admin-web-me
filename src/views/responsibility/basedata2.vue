@@ -98,14 +98,20 @@
         label="分数"
         width="120"
       />
-
+      <el-table-column label="#" width="100px" align="center">
+        <template slot-scope="{row,$index}"><!--最开始的写法是 slot-scope="{row,$index}" 这个$index是vue2.0的key，在vue2.0的时候移除了-->
+          <el-button  size="mini" type="danger" @click="handleDelete(row,index,row.id)">
+            Delete
+          </el-button>
+        </template>
+      </el-table-column>
     </el-table>
     <!--表格渲染-->
     <pagination :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getfilelist" />
   </div>
 </template>
 <script>
-import { upload2, findAlldatasource2 } from '@/api/qe/reponsibility'
+import { upload2, findAlldatasource2,deletedatasource2byid } from '@/api/qe/reponsibility'
 import { mapGetters } from 'vuex'
 import Pagination from '@/components/Pagination'// 分页组件
 import crudleivic from '../../components/Crud/CRUD.leivic.vue'
@@ -166,6 +172,17 @@ export default { // 其实也就是个对象罢了
     handlePreview(file) {
       console.log(file)
     },
+    handleDelete(row, index, id) { // 点击删除按钮的操作
+      this.$notify({ // 封装的通知功能
+        title: 'Success',
+        message: '删除成功',
+        type: 'success',
+        duration: 2000
+      })
+      deletedatasource2byid(id).then(this.tableData.splice(index, 1))
+      // data property里面的数据更新，视图即更新
+    },
+
     upload() {
       const formData = new FormData()
       const file = this.$refs.upload.uploadFiles.pop().raw // 从html元素取到文件对象

@@ -69,7 +69,7 @@ export default {
         title: {
 		  text: this.title, // this.title
 		  textStyle: {
-            fontSize: 13,
+            fontSize: 24,
             fontWeight: 'normal',
             fontFamily: 'Courier New'
           }

@@ -72,11 +72,11 @@ export default {
         title: {
           text: this.title,
           textStyle: {
-            fontSize: 24,
+            fontSize: 18,
             fontWeight: 'normal',
             fontFamily: 'Courier New'
           },
-          left: '28%'
+          left: '5%'
         },
 
         tooltip: {
@@ -93,7 +93,7 @@ export default {
         },
         legend: {
           data: ['冲压车间', '车身车间', '涂装车间', '总装车间', '机加车间', '装配车间'],
-          top: 30
+          top: 15
         },
         grid: {
           left: '3%',

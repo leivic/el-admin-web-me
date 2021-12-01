@@ -94,7 +94,7 @@ export default {
           }
         },
         legend: {
-          data: ['工位互检发生问题', '各车间发现的上工序问题', '售后问题整改措施落实情况','区域发生汇总分析','质量问题记录、跟踪和落实情况'],
+          data: ['工位互检发生问题', '各车间发现的上工序问题', '售后问题整改措施落实情况', '区域发生汇总分析', '质量问题记录、跟踪和落实情况'],
           top: 35
         },
         grid: {
@@ -141,7 +141,7 @@ export default {
             },
             data: this.ydata1.shouhouwenti
           },
-            {
+          {
             name: '区域发生汇总分析',
 	          type: 'bar',
             emphasis: {
@@ -149,7 +149,7 @@ export default {
             },
             data: this.ydata1.quyufasheng
           },
-            {
+          {
             name: '质量问题记录、跟踪和落实情况',
 	          type: 'bar',
             emphasis: {

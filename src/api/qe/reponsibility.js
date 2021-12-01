@@ -263,3 +263,25 @@ export function getfenxizhiliangwentijiluchartdata(date) {
   })
 }
 
+/* 根据id删除数据源1*/
+export function deletedatasource1byid(id) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/reponsibility/deletedatasource1byid',
+    method: 'post',
+    params: {	id: id
+    }
+
+  })
+}
+
+/* 根据id删除数据源2*/
+export function deletedatasource2byid(id) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/reponsibility/deletedatasource2byid',
+    method: 'post',
+    params: {	id: id
+    }
+
+  })
+}
+

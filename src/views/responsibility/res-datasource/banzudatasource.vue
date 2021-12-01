@@ -17,28 +17,28 @@
           fixed
           prop="banzu"
           label="班组"
-          width="80"
+          width="100"
           align="center"
         />
         <el-table-column
           fixed
           prop="chejian"
           label="车间"
-          width="80"
+          width="100"
           align="center"
         />
         <el-table-column
           fixed
           prop="date"
           label="日期"
-          width="70"
+          width="80"
           align="center"
         />
         <el-table-column
           fixed
           prop="zongji"
           label="总计"
-          width="70"
+          width="100"
           align="center"
         />
         <el-table-column
@@ -57,58 +57,31 @@
             width="100"
             align="center"
           />
-          <el-table-column
-            prop="shenchanyizhi"
-            label="生产一致性问题"
-            width="100"
-            align="center"
-          />
-          <el-table-column
-            prop="faguixiang"
-            label="法规项问题"
-            width="100"
-            align="center"
-          />
 
         </el-table-column>
-        <el-table-column
-          label="安全保障"
-          align="center"
-        >
-          <el-table-column
-            prop="shouhoufankui"
-            label="售后反馈问题"
-            width="100"
-            align="center"
-          />
-        </el-table-column>
+
         <el-table-column
           label="质量防御"
           align="center"
         >
           <el-table-column
-            prop="gechejiangongxu"
-            label="各车间发现的上工序问题"
-            width="100"
+            prop="gongweihujian"
+            label="工位互检发生问题"
+            width="150"
             align="center"
           />
+
           <el-table-column
 
             prop="shouhouwenti"
             label="售后问题整改措施落实"
-            width="100"
-            align="center"
-          />
-          <el-table-column
-            prop="quyufasheng"
-            label="区域发生问题汇总分析"
-            width="100"
+            width="160"
             align="center"
           />
           <el-table-column
             prop="zhiliangwenti"
             label="质量问题记录、跟踪"
-            width="100"
+            width="160"
             align="center"
           />
         </el-table-column>

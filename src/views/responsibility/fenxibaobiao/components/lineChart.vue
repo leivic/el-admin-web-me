@@ -69,13 +69,13 @@ export default {
       this.chart.setOption({
         color: ['#00ABA9'],
         title: {
-          text: 'XXX',
+          text: '车间质量生态责任状态',
           textStyle: {
             fontSize: 24,
             fontWeight: 'normal',
             fontFamily: 'Courier New'
           },
-          left: '28%'
+          left: '36%'
         },
 
         tooltip: {
