@@ -53,7 +53,7 @@ export default {
       listloading4: true,
       title1: '车间缺陷拦截能力',
       title2: '车间安全保障能力',
-      title3:'车间质量防御能力',
+      title3: '车间质量防御能力',
       zongji: {
         xdata: [],
         zongji: []

@@ -118,10 +118,9 @@
         width="120"
       />
 
-
-    <el-table-column label="#" width="100px" align="center">
+      <el-table-column label="#" width="100px" align="center">
         <template slot-scope="{row,$index}"><!--最开始的写法是 slot-scope="{row,$index}" 这个$index是vue2.0的key，在vue2.0的时候移除了-->
-          <el-button  size="mini" type="danger" @click="handleDelete(row,index,row.id)">
+          <el-button size="mini" type="danger" @click="handleDelete(row,index,row.id)">
             Delete
           </el-button>
         </template>
@@ -182,7 +181,7 @@ export default { // 其实也就是个对象罢了
         this.tableData = res.content
         this.listloading = false
       })
-        },
+    },
     handleDelete(row, index, id) { // 点击删除按钮的操作
       this.$notify({ // 封装的通知功能
         title: 'Success',
@@ -226,62 +225,62 @@ export default { // 其实也就是个对象罢了
             duration: 3000
           })
           this.getfilelist()
-        }else if(res == 0){
-           that.$notify({ 
+        } else if (res == 0) {
+          that.$notify({
             title: 'error',
             message: '新增失败,第二列必须填入[车身车间，冲压车间，涂装车间，总装车间，机加车间，装配车间]之一',
             type: 'error',
             duration: 3000
-          }) 
-        }else if(res == 2){
+          })
+        } else if (res == 2) {
           that.$notify({ // 封装的通知功能
             title: 'error',
             message: '新增失败，当选择PPSR系统管理问题时，第6列只能填入 ‘是’ 或者 ‘否’',
             type: 'error',
             duration: 3000
-          }) 
-        }else if(res == 3){
-          that.$notify({ 
+          })
+        } else if (res == 3) {
+          that.$notify({
             title: 'error',
             message: '新增失败,当选择类型不是PPSR系统管理问题时，第6列只能为空',
             type: 'error',
             duration: 3000
-          })  
-        }else if(res == 4){
-           that.$notify({ 
+          })
+        } else if (res == 4) {
+          that.$notify({
             title: 'error',
             message: '新增失败,当导入车间级别的数据时，模板第三列必须为空',
             type: 'error',
             duration: 3000
-          })  
-        }else if(res == 5){
-          that.$notify({ 
+          })
+        } else if (res == 5) {
+          that.$notify({
             title: 'error',
             message: '新增失败,当导入工段｜班组｜工位级别数据时，模版第三列不能为空',
             type: 'error',
             duration: 3000
-          })   
-        }else if(res == 6){
-          that.$notify({ 
+          })
+        } else if (res == 6) {
+          that.$notify({
             title: 'error',
             message: '新增失败,当导入班组|工位级别数据时,只能选择ppsr系统管理问题和工位发生互检问题两类数据',
             type: 'error',
             duration: 3000
-          })   
-        }else if(res == 7){
-          that.$notify({ 
+          })
+        } else if (res == 7) {
+          that.$notify({
             title: 'error',
             message: '新增失败,导入模板的第五列不能为空',
             type: 'error',
             duration: 3000
-          })   
-        }else if(res == 8){
-          that.$notify({ 
+          })
+        } else if (res == 8) {
+          that.$notify({
             title: 'error',
             message: '新增失败,当导入类别为外部抽查时，第五列只能填入［‘主要不符合’，‘次要不符合’，‘观察项’］',
             type: 'error',
             duration: 3000
-          })   
+          })
         }
       })
     }

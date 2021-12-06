@@ -1,19 +1,12 @@
 <template>
   <div>
     <!--toolbox-->
-    <crudleivic addisview="true" @enadd="addfile" /><!--enadd是监听子组件模板中的新增按钮，方法是本文件中定义的方法-->
+    <el-button size="large" type="nomal" @click="addfile">新增</el-button><!--enadd是监听子组件模板中的新增按钮，方法是本文件中定义的方法-->
     <!--工具栏-->
 
     <!--表单渲染--><!--el-dialog elment－ui中的弹出框--><!--:visible 是是否显示 .sync是修饰符 指是否显示和数据状态同步改变 crud.status.cu此处是对mixin混入的使用 可没有html表达式中绑定import进来的表达式的先例  -->
     <el-dialog append-to-body :close-on-click-modal="false" :visible.sync="crud1.status.cu > 0" :title="crud1.status.title" width="580px">
-      <el-form ref="form" :inline="true" :model="form" size="small" label-width="80px">
-        <el-form-item label="文件种类" prop="filetype" required>
-          <el-select v-model="form.filetype" placeholder="文件种类">
-            <el-option label="售后问题整改措施落实情况" value="售后问题整改措施落实情况" />
-            <el-option label="区域发生问题汇总分析" value="区域发生问题汇总分析" />
-            <el-option label="质量问题记录、跟踪和落实情况" value="质量问题记录、跟踪和落实情况" />
-          </el-select>
-        </el-form-item>
+      <el-form ref="form" :inline="true" :model="form" size="small" label-width="60px">
         <el-form-item label="日期" required>
           <el-date-picker
             v-model="form.date"
@@ -22,14 +15,6 @@
             style="width: 100%"
             value-format="yyyy-MM"
           />
-        </el-form-item>
-        <el-form-item label="级别" prop="level" required>
-          <el-select v-model="form.level" placeholder="级别"><!--v-model 视图改变 存储在堆栈中的数据也会随之改变-->
-            <el-option label="车间" value="车间" />
-            <el-option label="工段" value="工段" />
-            <el-option label="班组" value="班组" />
-            <el-option label="工位" value="工位" />
-          </el-select>
         </el-form-item>
         <el-upload
           ref="upload"
@@ -67,41 +52,46 @@
       />
       <el-table-column
         fixed
-        prop="file_type"
-        label="文件类型"
-        width="250"
+        prop="zone"
+        label="区域名"
+        width="100"
       />
       <el-table-column
         prop="date"
         label="日期"
+        width="80"
+      />
+      
+      <el-table-column
+        prop="groupname"
+        label="班组名"
         width="120"
       />
       <el-table-column
-        prop="level"
-        label="范围"
-        width="120"
+        prop="zhiliangzhishi"
+        label="质量知识"
+        width="100"
       />
       <el-table-column
-        prop="zone"
-        label="区域"
-        width="120"
+        prop="zhiliangrenzhi"
+        label="质量认知"
+        width="100"
       />
       <el-table-column
-        prop="zone2"
-        label="工段/班组/工位"
-        width="120"
+        prop="zhiliangxinnian"
+        label="质量信念"
+        width="100"
+      />
+      <el-table-column
+        prop="zhiliangxingwei"
+        label="质量行为"
+        width="100"
       />
 
-      <el-table-column
-        fixed="right"
-        prop="fenshu"
-        label="分数"
-        width="120"
-      />
-      <el-table-column label="#" width="100px" align="center">
+      <el-table-column label="操作" width="100px" align="center">
         <template slot-scope="{row,$index}"><!--最开始的写法是 slot-scope="{row,$index}" 这个$index是vue2.0的key，在vue2.0的时候移除了-->
-          <el-button size="mini" type="danger" @click="handleDelete(row,index,row.id)">
-            Delete
+          <el-button size="mini" type="nolmal" @click="handleDelete(row,index,row.id)">
+            删除
           </el-button>
         </template>
       </el-table-column>
@@ -111,13 +101,12 @@
   </div>
 </template>
 <script>
-import { upload2, findAlldatasource2, deletedatasource2byid } from '@/api/qe/reponsibility'
+import { upload1, findAlldatasource1, findAllchejianlistBydate, findAllgongduanlistBydate, deletedatasource1byid } from '@/api/qe/reponsibility'
+import { uploadgroup,findallgroup,deletegroupbyid } from '@/api/qe/consicious'
 import { mapGetters } from 'vuex'
 import Pagination from '@/components/Pagination'// 分页组件
-import crudleivic from '../../components/Crud/CRUD.leivic.vue'
 export default { // 其实也就是个对象罢了
   components: {
-    crudleivic,
     Pagination
   },
   data() {
@@ -153,13 +142,23 @@ export default { // 其实也就是个对象罢了
   },
   methods: { // 一个拥有很多方法的对象
     getfilelist() {
-      findAlldatasource2(this.listQuery.page, this.listQuery.limit, this.listQuery.sort).then(res => {
+      findallgroup(this.listQuery.page, this.listQuery.limit, this.listQuery.sort).then(res => {
         console.log(res)
         this.total = res.totalElements
         this.tableData = res.content
         this.listloading = false
       })
-   		 },
+    },
+    handleDelete(row, index, id) { // 点击删除按钮的操作
+      this.$notify({ // 封装的通知功能
+        title: 'Success',
+        message: '删除成功',
+        type: 'success',
+        duration: 2000
+      })
+      deletegroupbyid(id).then(this.tableData.splice(index, 1))
+      // data property里面的数据更新，视图即更新
+    },
     addfile() {
       this.crud1.status.cu = 1 // dataproperty里面的数据是响应式的，所以数据改变，视图也会随之改变，弹框就会关闭
     },
@@ -172,28 +171,14 @@ export default { // 其实也就是个对象罢了
     handlePreview(file) {
       console.log(file)
     },
-    handleDelete(row, index, id) { // 点击删除按钮的操作
-      this.$notify({ // 封装的通知功能
-        title: 'Success',
-        message: '删除成功',
-        type: 'success',
-        duration: 2000
-      })
-      deletedatasource2byid(id).then(this.tableData.splice(index, 1))
-      // data property里面的数据更新，视图即更新
-    },
-
     upload() {
       const formData = new FormData()
       const file = this.$refs.upload.uploadFiles.pop().raw // 从html元素取到文件对象
 
       formData.append('file', file) // 第一个参数对应java程序里面的形参名
-      formData.append('file_type', this.form.filetype)
-      formData.append('file_date', this.form.date)
-      formData.append('level', this.form.level)
-      formData.append('create_by', this.user.nickName) //
+      formData.append('date', this.form.date)
       const that = this
-      upload2(formData).then(res => { // upload1来自于import的方法
+      uploadgroup(formData).then(res => { // upload1来自于import的方法
         this.crud1.status = 0
         console.log(res)
         if (res == 1) {
@@ -204,7 +189,7 @@ export default { // 其实也就是个对象罢了
             duration: 3000
           })
           this.getfilelist()
-        }
+        } 
       })
     }
   },
