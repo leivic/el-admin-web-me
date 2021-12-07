@@ -106,7 +106,7 @@
 </template>
 <script>
 import { upload1, findAlldatasource1, findAllchejianlistBydate, findAllgongduanlistBydate, deletedatasource1byid } from '@/api/qe/reponsibility'
-import { uploadstation,findallstation,deletestationbyid } from '@/api/qe/consicious'
+import { uploadstation, findallstation, deletestationbyid } from '@/api/qe/consicious'
 import { mapGetters } from 'vuex'
 import Pagination from '@/components/Pagination'// 分页组件
 export default { // 其实也就是个对象罢了
@@ -193,7 +193,7 @@ export default { // 其实也就是个对象罢了
             duration: 3000
           })
           this.getfilelist()
-        } 
+        }
       })
     }
   },

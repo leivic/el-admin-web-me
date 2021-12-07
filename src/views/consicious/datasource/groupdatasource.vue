@@ -61,7 +61,7 @@
         label="日期"
         width="80"
       />
-      
+
       <el-table-column
         prop="groupname"
         label="班组名"
@@ -102,7 +102,7 @@
 </template>
 <script>
 import { upload1, findAlldatasource1, findAllchejianlistBydate, findAllgongduanlistBydate, deletedatasource1byid } from '@/api/qe/reponsibility'
-import { uploadgroup,findallgroup,deletegroupbyid } from '@/api/qe/consicious'
+import { uploadgroup, findallgroup, deletegroupbyid } from '@/api/qe/consicious'
 import { mapGetters } from 'vuex'
 import Pagination from '@/components/Pagination'// 分页组件
 export default { // 其实也就是个对象罢了
@@ -189,7 +189,7 @@ export default { // 其实也就是个对象罢了
             duration: 3000
           })
           this.getfilelist()
-        } 
+        }
       })
     }
   },
