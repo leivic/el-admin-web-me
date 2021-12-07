@@ -22,7 +22,7 @@
 import SelectYear from '@/components/SelectYear'
 import { mapGetters } from 'vuex'
 import Stackchart from './components/Stackchart'
-import { getstationzhiliangzhishi,getgroupzhiliangzhishi } from '@/api/qe/consicious'
+import { getstationzhiliangzhishi, getgroupzhiliangzhishi } from '@/api/qe/consicious'
 export default {
   components: {
     Stackchart,
@@ -33,7 +33,7 @@ export default {
       chart1: {
         listLoading: true,
         title: '工位-质量知识', // 会响应式刷新的不只是data里面的数据，还有vuex，vuex里面的数据一旦变化  使用该数据的地方也会刷新
-        chartdata: [[], [], [], [], [], [], [], [], [], [], [], []],//每个数组里面都是一个月的从冲压 到装配的6个数据
+        chartdata: [[], [], [], [], [], [], [], [], [], [], [], []], // 每个数组里面都是一个月的从冲压 到装配的6个数据
         lengenddata: []
       },
       chart2: {
@@ -45,7 +45,7 @@ export default {
     }
   },
   mounted() {
-     getstationzhiliangzhishi(this.year, this.chart1.chartdata, this.chart1.lengenddata).then(() => this.chart1.listLoading = false) // 前面函数的最后是个then then函数的返回值还是promise，后面可以继续调用then
+    getstationzhiliangzhishi(this.year, this.chart1.chartdata, this.chart1.lengenddata).then(() => this.chart1.listLoading = false) // 前面函数的最后是个then then函数的返回值还是promise，后面可以继续调用then
     getgroupzhiliangzhishi(this.year, this.chart2.chartdata, this.chart2.lengenddata).then(() => this.chart2.listLoading = false)
   },
   computed: {

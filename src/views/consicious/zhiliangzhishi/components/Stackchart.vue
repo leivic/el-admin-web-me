@@ -115,7 +115,7 @@ export default {
         series: [
 
 	     {
-            name: '01月', //12个月  每个月的数组内 有6个数据 
+            name: '01月', // 12个月  每个月的数组内 有6个数据
 	    type: 'bar',
 	    stack: '月份',
             emphasis: {
