@@ -9,122 +9,122 @@
     </el-row>
 
     <el-row v-loading="chart1.listLoading" style="background:#fff;padding:16px 16px 0;margin-bottom:32px;"><!--第一个图表组件-->
-	<el-table
-      :data="chart1.chartdata"
-      style="width: 100%"
-      max-height="600"
-    >
-      
-      <el-table-column
-        fixed
-        prop="cengci"
-        label="层次"
-        width="100"
-	align="center"
-      />
-      <el-table-column
-        prop="date"
-        label="日期"
-        width="100"
-	align="center"
-      />
-      <el-table-column
-        prop="chongya"
-        label="冲压车间"
-        width="120"
-	align="center"
-      />
-      <el-table-column
-        prop="cheshen"
-        label="车身车间"
-        width="120"
-	align="center"
-      />
-      <el-table-column
-        prop="tuzhuang"
-        label="涂装车间"
-        width="120"
-	align="center"
-      />
-      <el-table-column
-        prop="zongzhuang"
-        label="总装车间"
-        width="120"
-	align="center"
-      />
-      <el-table-column
-        prop="jijia"
-        label="机加车间"
-        width="120"
-	align="center"
-      />
-      <el-table-column
-        prop="zhuangpei"
-        label="装配车间"
-        width="120"
-	align="center"
-      />
-	</el-table>
+      <el-table
+        :data="chart1.chartdata"
+        style="width: 100%"
+        max-height="600"
+      >
+
+        <el-table-column
+          fixed
+          prop="cengci"
+          label="层次"
+          width="100"
+          align="center"
+        />
+        <el-table-column
+          prop="date"
+          label="日期"
+          width="100"
+          align="center"
+        />
+        <el-table-column
+          prop="chongya"
+          label="冲压车间"
+          width="120"
+          align="center"
+        />
+        <el-table-column
+          prop="cheshen"
+          label="车身车间"
+          width="120"
+          align="center"
+        />
+        <el-table-column
+          prop="tuzhuang"
+          label="涂装车间"
+          width="120"
+          align="center"
+        />
+        <el-table-column
+          prop="zongzhuang"
+          label="总装车间"
+          width="120"
+          align="center"
+        />
+        <el-table-column
+          prop="jijia"
+          label="机加车间"
+          width="120"
+          align="center"
+        />
+        <el-table-column
+          prop="zhuangpei"
+          label="装配车间"
+          width="120"
+          align="center"
+        />
+      </el-table>
 
     </el-row>
 
     <el-row v-loading="chart2.listLoading" style="background:#fff;padding:16px 16px 0;margin-bottom:32px;"><!--第一个图表组件--> <!--v-loadning是vue封装的加载样式-->
-	<el-table
-      :data="chart2.chartdata"
-      style="width: 100%"
-      max-height="600"
-    >
-      
-      <el-table-column
-        fixed
-        prop="cengci"
-        label="层次"
-        width="100"
-	align="center"
-      />
-      <el-table-column
-        prop="date"
-        label="日期"
-        width="100"
-	align="center"
-      />
-      <el-table-column
-        prop="chongya"
-        label="冲压车间"
-        width="120"
-	align="center"
-      />
-      <el-table-column
-        prop="cheshen"
-        label="车身车间"
-        width="120"
-	align="center"
-      />
-      <el-table-column
-        prop="tuzhuang"
-        label="涂装车间"
-        width="120"
-	align="center"
-      />
-      <el-table-column
-        prop="zongzhuang"
-        label="总装车间"
-        width="120"
-	align="center"
-      />
-      <el-table-column
-        prop="jijia"
-        label="机加车间"
-        width="120"
-	align="center"
-      />
-      <el-table-column
-        prop="zhuangpei"
-        label="装配车间"
-        width="120"
-	align="center"
-      />
-	</el-table>
+      <el-table
+        :data="chart2.chartdata"
+        style="width: 100%"
+        max-height="600"
+      >
+
+        <el-table-column
+          fixed
+          prop="cengci"
+          label="层次"
+          width="100"
+          align="center"
+        />
+        <el-table-column
+          prop="date"
+          label="日期"
+          width="100"
+          align="center"
+        />
+        <el-table-column
+          prop="chongya"
+          label="冲压车间"
+          width="120"
+          align="center"
+        />
+        <el-table-column
+          prop="cheshen"
+          label="车身车间"
+          width="120"
+          align="center"
+        />
+        <el-table-column
+          prop="tuzhuang"
+          label="涂装车间"
+          width="120"
+          align="center"
+        />
+        <el-table-column
+          prop="zongzhuang"
+          label="总装车间"
+          width="120"
+          align="center"
+        />
+        <el-table-column
+          prop="jijia"
+          label="机加车间"
+          width="120"
+          align="center"
+        />
+        <el-table-column
+          prop="zhuangpei"
+          label="装配车间"
+          width="120"
+          align="center"
+        />
+      </el-table>
     </el-row>
 
   </div>
@@ -152,8 +152,9 @@ export default {
     }
   },
   mounted() {
-    getworkshopzhiliangrenzhi(this.year, this.chart1.chartdata).then(() => {this.chart1.listLoading = false
-	console.log(this.chart1.chartdata)
+    getworkshopzhiliangrenzhi(this.year, this.chart1.chartdata).then(() => {
+      this.chart1.listLoading = false
+      console.log(this.chart1.chartdata)
     }) // 前面函数的最后是个then then函数的返回值还是promise，后面可以继续调用then
     getzonezhiliangrenzhi(this.year, this.chart2.chartdata).then(() => this.chart2.listLoading = false)
   },
