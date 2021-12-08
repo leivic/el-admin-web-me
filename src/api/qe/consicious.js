@@ -545,3 +545,264 @@ export function getzonezhiliangxinnian(year, ydata, lengenddata) {
 	  }
   )
 }
+
+/* 获取工位质量行为 图表的数据 */
+export function getstationzhiliangxingwei(year, ydata, lengenddata) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/consicious/getstationzhiliangxingwei',
+    method: 'get',
+    params: {
+      year: year
+    }
+  }).then(
+	  res => {
+      lengenddata.splice(0, lengenddata.length)
+      ydata.splice(0, ydata.length) // 如果没有后面一句，这是这样，那么它变成了一维数组，后面的ydata[a].push 就找不到push方法
+      for (let index = 0; index < res.length; index++) {
+        ydata.push([])
+      } // 将清空后的一维数组ydata变为二维数组
+      for (const a in res) { // 循环每个月的数据
+        console.log(res)
+        // 位数太多 而且是double类型的，所以不能直接res[a].total.substring() 要先转换成string类型 才可以
+        ydata[a].push((res[a].chognya + '').substring(0, 5))
+        ydata[a].push((res[a].cheshen + '').substring(0, 5))
+        ydata[a].push((res[a].tuzhuang + '').substring(0, 5))
+        ydata[a].push((res[a].zongzhuang + '').substring(0, 5))
+        ydata[a].push((res[a].jijia + '').substring(0, 5))
+        ydata[a].push((res[a].zhuangpei + '').substring(0, 5))
+
+        if ((res[a].chognya + res[a].cheshen + res[a].tuzhuang + res[a].zongzhuang + res[a].jijia + res[a].zhuangpei) !== 0) { // 如果它不等于0，就加入一个有几个月的数组
+          lengenddata.push(res[a].date.substring(5, 7) + '月')
+        }
+		      }
+	  }
+  )
+}
+
+/* 获取班组质量行为 图表的数据 */
+export function getgroupzhiliangxingwei(year, ydata, lengenddata) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/consicious/getgroupzhiliangxingwei',
+    method: 'get',
+    params: {
+      year: year
+    }
+  }).then(
+	  res => {
+      lengenddata.splice(0, lengenddata.length)
+      ydata.splice(0, ydata.length) // 如果没有后面一句，这是这样，那么它变成了一维数组，后面的ydata[a].push 就找不到push方法
+      for (let index = 0; index < res.length; index++) {
+        ydata.push([])
+      } // 将清空后的一维数组ydata变为二维数组
+      for (const a in res) { // 循环每个月的数据
+        console.log(res)
+        // 位数太多 而且是double类型的，所以不能直接res[a].total.substring() 要先转换成string类型 才可以
+        ydata[a].push((res[a].chognya + '').substring(0, 5))
+        ydata[a].push((res[a].cheshen + '').substring(0, 5))
+        ydata[a].push((res[a].tuzhuang + '').substring(0, 5))
+        ydata[a].push((res[a].zongzhuang + '').substring(0, 5))
+        ydata[a].push((res[a].jijia + '').substring(0, 5))
+        ydata[a].push((res[a].zhuangpei + '').substring(0, 5))
+
+        if ((res[a].chognya + res[a].cheshen + res[a].tuzhuang + res[a].zongzhuang + res[a].jijia + res[a].zhuangpei) !== 0) { // 如果它不等于0，就加入一个有几个月的数组
+          lengenddata.push(res[a].date.substring(5, 7) + '月')
+        }
+		      }
+	  }
+  )
+}
+
+/* 获取工段质量行为 图表的数据 */
+export function getworkshopzhiliangxingwei(year, ydata, lengenddata) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/consicious/getworkshopzhiliangxingwei',
+    method: 'get',
+    params: {
+      year: year
+    }
+  }).then(
+	  res => {
+      lengenddata.splice(0, lengenddata.length)
+      ydata.splice(0, ydata.length) // 如果没有后面一句，这是这样，那么它变成了一维数组，后面的ydata[a].push 就找不到push方法
+      for (let index = 0; index < res.length; index++) {
+        ydata.push([])
+      } // 将清空后的一维数组ydata变为二维数组
+      for (const a in res) { // 循环每个月的数据
+        console.log(res)
+        // 位数太多 而且是double类型的，所以不能直接res[a].total.substring() 要先转换成string类型 才可以
+        ydata[a].push((res[a].chognya + '').substring(0, 5))
+        ydata[a].push((res[a].cheshen + '').substring(0, 5))
+        ydata[a].push((res[a].tuzhuang + '').substring(0, 5))
+        ydata[a].push((res[a].zongzhuang + '').substring(0, 5))
+        ydata[a].push((res[a].jijia + '').substring(0, 5))
+        ydata[a].push((res[a].zhuangpei + '').substring(0, 5))
+
+        if ((res[a].chognya + res[a].cheshen + res[a].tuzhuang + res[a].zongzhuang + res[a].jijia + res[a].zhuangpei) !== 0) { // 如果它不等于0，就加入一个有几个月的数组
+          lengenddata.push(res[a].date.substring(5, 7) + '月')
+        }
+		      }
+	  }
+  )
+}
+
+/* 获取车间质量行为 图表的数据 */
+export function getzonezhiliangxingwei(year, ydata, lengenddata) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/consicious/getzonezhiliangxingwei',
+    method: 'get',
+    params: {
+      year: year
+    }
+  }).then(
+	  res => {
+      lengenddata.splice(0, lengenddata.length)
+      ydata.splice(0, ydata.length) // 如果没有后面一句，这是这样，那么它变成了一维数组，后面的ydata[a].push 就找不到push方法
+      for (let index = 0; index < res.length; index++) {
+        ydata.push([])
+      } // 将清空后的一维数组ydata变为二维数组
+      for (const a in res) { // 循环每个月的数据
+        console.log(res)
+        // 位数太多 而且是double类型的，所以不能直接res[a].total.substring() 要先转换成string类型 才可以
+        ydata[a].push((res[a].chognya + '').substring(0, 5))
+        ydata[a].push((res[a].cheshen + '').substring(0, 5))
+        ydata[a].push((res[a].tuzhuang + '').substring(0, 5))
+        ydata[a].push((res[a].zongzhuang + '').substring(0, 5))
+        ydata[a].push((res[a].jijia + '').substring(0, 5))
+        ydata[a].push((res[a].zhuangpei + '').substring(0, 5))
+
+        if ((res[a].chognya + res[a].cheshen + res[a].tuzhuang + res[a].zongzhuang + res[a].jijia + res[a].zhuangpei) !== 0) { // 如果它不等于0，就加入一个有几个月的数组
+          lengenddata.push(res[a].date.substring(5, 7) + '月')
+        }
+		      }
+	  }
+  )
+}
+
+/* 获取工位质量氛围 图表的数据 */
+export function getstationzhiliangfenwei(year, ydata, lengenddata) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/consicious/getstationzhiliangfenwei',
+    method: 'get',
+    params: {
+      year: year
+    }
+  }).then(
+	  res => {
+      lengenddata.splice(0, lengenddata.length)
+      ydata.splice(0, ydata.length) // 如果没有后面一句，这是这样，那么它变成了一维数组，后面的ydata[a].push 就找不到push方法
+      for (let index = 0; index < res.length; index++) {
+        ydata.push([])
+      } // 将清空后的一维数组ydata变为二维数组
+      for (const a in res) { // 循环每个月的数据
+        console.log(res)
+        // 位数太多 而且是double类型的，所以不能直接res[a].total.substring() 要先转换成string类型 才可以
+        ydata[a].push((res[a].chognya + '').substring(0, 5))
+        ydata[a].push((res[a].cheshen + '').substring(0, 5))
+        ydata[a].push((res[a].tuzhuang + '').substring(0, 5))
+        ydata[a].push((res[a].zongzhuang + '').substring(0, 5))
+        ydata[a].push((res[a].jijia + '').substring(0, 5))
+        ydata[a].push((res[a].zhuangpei + '').substring(0, 5))
+
+        if ((res[a].chognya + res[a].cheshen + res[a].tuzhuang + res[a].zongzhuang + res[a].jijia + res[a].zhuangpei) !== 0) { // 如果它不等于0，就加入一个有几个月的数组
+          lengenddata.push(res[a].date.substring(5, 7) + '月')
+        }
+		      }
+	  }
+  )
+}
+
+/* 获取班组质量氛围 图表的数据 */
+export function getgroupzhiliangfenwei(year, ydata, lengenddata) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/consicious/getgroupzhiliangfenwei',
+    method: 'get',
+    params: {
+      year: year
+    }
+  }).then(
+	  res => {
+      lengenddata.splice(0, lengenddata.length)
+      ydata.splice(0, ydata.length) // 如果没有后面一句，这是这样，那么它变成了一维数组，后面的ydata[a].push 就找不到push方法
+      for (let index = 0; index < res.length; index++) {
+        ydata.push([])
+      } // 将清空后的一维数组ydata变为二维数组
+      for (const a in res) { // 循环每个月的数据
+        // 位数太多 而且是double类型的，所以不能直接res[a].total.substring() 要先转换成string类型 才可以
+        ydata[a].push((res[a].chognya + '').substring(0, 5))
+        ydata[a].push((res[a].cheshen + '').substring(0, 5))
+        ydata[a].push((res[a].tuzhuang + '').substring(0, 5))
+        ydata[a].push((res[a].zongzhuang + '').substring(0, 5))
+        ydata[a].push((res[a].jijia + '').substring(0, 5))
+        ydata[a].push((res[a].zhuangpei + '').substring(0, 5))
+
+        if ((res[a].chognya + res[a].cheshen + res[a].tuzhuang + res[a].zongzhuang + res[a].jijia + res[a].zhuangpei) !== 0) { // 如果它不等于0，就加入一个有几个月的数组
+          lengenddata.push(res[a].date.substring(5, 7) + '月')
+        }
+		      }
+	  }
+  )
+}
+
+/* 获取工段质量氛围 图表的数据 */
+export function getworkshopzhiliangfenwei(year, ydata, lengenddata) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/consicious/getworkshopzhiliangfenwei',
+    method: 'get',
+    params: {
+      year: year
+    }
+  }).then(
+	  res => {
+      lengenddata.splice(0, lengenddata.length)
+      ydata.splice(0, ydata.length) // 如果没有后面一句，这是这样，那么它变成了一维数组，后面的ydata[a].push 就找不到push方法
+      for (let index = 0; index < res.length; index++) {
+        ydata.push([])
+      } // 将清空后的一维数组ydata变为二维数组
+      for (const a in res) { // 循环每个月的数据
+        // 位数太多 而且是double类型的，所以不能直接res[a].total.substring() 要先转换成string类型 才可以
+        ydata[a].push((res[a].chognya + '').substring(0, 5))
+        ydata[a].push((res[a].cheshen + '').substring(0, 5))
+        ydata[a].push((res[a].tuzhuang + '').substring(0, 5))
+        ydata[a].push((res[a].zongzhuang + '').substring(0, 5))
+        ydata[a].push((res[a].jijia + '').substring(0, 5))
+        ydata[a].push((res[a].zhuangpei + '').substring(0, 5))
+
+        if ((res[a].chognya + res[a].cheshen + res[a].tuzhuang + res[a].zongzhuang + res[a].jijia + res[a].zhuangpei) !== 0) { // 如果它不等于0，就加入一个有几个月的数组
+          lengenddata.push(res[a].date.substring(5, 7) + '月')
+        }
+		      }
+	  }
+  )
+}
+
+/* 获取车间质量氛围 图表的数据 */
+export function getzonezhiliangfenwei(year, ydata, lengenddata) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/consicious/getzonezhiliangfenwei',
+    method: 'get',
+    params: {
+      year: year
+    }
+  }).then(
+	  res => {
+      lengenddata.splice(0, lengenddata.length)
+      ydata.splice(0, ydata.length) // 如果没有后面一句，这是这样，那么它变成了一维数组，后面的ydata[a].push 就找不到push方法
+      for (let index = 0; index < res.length; index++) {
+        ydata.push([])
+      } // 将清空后的一维数组ydata变为二维数组
+      for (const a in res) { // 循环每个月的数据
+        // 位数太多 而且是double类型的，所以不能直接res[a].total.substring() 要先转换成string类型 才可以
+        ydata[a].push((res[a].chognya + '').substring(0, 5))
+        ydata[a].push((res[a].cheshen + '').substring(0, 5))
+        ydata[a].push((res[a].tuzhuang + '').substring(0, 5))
+        ydata[a].push((res[a].zongzhuang + '').substring(0, 5))
+        ydata[a].push((res[a].jijia + '').substring(0, 5))
+        ydata[a].push((res[a].zhuangpei + '').substring(0, 5))
+
+        if ((res[a].chognya + res[a].cheshen + res[a].tuzhuang + res[a].zongzhuang + res[a].jijia + res[a].zhuangpei) !== 0) { // 如果它不等于0，就加入一个有几个月的数组
+          lengenddata.push(res[a].date.substring(5, 7) + '月')
+        }
+		      }
+	  }
+  )
+}
