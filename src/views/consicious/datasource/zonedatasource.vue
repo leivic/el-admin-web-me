@@ -123,7 +123,7 @@ export default { // 其实也就是个对象罢了
       listloading: true,
       listQuery: { // 分页相关数据
         page: 1,
-        limit: 10,
+        limit: 7,
         importance: undefined,
         title: undefined,
         type: undefined,
@@ -181,9 +181,23 @@ export default { // 其实也就是个对象罢了
             title: 'Success',
             message: '新增成功',
             type: 'success',
-            duration: 3000
+            duration: 30000
           })
           this.getfilelist()
+        }else if(res == 9){
+          that.$notify({ // 封装的通知功能
+            title: '新增失败',
+            message: '新增失败,模版第一列数据只能填入[冲压车间，车身车间，涂装车间，总装车间，机加车间，装配车间]其中之一',
+            type: 'error',
+            duration: 30000
+          }) 
+        }else if(res == 2){
+          that.$notify({ // 封装的通知功能
+            title: '新增失败',
+            message: '新增失败,不能导入空白数据',
+            type: 'error',
+            duration: 30000
+          }) 
         }
       })
     }

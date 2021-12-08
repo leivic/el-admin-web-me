@@ -12,7 +12,7 @@
       <el-table
         :data="chart1.chartdata"
         style="width: 100%"
-        max-height="600"
+        max-height="400"
       >
 
         <el-table-column
@@ -72,7 +72,7 @@
       <el-table
         :data="chart2.chartdata"
         style="width: 100%"
-        max-height="600"
+        max-height="400"
       >
 
         <el-table-column

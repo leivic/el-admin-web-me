@@ -73,9 +73,9 @@ export default {
         title: {
           text: this.title,
           textStyle: {
-            fontSize: 12,
+            fontSize: 20,
             fontWeight: 'normal',
-            fontFamily: 'Courier New'
+            fontFamily: 'KaiTi'
           	},
           left: '5px'
         },
@@ -97,11 +97,17 @@ export default {
         },
         xAxis: {
           type: 'value', //横轴是值
-          boundaryGap: [0, 0.01]
+          boundaryGap: [0, 0.01],
+          axisTick: {
+              show: false
+            }
         },
         yAxis: {
           type: 'category', //纵轴是类别
-          data: ['冲压车间', '车身车间', '涂装车间', '总装车间', '机加车间', '装配车间']
+          data: ['冲压车间', '车身车间', '涂装车间', '总装车间', '机加车间', '装配车间'],
+          axisTick: {
+              show: false
+            }
         },
         series: [ 
           {
