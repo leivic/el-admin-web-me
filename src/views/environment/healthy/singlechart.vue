@@ -1,12 +1,10 @@
 <template>
   <div class="continue-chart-container">
     <el-row>
-      <el-col :xs="12" :sm="12" :lg="6">
+      <el-col :xs="8" :sm="8" :lg="6">
         <div class="tool">
           <SelectDomain />
         </div>
-      </el-col>
-      <el-col :xs="12" :sm="12" :lg="6">
         <div class="tool">
           <SelectMonth />
         </div>

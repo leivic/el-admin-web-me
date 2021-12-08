@@ -22,6 +22,8 @@
     <el-table
       :key="tableKey"
       v-loading="listLoading"
+      max-height="400px"
+      header-row-style="headerStyle"
       :data="list"
       border
       fit
@@ -66,43 +68,43 @@
       </el-table-column>
 
       <el-table-column label="健康水平" align="center">
-        <el-table-column label="班组人员稳定性:班组成员人员流失率<=1人/月(10)" width="140px" align="center">
+        <el-table-column label="班组人员稳定性:班组成员人员流失率<=1人/月(10)" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.groupstability }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="班组成员轮岗按计划执行率100%(10)" width="140px" align="center">
+        <el-table-column label="班组成员轮岗按计划执行率100%(10)" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.grouprotation }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="分层审计完成率100%(10)" width="140px" align="center">
+        <el-table-column label="分层审计完成率100%(10)" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.externalaudit }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="班组物料/工具使用台账管理，执行一致性100%(20)" width="140px" align="center">
+        <el-table-column label="班组物料/工具使用台账管理，执行一致性100%(20)" width="120px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.bookkeepingmanagement }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="班组人员稳定性:班组成员人员流失率>2人/月(-10)" width="140px" align="center">
+        <el-table-column label="班组人员稳定性:班组成员人员流失率>2人/月(-10)" width="120px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.lossgroupstability }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="班组业务未按要求执行发现1处－5分(-10)" width="140px" align="center">
+        <el-table-column label="班组业务未按要求执行发现1处－5分(-10)" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.groupbusiness }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="班组健康水平小计" width="140px" align="center">
+        <el-table-column label="班组健康水平小计" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.x3 }}</span>
           </template>
@@ -116,13 +118,13 @@
           </template>
         </el-table-column>
 
-        <el-table-column label="班组电子化实现一致性(5)" width="140px" align="center">
+        <el-table-column label="班组电子化实现一致性(5)" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.consistency }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="班组低碳精益水平小计" width="140px" align="center">
+        <el-table-column label="班组低碳精益水平小计" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.x4 }}</span>
           </template>
@@ -130,19 +132,19 @@
       </el-table-column>
 
       <el-table-column label="均衡发展" align="center">
-        <el-table-column label="班组所有工位的健康水平差异化<1%(50)" width="140px" align="center">
+        <el-table-column label="班组所有工位的健康水平差异化<1%(50)" width="120px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.healthquthority }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="班组所有工位的健康水平差异化>20%(-10)" width="140px" align="center">
+        <el-table-column label="班组所有工位的健康水平差异化>20%(-10)" width="120px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.losshealthquthority }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="班组均衡发展水平小计" width="140px" align="center">
+        <el-table-column label="班组均衡发展水平小计" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.x5 }}</span>
           </template>
@@ -151,8 +153,8 @@
 
       <el-table-column label="#" width="100px" align="center">
         <template slot-scope="{row,$index}"><!--最开始的写法是 slot-scope="{row,$index}" 这个$index是vue2.0的key，在vue2.0的时候移除了-->
-          <el-button v-permission="['environmentgroupdelete']" size="mini" type="danger" @click="handleDelete(row,index,row.id)">
-            Delete
+          <el-button v-permission="['environmentgroupdelete']" size="mini" type="nomal" @click="handleDelete(row,index,row.id)">
+            删除
           </el-button>
         </template>
       </el-table-column>
@@ -196,6 +198,12 @@ export default {
     this.getList()
   },
   methods: {
+    headerStyle(){
+      return {
+        'font-size': '10px',
+      padding: '0'
+      }
+    },
     addList(res) { // 上传成功与失败的控制功能 当然注意 控制台network也能看前后端数据传递
       if (res == 0) {
         this.$notify({ // 封装的通知功能
@@ -230,6 +238,13 @@ export default {
           title: 'Sucess',
           message: '导入成功',
           type: 'sucess',
+          duration: 30000
+        })
+      }else if (res == 77) {
+        this.$notify({ // 封装的通知功能
+          title: '新增失败',
+          message: '新增失败，不能导入空白数据',
+          type: 'error',
           duration: 30000
         })
       }

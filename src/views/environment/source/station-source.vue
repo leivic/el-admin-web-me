@@ -19,11 +19,14 @@
     </div>
 
     <el-table
+      size:mini
       :key="tableKey"
       v-loading="listLoading"
       :data="list"
+      :header-cell-style="headerStyle"
       border
       fit
+      max-height="400px"
       highlight-current-row
       style="width: 100%;"
       @sort-change="sortChange"
@@ -65,43 +68,43 @@
       </el-table-column>
 
       <el-table-column label="健康水平" align="center">
-        <el-table-column label="人员能力符合要求(10)" width="140px" align="center">
+        <el-table-column label="人员能力符合要求(10)" width="80px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.peopleiscapable }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="物料、作业文件、工具正确(30)" width="140px" align="center">
+        <el-table-column label="物料、作业文件、工具正确(30)" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.matteriscorrect }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="员工标准化执行符合率100%(10)" width="140px" align="center">
+        <el-table-column label="员工标准化执行符合率100%(10)" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.wokerisstandard }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="工位人员稳定性,在岗时间<1个月(-10)" width="140px" align="center">
+        <el-table-column label="工位人员稳定性,在岗时间<1个月(-10)" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.wokerstability }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="工位设备停线时间>3min,发生一次扣-5分(-10)" width="140px" align="center">
+        <el-table-column label="工位设备停线时间>3min,发生一次扣-5分(-10)" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.stationshutdown }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="物料停线时间>3min,发生一次扣-5分(-10)" width="140px" align="center">
+        <el-table-column label="物料停线时间>3min,发生一次扣-5分(-10)" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.mattershutdown }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="工位健康水平小计" width="140px" align="center">
+        <el-table-column label="工位健康水平小计" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.x1 }}</span>
           </template>
@@ -109,19 +112,19 @@
       </el-table-column>
 
       <el-table-column label="低碳精益" align="center">
-        <el-table-column label="暂未有详细描述(20)" width="140px" align="center">
+        <el-table-column label="暂未有详细描述(20)" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.low_carbon_1 }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="工业电子化实现一致性(5)" width="140px" align="center">
+        <el-table-column label="工业电子化实现一致性(5)" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.iso }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="工位低碳精益小计" width="140px" align="center">
+        <el-table-column label="工位低碳精益小计" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.x2 }}</span>
           </template>
@@ -130,8 +133,8 @@
 
       <el-table-column label="#" width="100px" align="center">
         <template slot-scope="{row,$index}"><!--最开始的写法是 slot-scope="{row,$index}" 这个$index是vue2.0的key，在vue2.0的时候移除了-->
-          <el-button v-permission="['environmentstationdelete']" size="mini" type="danger" @click="handleDelete(row,index,row.id)">
-            Delete
+          <el-button v-permission="['environmentstationdelete']" size="mini" type="nomal" @click="handleDelete(row,index,row.id)">
+            删除
           </el-button>
         </template>
       </el-table-column>
@@ -158,7 +161,7 @@ export default {
       list: null, // 图表数据
       listQuery: { // 分页相关数据
         page: 1,
-        limit: 20,
+        limit:20,
         importance: undefined,
         title: undefined,
         type: undefined,
@@ -174,6 +177,18 @@ export default {
     this.getList()
   },
   methods: {
+    headerStyle(){
+      return {
+        'font-size': '10px',
+      padding: '0'
+      }
+    },
+    cellStyle () {
+      return {
+        'font-size': '14px',
+        height: '40px',
+        padding: '0'
+      }},
     addList(res) { // 上传成功与失败的控制功能 当然注意 控制台network也能看前后端数据传递
       if (res == 0) {
         this.$notify({ // 封装的通知功能
@@ -185,7 +200,7 @@ export default {
       } else if (res == 1) {
         this.$notify({ // 封装的通知功能
           title: 'Error',
-          message: '第一行第三个单元格格式只能为 时间:xx年xx月xx日 （年月日都是两位）',
+          message: '第一行第三个单元格格式只能为 [时间:xx年xx月xx日] （年月日都是两位）',
           type: 'error',
           duration: 30000
         })
@@ -208,6 +223,13 @@ export default {
           title: 'Sucess',
           message: '导入成功',
           type: 'sucess',
+          duration: 30000
+        })
+      }else if (res == 77) {
+        this.$notify({ // 封装的通知功能
+          title: '新增失败',
+          message: '新增失败，不能导入空白数据',
+          type: 'error',
           duration: 30000
         })
       }

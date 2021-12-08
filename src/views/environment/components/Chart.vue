@@ -75,9 +75,9 @@ export default {
 		  textStyle: {
             fontSize: 18,
             fontWeight: 'normal',
-            fontFamily: 'Courier New'
+            fontFamily: 'KaiTi'
           },
-		  left: '100'
+		  left: '70'
         },
         tooltip: {
 		  trigger: 'axis',
@@ -100,13 +100,19 @@ export default {
 		    axisLabel: {
             interval: 0, // 横轴信息全部显示
             rotate: -90// -30度角倾斜显示
-		    }
+        },
+        axisTick: {
+              show: false
+            }
         },
         yAxis: {
 		    type: 'value',
 		    axisLabel: {
             formatter: '{value}/50'
-		    }
+        },
+        axisTick: {
+              show: false
+            }
         },
         series: [{
 		    data: this.chartData, // 不加this 怎么取得到props里面的值呢

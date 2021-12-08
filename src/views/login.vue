@@ -1,5 +1,5 @@
 <template>
-  <div class="login" :style="'background-image:url('+ Background +');'">
+  <div class="login" :style="'background-image:url('+ Background +');'"><!--Background是表达式-->
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" label-position="left" label-width="0px" class="login-form">
       <h3 class="title">
         Sgmw 质量生态文明数字化平台
@@ -47,7 +47,7 @@ import Config from '@/settings'
 import { getCodeImg } from '@/api/login'
 import Cookies from 'js-cookie'
 import qs from 'qs'
-import Background from '@/assets/images/background.jpg'
+import Background from '@/assets/images/background2.jpg'
 export default {
   name: 'Login',
   data() {
@@ -182,6 +182,8 @@ export default {
   }
 
   .login-form {
+    opacity: 0.7;
+    
     border-radius: 6px;
     background: #ffffff;
     width: 385px;
@@ -196,10 +198,10 @@ export default {
       height: 39px;width: 14px;margin-left: 2px;
     }
   }
-  .login-tip {
-    font-size: 13px;
-    text-align: center;
-    color: #bfbfbf;
+
+  .login-form:hover {
+    opacity: 1.0;
+    
   }
   .login-code {
     width: 33%;

@@ -6,6 +6,7 @@
       type="month"
       placeholder="选择月"
       value-format="yyyy-MM"
+      style="width:120px"
     />
   </div>
 </template>

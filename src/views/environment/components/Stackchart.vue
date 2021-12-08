@@ -20,7 +20,7 @@ export default {
     },
     height: {
       type: String,
-      default: '500px'
+      default: '350px'
     },
     autoResize: {
       type: Boolean,
@@ -47,6 +47,12 @@ export default {
       handler(val) {
         this.setOptions(val)
       }
+    },
+    title: {
+      deep: true,
+      handler(val) {
+        this.setOptions(val)
+      } 
     }
   },
   mounted() {
@@ -72,11 +78,11 @@ export default {
         title: {
 		  text: this.title,
 		  textStyle: {
-            fontSize: 24,
+            fontSize: 20,
             fontWeight: 'normal',
-            fontFamily: 'Courier New'
+            fontFamily: 'KaiTi'
           },
-          left: '39%'
+          left: '5%'
         },
         tooltip: {
 		  trigger: 'axis',
@@ -104,12 +110,18 @@ export default {
         xAxis: [
           {
             type: 'category',
-            data: ['总计', '冲压车间', '车身车间', '涂装车间', '总装车间', '机加车间', '装配车间']
+            data: ['总计', '冲压车间', '车身车间', '涂装车间', '总装车间', '机加车间', '装配车间'],
+             axisTick: {
+              show: false
+            }
           }
         ],
         yAxis: [
           {
-            type: 'value'
+            type: 'value',
+            axisTick: {
+              show: false
+            }
           }
         ],
         series: [

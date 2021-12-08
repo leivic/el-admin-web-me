@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-select v-model="value" clearable placeholder="请选择" style="border:none"><!--v-model相当于一个属性绑定和一个事件-->
+    <el-select v-model="value" clearable placeholder="请选择" style="border:none;width:100px"><!--v-model相当于一个属性绑定和一个事件-->
       <el-option
         v-for="item in options"
         :key="item.value"

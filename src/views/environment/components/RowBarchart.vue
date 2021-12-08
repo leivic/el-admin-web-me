@@ -101,11 +101,12 @@ export default {
         title: {
           text: this.title,
           textStyle: {
-            fontSize: 12,
+            fontSize: 11,
             fontWeight: 'normal',
             fontFamily: 'Courier New'
           	},
-          left: '5px'
+          left: '0px',
+          
         },
         tooltip: {
           trigger: 'axis',
@@ -115,7 +116,8 @@ export default {
         },
         legend: {
           data: ['工位', '班组', '工段'],
-          right: '2px'
+          size:'small',
+          right: '0px'
         },
         grid: {
           left: '3%',
@@ -125,11 +127,17 @@ export default {
         },
         xAxis: {
           type: 'value',
-          boundaryGap: [0, 0.01]
+          boundaryGap: [0, 0.01],
+           axisTick: {
+              show: false
+            }
         },
         yAxis: {
           type: 'category',
-          data: this.chartData
+          data: this.chartData,
+           axisTick: {
+              show: false
+            }
         },
         series: [
           {

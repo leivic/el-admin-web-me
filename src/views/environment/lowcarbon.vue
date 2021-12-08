@@ -81,7 +81,7 @@ export default {
 
 .continue-chart-container {
   padding: 32px;
-  background-color: rgb(240, 242, 245);
+  background-color: #fff;
   position: relative;
 
   .chart-wrapper {

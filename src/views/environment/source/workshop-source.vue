@@ -24,6 +24,7 @@
       :data="list"
       border
       fit
+      :header-cell-style="headerStyle"
       highlight-current-row
       style="width: 100%;"
       @sort-change="sortChange"
@@ -65,49 +66,49 @@
       </el-table-column>
 
       <el-table-column label="健康水平" align="center">
-        <el-table-column label="工段人员稳定性:工段成员人员流失率<=1人/月(10)" width="140px" align="center">
+        <el-table-column label="工段人员稳定性:工段成员人员流失率<=1人/月(10)" width="120px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.workshopstability }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="班组长顶岗时间<11h,工段长顶岗时间<1h(10)" width="140px" align="center">
+        <el-table-column label="班组长顶岗时间<11h,工段长顶岗时间<1h(10)" width="120px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.substitute }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="分层审计完成率100%(10)" width="140px" align="center">
+        <el-table-column label="分层审计完成率100%(10)" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.externalaudit }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="班组物料/工具使用台账管理，执行一致性100%(10)" width="140px" align="center">
+        <el-table-column label="班组物料/工具使用台账管理，执行一致性100%(10)" width="120px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.bookkeepingmanagement }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="工段按计划执行完成率100%，培训效果100%(10)" width="140px" align="center">
+        <el-table-column label="工段按计划执行完成率100%，培训效果100%(10)" width="120px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.studyplan }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="班组人员稳定性:班组成员人员流失率>3人/月(-10)" width="140px" align="center">
+        <el-table-column label="班组人员稳定性:班组成员人员流失率>3人/月(-10)" width="120px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.lossworkshopstability }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="班组业务未按要求执行发现1处－5分(-10)" width="140px" align="center">
+        <el-table-column label="班组业务未按要求执行发现1处－5分(-10)" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.workshopbusiness }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="工段健康水平小计" width="140px" align="center">
+        <el-table-column label="工段健康水平小计" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.x6 }}</span>
           </template>
@@ -115,7 +116,7 @@
       </el-table-column>
 
       <el-table-column label="系统完整" align="center">
-        <el-table-column label="工段适用过程识别完整，并有相应过程所有者负责推进(10)" width="140px" align="center">
+        <el-table-column label="工段适用过程识别完整，并有相应过程所有者负责推进(10)" width="120px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.workshopsection }}</span>
           </template>
@@ -127,7 +128,7 @@
           </template>
         </el-table-column>
 
-        <el-table-column label="工段质量生态符合率>95%(20)" width="140px" align="center">
+        <el-table-column label="工段质量生态符合率>95%(20)" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.ecologicalquality }}</span>
           </template>
@@ -139,13 +140,13 @@
           </template>
         </el-table-column>
 
-        <el-table-column label="工段质量生态符合率<80%(-10)" width="140px" align="center">
+        <el-table-column label="工段质量生态符合率<80%(-10)" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.lossecologicalquality }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="工段质系统完整水平小计" width="140px" align="center">
+        <el-table-column label="工段质系统完整水平小计" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.x7 }}</span>
           </template>
@@ -153,19 +154,19 @@
       </el-table-column>
 
       <el-table-column label="低碳精益" align="center">
-        <el-table-column label="班组及流程电子化实现项目数（质量类），1项10分(20)" width="140px" align="center">
+        <el-table-column label="班组及流程电子化实现项目数（质量类），1项10分(20)" width="120px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.flowpath }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="电子化项目在现场执行的一致性(5)" width="140px" align="center">
+        <el-table-column label="电子化项目在现场执行的一致性(5)" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.consistency }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="工段低碳精益水平小计" width="140px" align="center">
+        <el-table-column label="工段低碳精益水平小计" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.x8 }}</span>
           </template>
@@ -173,19 +174,19 @@
       </el-table-column>
 
       <el-table-column label="数智互联" align="center">
-        <el-table-column label="工段开发的数字化应用项目数(质量类),1项10分(20)" width="140px" align="center">
+        <el-table-column label="工段开发的数字化应用项目数(质量类),1项10分(20)" width="120px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.dai }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="现场执行一致性，且能实现风险预警(5)" width="140px" align="center">
+        <el-table-column label="现场执行一致性，且能实现风险预警(5)" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.consistency2 }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="工段数智互联水平小计" width="140px" align="center">
+        <el-table-column label="工段数智互联水平小计" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.x9 }}</span>
           </template>
@@ -193,31 +194,31 @@
       </el-table-column>
 
       <el-table-column label="均衡发展" align="center">
-        <el-table-column label="工段所有班组的健康水平差异化<1%(25)" width="140px" align="center">
+        <el-table-column label="工段所有班组的健康水平差异化<1%(25)" width="120px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.healthquthoritygroup }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="工段所有工位的健康水平差异化<1%(25)" width="140px" align="center">
+        <el-table-column label="工段所有工位的健康水平差异化<1%(25)" width="120px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.healthquthoritystation }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="工段所有班组的健康水平差异化>10%(-10)" width="140px" align="center">
+        <el-table-column label="工段所有班组的健康水平差异化>10%(-10)" width="120px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.losshealthquthoritygroup }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="班组所有工位的健康水平差异化>10%(-10)" width="140px" align="center">
+        <el-table-column label="班组所有工位的健康水平差异化>10%(-10)" width="120px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.losshealthquthoritystation }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="工段均衡发展水平小计" width="140px" align="center">
+        <el-table-column label="工段均衡发展水平小计" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.x10 }}</span>
           </template>
@@ -226,8 +227,8 @@
 
       <el-table-column label="#" width="100px" align="center">
         <template slot-scope="{row,$index}"><!--最开始的写法是 slot-scope="{row,$index}" 这个$index是vue2.0的key，在vue2.0的时候移除了-->
-          <el-button v-permission="['environmentworkshopdelete']" size="mini" type="danger" @click="handleDelete(row,index,row.id)">
-            Delete
+          <el-button v-permission="['environmentworkshopdelete']" size="mini" type="nomal" @click="handleDelete(row,index,row.id)">
+            删除
           </el-button>
         </template>
       </el-table-column>
@@ -254,7 +255,7 @@ export default {
       list: null, // 图表数据
       listQuery: { // 分页相关数据
         page: 1,
-        limit: 20,
+        limit: 7,
         importance: undefined,
         title: undefined,
         type: undefined,
@@ -271,6 +272,12 @@ export default {
     this.getList()
   },
   methods: {
+    headerStyle(){
+      return {
+        'font-size': '10px',
+      padding: '0'
+      }
+    },
     addList(res) { // 上传成功与失败的控制功能 当然注意 控制台network也能看前后端数据传递
       if (res == 0) {
         this.$notify({ // 封装的通知功能
@@ -305,6 +312,13 @@ export default {
           title: 'Sucess',
           message: '导入成功',
           type: 'sucess',
+          duration: 30000
+        })
+      }else if (res == 77) {
+        this.$notify({ // 封装的通知功能
+          title: '新增失败',
+          message: '新增失败，不能导入空白数据',
+          type: 'error',
           duration: 30000
         })
       }

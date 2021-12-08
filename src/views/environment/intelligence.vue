@@ -32,21 +32,25 @@ export default {
     return {
       chart1: {
         listLoading: true,
-        title: '车间数智网联水平', // 会响应式刷新的不只是data里面的数据，还有vuex，vuex里面的数据一旦变化  使用该数据的地方也会刷新
+        title: '', // 会响应式刷新的不只是data里面的数据，还有vuex，vuex里面的数据一旦变化  使用该数据的地方也会刷新
         chartdata: [[], [], [], [], [], [], [], [], [], [], [], []],
         lengenddata: []
       },
       chart2: {
         listLoading: true,
-        title: '工段数智网联水平', // 会响应式刷新的不只是data里面的数据，还有vuex，vuex里面的数据一旦变化  使用该数据的地方也会刷新
+        title: '', // 会响应式刷新的不只是data里面的数据，还有vuex，vuex里面的数据一旦变化  使用该数据的地方也会刷新
         chartdata: [[], [], [], [], [], [], [], [], [], [], [], []],
         lengenddata: []
       }
     }
   },
   mounted() {
-    getthisYearIntelligence(this.year, '区域', this.chart1.chartdata, this.chart1.lengenddata).then(() => this.chart1.listLoading = false) // 前面函数的最后是个then then函数的返回值还是promise，后面可以继续调用then
-    getthisYearIntelligence(this.year, '工段', this.chart2.chartdata, this.chart2.lengenddata).then(() => this.chart2.listLoading = false)
+    getthisYearIntelligence(this.year, '区域', this.chart1.chartdata, this.chart1.lengenddata).then(() => {
+      this.chart1.title=this.year+'车间数智互联水平'
+      this.chart1.listLoading = false}) // 前面函数的最后是个then then函数的返回值还是promise，后面可以继续调用then
+    getthisYearIntelligence(this.year, '工段', this.chart2.chartdata, this.chart2.lengenddata).then(() => {
+      this.chart2.title=this.year+'工段数智互联水平'
+      this.chart2.listLoading = false})
   },
   computed: {
     ...mapGetters(['year'])
@@ -59,8 +63,12 @@ export default {
     year(newval) {
       this.chart1.listLoading = true
       this.chart2.listLoading = true
-      getthisYearIntelligence(newval, '区域', this.chart1.chartdata, this.chart1.lengenddata).then(() => this.chart1.listLoading = false)
-      getthisYearIntelligence(newval, '工段', this.chart2.chartdata, this.chart2.lengenddata).then(() => this.chart2.listLoading = false)
+      getthisYearIntelligence(newval, '区域', this.chart1.chartdata, this.chart1.lengenddata).then(() => {
+        this.chart1.title=newval+'车间数智互联水平'
+        this.chart1.listLoading = false}),
+      getthisYearIntelligence(newval, '工段', this.chart2.chartdata, this.chart2.lengenddata).then(() => {
+        this.chart2.title=newval+'工段数智互联水平'
+        this.chart2.listLoading = false})
     }
   }
 }
@@ -69,7 +77,7 @@ export default {
 
 .continue-chart-container {
   padding: 32px;
-  background-color: rgb(240, 242, 245);
+  background-color:#fff;
   position: relative;
 
   .chart-wrapper {

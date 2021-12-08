@@ -1,11 +1,12 @@
 <template>
-  <div class="block">
-    <span class="demonstration" /> <!---v-model封装的相当于一个输入值的事件和一个绑定属性的值-->
+  <div class="block" >
+    <span class="demonstration"  /><!---v-model封装的相当于一个输入值的事件和一个绑定属性的值-->
     <el-date-picker
       v-model="value"
       type="year"
       placeholder="选择年"
       value-format="yyyy"
+      style="width:100px"
     />
   </div>
 </template>
@@ -34,3 +35,4 @@ export default {
 	 }
 }
 </script>
+

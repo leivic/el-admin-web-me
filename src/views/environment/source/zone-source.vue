@@ -22,6 +22,7 @@
       :key="tableKey"
       v-loading="listLoading"
       :data="list"
+      :header-cell-style="headerStyle"
       border
       fit
       highlight-current-row
@@ -65,37 +66,37 @@
           </template>
         </el-table-column>
 
-        <el-table-column label="车间物料/工具使用台账管理，执行一致性100%(10)" width="140px" align="center">
+        <el-table-column label="车间物料/工具使用台账管理，执行一致性100%(10)" width="120px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.bookkeepingmanagement }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="车间二级培训按计划完成率100%(10)" width="140px" align="center">
+        <el-table-column label="车间二级培训按计划完成率100%(10)" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.studyplan }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="分层审计完成率100%(10)" width="140px" align="center">
+        <el-table-column label="分层审计完成率100%(10)" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.externalaudit }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="班组长顶岗时间>2天,工段长顶岗时间>0.5天(-10)" width="140px" align="center">
+        <el-table-column label="班组长顶岗时间>2天,工段长顶岗时间>0.5天(-10)" width="120px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.substitute }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="车间内人员稳定性：技能类人员流失率>1%／月(-10)" width="140px" align="center">
+        <el-table-column label="车间内人员稳定性：技能类人员流失率>1%／月(-10)" width="120px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.losszonestability }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="区域健康水平小计" width="140px" align="center">
+        <el-table-column label="区域健康水平小计" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.x11 }}</span>
           </template>
@@ -103,7 +104,7 @@
       </el-table-column>
 
       <el-table-column label="系统完整" align="center">
-        <el-table-column label="车间适用过程识别完整，并有相应过程所有者负责推进(10)" width="140px" align="center">
+        <el-table-column label="车间适用过程识别完整，并有相应过程所有者负责推进(10)" width="120px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.zonesection }}</span>
           </template>
@@ -115,13 +116,13 @@
           </template>
         </el-table-column>
 
-        <el-table-column label="程序文件、操作类文件识别、质量记录类表单完整(20)" width="140px" align="center">
+        <el-table-column label="程序文件、操作类文件识别、质量记录类表单完整(20)" width="120px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.programfiles }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="区域质量生态符合率>95%(20)" width="140px" align="center">
+        <el-table-column label="区域质量生态符合率>95%(20)" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.ecologicalquality }}</span>
           </template>
@@ -133,13 +134,13 @@
           </template>
         </el-table-column>
 
-        <el-table-column label="区域质量生态符合率<80%(-10)" width="140px" align="center">
+        <el-table-column label="区域质量生态符合率<80%(-10)" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.lossecologicalquality }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="区域系统完整水平小计" width="140px" align="center">
+        <el-table-column label="区域系统完整水平小计" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.x12 }}</span>
           </template>
@@ -147,19 +148,19 @@
       </el-table-column>
 
       <el-table-column label="数智互联" align="center">
-        <el-table-column label="车间开发的数字化应用项目数(质量类),1项10分(20)" width="140px" align="center">
+        <el-table-column label="车间开发的数字化应用项目数(质量类),1项10分(20)" width="120px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.dai }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="现场执行一致性，且能实现风险预警(5)" width="140px" align="center">
+        <el-table-column label="现场执行一致性，且能实现风险预警(5)" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.consistency2 }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="区域数智互联水平小计" width="140px" align="center">
+        <el-table-column label="区域数智互联水平小计" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.x13 }}</span>
           </template>
@@ -167,31 +168,31 @@
       </el-table-column>
 
       <el-table-column label="均衡发展" align="center">
-        <el-table-column label="区域所有工段的健康水平差异化<1%(25)" width="140px" align="center">
+        <el-table-column label="区域所有工段的健康水平差异化<1%(25)" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.healthquthorityworkshop }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="区域所有班组的健康水平差异化<1%(25)" width="140px" align="center">
+        <el-table-column label="区域所有班组的健康水平差异化<1%(25)" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.healthquthoritygroup }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="区域所有工段的健康水平差异化>10%(-10)" width="140px" align="center">
+        <el-table-column label="区域所有工段的健康水平差异化>10%(-10)" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.losshealthquthorityworkshop }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="工段所有班组的健康水平差异化>10%(-10)" width="140px" align="center">
+        <el-table-column label="工段所有班组的健康水平差异化>10%(-10)" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.losshealthquthoritygroup }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="区域均衡发展水平小计" width="140px" align="center">
+        <el-table-column label="区域均衡发展水平小计" width="100px" align="center">
           <template slot-scope="{row}">
             <span>{{ row.x14 }}</span>
           </template>
@@ -200,8 +201,8 @@
 
       <el-table-column label="#" width="100px" align="center">
         <template slot-scope="{row,$index}"><!--最开始的写法是 slot-scope="{row,$index}" 这个$index是vue2.0的key，在vue2.0的时候移除了-->
-          <el-button v-permission="['environmentzonedelete']" size="mini" type="danger" @click="handleDelete(row,index,row.id)">
-            Delete
+          <el-button v-permission="['environmentzonedelete']" size="mini" type="nomal" @click="handleDelete(row,index,row.id)">
+            删除
           </el-button>
         </template>
       </el-table-column>
@@ -228,7 +229,7 @@ export default {
       list: null, // 图表数据
       listQuery: { // 分页相关数据
         page: 1,
-        limit: 20,
+        limit: 7,
         importance: undefined,
         title: undefined,
         type: undefined,
@@ -245,6 +246,12 @@ export default {
     this.getList()
   },
   methods: {
+    headerStyle(){
+      return {
+        'font-size': '10px',
+      padding: '0'
+      }
+    },
     addList(res) { // 上传成功与失败的控制功能 当然注意 控制台network也能看前后端数据传递
       if (res == 0) {
         this.$notify({ // 封装的通知功能
@@ -279,6 +286,13 @@ export default {
           title: 'Sucess',
           message: '导入成功',
           type: 'sucess',
+          duration: 30000
+        })
+      }else if (res == 77) {
+        this.$notify({ // 封装的通知功能
+          title: '新增失败',
+          message: '新增失败，不能导入空白数据',
+          type: 'error',
           duration: 30000
         })
       }
