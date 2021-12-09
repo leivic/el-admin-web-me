@@ -198,6 +198,13 @@ export default { // 其实也就是个对象罢了
             type: 'error',
             duration: 30000
           }) 
+        }else if(res == 11){
+          that.$notify({ // 封装的通知功能
+            title: '新增失败',
+            message: '新增失败,模板第二行应当只有5列，请检查模板',
+            type: 'error',
+            duration: 30000
+          }) 
         }
       })
     }

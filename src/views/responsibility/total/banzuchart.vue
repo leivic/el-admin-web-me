@@ -16,10 +16,6 @@
       <barChart :chart-data="quexian" :title="chart2.title" />
 
     </el-row>
-    <el-row v-loading="chart3.listloading" style="background:#fff;padding:16px 16px 0;margin-bottom:32px;"><!--第一个图表组件-->
-      <barChart :chart-data="anquan" :title="chart3.title" />
-
-    </el-row>
     <el-row v-loading="chart4.listloading" style="background:#fff;padding:16px 16px 0;margin-bottom:32px;"><!--第一个图表组件-->
       <barChart :chart-data="zhiliang" :title="chart4.title" />
 
@@ -103,6 +99,7 @@ export default {
         }
       }).then(res => {
         console.log(this.zongji)
+        this.chart1.title=date+'班组车间质量生态责任状态'
         this.chart1.listloading = false
       })
 		 },
@@ -123,7 +120,9 @@ export default {
             this.quexian.ydata.push(a.quexianlanjie) // 这样深层赋值是可以的
           }
         }
-      }).then(res => this.chart2.listloading = false)// 直接这样深层赋值是可以的
+      }).then(res => {
+        this.chart2.title=date+'班组缺陷拦截能力'
+        this.chart2.listloading = false})// 直接这样深层赋值是可以的
 		 },
     getanquandata(date) {
       this.anquan.xdata.splice(0, this.anquan.xdata.length)
@@ -142,7 +141,9 @@ export default {
             this.anquan.ydata.push(a.anquanbaozhang) // 这样深层赋值是可以的
           }
         }
-      }).then(res => this.chart3.listloading = false)
+      }).then(res => {
+        
+        this.chart3.listloading = false})
 		 },
 		 getzhiliangdata(date) {
       this.zhiliang.xdata.splice(0, this.zhiliang.xdata.length)
@@ -161,7 +162,9 @@ export default {
             this.zhiliang.ydata.push(a.zhiliangfangyu) // 这样深层赋值是可以的
           }
         }
-      }).then(this.chart4.listloading = false)
+      }).then(res=>{
+        this.chart4.title=date+'班组质量防御能力'
+        this.chart4.listloading = false})
 		 }
 		 },
   watch: {
@@ -182,7 +185,7 @@ export default {
 
 .continue-chart-container {
   padding: 32px;
-  background-color: rgb(240, 242, 245);
+  background-color:#fff;
   position: relative;
 
   .chart-wrapper {

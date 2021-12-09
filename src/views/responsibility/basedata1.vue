@@ -120,8 +120,8 @@
 
       <el-table-column label="#" width="100px" align="center">
         <template slot-scope="{row,$index}"><!--最开始的写法是 slot-scope="{row,$index}" 这个$index是vue2.0的key，在vue2.0的时候移除了-->
-          <el-button size="mini" type="danger" @click="handleDelete(row,index,row.id)">
-            Delete
+          <el-button size="mini" type="" @click="handleDelete(row,index,row.id)">
+            删除
           </el-button>
         </template>
       </el-table-column>
@@ -159,7 +159,7 @@ export default { // 其实也就是个对象罢了
       listloading: true,
       listQuery: { // 分页相关数据
         page: 1,
-        limit: 10,
+        limit: 7,
         importance: undefined,
         title: undefined,
         type: undefined,

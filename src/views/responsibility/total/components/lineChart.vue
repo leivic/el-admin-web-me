@@ -68,15 +68,15 @@ export default {
     },
     setOptions({ expectedData, actualData } = {}) {
       this.chart.setOption({
-        color: ['#00ABA9', '#1BA1E2', '#0050EF', '#6A00FF', '#D80073'],
+        color: ['#409EFF', '#67C23A', '#E6A23C', '#F56C6C', '#909399','#1BA1E2'],
         title: {
           text: this.title,
           textStyle: {
-            fontSize: 18,
+            fontSize: 24,
             fontWeight: 'normal',
-            fontFamily: 'Courier New'
+            fontFamily: 'KaiTi'
           },
-          left: '5%'
+          left: '34%'
         },
 
         tooltip: {
@@ -93,7 +93,7 @@ export default {
         },
         legend: {
           data: ['冲压车间', '车身车间', '涂装车间', '总装车间', '机加车间', '装配车间'],
-          top: 15
+          top: 30
         },
         grid: {
           left: '3%',
@@ -104,47 +104,107 @@ export default {
         xAxis: {
           type: 'category',
           boundaryGap: false,
-          data: this.chartdata.xdata
+          data: this.chartdata.xdata,
+          axisTick: {
+              show: false
+            }
         },
         yAxis: {
-          type: 'value'
+          type: 'value',
+          axisTick: {
+              show: false
+            }
         },
         series: [
           {
             name: '冲压车间',
             type: 'line',
             data: this.chartdata.chongyachejiandata,
-            smooth: true
+            smooth: true,
+             lineStyle:{
+              normal:{
+                width: 5
+              }
+            },
+             label: {
+              show: true,
+              position: 'top'
+            }
           },
           {
             name: '车身车间',
             type: 'line',
             data: this.chartdata.cheshenchejiandata,
-            smooth: true
+            smooth: true,
+             lineStyle:{
+              normal:{
+                width: 5
+              }
+            },
+             label: {
+              show: true,
+              position: 'top'
+            }
           },
           {
             name: '涂装车间',
             type: 'line',
             data: this.chartdata.tuzhuangchejiandata,
-            smooth: true
+            smooth: true,
+             lineStyle:{
+              normal:{
+                width: 5
+              }
+            },
+             label: {
+              show: true,
+              position: 'top'
+            }
           },
           {
             name: '总装车间',
             type: 'line',
             data: this.chartdata.zongzhuangchejiandata,
-            smooth: true
+            smooth: true,
+             lineStyle:{
+              normal:{
+                width: 5
+              }
+            },
+             label: {
+              show: true,
+              position: 'top'
+            }
           },
           {
             name: '机加车间',
             type: 'line',
             data: this.chartdata.jijiachejiandata,
-            smooth: true
+            smooth: true,
+             lineStyle:{
+              normal:{
+                width: 5
+              }
+            },
+             label: {
+              show: true,
+              position: 'top'
+            }
           },
           {
             name: '装配车间',
             type: 'line',
             data: this.chartdata.zhuangpeichejiandata,
-            smooth: true
+            smooth: true,
+             lineStyle:{
+              normal:{
+                width: 5
+              }
+            },
+             label: {
+              show: true,
+              position: 'top'
+            }
           }
         ]
 

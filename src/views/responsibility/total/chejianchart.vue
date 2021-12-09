@@ -15,17 +15,17 @@
     <el-row :gutter="16"><!--两个个图表组件 布局是elment-ui栅栏布局-->
       <el-col v-loading="chart2.listloading" :xs="24" :sm="24" :lg="8">
         <div class="chart-wrapper">
-          <lineChart :chartdata="quexian" :title="chart2.title" />
+          <lineChart1 :chartdata="quexian" :title="chart2.title" />
         </div>
       </el-col>
       <el-col v-loading="chart3.listloading" :xs="24" :sm="24" :lg="8">
         <div class="chart-wrapper">
-          <lineChart :chartdata="anquan" :title="chart3.title" />
+          <lineChart1 :chartdata="anquan" :title="chart3.title" />
         </div>
       </el-col>
       <el-col v-loading="chart4.listloading" :xs="24" :sm="24" :lg="8">
         <div class="chart-wrapper">
-          <lineChart :chartdata="zhiliang" :title="chart4.title" />
+          <lineChart1 :chartdata="zhiliang" :title="chart4.title" />
         </div>
       </el-col>
     </el-row>
@@ -34,13 +34,15 @@
 <script>
 import { getzonglanzongjichartdata, getzonglanquexianchartdata, getzonglananquanchartdata, getzonglanzhiliangchartdata } from '@/api/qe/reponsibility'
 import lineChart from './components/lineChart'
+import lineChart1 from './components/lineChart1'
 import SelectYear from '@/components/SelectYear'
 import { mapGetters } from 'vuex'
 
 export default {
   components: {
     lineChart,
-    SelectYear
+    SelectYear,
+    lineChart1,
   },
   data() {
     return {

@@ -26,12 +26,13 @@ export default {
       type: Boolean,
       default: true
     },
-    xdata: {
-      type: Array,
-      required: true
-    },
+
     chartdata: {
       type: Object,
+      required: true
+    },
+    title: {
+      type: String,
       required: true
     }
   },
@@ -67,15 +68,15 @@ export default {
     },
     setOptions({ expectedData, actualData } = {}) {
       this.chart.setOption({
-        color: ['#409EFF', '#67C23A', '#E6A23C', '#F56C6C', '#909399'],
+        color: ['#409EFF', '#67C23A', '#E6A23C', '#F56C6C', '#909399','#1BA1E2'],
         title: {
-          text: 'Sgmw重庆分公司质量生态持续等级状态',
+          text: this.title,
           textStyle: {
-            fontSize: 24,
+            fontSize: 16,
             fontWeight: 'normal',
             fontFamily: 'KaiTi'
           },
-          left: '28%'
+          left: '5%'
         },
 
         tooltip: {
@@ -91,20 +92,21 @@ export default {
 		    right: '2%'
         },
         legend: {
-          data: ['冲压车间', '车身车间', '涂装车间', '总装车间', '发动机工厂'],
-          top: 30
+          data: ['冲压车间', '车身车间', '涂装车间', '总装车间', '机加车间', '装配车间'],
+          top: 20
         },
         grid: {
           left: '3%',
           right: '4%',
-          bottom: '3%',
+          bottom: '0%',
+          top:'25%',
           containLabel: true
         },
         xAxis: {
           type: 'category',
           boundaryGap: false,
-          data: this.xdata,
-           axisTick: {
+          data: this.chartdata.xdata,
+          axisTick: {
               show: false
             }
         },
@@ -112,83 +114,44 @@ export default {
           type: 'value',
           axisTick: {
               show: false
-            } 
+            }
         },
         series: [
           {
             name: '冲压车间',
             type: 'line',
-            data: this.chartdata.chongyadata,
+            data: this.chartdata.chongyachejiandata,
             smooth: true,
-            lineStyle:{
-              normal:{
-                width: 5
-              }
-            },
-             label: {
-              show: true,
-              position: 'top'
-            }
           },
           {
             name: '车身车间',
             type: 'line',
-            data: this.chartdata.cheshendata,
+            data: this.chartdata.cheshenchejiandata,
             smooth: true,
-            lineStyle:{
-              normal:{
-                width: 5
-              }
-            },
-            label: {
-              show: true,
-              position: 'top'
-            }
           },
           {
             name: '涂装车间',
             type: 'line',
-            data: this.chartdata.tuzhuangdata,
+            data: this.chartdata.tuzhuangchejiandata,
             smooth: true,
-            lineStyle:{
-              normal:{
-                width: 5
-              }
-            },
-            label: {
-              show: true,
-              position: 'top'
-            }
           },
           {
             name: '总装车间',
             type: 'line',
-            data: this.chartdata.zongzhuangdata,
+            data: this.chartdata.zongzhuangchejiandata,
             smooth: true,
-            lineStyle:{
-              normal:{
-                width: 5
-              }
-            },
-            label: {
-              show: true,
-              position: 'top'
-            }
           },
           {
-            name: '发动机工厂',
+            name: '机加车间',
             type: 'line',
-            data: this.chartdata.fadongjidata,
+            data: this.chartdata.jijiachejiandata,
             smooth: true,
-            lineStyle:{
-              normal:{
-                width: 5
-              }
-            },
-            label: {
-              show: true,
-              position: 'top'
-            }
+          },
+          {
+            name: '装配车间',
+            type: 'line',
+            data: this.chartdata.zhuangpeichejiandata,
+            smooth: true,
           }
         ]
 

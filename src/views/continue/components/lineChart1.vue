@@ -67,13 +67,13 @@ export default {
     },
     setOptions({ expectedData, actualData } = {}) {
       this.chart.setOption({
-        color: ['#00ABA9', '#1BA1E2', '#0050EF', '#6A00FF', '#D80073'],
+        color: ['#409EFF', '#67C23A', '#E6A23C', '#F56C6C', '#909399'],
         title: {
           text: 'Sgmw重庆分公司水平分布状态',
           textStyle: {
             fontSize: 16,
             fontWeight: 'normal',
-            fontFamily: 'Courier New'
+            fontFamily: 'KaiTi'
           }
         },
 
@@ -88,7 +88,7 @@ export default {
         },
         legend: {
           data: ['冲压车间', '车身车间', '涂装车间', '总装车间', '发动机工厂'],
-	  top: 20,
+	  top: 16,
 	  itemGap: 5
         },
         grid: {
@@ -100,20 +100,27 @@ export default {
         xAxis: {
           type: 'category',
           boundaryGap: false,
-	  data: this.xdata,
-	   axisLabel: {
+	        data: this.xdata,
+	        axisLabel: {
             interval: 0, // 横轴信息全部显示
-            rotate: -45// -30度角倾斜显示
-		    	}
+            rotate: -60// -30度角倾斜显示
+          },
+          axisTick: {
+              show: false
+            }
         },
         yAxis: {
-          type: 'value'
+          type: 'value',
+          axisTick: {
+              show: false
+            }
         },
         series: [
           {
             name: '冲压车间',
             type: 'line',
-            data: this.chartdata.chongyadata
+            data: this.chartdata.chongyadata,
+            smooth:true
           },
           {
             name: '车身车间',

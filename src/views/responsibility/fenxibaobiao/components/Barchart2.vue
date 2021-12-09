@@ -49,6 +49,12 @@ export default {
       handler(val) {
         this.setOptions(val)
       }
+    },
+     title: {
+      deep: true,
+      handler(val) {
+        this.setOptions(val)
+      }
     }
   },
   mounted() {
@@ -76,7 +82,7 @@ export default {
 		  textStyle: {
             fontSize: 24,
             fontWeight: 'normal',
-            fontFamily: 'Courier New'
+            fontFamily: 'KaiTi'
           },
 		  left: '39%'
         },
@@ -101,17 +107,24 @@ export default {
           left: '3%',
           right: '4%',
           bottom: '3%',
+          top: '20%',
           containLabel: true
         },
         xAxis: [
           {
             type: 'category',
-            data: this.xdata
+            data: this.xdata,
+             axisTick: {
+              show: false
+            }
           }
         ],
         yAxis: [
           {
-            type: 'value'
+            type: 'value',
+             axisTick: {
+              show: false
+            }
           }
         ],
         series: [

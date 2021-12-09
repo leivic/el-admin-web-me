@@ -92,6 +92,7 @@ export default {
         }
       }).then(res => {
         console.log(this.zongji)
+        this.chart1.title=date+'工位质量生态责任状态'
         this.chart1.listloading = false
       })
 		 },
@@ -112,7 +113,9 @@ export default {
             this.quexian.ydata.push(a.quexianlanjie) // 这样深层赋值是可以的
           }
         }
-      }).then(res => this.chart2.listloading = false)// 直接这样深层赋值是可以的
+      }).then(res => {
+        this.chart2.title=date+'工位缺陷拦截能力'
+        this.chart2.listloading = false})// 直接这样深层赋值是可以的
 		 },
 
 		 getzhiliangdata(date) {
@@ -132,7 +135,9 @@ export default {
             this.zhiliang.ydata.push(a.zhiliangfangyu) // 这样深层赋值是可以的
           }
         }
-      }).then(this.chart4.listloading = false)
+      }).then(res=>{
+        this.chart4.title=date+'工位质量防御能力'
+        this.chart4.listloading = false})
 		 }
 		 },
   watch: {
@@ -151,7 +156,7 @@ export default {
 
 .continue-chart-container {
   padding: 32px;
-  background-color: rgb(240, 242, 245);
+  background-color: #fff;
   position: relative;
 
   .chart-wrapper {

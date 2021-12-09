@@ -206,7 +206,7 @@ export default {
       listloading: true,
       listQuery: { // 分页相关数据
         page: 1,
-        limit: 10,
+        limit: 7,
         importance: undefined,
         title: undefined,
         type: undefined,

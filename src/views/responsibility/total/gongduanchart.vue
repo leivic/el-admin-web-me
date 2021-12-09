@@ -103,6 +103,7 @@ export default {
         }
       }).then(res => {
         console.log(this.zongji)
+        this.chart1.title=date+'工段车间质量生态责任状态'
         this.chart1.listloading = false
       })
 		 },
@@ -123,7 +124,9 @@ export default {
             this.quexian.ydata.push(a.quexianlanjie) // 这样深层赋值是可以的
           }
         }
-      }).then(res => this.chart2.listloading = false)// 直接这样深层赋值是可以的
+      }).then(res => {
+        this.chart2.title=date+'工段缺陷拦截能力'
+        this.chart2.listloading = false})// 直接这样深层赋值是可以的
 		 },
     getanquandata(date) {
       this.anquan.xdata.splice(0, this.anquan.xdata.length)
@@ -142,7 +145,9 @@ export default {
             this.anquan.ydata.push(a.anquanbaozhang) // 这样深层赋值是可以的
           }
         }
-      }).then(res => this.chart3.listloading = false)
+      }).then(res => {
+        this.chart3.title=date+'工段安全保障能力'
+        this.chart3.listloading = false})
 		 },
 		 getzhiliangdata(date) {
       this.zhiliang.xdata.splice(0, this.zhiliang.xdata.length)
@@ -161,7 +166,9 @@ export default {
             this.zhiliang.ydata.push(a.zhiliangfangyu) // 这样深层赋值是可以的
           }
         }
-      }).then(this.chart4.listloading = false)
+      }).then(res=>{
+        this.chart4.title=date+'工段质量防御能力'
+        this.chart4.listloading = false})
 		 }
 		 },
   watch: {
@@ -182,7 +189,7 @@ export default {
 
 .continue-chart-container {
   padding: 32px;
-  background-color: rgb(240, 242, 245);
+  background-color: #fff;
   position: relative;
 
   .chart-wrapper {

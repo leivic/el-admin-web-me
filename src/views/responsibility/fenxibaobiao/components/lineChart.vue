@@ -33,6 +33,10 @@ export default {
     chartdata: {
       type: Array,
       required: true
+    },
+    title:{
+      type: String,
+      required: true
     }
   },
   data() {
@@ -42,6 +46,12 @@ export default {
   },
   watch: {
     chartdata: {
+      deep: true,
+      handler(val) {
+        this.setOptions(val)
+      }
+    },
+    title: {
       deep: true,
       handler(val) {
         this.setOptions(val)
@@ -69,11 +79,11 @@ export default {
       this.chart.setOption({
         color: ['#00ABA9'],
         title: {
-          text: '车间质量生态责任状态',
+          text: this.title,
           textStyle: {
             fontSize: 24,
             fontWeight: 'normal',
-            fontFamily: 'Courier New'
+            fontFamily: 'KaiTi'
           },
           left: '36%'
         },
@@ -90,10 +100,6 @@ export default {
 		    },
 		    right: '2%'
         },
-        legend: {
-          data: ['车间'],
-          top: 30
-        },
         grid: {
           left: '3%',
           right: '4%',
@@ -103,17 +109,32 @@ export default {
         xAxis: {
           type: 'category',
           boundaryGap: false,
-          data: this.xdata
+          data: this.xdata,
+          axisTick: {
+              show: false
+            }
         },
         yAxis: {
-          type: 'value'
+          type: 'value',
+          axisTick: {
+              show: false
+            }
         },
         series: [
           {
             name: '车间',
             type: 'line',
             data: this.chartdata,
-            smooth: true
+            smooth: true,
+             lineStyle:{
+              normal:{
+                width: 5
+              }
+            },
+             label: {
+              show: true,
+              position: 'top'
+            }
           }
         ]
 

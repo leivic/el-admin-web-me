@@ -70,19 +70,23 @@ export default {
     },
     setOptions({ expectedData, actualData } = {}) {
       this.chart.setOption({
-        color: ['#00ABA9', '#1BA1E2', '#0050EF', '#6A00FF', '#D80073'],
+        color: ['#409EFF'],
         title: {
           text: this.title,
           textStyle: {
             fontSize: 24,
             fontWeight: 'normal',
-            fontFamily: 'Courier New'
+            fontFamily: 'KaiTi'
           },
           left: '28%'
         },
 
         tooltip: {
           trigger: 'axis'
+        },
+        legend: {
+          data: ['车间'],
+          top: 30
         },
         toolbox: {
 		    feature: {
@@ -93,10 +97,7 @@ export default {
 		    },
 		    right: '2%'
         },
-        legend: {
-          data: ['车间'],
-          top: 30
-        },
+        
         grid: {
           left: '3%',
           right: '4%',
@@ -106,17 +107,32 @@ export default {
         xAxis: {
           type: 'category',
           boundaryGap: false,
-          data: this.xdata
+          data: this.xdata,
+          axisTick: {
+              show: false
+            } 
         },
         yAxis: {
-          type: 'value'
+          type: 'value',
+          axisTick: {
+              show: false
+            } 
         },
         series: [
           {
             name: '车间',
             type: 'line',
             data: this.chartdata,
-            smooth: false
+            smooth: true,
+            lineStyle:{
+              normal:{
+                width: 5
+              }
+            },
+             label: {
+              show: true,
+              position: 'top'
+            }
           }
         ]
 

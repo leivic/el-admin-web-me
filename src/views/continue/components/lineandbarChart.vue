@@ -89,7 +89,7 @@ export default {
 		  textStyle: {
             fontSize: 16,
             fontWeight: 'normal',
-            fontFamily: 'Courier New'
+            fontFamily: 'KaiTi'
           },
           left: 'center'
         },
@@ -129,13 +129,19 @@ export default {
             axisLabel: {
               interval: 0, // 横轴信息全部显示
               rotate: -90// -30度角倾斜显示
-		      }
+          },
+           axisTick: {
+              show: false
+            }
           }
 
         ],
         yAxis: [
           {
-            type: 'value'
+            type: 'value',
+             axisTick: {
+              show: false
+            }
           }
         ],
         series: [
@@ -155,7 +161,7 @@ export default {
           },
           {
             stack: '折线',
-            color: 'black',
+            color: '#909399',
             type: 'line',
             data: this.ydata1.tiyanzhiliang,
             smooth: false
@@ -175,7 +181,7 @@ export default {
           },
           {
             stack: '折线',
-            color: 'black',
+            color: '#909399',
             type: 'line',
             data: this.ydata1.shiwuzhiliang,
             smooth: false

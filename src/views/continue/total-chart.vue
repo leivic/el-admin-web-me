@@ -10,8 +10,8 @@
     </el-row>
     <el-row v-loading="chart1.listLoading" style="background:#fff;padding:16px 16px 0;margin-bottom:32px;"><!--第一个图表组件-->
       <div class="chart1label">
-        <div style="background: #00ABA9">月度最佳:{{ best }}</div>
-        <div style="background: #D80073">月度最差:{{ lowest }}</div>
+        <div style="background: #409EFF">月度最佳:{{ best }}</div>
+        <div style="background: #F56C6C">月度最差:{{ lowest }}</div>
       </div>
       <lineChart :xdata="chart1.xdata" :chartdata="chart1.chartdata" />
     </el-row>

@@ -66,7 +66,11 @@ export default {
         title: {
           text: 'Sgmw重庆分公司',
           subtext: '质量资源分布消耗',
-          left: 'right'
+          left: 'right',
+           textStyle: {
+            fontWeight: 'normal',
+            fontFamily: 'KaiTi'
+          }
         },
         tooltip: {
           trigger: 'item'
@@ -87,7 +91,8 @@ export default {
                 shadowOffsetX: 0,
                 shadowColor: 'rgba(0, 0, 0, 0.5)'
               }
-            }
+            },
+            
 
           }
         ]

@@ -4,16 +4,12 @@
       <el-col :xs="12" :sm="12" :lg="6">
         <div class="tool">
           <SelectYear />
-        </div>
-      </el-col>
-      <el-col :xs="12" :sm="12" :lg="6">
-        <div class="tool">
           <SelectDomain />
         </div>
       </el-col>
     </el-row>
     <el-row v-loading="listloading1" style="background:#fff;padding:16px 16px 0;margin-bottom:32px;"><!--第一个图表组件-->
-      <lineChart :chartdata="zongji.zongji" :xdata="zongji.xdata" />
+      <lineChart :chartdata="zongji.zongji" :xdata="zongji.xdata" :title="title0" />
 
     </el-row>
     <el-row v-loading="listloading2" style="background:#fff;padding:16px 16px 0;margin-bottom:32px;"><!--第一个图表组件-->
@@ -51,6 +47,7 @@ export default {
       listloading2: true,
       listloading3: true,
       listloading4: true,
+      title0:'车间质量生态责任状态',
       title1: '车间缺陷拦截能力',
       title2: '车间安全保障能力',
       title3: '车间质量防御能力',
@@ -83,65 +80,81 @@ export default {
 	  },
   watch: {
     year(newval) {
-      this.getzongjichartdata().then(res => {
+      this.getzongjichartdata(newval,this.zone).then(res => {
+        this.title0=newval+this.zone+'质量生态责任状态'
         this.listloading1 = false
+        
       })
-      this.getquexiandata().then(res => {
+      this.getquexiandata(newval,this.zone).then(res => {
+        this.title1=newval+this.zone+'缺陷拦截能力'
         this.listloading2 = false
+      
       })
-      this.getanquanchartdata().then(res => {
+      this.getanquanchartdata(newval,this.zone).then(res => {
+        this.title2=newval+this.zone+'安全保障能力'
         this.listloading3 = false
+      
       })
-      this.getzhiliangchartdata().then(res => {
+      this.getzhiliangchartdata(newval,this.zone).then(res => {
+        this.title3=newval+this.zone+'质量防御能力'
         this.listloading4 = false
+      
       })
     },
     zone(newval) {
-      this.getzongjichartdata().then(res => {
+      this.getzongjichartdata(this.year,newval).then(res => {
+        this.title0=this.year+newval+'质量生态责任状态'
         this.listloading1 = false
         console.log('总计对象为', this.zongji)
       })
-      this.getquexiandata().then(res => {
+      this.getquexiandata(this.year,newval).then(res => {
+        this.title1=this.year+newval+'缺陷拦截能力'
         this.listloading2 = false
         console.log('缺陷对象为', this.quexian)
       })
-      this.getanquanchartdata().then(res => {
+      this.getanquanchartdata(this.year,newval).then(res => {
+        this.title2=this.year+newval+'安全保障能力'
         this.listloading3 = false
         console.log('安全对象为', this.anquanbaozhang)
       })
-      this.getzhiliangchartdata().then(res => {
+      this.getzhiliangchartdata(this.year,newval).then(res => {
+        this.title3=this.year+newval+'质量防御能力'
         this.listloading4 = false
         console.log('质量对象为', this.zhiliangfangyu)
       })
     }
   },
   created() {
-    this.getzongjichartdata().then(res => {
+    this.getzongjichartdata(this.year,this.zone).then(res => {
+      this.title0=this.year+this.zone+'质量生态责任状态'
       this.listloading1 = false
       console.log('总计对象为', this.zongji)
     })
-    this.getquexiandata().then(res => {
+    this.getquexiandata(this.year,this.zone).then(res => {
+      this.title1=this.year+this.zone+'缺陷拦截能力'
       this.listloading2 = false
       console.log('缺陷对象为', this.quexian)
     })
-    this.getanquanchartdata().then(res => {
+    this.getanquanchartdata(this.year,this.zone).then(res => {
+      this.title2=this.year+this.zone+'安全保障能力'
       this.listloading3 = false
       console.log('安全对象为', this.anquanbaozhang)
     })
-    this.getzhiliangchartdata().then(res => {
+    this.getzhiliangchartdata(this.year,this.zone).then(res => {
+      this.title3=this.year+this.zone+'质量防御能力'
       this.listloading4 = false
       console.log('质量对象为', this.zhiliangfangyu)
     })
   },
   methods: {
-    getzongjichartdata() {
+    getzongjichartdata(date,zone) {
 			 // 要return 才是将里面这个promise作为这个函数的返回值 然而函数里面的代码也执行了的
       this.listloading1 = true
-      return getzonglanzongjichartdata(this.year).then(
+      return getzonglanzongjichartdata(date).then(
         res => {
           console.log(res)
           this.zongji.xdata = res.xdata
-          switch (this.zone) {
+          switch (zone) {
             case '冲压车间':
               this.zongji.zongji = res.chongyachejiandata
               break
@@ -164,12 +177,12 @@ export default {
         }
       )
     },
-    getquexiandata() {
+    getquexiandata(date,zone) {
       this.listloading2 = true
-      return Promise.all([getfenxippsrchartdata(this.year), getfenxippsrchongfuchartdata(this.year), getfenxishenchanyizhichartdata(this.year), getfenxifaguixiangchartdata(this.year)]).then(
+      return Promise.all([getfenxippsrchartdata(date), getfenxippsrchongfuchartdata(date), getfenxishenchanyizhichartdata(date), getfenxifaguixiangchartdata(date)]).then(
         res => {
           console.log('缺陷第一层数据', res)
-          switch (this.zone) {
+          switch (zone) {
             case '冲压车间':
               this.quexian.ppsr = res[0].chongyachejiandata
               this.quexian.ppsrchongfu = res[1].chongyachejiandata
@@ -209,11 +222,11 @@ export default {
           }
         })
     },
-    getanquanchartdata() {
+    getanquanchartdata(date,zone) {
       this.listloading3 = true
-      return Promise.all([getfenxishouhoufankuichartdata(this.year), getfenxishexiancheliangweiguichartdata(this.year), getfenxiwaibuchouchachartdata(this.year)]).then(
+      return Promise.all([getfenxishouhoufankuichartdata(date), getfenxishexiancheliangweiguichartdata(date), getfenxiwaibuchouchachartdata(date)]).then(
         res => {
-          switch (this.zone) {
+          switch (zone) {
             case '冲压车间':
               this.anquanbaozhang.shouhoufankui = res[0].chongyachejiandata
               this.anquanbaozhang.shexianweigui = res[1].chongyachejiandata
@@ -248,11 +261,11 @@ export default {
         }
       )
     },
-    getzhiliangchartdata() {
+    getzhiliangchartdata(date,zone) {
       this.listloading4 = true
-      return Promise.all([getfenxigongweihujianchartdata(this.year), getfenxigechejianshanggongxuchartdata(this.year), getfenxishouhouwentichartdata(this.year), getfenxiquyufashengchartdata(this.year), getfenxizhiliangwentijiluchartdata(this.year)]).then(
+      return Promise.all([getfenxigongweihujianchartdata(date), getfenxigechejianshanggongxuchartdata(date), getfenxishouhouwentichartdata(date), getfenxiquyufashengchartdata(date), getfenxizhiliangwentijiluchartdata(date)]).then(
         res => {
-          switch (this.zone) {
+          switch (zone) {
             case '冲压车间':
               this.zhiliangfangyu.gongweihujian = res[0].chongyachejiandata
               this.zhiliangfangyu.gechejianshanggongxu = res[1].chongyachejiandata
@@ -307,7 +320,7 @@ export default {
 
 .continue-chart-container {
   padding: 32px;
-  background-color: rgb(240, 242, 245);
+  background-color: #fff;
   position: relative;
 
   .chart-wrapper {
