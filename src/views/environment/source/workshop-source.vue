@@ -4,7 +4,7 @@
       <!--后端导入班组服务--><!--文件上传成功钩子 绑定属性仍然可以绑定方法 这里不能getList() 会直接调用的，毕竟不是v-on-->
       <el-upload
         v-permission="['environmentworkshopimport']"
-        action="http://localhost:8000/qe/addEnvironmentBaseWorkShop"
+        action="http://10.64.19.75:8000/qe/addEnvironmentBaseWorkShop"
         accept=".xlsx"
         multiple
         :limit="3"
