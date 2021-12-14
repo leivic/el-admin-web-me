@@ -124,7 +124,7 @@ export default {
       	for (let i = 1; i < res.cheshendata.length + 1; i++) {
           this.chart1.xdata.push(i + '月') // 由res的第一个数组判断有几个月
         }
-        
+
         this.chart1.chartdata = res // 这样写应该是引用复制 浅拷贝 等于地址 而不是直接拷贝值的等于
         this.chart1.listLoading = false
         console.log('总数据', res)

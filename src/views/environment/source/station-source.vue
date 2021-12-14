@@ -19,9 +19,9 @@
     </div>
 
     <el-table
-      size:mini
       :key="tableKey"
       v-loading="listLoading"
+      size:mini
       :data="list"
       :header-cell-style="headerStyle"
       border
@@ -161,7 +161,7 @@ export default {
       list: null, // 图表数据
       listQuery: { // 分页相关数据
         page: 1,
-        limit:20,
+        limit: 20,
         importance: undefined,
         title: undefined,
         type: undefined,
@@ -177,18 +177,19 @@ export default {
     this.getList()
   },
   methods: {
-    headerStyle(){
+    headerStyle() {
       return {
         'font-size': '10px',
-      padding: '0'
+        padding: '0'
       }
     },
-    cellStyle () {
+    cellStyle() {
       return {
         'font-size': '14px',
         height: '40px',
         padding: '0'
-      }},
+      }
+    },
     addList(res) { // 上传成功与失败的控制功能 当然注意 控制台network也能看前后端数据传递
       if (res == 0) {
         this.$notify({ // 封装的通知功能
@@ -225,7 +226,7 @@ export default {
           type: 'sucess',
           duration: 30000
         })
-      }else if (res == 77) {
+      } else if (res == 77) {
         this.$notify({ // 封装的通知功能
           title: '新增失败',
           message: '新增失败，不能导入空白数据',

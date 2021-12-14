@@ -272,10 +272,10 @@ export default {
     this.getList()
   },
   methods: {
-    headerStyle(){
+    headerStyle() {
       return {
         'font-size': '10px',
-      padding: '0'
+        padding: '0'
       }
     },
     addList(res) { // 上传成功与失败的控制功能 当然注意 控制台network也能看前后端数据传递
@@ -314,7 +314,7 @@ export default {
           type: 'sucess',
           duration: 30000
         })
-      }else if (res == 77) {
+      } else if (res == 77) {
         this.$notify({ // 封装的通知功能
           title: '新增失败',
           message: '新增失败，不能导入空白数据',
