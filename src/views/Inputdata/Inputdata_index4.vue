@@ -48,7 +48,7 @@
           <el-input v-else v-model="show6[$index]" type="text" placeholder="请输入" />
         </template>
       </el-table-column>
-      
+
       <el-table-column header-align="center" align="center" width="150" label="操作">
         <template slot-scope="{row,$index}">
           <el-button v-if="!showEdit[$index]" type="primary" @click="showUpdate($index,row)">

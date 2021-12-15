@@ -57,7 +57,7 @@
           <el-input v-model="form.x11" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x11" style="width: 80px" />
         </el-form-item>
         <el-form-item label="x12:现状" prop="title">
-          <el-input v-model="form.x12" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x12" style="width: 80px" disabled />
+          <el-input v-model="form.x12" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="x12" style="width: 80px" />
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -296,7 +296,7 @@ export default {
         }
       })
     },
-    'form.x6': { // 深度监听 监听嵌套数据
+    /*'form.x6': { // 深度监听 监听嵌套数据
       handler(newVal, oldVal) {
         console.log(newVal)
         this.form.x12 = (((this.form.x8 + this.form.x9) / 200) + newVal / 100) * 20
@@ -319,7 +319,7 @@ export default {
         console.log('x12的值是 ：' + this.form.x12)
       },
       deep: true
-    }
+    }*/
 
   }
 }

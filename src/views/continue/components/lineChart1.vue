@@ -69,12 +69,14 @@ export default {
       this.chart.setOption({
         color: ['#409EFF', '#67C23A', '#E6A23C', '#F56C6C', '#909399'],
         title: {
-          text: 'Sgmw重庆分公司水平分布状态',
+          text: 'Sgmw重庆分公司质量水平分布',
           textStyle: {
             fontSize: 16,
             fontWeight: 'normal',
-            fontFamily: 'KaiTi'
-          }
+            fontFamily: 'KaiTi',
+            
+          },
+          left:26
         },
 
         tooltip: {
