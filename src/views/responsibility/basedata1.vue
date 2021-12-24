@@ -10,13 +10,13 @@
         <el-form-item label="文件种类" prop="filetype" required>
           <el-select v-model="form.filetype" placeholder="文件种类">
             <el-option label="PPSR系统管理问题" value="PPSR系统管理问题" />
-            <el-option label="生产一致性问题管理" value="生产一致性问题管理" />
+            <el-option label="生产一致性问题" value="生产一致性问题" />
             <el-option label="法规项问题管理" value="法规项问题管理" />
             <el-option label="售后反馈质量问题" value="售后反馈质量问题" />
             <el-option label="涉嫌违规车辆问题管理" value="涉嫌违规车辆问题管理" />
             <el-option label="外部抽查问题管理" value="外部抽查问题管理" />
             <el-option label="工位互检发生问题" value="工位互检发生问题" />
-            <el-option label="各车间发现的上工序问题" value="各车间发现的上工序问题" />
+            <el-option label="各车间发现的上工序问题" value="各车间工序" />
           </el-select>
         </el-form-item>
         <el-form-item label="日期" required>

@@ -52,7 +52,7 @@ export default {
       deep: true,
       handler(val) {
         this.setOptions(val)
-      } 
+      }
     }
   },
   mounted() {
@@ -100,12 +100,12 @@ export default {
         legend: {
           data: this.lengenddata,
           top: 30,
-          textStyle:{
-            fontSize:8
+          textStyle: {
+            fontSize: 8
           },
-          itemWidth:14,
-          itemHeight:10,
-          itemGap:4
+          itemWidth: 14,
+          itemHeight: 10,
+          itemGap: 4
         },
         grid: {
           left: '3%',
@@ -117,7 +117,7 @@ export default {
           {
             type: 'category',
             data: ['冲压车间', '车身车间', '涂装车间', '总装车间', '机加车间', '装配车间'],
-             axisTick: {
+            axisTick: {
               show: false
             }
           }
@@ -139,7 +139,7 @@ export default {
             emphasis: {
               focus: 'series'
             },
-            data: [this.chartData[0].chongyachejian,this.chartData[0].cheshenchejian,this.chartData[0].tuzhuangchejian,this.chartData[0].zongzhuangchejian,this.chartData[0].jijiachejian,this.chartData[0].zhuangpeichejian],      // ydata1是一个二维数组 ydata1[0]也是一个数组,
+            data: [this.chartData[0].chongyachejian, this.chartData[0].cheshenchejian, this.chartData[0].tuzhuangchejian, this.chartData[0].zongzhuangchejian, this.chartData[0].jijiachejian, this.chartData[0].zhuangpeichejian], // ydata1是一个二维数组 ydata1[0]也是一个数组,
             label: {
               show: true,
               position: 'inside'
@@ -153,7 +153,7 @@ export default {
             emphasis: {
               focus: 'series'
             },
-            data: [this.chartData[1].chongyachejian,this.chartData[1].cheshenchejian,this.chartData[1].tuzhuangchejian,this.chartData[1].zongzhuangchejian,this.chartData[1].jijiachejian,this.chartData[1].zhuangpeichejian],
+            data: [this.chartData[1].chongyachejian, this.chartData[1].cheshenchejian, this.chartData[1].tuzhuangchejian, this.chartData[1].zongzhuangchejian, this.chartData[1].jijiachejian, this.chartData[1].zhuangpeichejian],
             label: {
               show: true,
               position: 'inside'
@@ -166,7 +166,7 @@ export default {
             emphasis: {
               focus: 'series'
             },
-            data: [this.chartData[2].chongyachejian,this.chartData[2].cheshenchejian,this.chartData[2].tuzhuangchejian,this.chartData[2].zongzhuangchejian,this.chartData[2].jijiachejian,this.chartData[2].zhuangpeichejian],
+            data: [this.chartData[2].chongyachejian, this.chartData[2].cheshenchejian, this.chartData[2].tuzhuangchejian, this.chartData[2].zongzhuangchejian, this.chartData[2].jijiachejian, this.chartData[2].zhuangpeichejian],
             label: {
               show: true,
               position: 'inside'
@@ -179,7 +179,7 @@ export default {
             emphasis: {
               focus: 'series'
             },
-            data: [this.chartData[3].chongyachejian,this.chartData[3].cheshenchejian,this.chartData[3].tuzhuangchejian,this.chartData[3].zongzhuangchejian,this.chartData[3].jijiachejian,this.chartData[3].zhuangpeichejian],
+            data: [this.chartData[3].chongyachejian, this.chartData[3].cheshenchejian, this.chartData[3].tuzhuangchejian, this.chartData[3].zongzhuangchejian, this.chartData[3].jijiachejian, this.chartData[3].zhuangpeichejian],
             label: {
               show: true,
               position: 'inside'
@@ -192,7 +192,7 @@ export default {
             emphasis: {
               focus: 'series'
             },
-            data: [this.chartData[4].chongyachejian,this.chartData[4].cheshenchejian,this.chartData[4].tuzhuangchejian,this.chartData[4].zongzhuangchejian,this.chartData[4].jijiachejian,this.chartData[4].zhuangpeichejian],
+            data: [this.chartData[4].chongyachejian, this.chartData[4].cheshenchejian, this.chartData[4].tuzhuangchejian, this.chartData[4].zongzhuangchejian, this.chartData[4].jijiachejian, this.chartData[4].zhuangpeichejian],
             label: {
               show: true,
               position: 'inside'
@@ -205,7 +205,7 @@ export default {
             emphasis: {
               focus: 'series'
             },
-            data: [this.chartData[5].chongyachejian,this.chartData[5].cheshenchejian,this.chartData[5].tuzhuangchejian,this.chartData[5].zongzhuangchejian,this.chartData[5].jijiachejian,this.chartData[5].zhuangpeichejian],
+            data: [this.chartData[5].chongyachejian, this.chartData[5].cheshenchejian, this.chartData[5].tuzhuangchejian, this.chartData[5].zongzhuangchejian, this.chartData[5].jijiachejian, this.chartData[5].zhuangpeichejian],
             label: {
               show: true,
               position: 'inside'
@@ -218,7 +218,7 @@ export default {
             emphasis: {
               focus: 'series'
             },
-            data: [this.chartData[6].chongyachejian,this.chartData[6].cheshenchejian,this.chartData[6].tuzhuangchejian,this.chartData[6].zongzhuangchejian,this.chartData[6].jijiachejian,this.chartData[6].zhuangpeichejian],
+            data: [this.chartData[6].chongyachejian, this.chartData[6].cheshenchejian, this.chartData[6].tuzhuangchejian, this.chartData[6].zongzhuangchejian, this.chartData[6].jijiachejian, this.chartData[6].zhuangpeichejian],
             label: {
               show: true,
               position: 'inside'
@@ -231,7 +231,7 @@ export default {
             emphasis: {
               focus: 'series'
             },
-            data: [this.chartData[7].chongyachejian,this.chartData[7].cheshenchejian,this.chartData[7].tuzhuangchejian,this.chartData[7].zongzhuangchejian,this.chartData[7].jijiachejian,this.chartData[7].zhuangpeichejian],
+            data: [this.chartData[7].chongyachejian, this.chartData[7].cheshenchejian, this.chartData[7].tuzhuangchejian, this.chartData[7].zongzhuangchejian, this.chartData[7].jijiachejian, this.chartData[7].zhuangpeichejian],
             label: {
               show: true,
               position: 'inside'
@@ -244,7 +244,7 @@ export default {
             emphasis: {
               focus: 'series'
             },
-            data: [this.chartData[8].chongyachejian,this.chartData[8].cheshenchejian,this.chartData[8].tuzhuangchejian,this.chartData[8].zongzhuangchejian,this.chartData[8].jijiachejian,this.chartData[8].zhuangpeichejian],
+            data: [this.chartData[8].chongyachejian, this.chartData[8].cheshenchejian, this.chartData[8].tuzhuangchejian, this.chartData[8].zongzhuangchejian, this.chartData[8].jijiachejian, this.chartData[8].zhuangpeichejian],
             label: {
               show: true,
               position: 'inside'
@@ -257,7 +257,7 @@ export default {
             emphasis: {
               focus: 'series'
             },
-            data: [this.chartData[9].chongyachejian,this.chartData[9].cheshenchejian,this.chartData[9].tuzhuangchejian,this.chartData[9].zongzhuangchejian,this.chartData[9].jijiachejian,this.chartData[9].zhuangpeichejian],
+            data: [this.chartData[9].chongyachejian, this.chartData[9].cheshenchejian, this.chartData[9].tuzhuangchejian, this.chartData[9].zongzhuangchejian, this.chartData[9].jijiachejian, this.chartData[9].zhuangpeichejian],
             label: {
               show: true,
               position: 'inside'
@@ -270,7 +270,7 @@ export default {
             emphasis: {
               focus: 'series'
             },
-            data: [this.chartData[10].chongyachejian,this.chartData[10].cheshenchejian,this.chartData[10].tuzhuangchejian,this.chartData[10].zongzhuangchejian,this.chartData[10].jijiachejian,this.chartData[10].zhuangpeichejian],
+            data: [this.chartData[10].chongyachejian, this.chartData[10].cheshenchejian, this.chartData[10].tuzhuangchejian, this.chartData[10].zongzhuangchejian, this.chartData[10].jijiachejian, this.chartData[10].zhuangpeichejian],
             label: {
               show: true,
               position: 'inside'
@@ -283,7 +283,7 @@ export default {
             emphasis: {
               focus: 'series'
             },
-            data: [this.chartData[11].chongyachejian,this.chartData[11].cheshenchejian,this.chartData[11].tuzhuangchejian,this.chartData[11].zongzhuangchejian,this.chartData[11].jijiachejian,this.chartData[11].zhuangpeichejian],
+            data: [this.chartData[11].chongyachejian, this.chartData[11].cheshenchejian, this.chartData[11].tuzhuangchejian, this.chartData[11].zongzhuangchejian, this.chartData[11].jijiachejian, this.chartData[11].zhuangpeichejian],
             label: {
               show: true,
               position: 'inside'

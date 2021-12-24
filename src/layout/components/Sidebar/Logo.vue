@@ -25,7 +25,7 @@ export default {
   },
   data() {
     return {
-      title: 'Sgmw质量生态文明',
+      title: 'Sgmw重庆分公司',
       logo: Logo
     }
   }

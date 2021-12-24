@@ -73,10 +73,10 @@ export default {
           textStyle: {
             fontSize: 16,
             fontWeight: 'normal',
-            fontFamily: 'KaiTi',
-            
+            fontFamily: 'KaiTi'
+
           },
-          left:26
+          left: 26
         },
 
         tooltip: {
@@ -108,21 +108,21 @@ export default {
             rotate: -60// -30度角倾斜显示
           },
           axisTick: {
-              show: false
-            }
+            show: false
+          }
         },
         yAxis: {
           type: 'value',
           axisTick: {
-              show: false
-            }
+            show: false
+          }
         },
         series: [
           {
             name: '冲压车间',
             type: 'line',
             data: this.chartdata.chongyadata,
-            smooth:true
+            smooth: true
           },
           {
             name: '车身车间',

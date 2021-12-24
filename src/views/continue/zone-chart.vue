@@ -29,7 +29,7 @@
       </el-col>
       <el-col v-loading="chart3.listLoading" :xs="24" :sm="24" :lg="8">
         <div class="chart-wrapper">
-          <lineandbarChart2 :xdata="chart3.xdata" :ydata1="chart3.ydata1" :title="chart3.title" />
+          <lineandbarChart3 :xdata="chart3.xdata" :ydata1="chart3.ydata1" :title="chart3.title" />
         </div>
       </el-col>
       <el-col v-loading="chart4.listLoading" :xs="24" :sm="24" :lg="8">
@@ -45,7 +45,7 @@
 import lineChart2 from './components/lineChart2'
 import barChart2 from './components/barChart2'
 import lineandbarChart from './components/lineandbarChart'
-import lineandbarChart2 from './components/lineandbarChart2'
+import lineandbarChart3 from './components/lineandbarChart3'
 import piechart from './components/piechart'
 import SelectMonth from '@/components/SelectMonth'
 import SelectYear from '@/components/SelectYear'
@@ -58,7 +58,7 @@ export default {
 	  lineChart2,
     	 SelectYear,
 	    lineandbarChart,
-	   lineandbarChart2,
+	   lineandbarChart3,
 	    piechart,
 	    barChart2
   },

@@ -104,15 +104,15 @@ export default {
           type: 'category',
           boundaryGap: false,
           data: this.xdata,
-           axisTick: {
-              show: false
-            }
+          axisTick: {
+            show: false
+          }
         },
         yAxis: {
           type: 'value',
           axisTick: {
-              show: false
-            } 
+            show: false
+          }
         },
         series: [
           {
@@ -120,12 +120,12 @@ export default {
             type: 'line',
             data: this.chartdata.chongyadata,
             smooth: true,
-            lineStyle:{
-              normal:{
+            lineStyle: {
+              normal: {
                 width: 5
               }
             },
-             label: {
+            label: {
               show: true,
               position: 'top'
             }
@@ -135,8 +135,8 @@ export default {
             type: 'line',
             data: this.chartdata.cheshendata,
             smooth: true,
-            lineStyle:{
-              normal:{
+            lineStyle: {
+              normal: {
                 width: 5
               }
             },
@@ -150,8 +150,8 @@ export default {
             type: 'line',
             data: this.chartdata.tuzhuangdata,
             smooth: true,
-            lineStyle:{
-              normal:{
+            lineStyle: {
+              normal: {
                 width: 5
               }
             },
@@ -165,8 +165,8 @@ export default {
             type: 'line',
             data: this.chartdata.zongzhuangdata,
             smooth: true,
-            lineStyle:{
-              normal:{
+            lineStyle: {
+              normal: {
                 width: 5
               }
             },
@@ -180,8 +180,8 @@ export default {
             type: 'line',
             data: this.chartdata.fadongjidata,
             smooth: true,
-            lineStyle:{
-              normal:{
+            lineStyle: {
+              normal: {
                 width: 5
               }
             },

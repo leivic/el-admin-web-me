@@ -295,8 +295,8 @@ export default {
           this.getdatasourceList(this.value, this.month)
         }
       })
-    },
-    /*'form.x6': { // 深度监听 监听嵌套数据
+    }
+    /* 'form.x6': { // 深度监听 监听嵌套数据
       handler(newVal, oldVal) {
         console.log(newVal)
         this.form.x12 = (((this.form.x8 + this.form.x9) / 200) + newVal / 100) * 20

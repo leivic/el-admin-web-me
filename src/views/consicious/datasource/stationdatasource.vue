@@ -1,7 +1,7 @@
 <template>
   <div>
     <!--toolbox-->
-    <el-button size="large" type="nomal" @click="addfile">新增</el-button><!--enadd是监听子组件模板中的新增按钮，方法是本文件中定义的方法-->
+    <el-button v-permission="['consiciousstationadd']" size="large" type="nomal" @click="addfile">新增</el-button><!--enadd是监听子组件模板中的新增按钮，方法是本文件中定义的方法-->
     <!--工具栏-->
 
     <!--表单渲染--><!--el-dialog elment－ui中的弹出框--><!--:visible 是是否显示 .sync是修饰符 指是否显示和数据状态同步改变 crud.status.cu此处是对mixin混入的使用 可没有html表达式中绑定import进来的表达式的先例  -->
@@ -94,7 +94,7 @@
 
       <el-table-column label="操作" width="100px" align="center">
         <template slot-scope="{row,$index}"><!--最开始的写法是 slot-scope="{row,$index}" 这个$index是vue2.0的key，在vue2.0的时候移除了-->
-          <el-button size="mini" type="nolmal" @click="handleDelete(row,index,row.id)">
+          <el-button v-permission="['consiciousstationdelete']" size="mini" type="nolmal" @click="handleDelete(row,index,row.id)">
             删除
           </el-button>
         </template>

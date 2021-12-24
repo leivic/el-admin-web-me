@@ -179,3 +179,13 @@ export function findAllBydatetypeAndZone(page, size, sort, date, type, zone) {
 
   })
 }
+
+export function deletefile(id) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/continue/deletefile',
+    method: 'post',
+    params: {	id: id
+    }
+
+  })
+}

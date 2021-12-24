@@ -4,17 +4,12 @@
     <el-form :inline="true">
       <el-form-item label="文件种类" prop="filetype">
         <el-select v-model="querybox.type" placeholder="文件种类" style="float:left">
-          <el-option label="废品损失" value="废品损失" />
-          <el-option label="物料损耗" value="物料损耗" />
-          <el-option label="质量停线" value="质量停线" />
-          <el-option label="物料管理" value="物料管理" />
-          <el-option label="问题拦截" value="问题拦截" />
-          <el-option label="质量资源损失(结果导向，指标完成)" value="质量资源损失(结果导向，指标完成)" />
-          <el-option label="质量资源损失(过程一致性)" value="质量资源损失(过程一致性)" />
-          <el-option label="体验质量" value="体验质量" />
-          <el-option label="实物质量" value="实物质量" />
-          <el-option label="质量策划" value="质量策划" />
-          <el-option label="方案执行" value="方案执行" />
+          <el-option label="返修问题统计表" value="返修问题统计表" />
+          <el-option label="质量停线时间统计表" value="质量停线时间统计表" />
+          <el-option label="过程问题统计表" value="过程问题统计表" />
+          <el-option label="满意度得分统计表" value="满意度得分统计表" />
+          <el-option label="实物质量得分统计表" value="实物质量得分统计表" />
+          <el-option label="质量潜力提升跟踪表" value="质量潜力提升跟踪表" />
         </el-select>
       </el-form-item>
       <el-form-item label="日期" style="float:left">
@@ -41,7 +36,8 @@
     </el-form>
 
     <!--toolbox-->
-    <crudleivic addisview="true" @enadd="addfile" />
+    <!-- <crudleivic addisview="true" @enadd="addfile" /> -->
+    <el-button @click="addfile" type="primary" v-permission="['continuedataaddfile']">新增</el-button>
     <!--工具栏-->
 
     <!--表单渲染--><!--el-dialog elment－ui中的弹出框--><!--:visible 是是否显示 .sync是修饰符 指是否显示和数据状态同步改变 crud.status.cu此处是对mixin混入的使用 可没有html表达式中绑定import进来的表达式的先例  -->
@@ -49,17 +45,12 @@
       <el-form ref="form" :inline="true" :model="form" size="small" label-width="80px">
         <el-form-item label="文件种类" prop="filetype" required>
           <el-select v-model="form.filetype" placeholder="文件种类">
-            <el-option label="废品损失" value="废品损失" />
-            <el-option label="物料损耗" value="物料损耗" />
-            <el-option label="质量停线" value="质量停线" />
-            <el-option label="物料管理" value="物料管理" />
-            <el-option label="问题拦截" value="问题拦截" />
-            <el-option label="质量资源损失(结果导向，指标完成)" value="质量资源损失(结果导向，指标完成)" />
-            <el-option label="质量资源损失(过程一致性)" value="质量资源损失(过程一致性)" />
-            <el-option label="体验质量" value="体验质量" />
-            <el-option label="实物质量" value="实物质量" />
-            <el-option label="质量策划" value="质量策划" />
-            <el-option label="方案执行" value="方案执行" />
+            <el-option label="返修问题统计表" value="返修问题统计表" />
+          <el-option label="质量停线时间统计表" value="质量停线时间统计表" />
+          <el-option label="过程问题统计表" value="过程问题统计表" />
+          <el-option label="满意度得分统计表" value="满意度得分统计表" />
+          <el-option label="实物质量得分统计表" value="实物质量得分统计表" />
+          <el-option label="质量潜力提升跟踪表" value="质量潜力提升跟踪表" />
           </el-select>
         </el-form-item>
         <el-form-item label="日期" required>
@@ -158,11 +149,20 @@
       >
         <template slot-scope="{row,$index}"> <!--插槽的使用-->
           <el-button
+            v-permission="['continuedatadownload']"
             type="text"
             size="small"
             @click="download(row.id,'',row.file_name)"
           >
             下载
+          </el-button>
+          <el-button
+            v-permission="['continuedatadelete']"
+            type="text"
+            size="small"
+            @click="deletefile(row.id)"
+          >
+            删除
           </el-button>
         </template>
       </el-table-column>
@@ -172,7 +172,7 @@
 </template>
 
 <script>
-import { upload, findAllContinue, download, findAllBydatetypeAndZone } from '@/api/qe/continue'
+import { upload, findAllContinue, download, findAllBydatetypeAndZone,deletefile } from '@/api/qe/continue'
 import { mapGetters } from 'vuex'
 import Pagination from '@/components/Pagination'// 分页组件
 import crudleivic from '../../components/Crud/CRUD.leivic.vue'
@@ -220,6 +220,29 @@ export default {
     this.totalgetlist()
   },
   methods: {
+    deletefile(id){
+      const that = this
+      deletefile(id).then(
+        res=>{
+         this.totalgetlist() 
+         if (res == '1') {
+          that.$notify({ // 封装的通知功能
+            title: 'Success',
+            message: '删除成功',
+            type: 'success',
+            duration: 3000
+          })
+        } else if(res == '0'){
+          that.$notify({ // 封装的通知功能
+            title: 'error',
+            message: '删除失败',
+            type: 'error',
+            duration: 3000
+          })
+        }
+        }
+      )
+    },    
     resetquery() {
       this.querybox.zone = ''
       this.querybox.date = ''
