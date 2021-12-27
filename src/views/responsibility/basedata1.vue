@@ -1,9 +1,50 @@
 <template>
   <div>
     <!--toolbox-->
-    <crudleivic addisview="true" @enadd="addfile" /><!--enadd是监听子组件模板中的新增按钮，方法是本文件中定义的方法-->
+    <crudleivic addisview="true" style="float:left" @enadd="addfile" /><!--enadd是监听子组件模板中的新增按钮，方法是本文件中定义的方法-->
     <!--工具栏-->
+    <!--配置基础分的按钮和抽屉-->
+      <el-button v-permission="['responsibilityjichufen']" @click="drawer = true" size="mini" type="primary" style="margin-top:5px ;margin-left: 16px;float:left">
+        配置基础分
+      </el-button>
 
+      <el-drawer
+        title="我是标题"
+        :visible.sync="drawer"
+        :with-header="false">
+        <span>
+          <el-form ref="form" :inline="true" :model="form" size="small" label-width="200px">
+        
+        <el-form-item label="冲压车间" prop="title">
+          <el-input v-model="form.x1" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="冲压" style="width: 80px" /><!-- oninput ="value=value.replace(/[^0-9.]/g,'')" 限制el-input只能输入数字-->
+        </el-form-item>
+        <el-form-item label="车身车间" prop="title">
+          <el-input v-model="form.x2" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="车身" style="width: 80px" />
+        </el-form-item>
+        <el-form-item label="涂装车间" prop="title">
+          <el-input v-model="form.x3" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="涂装" style="width: 80px" />
+        </el-form-item>
+        <el-form-item label="总装车间" prop="title">
+          <el-input v-model="form.x4" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="总装" style="width: 80px" />
+        </el-form-item>
+        <el-form-item label="机加车间" prop="title">
+          <el-input v-model="form.x5" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="机加" style="width: 80px" />
+        </el-form-item>
+        <el-form-item label="装配车间" prop="title">
+          <el-input v-model="form.x6" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="装配" style="width: 80px" />
+        </el-form-item>
+       
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="updatejichufen">确认</el-button>
+      </div>
+
+
+
+
+        </span>
+    </el-drawer>
+    <!---->
     <!--表单渲染--><!--el-dialog elment－ui中的弹出框--><!--:visible 是是否显示 .sync是修饰符 指是否显示和数据状态同步改变 crud.status.cu此处是对mixin混入的使用 可没有html表达式中绑定import进来的表达式的先例  -->
     <el-dialog append-to-body :close-on-click-modal="false" :visible.sync="crud1.status.cu > 0" :title="crud1.status.title" width="580px">
       <el-form ref="form" :inline="true" :model="form" size="small" label-width="80px">
@@ -74,9 +115,10 @@
         fixed
         prop="file_type"
         label="文件类型"
-        width="200"
+        width="150"
       />
       <el-table-column
+        fixed
         prop="date"
         label="日期"
         width="120"
@@ -99,7 +141,8 @@
       <el-table-column
         prop="wentimiaoshu"
         label="问题描述"
-        width="300"
+        width="600"
+        
       />
       <el-table-column
         prop="dengji"
@@ -111,12 +154,7 @@
         label="是否重复发生"
         width="100"
       />
-      <el-table-column
-        fixed="right"
-        prop="zerenquyu"
-        label="责任区域"
-        width="120"
-      />
+     
 
       <el-table-column label="#" width="100px" align="center">
         <template slot-scope="{row,$index}"><!--最开始的写法是 slot-scope="{row,$index}" 这个$index是vue2.0的key，在vue2.0的时候移除了-->
@@ -131,7 +169,7 @@
   </div>
 </template>
 <script>
-import { upload1, findAlldatasource1, findAllchejianlistBydate, findAllgongduanlistBydate, deletedatasource1byid } from '@/api/qe/reponsibility'
+import { upload1, findAlldatasource1, findAllchejianlistBydate, findAllgongduanlistBydate, deletedatasource1byid,updatejichufen,findalljichufen } from '@/api/qe/reponsibility'
 import { mapGetters } from 'vuex'
 import Pagination from '@/components/Pagination'// 分页组件
 import crudleivic from '../../components/Crud/CRUD.leivic.vue'
@@ -165,15 +203,49 @@ export default { // 其实也就是个对象罢了
         type: undefined,
         sort: 'id'
       },
-      total: undefined
+      total: undefined,
+       drawer: false,
+       form:{
+         x1:undefined,
+         x2:undefined,
+         x3:undefined,
+         x4:undefined,
+         x5:undefined,
+         x6:undefined
+       }
     }
   },
   created() {
+    this.getjichufen()
     this.getfilelist()
     findAllchejianlistBydate('2021-01').then(res => console.log(res))
     findAllgongduanlistBydate('2021-02').then(res => console.log(res))
   },
   methods: { // 一个拥有很多方法的对象
+  updatejichufen(){
+    Promise.all([updatejichufen(1,this.form.x1),updatejichufen(2,this.form.x2),updatejichufen(3,this.form.x3),updatejichufen(4,this.form.x4),updatejichufen(5,this.form.x5),updatejichufen(6,this.form.x6)]).then(
+      res=>{
+        this.drawer=false
+        this.$notify({
+            title: 'success',
+            message: '基础分修改成功',
+            type: 'success',
+            duration: 3000
+          }) 
+      }
+    )
+  },
+    getjichufen(){
+      findalljichufen().then(res=>{
+        console.log('基础分',res)
+        this.form.x1=res[0].fenshu
+        this.form.x2=res[1].fenshu
+        this.form.x3=res[2].fenshu
+        this.form.x4=res[3].fenshu
+        this.form.x5=res[4].fenshu
+        this.form.x6=res[5].fenshu
+      })
+    },
     getfilelist() {
       findAlldatasource1(this.listQuery.page, this.listQuery.limit, this.listQuery.sort).then(res => {
         console.log(res)
