@@ -100,7 +100,7 @@ export default {
         legend: {
           data: ['预测质量水平', '预计目标', '实际状态'],
           top: 30,
-           textStyle: {
+          textStyle: {
             fontSize: 10
           },
           itemWidth: 20,
@@ -120,8 +120,8 @@ export default {
             axisLabel: {
               interval: 0, // 横轴信息全部显示
               rotate: -90// -30度角倾斜显示
-        },
-        axisTick: {
+            },
+            axisTick: {
               show: false
             }
           }
@@ -148,7 +148,7 @@ export default {
               position: 'inside'
             }
           },
-         
+
           {
             name: '预计目标',
 	    type: 'line',
@@ -161,7 +161,7 @@ export default {
               position: 'inside'
             }
           },
-         
+
 	  {
             name: '实际状态',
 	    type: 'line',
@@ -173,8 +173,7 @@ export default {
               show: true,
               position: 'inside'
             }
-          },
-        
+          }
 
         ]
       })

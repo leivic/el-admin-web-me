@@ -189,27 +189,27 @@ export default { // 其实也就是个对象罢了
             duration: 3000
           })
           this.getfilelist()
-        }else if(res == 9){
+        } else if (res == 9) {
           that.$notify({ // 封装的通知功能
             title: '新增失败',
             message: '新增失败,模版第一列数据只能填入[冲压车间，车身车间，涂装车间，总装车间，机加车间，装配车间]其中之一',
             type: 'error',
             duration: 30000
-          }) 
-        }else if(res == 2){
+          })
+        } else if (res == 2) {
           that.$notify({ // 封装的通知功能
             title: '新增失败',
             message: '新增失败,不能导入空白数据',
             type: 'error',
             duration: 30000
-          }) 
-        }else if(res == 11){
+          })
+        } else if (res == 11) {
           that.$notify({ // 封装的通知功能
             title: '新增失败',
             message: '新增失败,模板第二行应当只有6列，请检查模板',
             type: 'error',
             duration: 30000
-          }) 
+          })
         }
       })
     }

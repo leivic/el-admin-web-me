@@ -1,19 +1,19 @@
 <template>
   <div class="continue-chart-container">
     <el-row>
-    
+
       <el-col :xs="12" :sm="12" :lg="6">
         <div class="tool">
           <span><SelectYear /></span>
           <span>
-          <el-select  v-model="value" clearable placeholder="请选择" style="width:120px;border:none;float: left; margin-right: 5px ;padding: 3px 0;"><!--v-model相当于一个属性绑定和一个事件-->
-            <el-option
-              v-for="item in options"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            />
-          </el-select>
+            <el-select v-model="value" clearable placeholder="请选择" style="width:120px;border:none;float: left; margin-right: 5px ;padding: 3px 0;"><!--v-model相当于一个属性绑定和一个事件-->
+              <el-option
+                v-for="item in options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              />
+            </el-select>
           </span>
         </div>
       </el-col>

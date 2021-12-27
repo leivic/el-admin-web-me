@@ -183,7 +183,7 @@ export default {
 
   .login-form {
     opacity: 0.7;
-    margin-top: 180px; 
+    margin-top: 180px;
     border-radius: 6px;
     background: #ffffff;
     width: 385px;
@@ -201,7 +201,7 @@ export default {
 
   .login-form:hover {
     opacity: 1.0;
-    
+
   }
   .login-code {
     width: 33%;
