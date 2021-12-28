@@ -286,12 +286,12 @@ export function deletedatasource2byid(id) {
 }
 
 /* 根据id更新基础分*/
-export function updatejichufen(id,fenshu) {
+export function updatejichufen(id, fenshu) {
   return request({
     url: process.env.VUE_APP_BASE_API + '/qe/reponsibility/updatejichufen',
     method: 'post',
     params: {	id: id,
-      fenshu:fenshu
+      fenshu: fenshu
     }
 
   })
@@ -302,7 +302,7 @@ export function findalljichufen() {
   return request({
     url: process.env.VUE_APP_BASE_API + '/qe/reponsibility/findalljichufen',
     method: 'get',
-    params: {	
+    params: {
     }
 
   })

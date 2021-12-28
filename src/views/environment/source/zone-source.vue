@@ -41,7 +41,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="时间" width="80px" align="center">
+      <el-table-column fixed label="时间" width="80px" align="center">
         <template slot-scope="{row}">
           <span>{{ row.date }}</span>
         </template>
