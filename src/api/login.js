@@ -2,8 +2,8 @@ import request from '@/utils/request'
 
 export function login(username, password, code, uuid) {
   return request({
-    url: 'auth/login',
-    method: 'post',
+    url: 'auth/login',      // 原版写法'auth/login'  auth是vue.config.js 里面配置的代理地址                          
+    method: 'post',     //
     data: {
       username,
       password,
@@ -22,8 +22,8 @@ export function getInfo() {
 
 export function getCodeImg() {
   return request({
-    url: 'auth/code',
-    method: 'get'
+    url: 'auth/code', // 'auth/code' 原版地址 
+    method: 'get' //用来测试的地址 'http://10.64.232.8:8000/code'
   })
 }
 

@@ -16,7 +16,7 @@
       <span>
         <el-form ref="form" :inline="true" :model="form" size="small" label-width="80px">
 
-          <el-form-item label="冲压车间" prop="title" style="margin-top:200px" >
+          <el-form-item label="冲压车间" prop="title" style="margin-top:200px">
             <el-input v-model="form.x1" oninput="value=value.replace(/[^0-9.]/g,'')" placeholder="冲压" style="width: 80px" /><!-- oninput ="value=value.replace(/[^0-9.]/g,'')" 限制el-input只能输入数字-->
           </el-form-item>
           <el-form-item label="车身车间" prop="title" style="margin-top:200px">
@@ -211,6 +211,16 @@ export default { // 其实也就是个对象罢了
     }
   },
   created() {
+    const theDate = new Date()
+    let month1
+        		if (theDate.getMonth() < 9) {
+          			month1 = theDate.getFullYear() + '-' + '0' + (theDate.getMonth() + 1) //r如果这个month1是函数里的 修改就不起作用 因为函数里面的是拷贝
+        		} else {
+          			month1 = theDate.getFullYear() + '-' + (theDate.getMonth() + 1)
+            }
+    this.$store.commit('CHANGE_YEAR',theDate.getFullYear() + '') //每次加载组件 更新store里面的数据 
+    this.$store.commit('CHANGE_MONTH',month1)
+    this.$store.commit('CHANGE_ZONE','冲压车间')
     this.getjichufen()
     this.getfilelist()
     findAllchejianlistBydate('2021-01').then(res => console.log(res))

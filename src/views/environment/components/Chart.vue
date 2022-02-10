@@ -108,7 +108,8 @@ export default {
         yAxis: {
 		    type: 'value',
 		    axisLabel: {
-            formatter: '{value}/50'
+            formatter: '{value}/50',
+
         },
         axisTick: {
               show: false
@@ -119,8 +120,15 @@ export default {
 		    type: 'bar',
 		    barCategoryGap: '1%',
 		    barWidth: 20
-        }]// echarts的那些配置 就是一个完整的对象 这个对象的很多属性仍然是对象
-
+        }],// echarts的那些配置 就是一个完整的对象 这个对象的很多属性仍然是对象
+       dataZoom: [
+    {
+        type: 'inside',// 内置于坐标系中
+        start: 0,
+        end: 4,
+        xAxisIndex: [0]
+    },
+],
       })
     }
   }

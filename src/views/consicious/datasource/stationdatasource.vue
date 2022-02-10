@@ -142,6 +142,16 @@ export default { // 其实也就是个对象罢了
     }
   },
   created() {
+    const theDate = new Date()
+    let month1
+        		if (theDate.getMonth() < 9) {
+          			month1 = theDate.getFullYear() + '-' + '0' + (theDate.getMonth() + 1) //r如果这个month1是函数里的 修改就不起作用 因为函数里面的是拷贝
+        		} else {
+          			month1 = theDate.getFullYear() + '-' + (theDate.getMonth() + 1)
+            }
+    this.$store.commit('CHANGE_YEAR',theDate.getFullYear() + '') //每次加载组件 更新store里面的数据 
+    this.$store.commit('CHANGE_MONTH',month1)
+    this.$store.commit('CHANGE_ZONE','冲压车间')
     this.getfilelist()
   },
   methods: { // 一个拥有很多方法的对象
@@ -176,6 +186,15 @@ export default { // 其实也就是个对象罢了
       console.log(file)
     },
     upload() {
+      if(this.form.date==undefined){
+        this.$notify({ // 封装的通知功能
+            title: '新增失败',
+            message: '新增失败,日期选项必填',
+            type: 'error',
+            duration: 30000
+          }) 
+        return
+      }
       const formData = new FormData()
       const file = this.$refs.upload.uploadFiles.pop().raw // 从html元素取到文件对象
 

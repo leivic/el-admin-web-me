@@ -270,7 +270,6 @@ export function deletedatasource1byid(id) {
     method: 'post',
     params: {	id: id
     }
-
   })
 }
 

@@ -41,10 +41,11 @@ Vue.use(Element, {
 })
 
 Vue.config.productionTip = false
-
+console.log("测试入口文件执行几次")
 new Vue({
   el: '#app',
   router,
   store,
   render: h => h(App)
 })
+//.js 入口文件 你每次切换组件 都是从这个入口进去执行代码 渲染页面的 

@@ -4,7 +4,7 @@
       <!--后端导入工位服务--><!--文件上传成功钩子 绑定属性仍然可以绑定方法 这里不能getList() 会直接调用的，毕竟不是v-on-->
       <el-upload
         v-permission="['environmentstationimport']"
-        action="http://10.64.19.75:8000/qe/addEnvironmentBaseStation"
+        action="http://10.64.7.206:8000/qe/addEnvironmentBaseStation"
         accept=".xlsx"
         multiple
         :limit="3"
@@ -37,7 +37,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column fixed label="工位" width="80px" align="center">
+      <el-table-column fixed label="工位" width="160px" align="center">
         <template slot-scope="{row}">
           <span>{{ row.station }}</span>
         </template>

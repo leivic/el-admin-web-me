@@ -76,7 +76,8 @@ export default {
             fontSize: 16,
             fontWeight: 'normal',
             fontFamily: 'KaiTi'
-          }
+          },
+          left: 'center'
         },
         tooltip: {
 		  trigger: 'axis',

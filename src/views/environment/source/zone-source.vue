@@ -4,7 +4,7 @@
       <!--后端导入班组服务--><!--文件上传成功钩子 绑定属性仍然可以绑定方法 这里不能getList() 会直接调用的，毕竟不是v-on-->
       <el-upload
         v-permission="['environmentzoneimport']"
-        action="http://10.64.19.75:8000/qe/addEnvironmentBaseZone"
+        action="http://10.64.7.206:8000/qe/addEnvironmentBaseZone"
         accept=".xlsx"
         multiple
         :limit="3"
@@ -277,7 +277,7 @@ export default {
       } else if (res == 3) {
         this.$notify({ // 封装的通知功能
           title: 'Error',
-          message: '工位数据模版有且仅有24行，请检查模版',
+          message: '车间数据模版有且仅有24行，请检查模版',
           type: 'error',
           duration: 30000
         })

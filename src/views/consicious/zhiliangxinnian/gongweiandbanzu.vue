@@ -44,6 +44,18 @@ export default {
       }
     }
   },
+  created() {
+    const theDate = new Date()
+    let month1
+        		if (theDate.getMonth() < 9) {
+          			month1 = theDate.getFullYear() + '-' + '0' + (theDate.getMonth() + 1) //r如果这个month1是函数里的 修改就不起作用 因为函数里面的是拷贝
+        		} else {
+          			month1 = theDate.getFullYear() + '-' + (theDate.getMonth() + 1)
+            }
+    this.$store.commit('CHANGE_YEAR',theDate.getFullYear() + '') //每次加载组件 更新store里面的数据 
+    this.$store.commit('CHANGE_MONTH',month1)
+    this.$store.commit('CHANGE_ZONE','冲压车间')
+  },
   mounted() {
     getstationzhiliangxinnian(this.year, this.chart1.chartdata, this.chart1.lengenddata).then(() => this.chart1.listLoading = false) // 前面函数的最后是个then then函数的返回值还是promise，后面可以继续调用then
     getgroupzhiliangxinnian(this.year, this.chart2.chartdata, this.chart2.lengenddata).then(() => this.chart2.listLoading = false)

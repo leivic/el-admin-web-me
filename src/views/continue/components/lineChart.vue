@@ -75,7 +75,7 @@ export default {
             fontWeight: 'normal',
             fontFamily: 'KaiTi'
           },
-          left: '28%'
+          left: 'center'
         },
 
         tooltip: {

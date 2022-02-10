@@ -44,6 +44,18 @@ export default {
       }
     }
   },
+  created(){
+    const theDate = new Date()
+    let month1
+        		if (theDate.getMonth() < 9) {
+          			month1 = theDate.getFullYear() + '-' + '0' + (theDate.getMonth() + 1) //r如果这个month1是函数里的 修改就不起作用 因为函数里面的是拷贝
+        		} else {
+          			month1 = theDate.getFullYear() + '-' + (theDate.getMonth() + 1)
+            }
+    this.$store.commit('CHANGE_YEAR',theDate.getFullYear() + '') //每次加载组件 更新store里面的数据 
+    this.$store.commit('CHANGE_MONTH',month1)
+    this.$store.commit('CHANGE_ZONE','冲压车间')
+  },
   mounted() {
     getthisYearIntelligence(this.year, '区域', this.chart1.chartdata, this.chart1.lengenddata).then(() => {
       this.chart1.title=this.year+'车间数智互联水平'

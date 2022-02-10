@@ -76,7 +76,7 @@ export default {
             fontFamily: 'KaiTi'
 
           },
-          left: 26
+          left: 'center'
         },
 
         tooltip: {

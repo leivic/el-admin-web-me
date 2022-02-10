@@ -110,7 +110,7 @@ export default {
         xAxis: [
           {
             type: 'category',
-            data: ['冲压车间', '车身车间', '涂装车间', '冲压车间', '机加车间', '装配车间'],
+            data: ['冲压车间', '车身车间', '涂装车间', '总装车间', '机加车间', '装配车间'],
              axisTick: {
               show: false
             }

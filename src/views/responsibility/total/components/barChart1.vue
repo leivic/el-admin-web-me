@@ -26,12 +26,8 @@ export default {
       type: Boolean,
       default: true
     },
-    xdata: {
-      type: Array,
-      required: true
-    },
-    chartdata: {
-      type: Array,
+    chartData: {
+      type: Object,
       required: true
     },
     title: {
@@ -44,7 +40,13 @@ export default {
     }
   },
   watch: {
-    chartdata: {
+    chartData: {
+      deep: true,
+      handler(val) {
+        this.setOptions(val)
+      }
+    },
+    title: {
       deep: true,
       handler(val) {
         this.setOptions(val)
@@ -66,76 +68,68 @@ export default {
   methods: {
     initChart() {
       this.chart = echarts.init(this.$el, 'macarons')
-      this.setOptions(this.chartdata)
+      this.setOptions(this.chartData)
     },
     setOptions({ expectedData, actualData } = {}) {
       this.chart.setOption({
-        color: ['#409EFF'],
         title: {
-          text: this.title,
-          textStyle: {
-            fontSize: 24,
+		  text: this.title, // this.title
+		  textStyle: {
+            fontSize: 20,
             fontWeight: 'normal',
             fontFamily: 'KaiTi'
-          },
-          left: 'center'
+          }
         },
-
         tooltip: {
-          trigger: 'axis'
-        },
-        legend: {
-          data: ['车间'],
-          top: 30
-        },
+		  trigger: 'axis',
+		  axisPointer: {
+		    type: 'shadow'
+		  }
+        }, // 鼠标悬浮的提示框组件
         toolbox: {
 		    feature: {
-            dataView: { show: true, readOnly: false },
-            magicType: { show: true, type: ['line', 'bar'] },
-            restore: { show: true },
             saveAsImage: { show: true }
 		    },
 		    right: '2%'
         },
-        
-        grid: {
-          left: '3%',
-          right: '4%',
-          bottom: '3%',
-          containLabel: true
-        },
         xAxis: {
-          type: 'category',
-          boundaryGap: false,
-          data: this.xdata,
-          axisTick: {
+		    type: 'category',
+		    data: this.chartData.xdata,
+		    axisLabel: {
+            interval: 0, // 横轴信息全部显示
+            rotate: -90// -30度角倾斜显示
+        },
+         axisTick: {
               show: false
-            } 
+            }
         },
         yAxis: {
-          type: 'value',
-          axisTick: {
-              show: false
-            } 
+		    type: 'value',
+		    axisLabel: {
+            	formatter: '{value}'
         },
-        series: [
-          {
-            name: '车间',
-            type: 'line',
-            data: this.chartdata,
-            smooth: true,
-            lineStyle:{
-              normal:{
-                width: 5
-              }
-            },
-             label: {
-              show: true,
-              position: 'top'
+         axisTick: {
+              show: false
             }
+        },
+        series: [{
+		    data: this.chartData.ydata, // 不加this 怎么取得到props里面的值呢
+		    type: 'bar',
+		    barCategoryGap: '1%',
+          barWidth: 20,
+          label: {
+            show: true,
+            position: 'top'
           }
+        }],// echarts的那些配置 就是一个完整的对象 这个对象的很多属性仍然是对象
+        dataZoom: [
+            {
+                type: 'inside',// 内置于坐标系中
+                start: 0,
+                end: 1,
+                xAxisIndex: [0]
+            },
         ]
-
       })
     }
   }

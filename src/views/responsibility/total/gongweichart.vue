@@ -9,16 +9,16 @@
 
     </el-row>
     <el-row v-loading="chart1.listloading" style="background:#fff;padding:16px 16px 0;margin-bottom:32px;"><!--第一个图表组件-->
-      <barChart :chart-data="zongji" :title="chart1.title" />
+      <barChart1 :chart-data="zongji" :title="chart1.title" />
 
     </el-row>
     <el-row v-loading="chart2.listloading" style="background:#fff;padding:16px 16px 0;margin-bottom:32px;"><!--第一个图表组件-->
-      <barChart :chart-data="quexian" :title="chart2.title" />
+      <barChart1 :chart-data="quexian" :title="chart2.title" />
 
     </el-row>
 
     <el-row v-loading="chart4.listloading" style="background:#fff;padding:16px 16px 0;margin-bottom:32px;"><!--第一个图表组件-->
-      <barChart :chart-data="zhiliang" :title="chart4.title" />
+      <barChart1 :chart-data="zhiliang" :title="chart4.title" />
 
     </el-row>
 
@@ -27,12 +27,12 @@
 <script>
 import { findAllgongweilistBydate } from '@/api/qe/reponsibility'
 import SelectMonth from '@/components/SelectMonth'
-import barChart from './components/barChart'
+import barChart1 from './components/barChart1'
 import { mapGetters } from 'vuex'
 export default {
   components: {
     SelectMonth,
-    barChart
+    barChart1
   },
   data() {
     return {
@@ -64,6 +64,16 @@ export default {
     }
   },
   created() {
+    const theDate = new Date()
+    let month1
+        		if (theDate.getMonth() < 9) {
+          			month1 = theDate.getFullYear() + '-' + '0' + (theDate.getMonth() + 1) //r如果这个month1是函数里的 修改就不起作用 因为函数里面的是拷贝
+        		} else {
+          			month1 = theDate.getFullYear() + '-' + (theDate.getMonth() + 1)
+            }
+    this.$store.commit('CHANGE_YEAR',theDate.getFullYear() + '') //每次加载组件 更新store里面的数据 
+    this.$store.commit('CHANGE_MONTH',month1)
+    this.$store.commit('CHANGE_ZONE','冲压车间')
     this.getzongjidata(this.month)
     this.getquexiandata(this.month)
     this.getzhiliangdata(this.month)
