@@ -72,6 +72,9 @@ export default {
     },
     setOptions({ expectedData, actualData } = {}) {
       this.chart.setOption({
+        grid:{
+          height:'60%'
+        },
         title: {
 		  text: this.title, // this.title
 		  textStyle: {
@@ -97,7 +100,7 @@ export default {
 		    data: this.chartData.xdata,
 		    axisLabel: {
             interval: 0, // 横轴信息全部显示
-            rotate: -90// -30度角倾斜显示
+            rotate: -35// -30度角倾斜显示
         },
          axisTick: {
               show: false
@@ -121,8 +124,15 @@ export default {
             show: true,
             position: 'top'
           }
-        }]// echarts的那些配置 就是一个完整的对象 这个对象的很多属性仍然是对象
-
+        }],// echarts的那些配置 就是一个完整的对象 这个对象的很多属性仍然是对象
+        dataZoom: [
+          {
+            type: 'inside', // 内置于坐标系中
+            start: 0,
+            end: 30, // 30%
+            xAxisIndex: [0]
+          }
+        ]
       })
     }
   }

@@ -97,7 +97,7 @@ export default {
 		    },
 		    right: '2%'
         },
-        
+
         grid: {
           left: '3%',
           right: '4%',
@@ -109,14 +109,14 @@ export default {
           boundaryGap: false,
           data: this.xdata,
           axisTick: {
-              show: false
-            } 
+            show: false
+          }
         },
         yAxis: {
           type: 'value',
           axisTick: {
-              show: false
-            } 
+            show: false
+          }
         },
         series: [
           {
@@ -124,12 +124,12 @@ export default {
             type: 'line',
             data: this.chartdata,
             smooth: true,
-            lineStyle:{
-              normal:{
+            lineStyle: {
+              normal: {
                 width: 5
               }
             },
-             label: {
+            label: {
               show: true,
               position: 'top'
             }

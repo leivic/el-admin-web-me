@@ -47,7 +47,7 @@ export default {
       listloading2: true,
       listloading3: true,
       listloading4: true,
-      title0:'车间质量生态责任状态',
+      title0: '车间质量生态责任状态',
       title1: '车间缺陷拦截能力',
       title2: '车间安全保障能力',
       title3: '车间质量防御能力',
@@ -80,45 +80,41 @@ export default {
 	  },
   watch: {
     year(newval) {
-      this.getzongjichartdata(newval,this.zone).then(res => {
-        this.title0=newval+this.zone+'质量生态责任状态'
+      this.getzongjichartdata(newval, this.zone).then(res => {
+        this.title0 = newval + this.zone + '质量生态责任状态'
         this.listloading1 = false
-        
       })
-      this.getquexiandata(newval,this.zone).then(res => {
-        this.title1=newval+this.zone+'缺陷拦截能力'
+      this.getquexiandata(newval, this.zone).then(res => {
+        this.title1 = newval + this.zone + '缺陷拦截能力'
         this.listloading2 = false
-      
       })
-      this.getanquanchartdata(newval,this.zone).then(res => {
-        this.title2=newval+this.zone+'安全保障能力'
+      this.getanquanchartdata(newval, this.zone).then(res => {
+        this.title2 = newval + this.zone + '安全保障能力'
         this.listloading3 = false
-      
       })
-      this.getzhiliangchartdata(newval,this.zone).then(res => {
-        this.title3=newval+this.zone+'质量防御能力'
+      this.getzhiliangchartdata(newval, this.zone).then(res => {
+        this.title3 = newval + this.zone + '质量防御能力'
         this.listloading4 = false
-      
       })
     },
     zone(newval) {
-      this.getzongjichartdata(this.year,newval).then(res => {
-        this.title0=this.year+newval+'质量生态责任状态'
+      this.getzongjichartdata(this.year, newval).then(res => {
+        this.title0 = this.year + newval + '质量生态责任状态'
         this.listloading1 = false
         console.log('总计对象为', this.zongji)
       })
-      this.getquexiandata(this.year,newval).then(res => {
-        this.title1=this.year+newval+'缺陷拦截能力'
+      this.getquexiandata(this.year, newval).then(res => {
+        this.title1 = this.year + newval + '缺陷拦截能力'
         this.listloading2 = false
         console.log('缺陷对象为', this.quexian)
       })
-      this.getanquanchartdata(this.year,newval).then(res => {
-        this.title2=this.year+newval+'安全保障能力'
+      this.getanquanchartdata(this.year, newval).then(res => {
+        this.title2 = this.year + newval + '安全保障能力'
         this.listloading3 = false
         console.log('安全对象为', this.anquanbaozhang)
       })
-      this.getzhiliangchartdata(this.year,newval).then(res => {
-        this.title3=this.year+newval+'质量防御能力'
+      this.getzhiliangchartdata(this.year, newval).then(res => {
+        this.title3 = this.year + newval + '质量防御能力'
         this.listloading4 = false
         console.log('质量对象为', this.zhiliangfangyu)
       })
@@ -128,37 +124,37 @@ export default {
     const theDate = new Date()
     let month1
         		if (theDate.getMonth() < 9) {
-          			month1 = theDate.getFullYear() + '-' + '0' + (theDate.getMonth() + 1) //r如果这个month1是函数里的 修改就不起作用 因为函数里面的是拷贝
+          			month1 = theDate.getFullYear() + '-' + '0' + (theDate.getMonth() + 1) // r如果这个month1是函数里的 修改就不起作用 因为函数里面的是拷贝
         		} else {
           			month1 = theDate.getFullYear() + '-' + (theDate.getMonth() + 1)
-            }
-    this.$store.commit('CHANGE_YEAR',theDate.getFullYear() + '') //每次加载组件 更新store里面的数据 
-    this.$store.commit('CHANGE_MONTH',month1)
-    this.$store.commit('CHANGE_ZONE','冲压车间')
+    }
+    this.$store.commit('CHANGE_YEAR', theDate.getFullYear() + '') // 每次加载组件 更新store里面的数据
+    this.$store.commit('CHANGE_MONTH', month1)
+    this.$store.commit('CHANGE_ZONE', '冲压车间')
 
-    this.getzongjichartdata(this.year,this.zone).then(res => {
-      this.title0=this.year+this.zone+'质量生态责任状态'
+    this.getzongjichartdata(this.year, this.zone).then(res => {
+      this.title0 = this.year + this.zone + '质量生态责任状态'
       this.listloading1 = false
       console.log('总计对象为', this.zongji)
     })
-    this.getquexiandata(this.year,this.zone).then(res => {
-      this.title1=this.year+this.zone+'缺陷拦截能力'
+    this.getquexiandata(this.year, this.zone).then(res => {
+      this.title1 = this.year + this.zone + '缺陷拦截能力'
       this.listloading2 = false
       console.log('缺陷对象为', this.quexian)
     })
-    this.getanquanchartdata(this.year,this.zone).then(res => {
-      this.title2=this.year+this.zone+'安全保障能力'
+    this.getanquanchartdata(this.year, this.zone).then(res => {
+      this.title2 = this.year + this.zone + '安全保障能力'
       this.listloading3 = false
       console.log('安全对象为', this.anquanbaozhang)
     })
-    this.getzhiliangchartdata(this.year,this.zone).then(res => {
-      this.title3=this.year+this.zone+'质量防御能力'
+    this.getzhiliangchartdata(this.year, this.zone).then(res => {
+      this.title3 = this.year + this.zone + '质量防御能力'
       this.listloading4 = false
       console.log('质量对象为', this.zhiliangfangyu)
     })
   },
   methods: {
-    getzongjichartdata(date,zone) {
+    getzongjichartdata(date, zone) {
 			 // 要return 才是将里面这个promise作为这个函数的返回值 然而函数里面的代码也执行了的
       this.listloading1 = true
       return getzonglanzongjichartdata(date).then(
@@ -188,7 +184,7 @@ export default {
         }
       )
     },
-    getquexiandata(date,zone) {
+    getquexiandata(date, zone) {
       this.listloading2 = true
       return Promise.all([getfenxippsrchartdata(date), getfenxippsrchongfuchartdata(date), getfenxishenchanyizhichartdata(date), getfenxifaguixiangchartdata(date)]).then(
         res => {
@@ -233,7 +229,7 @@ export default {
           }
         })
     },
-    getanquanchartdata(date,zone) {
+    getanquanchartdata(date, zone) {
       this.listloading3 = true
       return Promise.all([getfenxishouhoufankuichartdata(date), getfenxishexiancheliangweiguichartdata(date), getfenxiwaibuchouchachartdata(date)]).then(
         res => {
@@ -272,7 +268,7 @@ export default {
         }
       )
     },
-    getzhiliangchartdata(date,zone) {
+    getzhiliangchartdata(date, zone) {
       this.listloading4 = true
       return Promise.all([getfenxigongweihujianchartdata(date), getfenxigechejianshanggongxuchartdata(date), getfenxishouhouwentichartdata(date), getfenxiquyufashengchartdata(date), getfenxizhiliangwentijiluchartdata(date)]).then(
         res => {

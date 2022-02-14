@@ -73,13 +73,13 @@ export default {
     const theDate = new Date()
     let month1
         		if (theDate.getMonth() < 9) {
-          			month1 = theDate.getFullYear() + '-' + '0' + (theDate.getMonth() + 1) //r如果这个month1是函数里的 修改就不起作用 因为函数里面的是拷贝
+          			month1 = theDate.getFullYear() + '-' + '0' + (theDate.getMonth() + 1) // r如果这个month1是函数里的 修改就不起作用 因为函数里面的是拷贝
         		} else {
           			month1 = theDate.getFullYear() + '-' + (theDate.getMonth() + 1)
-            }
-    this.$store.commit('CHANGE_YEAR',theDate.getFullYear() + '') //每次加载组件 更新store里面的数据 
-    this.$store.commit('CHANGE_MONTH',month1)
-    this.$store.commit('CHANGE_ZONE','冲压车间')
+    }
+    this.$store.commit('CHANGE_YEAR', theDate.getFullYear() + '') // 每次加载组件 更新store里面的数据
+    this.$store.commit('CHANGE_MONTH', month1)
+    this.$store.commit('CHANGE_ZONE', '冲压车间')
     this.getzongjidata(this.month)
     this.getquexiandata(this.month)
     this.getanquandata(this.month)
@@ -109,7 +109,7 @@ export default {
         }
       }).then(res => {
         console.log(this.zongji)
-        this.chart1.title=date+'班组车间质量生态责任状态'
+        this.chart1.title = date + '班组车间质量生态责任状态'
         this.chart1.listloading = false
       })
 		 },
@@ -131,8 +131,9 @@ export default {
           }
         }
       }).then(res => {
-        this.chart2.title=date+'班组缺陷拦截能力'
-        this.chart2.listloading = false})// 直接这样深层赋值是可以的
+        this.chart2.title = date + '班组缺陷拦截能力'
+        this.chart2.listloading = false
+      })// 直接这样深层赋值是可以的
 		 },
     getanquandata(date) {
       this.anquan.xdata.splice(0, this.anquan.xdata.length)
@@ -152,8 +153,8 @@ export default {
           }
         }
       }).then(res => {
-        
-        this.chart3.listloading = false})
+        this.chart3.listloading = false
+      })
 		 },
 		 getzhiliangdata(date) {
       this.zhiliang.xdata.splice(0, this.zhiliang.xdata.length)
@@ -172,9 +173,10 @@ export default {
             this.zhiliang.ydata.push(a.zhiliangfangyu) // 这样深层赋值是可以的
           }
         }
-      }).then(res=>{
-        this.chart4.title=date+'班组质量防御能力'
-        this.chart4.listloading = false})
+      }).then(res => {
+        this.chart4.title = date + '班组质量防御能力'
+        this.chart4.listloading = false
+      })
 		 }
 		 },
   watch: {

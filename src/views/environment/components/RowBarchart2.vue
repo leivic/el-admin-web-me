@@ -126,12 +126,22 @@ export default {
             name: '工段',
             type: 'bar',
             data: this.workshopdata,
-            barGap: '1%'
+            barGap: '1%',
+            barWidth: 16
           },
           {
             name: '班组',
             type: 'bar',
-            data: this.groupdata
+            data: this.groupdata,
+            barWidth: 16
+          }
+        ],
+         dataZoom: [
+          {
+            type: 'inside', // 内置于坐标系中
+            start: 0,
+            end: 50,
+            yAxisIndex: [0]
           }
         ]
       })

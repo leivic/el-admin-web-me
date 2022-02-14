@@ -53,7 +53,7 @@ export default {
       handler(val) {
         this.setOptions(val)
       }
-    },
+    }
   },
   mounted() {
     this.$nextTick(() => {
@@ -111,7 +111,7 @@ export default {
           {
             type: 'category',
             data: ['冲压车间', '车身车间', '涂装车间', '总装车间', '机加车间', '装配车间'],
-             axisTick: {
+            axisTick: {
               show: false
             }
           }
@@ -119,7 +119,7 @@ export default {
         yAxis: [
           {
             type: 'value',
-             axisTick: {
+            axisTick: {
               show: false
             }
           }

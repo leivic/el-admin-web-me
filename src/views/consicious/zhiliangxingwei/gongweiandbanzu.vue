@@ -31,7 +31,7 @@ export default {
   data() {
     return {
       chart1: {
-        listLoading: true, //这样的一个数据本质上是在计算机的堆栈中开辟了一个内存将数据存储起来 通过0/1的电伏存在计算机的内存中
+        listLoading: true, // 这样的一个数据本质上是在计算机的堆栈中开辟了一个内存将数据存储起来 通过0/1的电伏存在计算机的内存中
         title: '工位-质量行为', // 会响应式刷新的不只是data里面的数据，还有vuex，vuex里面的数据一旦变化  使用该数据的地方也会刷新
         chartdata: [[], [], [], [], [], [], [], [], [], [], [], []], // 每个数组里面都是一个月的从冲压 到装配的6个数据
         lengenddata: []
@@ -44,17 +44,17 @@ export default {
       }
     }
   },
-  created(){
+  created() {
     const theDate = new Date()
     let month1
         		if (theDate.getMonth() < 9) {
-          			month1 = theDate.getFullYear() + '-' + '0' + (theDate.getMonth() + 1) //r如果这个month1是函数里的 修改就不起作用 因为函数里面的是拷贝
+          			month1 = theDate.getFullYear() + '-' + '0' + (theDate.getMonth() + 1) // r如果这个month1是函数里的 修改就不起作用 因为函数里面的是拷贝
         		} else {
           			month1 = theDate.getFullYear() + '-' + (theDate.getMonth() + 1)
-            }
-    this.$store.commit('CHANGE_YEAR',theDate.getFullYear() + '') //每次加载组件 更新store里面的数据 
-    this.$store.commit('CHANGE_MONTH',month1)
-    this.$store.commit('CHANGE_ZONE','冲压车间')
+    }
+    this.$store.commit('CHANGE_YEAR', theDate.getFullYear() + '') // 每次加载组件 更新store里面的数据
+    this.$store.commit('CHANGE_MONTH', month1)
+    this.$store.commit('CHANGE_ZONE', '冲压车间')
   },
   mounted() {
     getstationzhiliangxingwei(this.year, this.chart1.chartdata, this.chart1.lengenddata).then(() => this.chart1.listLoading = false) // 前面函数的最后是个then then函数的返回值还是promise，后面可以继续调用then

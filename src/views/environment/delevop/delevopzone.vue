@@ -34,22 +34,23 @@ export default {
       }
     }
   },
-  created(){
+  created() {
     const theDate = new Date()
     let month1
         		if (theDate.getMonth() < 9) {
-          			month1 = theDate.getFullYear() + '-' + '0' + (theDate.getMonth() + 1) //r如果这个month1是函数里的 修改就不起作用 因为函数里面的是拷贝
+          			month1 = theDate.getFullYear() + '-' + '0' + (theDate.getMonth() + 1) // r如果这个month1是函数里的 修改就不起作用 因为函数里面的是拷贝
         		} else {
           			month1 = theDate.getFullYear() + '-' + (theDate.getMonth() + 1)
-            }
-    this.$store.commit('CHANGE_YEAR',theDate.getFullYear() + '') //每次加载组件 更新store里面的数据 
-    this.$store.commit('CHANGE_MONTH',month1)
-    this.$store.commit('CHANGE_ZONE','冲压车间')
+    }
+    this.$store.commit('CHANGE_YEAR', theDate.getFullYear() + '') // 每次加载组件 更新store里面的数据
+    this.$store.commit('CHANGE_MONTH', month1)
+    this.$store.commit('CHANGE_ZONE', '冲压车间')
   },
   mounted() {
 	  getthisYearEnvironmentDevelopZone(this.year, this.chart1.chartdata, this.chart1.lengenddata).then(() => {
-      this.chart1.title=this.year+'车间均衡发展运行状态'
-      this.chart1.listLoading = false}) // 直接.then(this.chart1.listLoading = false) 里面的代码会直接执行，但是这样可不是回调函数
+      this.chart1.title = this.year + '车间均衡发展运行状态'
+      this.chart1.listLoading = false
+    }) // 直接.then(this.chart1.listLoading = false) 里面的代码会直接执行，但是这样可不是回调函数
   },
   computed: {
     ...mapGetters(['year'])
@@ -62,8 +63,9 @@ export default {
     year(newval) {
       this.chart1.listLoading = true
       getthisYearEnvironmentDevelopZone(newval, this.chart1.chartdata, this.chart1.lengenddata).then(() => {
-        this.chart1.title=newval+'车间均衡发展状态'
-        this.chart1.listLoading = false})
+        this.chart1.title = newval + '车间均衡发展状态'
+        this.chart1.listLoading = false
+      })
     }
   }
 }

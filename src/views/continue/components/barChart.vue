@@ -97,19 +97,19 @@ export default {
 		    axisLabel: {
             interval: 0, // 横轴信息全部显示
             rotate: -60// -30度角倾斜显示
-        },
-         axisTick: {
-              show: false
-            }
+          },
+          axisTick: {
+            show: false
+          }
         },
         yAxis: {
 		    type: 'value',
 		    axisLabel: {
             	formatter: '{value}'
-        },
-         axisTick: {
-              show: false
-            }
+          },
+          axisTick: {
+            show: false
+          }
         },
         series: [{
 		    data: this.chartData, // 不加this 怎么取得到props里面的值呢

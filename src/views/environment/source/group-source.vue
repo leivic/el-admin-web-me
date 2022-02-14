@@ -12,8 +12,8 @@
         :on-success="addList"
         :data="mydata"
       >
-      <!--堡垒机环境是 action="http://localhost:8000/qe/addEnvironmentBaseGroup"--> 
-      <!--开发环境是 action="http://10.64.232.8:8000/qe/addEnvironmentBaseGroup"-->
+        <!--堡垒机环境是 action="http://localhost:8000/qe/addEnvironmentBaseGroup"-->
+        <!--开发环境是 action="http://10.64.232.8:8000/qe/addEnvironmentBaseGroup"-->
         <!--生产环境是 action="http://10.64.19.75:8000/qe/addEnvironmentBaseGroup"--> <!--后端程序部署的ip地址和端口-->
         <el-button :loading="uploadLoading" class="filter-item" type="primary" icon="el-icon-upload" @click="">
           导入

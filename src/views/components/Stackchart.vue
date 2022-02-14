@@ -78,7 +78,7 @@ export default {
         title: {
 		  text: this.title,
 		  textStyle: {
-            fontSize: 20,
+            fontSize: 16,
             fontWeight: 'normal',
             fontFamily: 'KaiTi'
           },

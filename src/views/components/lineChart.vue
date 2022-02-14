@@ -74,7 +74,7 @@ export default {
         title: {
           text: this.title,
           textStyle: {
-            fontSize: 20,
+            fontSize: 16,
             fontWeight: 'normal',
             fontFamily: 'KaiTi'
           },
@@ -91,7 +91,7 @@ export default {
             restore: { show: true },
             saveAsImage: { show: true }
 		    },
-		    right: '2%'
+		    right: '-10'
         },
         legend: {
           data: ['冲压车间', '车身车间', '涂装车间', '总装车间', '机加车间', '装配车间'],

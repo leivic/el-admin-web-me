@@ -8,7 +8,7 @@ const state = {
 const theDate = new Date()
 console.log('测试vuex状态管理器内的代码是否会执行')
 state.year = theDate.getFullYear() + ''
-console.log('查看store对象里面的this',this)
+console.log('查看store对象里面的this', this)
 const mutations = { // 静态添加数据
   CHANGE_YEAR: (state, year) => {
     state.year = year

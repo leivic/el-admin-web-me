@@ -3,7 +3,7 @@
     <el-row>
       <el-col :xs="12" :sm="12" :lg="6">
         <div class="tool">
-          <SelectYear  />
+          <SelectYear />
         </div>
       </el-col>
     </el-row>
@@ -20,9 +20,9 @@
 </template>
 <script>
 import SelectYear from '@/components/SelectYear'
-console.log("import Selectyear")
-import { mapGetters } from 'vuex' //会重新加载vuex数据 
-import Stackchart from './components/Stackchart' //将这个函数加入当前作用域
+console.log('import Selectyear')
+import { mapGetters } from 'vuex' // 会重新加载vuex数据
+import Stackchart from './components/Stackchart' // 将这个函数加入当前作用域
 import { getthisYearEnvironmentSystem } from '@/api/qe/environment'
 export default {
   components: {
@@ -45,30 +45,31 @@ export default {
       }
     }
   },
-  created(){
+  created() {
     const theDate = new Date()
     let month1
         		if (theDate.getMonth() < 9) {
-          			month1 = theDate.getFullYear() + '-' + '0' + (theDate.getMonth() + 1) //r如果这个month1是函数里的 修改就不起作用 因为函数里面的是拷贝
+          			month1 = theDate.getFullYear() + '-' + '0' + (theDate.getMonth() + 1) // r如果这个month1是函数里的 修改就不起作用 因为函数里面的是拷贝
         		} else {
           			month1 = theDate.getFullYear() + '-' + (theDate.getMonth() + 1)
-            }
-    this.$store.commit('CHANGE_YEAR',theDate.getFullYear() + '') //每次加载组件 更新store里面的数据 
-    this.$store.commit('CHANGE_MONTH',month1)
-    this.$store.commit('CHANGE_ZONE','冲压车间')
-    console.log('thisyear',this.year)
+    }
+    this.$store.commit('CHANGE_YEAR', theDate.getFullYear() + '') // 每次加载组件 更新store里面的数据
+    this.$store.commit('CHANGE_MONTH', month1)
+    this.$store.commit('CHANGE_ZONE', '冲压车间')
+    console.log('thisyear', this.year)
   },
   mounted() {
-    console.log('组件内vue对象的this',this)
+    console.log('组件内vue对象的this', this)
     getthisYearEnvironmentSystem(this.year, '区域', this.chart1.chartdata, this.chart1.lengenddata).then(() => {
-      this.chart1.title=this.year+'车间系统完整水平'
+      this.chart1.title = this.year + '车间系统完整水平'
       this.chart1.listLoading = false
     }) // 前面函数的最后是个then then函数的返回值还是promise，后面可以继续调用then
     getthisYearEnvironmentSystem(this.year, '工段', this.chart2.chartdata, this.chart2.lengenddata).then(() => {
-      this.chart2.title=this.year+'工段系统完整水平'
-      this.chart2.listLoading = false})
-      console.log('chartdata',this.chart1.chartdata)
-      console.log('year',this.year)
+      this.chart2.title = this.year + '工段系统完整水平'
+      this.chart2.listLoading = false
+    })
+    console.log('chartdata', this.chart1.chartdata)
+    console.log('year', this.year)
   },
   computed: {
     ...mapGetters(['year'])
@@ -82,12 +83,13 @@ export default {
       this.chart1.listLoading = true
       this.chart2.listLoading = true
       getthisYearEnvironmentSystem(newval, '区域', this.chart1.chartdata, this.chart1.lengenddata).then(() => {
-      this.chart1.title=newval+'车间系统完整水平'
-      this.chart1.listLoading = false
-    })
+        this.chart1.title = newval + '车间系统完整水平'
+        this.chart1.listLoading = false
+      })
       getthisYearEnvironmentSystem(newval, '工段', this.chart2.chartdata, this.chart2.lengenddata).then(() => {
-      this.chart2.title=newval+'工段系统完整水平'
-      this.chart2.listLoading = false})
+        this.chart2.title = newval + '工段系统完整水平'
+        this.chart2.listLoading = false
+      })
     }
   }
 }

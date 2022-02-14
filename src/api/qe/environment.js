@@ -30,7 +30,7 @@ export function getAllGroup(page, size, sort) {
   return request({
     url: process.env.VUE_APP_BASE_API + '/qe/findAllEnvironmentBaseGroup',
     method: 'get',
-    params: { 	page: page,//当a="2"时，"1"没有被引用 则可以
+    params: { 	page: page, // 当a="2"时，"1"没有被引用 则可以
 	    			size: size,
 	    			sort: sort
 				    }
@@ -469,12 +469,12 @@ export function deletezoneByid(id) {
 	      		}
   })
 }
-console.log("测试直接importapi.js里面的语句是否会执行")
-var a="我就是1"
-console.log('environment对象',this)
+console.log('测试直接importapi.js里面的语句是否会执行')
+var a = '我就是1'
+console.log('environment对象', this)
 console.log(this)
 
-console.log("在environment.js里面命名一个变量为1")
+console.log('在environment.js里面命名一个变量为1')
 export function getenvironmenttotal(date) {
   return request({
 	  url: process.env.VUE_APP_BASE_API + '/qe/getenvironmenttotal',

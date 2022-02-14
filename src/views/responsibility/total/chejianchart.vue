@@ -42,7 +42,7 @@ export default {
   components: {
     lineChart,
     SelectYear,
-    lineChart1,
+    lineChart1
   },
   data() {
     return {
@@ -81,13 +81,13 @@ export default {
     const theDate = new Date()
     let month1
         		if (theDate.getMonth() < 9) {
-          			month1 = theDate.getFullYear() + '-' + '0' + (theDate.getMonth() + 1) //r如果这个month1是函数里的 修改就不起作用 因为函数里面的是拷贝
+          			month1 = theDate.getFullYear() + '-' + '0' + (theDate.getMonth() + 1) // r如果这个month1是函数里的 修改就不起作用 因为函数里面的是拷贝
         		} else {
           			month1 = theDate.getFullYear() + '-' + (theDate.getMonth() + 1)
-            }
-    this.$store.commit('CHANGE_YEAR',theDate.getFullYear() + '') //每次加载组件 更新store里面的数据 
-    this.$store.commit('CHANGE_MONTH',month1)
-    this.$store.commit('CHANGE_ZONE','冲压车间')
+    }
+    this.$store.commit('CHANGE_YEAR', theDate.getFullYear() + '') // 每次加载组件 更新store里面的数据
+    this.$store.commit('CHANGE_MONTH', month1)
+    this.$store.commit('CHANGE_ZONE', '冲压车间')
     getzonglanzongjichartdata(this.year).then(res => {
       console.log(res)// 像这种同步代码 是一碰到就直接执行 执行完才执行下一句（一条条执行 没执行完就会卡在这里） 所以一碰到这一句 就会在控制台出打印出来
       this.zongji = res
