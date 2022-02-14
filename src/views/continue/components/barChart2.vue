@@ -120,8 +120,15 @@ export default {
             show: true,
             position: 'inside'
           }
-        }]// echarts的那些配置 就是一个完整的对象 这个对象的很多属性仍然是对象
-
+        }],// echarts的那些配置 就是一个完整的对象 这个对象的很多属性仍然是对象
+         dataZoom: [
+          {
+            type: 'inside', // 内置于坐标系中
+            start: 0,
+            end: 100, // 30%
+            xAxisIndex: [0]
+          }
+        ]
       })
     }
   }

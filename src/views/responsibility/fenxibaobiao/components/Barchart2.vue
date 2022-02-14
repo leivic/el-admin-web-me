@@ -155,6 +155,14 @@ export default {
             data: this.ydata1.waibuchoucha
           }
 
+        ],
+         dataZoom: [
+          {
+            type: 'inside', // 内置于坐标系中
+            start: 0,
+            end: 100, // 30%
+            xAxisIndex: [0]
+          }
         ]
       })
     }

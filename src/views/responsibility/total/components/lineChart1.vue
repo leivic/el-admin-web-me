@@ -153,6 +153,14 @@ export default {
             data: this.chartdata.zhuangpeichejiandata,
             smooth: true,
           }
+        ],
+        dataZoom: [
+          {
+            type: 'inside', // 内置于坐标系中
+            start: 0,
+            end: 100, // 30%
+            xAxisIndex: [0]
+          }
         ]
 
       })

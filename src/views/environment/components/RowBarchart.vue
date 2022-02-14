@@ -105,8 +105,8 @@ export default {
             fontWeight: 'normal',
             fontFamily: 'Courier New'
           	},
-          left: '0px',
-          
+          left: '0px'
+
         },
         tooltip: {
           trigger: 'axis',
@@ -116,7 +116,7 @@ export default {
         },
         legend: {
           data: ['工位', '班组', '工段'],
-          size:'small',
+          size: 'small',
           right: '0px'
         },
         grid: {
@@ -128,16 +128,16 @@ export default {
         xAxis: {
           type: 'value',
           boundaryGap: [0, 0.01],
-           axisTick: {
-              show: false
-            }
+          axisTick: {
+            show: false
+          }
         },
         yAxis: {
           type: 'category',
           data: this.chartData,
-           axisTick: {
-              show: false
-            }
+          axisTick: {
+            show: false
+          }
         },
         series: [
           {

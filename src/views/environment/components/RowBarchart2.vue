@@ -136,7 +136,7 @@ export default {
             barWidth: 16
           }
         ],
-         dataZoom: [
+        dataZoom: [
           {
             type: 'inside', // 内置于坐标系中
             start: 0,

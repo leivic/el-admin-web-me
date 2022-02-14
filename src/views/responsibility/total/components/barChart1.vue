@@ -72,8 +72,8 @@ export default {
     },
     setOptions({ expectedData, actualData } = {}) {
       this.chart.setOption({
-         grid:{
-          height:'60%'
+        grid: {
+          height: '60%'
         },
         title: {
 		  text: this.title, // this.title
