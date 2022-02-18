@@ -68,7 +68,7 @@ export default {
     },
     setOptions({ expectedData, actualData } = {}) {
       this.chart.setOption({
-        color: ['#409EFF', '#67C23A', '#E6A23C', '#F56C6C', '#909399','#1BA1E2'],
+        color: ['#409EFF', '#67C23A', '#E6A23C', '#F56C6C', '#909399', '#1BA1E2'],
         title: {
           text: this.title,
           textStyle: {
@@ -106,14 +106,14 @@ export default {
           boundaryGap: false,
           data: this.chartdata.xdata,
           axisTick: {
-              show: false
-            }
+            show: false
+          }
         },
         yAxis: {
           type: 'value',
           axisTick: {
-              show: false
-            }
+            show: false
+          }
         },
         series: [
           {
@@ -121,12 +121,12 @@ export default {
             type: 'line',
             data: this.chartdata.chongyachejiandata,
             smooth: true,
-             lineStyle:{
-              normal:{
+            lineStyle: {
+              normal: {
                 width: 5
               }
             },
-             label: {
+            label: {
               show: true,
               position: 'top'
             }
@@ -136,12 +136,12 @@ export default {
             type: 'line',
             data: this.chartdata.cheshenchejiandata,
             smooth: true,
-             lineStyle:{
-              normal:{
+            lineStyle: {
+              normal: {
                 width: 5
               }
             },
-             label: {
+            label: {
               show: true,
               position: 'top'
             }
@@ -151,12 +151,12 @@ export default {
             type: 'line',
             data: this.chartdata.tuzhuangchejiandata,
             smooth: true,
-             lineStyle:{
-              normal:{
+            lineStyle: {
+              normal: {
                 width: 5
               }
             },
-             label: {
+            label: {
               show: true,
               position: 'top'
             }
@@ -166,12 +166,12 @@ export default {
             type: 'line',
             data: this.chartdata.zongzhuangchejiandata,
             smooth: true,
-             lineStyle:{
-              normal:{
+            lineStyle: {
+              normal: {
                 width: 5
               }
             },
-             label: {
+            label: {
               show: true,
               position: 'top'
             }
@@ -181,12 +181,12 @@ export default {
             type: 'line',
             data: this.chartdata.jijiachejiandata,
             smooth: true,
-             lineStyle:{
-              normal:{
+            lineStyle: {
+              normal: {
                 width: 5
               }
             },
-             label: {
+            label: {
               show: true,
               position: 'top'
             }
@@ -196,12 +196,12 @@ export default {
             type: 'line',
             data: this.chartdata.zhuangpeichejiandata,
             smooth: true,
-             lineStyle:{
-              normal:{
+            lineStyle: {
+              normal: {
                 width: 5
               }
             },
-             label: {
+            label: {
               show: true,
               position: 'top'
             }

@@ -68,7 +68,7 @@ export default {
     },
     setOptions({ expectedData, actualData } = {}) {
       this.chart.setOption({
-        color: ['#409EFF', '#67C23A', '#E6A23C', '#F56C6C', '#909399','#1BA1E2'],
+        color: ['#409EFF', '#67C23A', '#E6A23C', '#F56C6C', '#909399', '#1BA1E2'],
         title: {
           text: this.title,
           textStyle: {
@@ -99,7 +99,7 @@ export default {
           left: '3%',
           right: '4%',
           bottom: '0%',
-          top:'25%',
+          top: '25%',
           containLabel: true
         },
         xAxis: {
@@ -107,51 +107,51 @@ export default {
           boundaryGap: false,
           data: this.chartdata.xdata,
           axisTick: {
-              show: false
-            }
+            show: false
+          }
         },
         yAxis: {
           type: 'value',
           axisTick: {
-              show: false
-            }
+            show: false
+          }
         },
         series: [
           {
             name: '冲压车间',
             type: 'line',
             data: this.chartdata.chongyachejiandata,
-            smooth: true,
+            smooth: true
           },
           {
             name: '车身车间',
             type: 'line',
             data: this.chartdata.cheshenchejiandata,
-            smooth: true,
+            smooth: true
           },
           {
             name: '涂装车间',
             type: 'line',
             data: this.chartdata.tuzhuangchejiandata,
-            smooth: true,
+            smooth: true
           },
           {
             name: '总装车间',
             type: 'line',
             data: this.chartdata.zongzhuangchejiandata,
-            smooth: true,
+            smooth: true
           },
           {
             name: '机加车间',
             type: 'line',
             data: this.chartdata.jijiachejiandata,
-            smooth: true,
+            smooth: true
           },
           {
             name: '装配车间',
             type: 'line',
             data: this.chartdata.zhuangpeichejiandata,
-            smooth: true,
+            smooth: true
           }
         ],
         dataZoom: [

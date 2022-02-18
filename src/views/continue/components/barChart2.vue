@@ -97,19 +97,19 @@ export default {
 		    axisLabel: {
             interval: 0, // 横轴信息全部显示
             rotate: -90// -30度角倾斜显示
-        },
-         axisTick: {
-              show: false
-            }
+          },
+          axisTick: {
+            show: false
+          }
         },
         yAxis: {
 		    type: 'value',
 		    axisLabel: {
             	formatter: '{value}'
-        },
-         axisTick: {
-              show: false
-            }
+          },
+          axisTick: {
+            show: false
+          }
         },
         series: [{
 		    data: this.chartData, // 不加this 怎么取得到props里面的值呢
@@ -120,8 +120,8 @@ export default {
             show: true,
             position: 'inside'
           }
-        }],// echarts的那些配置 就是一个完整的对象 这个对象的很多属性仍然是对象
-         dataZoom: [
+        }], // echarts的那些配置 就是一个完整的对象 这个对象的很多属性仍然是对象
+        dataZoom: [
           {
             type: 'inside', // 内置于坐标系中
             start: 0,

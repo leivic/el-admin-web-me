@@ -50,7 +50,7 @@ export default {
         this.setOptions(val)
       }
     },
-     title: {
+    title: {
       deep: true,
       handler(val) {
         this.setOptions(val)

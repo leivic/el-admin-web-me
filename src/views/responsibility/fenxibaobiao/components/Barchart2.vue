@@ -50,7 +50,7 @@ export default {
         this.setOptions(val)
       }
     },
-     title: {
+    title: {
       deep: true,
       handler(val) {
         this.setOptions(val)
@@ -114,7 +114,7 @@ export default {
           {
             type: 'category',
             data: this.xdata,
-             axisTick: {
+            axisTick: {
               show: false
             }
           }
@@ -122,7 +122,7 @@ export default {
         yAxis: [
           {
             type: 'value',
-             axisTick: {
+            axisTick: {
               show: false
             }
           }
@@ -156,7 +156,7 @@ export default {
           }
 
         ],
-         dataZoom: [
+        dataZoom: [
           {
             type: 'inside', // 内置于坐标系中
             start: 0,

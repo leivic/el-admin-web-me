@@ -125,3 +125,48 @@ export function findAllIndexdata4() {
 
   })
 }
+
+/* 按月份更新数据*/
+export function InputIndexdata1save(date) {
+	return request({
+		url: process.env.VUE_APP_BASE_API + '/qe/other/InputIndexdata1save',
+		method: 'get',
+		params: {
+			date:date
+		}
+      
+	})
+      }
+
+      export function InputIndexdata2save(date) {
+	return request({
+		url: process.env.VUE_APP_BASE_API + '/qe/other/InputIndexdata2save',
+		method: 'get',
+		params: {
+			date:date
+		}
+      
+	})
+      }
+
+      export function InputIndexdata3save(date) {
+	return request({
+		url: process.env.VUE_APP_BASE_API + '/qe/other/InputIndexdata3save',
+		method: 'get',
+		params: {
+			date:date
+		}
+      
+	})
+      }
+
+      export function InputIndexdata4save(date) {
+	return request({
+		url: process.env.VUE_APP_BASE_API + '/qe/other/InputIndexdata4save',
+		method: 'get',
+		params: {
+			date:date
+		}
+      
+	})
+      }
