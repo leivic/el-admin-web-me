@@ -25,7 +25,7 @@ export default {
   },
   data() {
     return {
-      title: 'Sgmw重庆分公司',
+      title: '重庆分公司',
       logo: Logo
     }
   }

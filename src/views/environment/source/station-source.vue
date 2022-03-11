@@ -2,20 +2,41 @@
   <div class="app-container">
     <div class="filter-container">
       <!--后端导入工位服务--><!--文件上传成功钩子 绑定属性仍然可以绑定方法 这里不能getList() 会直接调用的，毕竟不是v-on-->
-      <el-upload
-        v-permission="['environmentstationimport']"
-        action="http://10.64.7.206:8000/qe/addEnvironmentBaseStation"
-        accept=".xlsx"
-        multiple
-        :limit="3"
-        :headers="headers"
-        :on-success="addList"
-        :data="mydata"
-      ><!--data，object类型，上传时附带参数-->
-        <el-button :loading="uploadLoading" class="filter-item" type="primary" icon="el-icon-upload" @click="">
-          导入
-        </el-button>
-      </el-upload>
+    
+       <el-button v-permission="['environmentstationimport']" size="large" type="nomal" @click="addfile">新增</el-button>
+    <!--表单渲染--><!--el-dialog elment－ui中的弹出框--><!--:visible 是是否显示 .sync是修饰符 指是否显示和数据状态同步改变 crud.status.cu此处是对mixin混入的使用 可没有html表达式中绑定import进来的表达式的先例  -->
+    <el-dialog append-to-body :close-on-click-modal="false" :visible.sync="crud1.status.cu  > 0" :title="crud1.status.title" width="580px">
+      <el-form ref="form" :inline="true" :model="form" size="small" label-width="60px">
+        <el-form-item label="日期" required>
+          <el-date-picker
+            v-model="form.date"
+            type="month"
+            placeholder="Pick a date"
+            style="width: 100%"
+            value-format="yyyy-MM"
+          />
+        </el-form-item>
+        <el-upload
+          ref="upload"
+          v-model:fileList="form.fileList"
+          class="upload-demo"
+          action="/"
+          :on-preview="handlePreview"
+          :on-remove="handleRemove"
+          :auto-upload="false"
+          :limit="1"
+        >
+          <el-button slot="trigger" size="small" type="primary" style="margin-left:20px">选取文件</el-button>
+          <div slot="tip" class="el-upload__tip">文件不超过5mb</div>
+        </el-upload>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="text" @click="dialogcancel">取消</el-button>
+        <el-button :loading="crud1.status.cu === 2" type="primary" @click="upload()">确认</el-button>
+      </div>
+
+    </el-dialog>
+    <!--表单渲染-->
     </div>
 
     <el-table
@@ -146,7 +167,7 @@
 
 <script>
 import { getToken } from '@/utils/auth'
-import { getAllStiation, getAllStiationByZone, deletestationByid } from '@/api/qe/environment'
+import { getAllStiation, getAllStiationByZone, deletestationByid,uploadstation } from '@/api/qe/environment'
 import Pagination from '@/components/Pagination'// 分页组件
 import { mapGetters } from 'vuex'
 
@@ -155,6 +176,19 @@ export default {
 
   data() {
     return {
+       crud1: {
+        status: {
+          cu: 0,
+          title: '新建'
+        }
+      },
+      form: {
+			  filetitle: '',
+			  filetype: undefined, // 变量在内存里面未被销毁时  这个变量自然一直存在 全局上下文中的基本数据类型只有在window关闭时才销毁
+			  date: undefined,
+			  level: undefined,
+			  fileList: undefined
+      }, // 表单数据对象
       tableKey: 0,
       uploadLoading: false,
       listLoading: true,
@@ -190,8 +224,40 @@ export default {
         padding: '0'
       }
     },
-    addList(res) { // 上传成功与失败的控制功能 当然注意 控制台network也能看前后端数据传递
-      if (res == 0) {
+    addfile() {
+      this.crud1.status.cu = 1// dataproperty里面的数据是响应式的，所以数据改变，视图也会随之改变，弹框就会关闭
+    },
+    dialogcancel() {
+      this.crud1.status.cu = 0
+      
+    },
+     handleRemove(file, fileList) {
+      console.log(file, fileList)
+    },
+    handlePreview(file) {
+      console.log(file)
+    },
+     upload(){
+      if (this.form.date == undefined) {
+        this.$notify({ // 封装的通知功能
+          title: '新增失败',
+          message: '新增失败,日期选项必填',
+          type: 'error',
+          duration: 30000
+        })
+        return
+      }
+      const formData = new FormData()
+      const file = this.$refs.upload.uploadFiles.pop().raw // 从html元素取到文件对象
+
+      formData.append('file', file) // 第一个参数对应java程序里面的形参名
+      formData.append('nickName',this.user.nickName)
+      formData.append('date1', this.form.date)
+      const that = this
+      uploadstation(formData).then(res => { // upload1来自于import的方法
+        this.crud1.status.cu = 0
+        console.log(res)
+        if (res == 0) {
         this.$notify({ // 封装的通知功能
           title: 'Error',
           message: '导入的excel没有sheet1',
@@ -234,7 +300,8 @@ export default {
           duration: 30000
         })
       }
-      this.getList()
+      this.getList() 
+      })
     },
     getList() { // 获取数据 res是el-upload 封装的返回值  consle.log(打印失败，不报错)
       this.listLoading = true

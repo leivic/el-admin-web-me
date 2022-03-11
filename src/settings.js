@@ -42,7 +42,7 @@ module.exports = {
   /**
    * 底部文字，支持html语法
    */
-  footerTxt: 'Sgmw',
+  footerTxt: '',
   /**
    * 备案号
    */

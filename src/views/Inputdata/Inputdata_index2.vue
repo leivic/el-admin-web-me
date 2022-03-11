@@ -1,13 +1,13 @@
 <template>
   <div class="Sidebar">
     <el-date-picker
-          v-model="date"
-          type="month"
-          placeholder="Pick a date"
-          style="width: 200px;float: left"
-          value-format="yyyy-MM"
-        />
-     <el-button  type="primary" @click="updatedata">更新数据</el-button>
+      v-model="date"
+      type="month"
+      placeholder="Pick a date"
+      style="width: 200px;float: left"
+      value-format="yyyy-MM"
+    />
+    <el-button type="primary" @click="updatedata">更新数据</el-button>
     <el-table :data="datalist">
       <el-table-column align="center" header-align="center" label="id" width="50">
         <template slot-scope="{row,$index}"> <!--template 没有语义和表现 用来包裹-->
@@ -108,11 +108,11 @@
 </template>
 
 <script>
-import { findAllIndexdata2, updateIndexdata2,InputIndexdata2save } from '@/api/qe/other'
+import { findAllIndexdata2, updateIndexdata2, InputIndexdata2save } from '@/api/qe/other'
 export default {
   data() {
     return {
-      date:'',
+      date: '',
       datalist: [], // 才是显示在span里的数据
       showEdit: [],
       showId: [], // 显示姓名
@@ -136,7 +136,6 @@ export default {
   },
   created() {
     this.getList()
-   
   },
   methods: {
     getList() {
@@ -171,17 +170,15 @@ export default {
 		    }
 	    })
     },
-    updatedata(){
-      
-      InputIndexdata2save(this.date).then(res=>{
-         if (res == 0) {
+    updatedata() {
+      InputIndexdata2save(this.date).then(res => {
+        if (res == 0) {
           this.$notify({ // 封装的通知功能
             title: 'error',
             message: '更新数据失败',
             type: 'error',
             duration: 30000
           })
-          
         } else if (res == 1) {
           this.$notify({ // 封装的通知功能
             title: 'success',
@@ -190,8 +187,8 @@ export default {
             duration: 30000
           })
           this.getList()
-        } 
-       }) //axios是一个promise
+        }
+      }) // axios是一个promise
     },
     // 点击修改
     showUpdate(index) { // 传入序号 切换 showEdit[index]的值 ture

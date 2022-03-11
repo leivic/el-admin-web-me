@@ -1,5 +1,44 @@
 import request from '@/utils/request' // 封装好的request方法,参数是一个固定格式的对象
 
+/* 上传工位数据*/
+export function uploadstation(formdata) {
+  return request({
+	  url: process.env.VUE_APP_BASE_API + '/qe/addEnvironmentBaseStation', // 访问url 是网络中定义资源位置的方式之一
+	  method: 'post',
+	  data: formdata // 最原始的上传文件基本都是采用formdata的形式 而不是param的形式
+  })
+}
+
+/* 上传班组数据*/
+export function uploadgroup(formdata) {
+  return request({
+	  url: process.env.VUE_APP_BASE_API + '/qe/addEnvironmentBaseGroup', // 访问url 是网络中定义资源位置的方式之一
+	  method: 'post',
+	  data: formdata // 最原始的上传文件基本都是采用formdata的形式 而不是param的形式
+  })
+}
+
+/* 上传工段数据*/
+export function uploadworkshop(formdata) {
+  return request({
+	  url: process.env.VUE_APP_BASE_API + '/qe/addEnvironmentBaseWorkShop', // 访问url 是网络中定义资源位置的方式之一
+	  method: 'post',
+	  data: formdata // 最原始的上传文件基本都是采用formdata的形式 而不是param的形式
+  })
+}
+
+/* 上传车间数据*/
+export function uploadzone(formdata) {
+  return request({
+	  url: process.env.VUE_APP_BASE_API + '/qe/addEnvironmentBaseZone', // 访问url 是网络中定义资源位置的方式之一
+	  method: 'post',
+	  data: formdata // 最原始的上传文件基本都是采用formdata的形式 而不是param的形式
+  })
+}
+
+
+
+
 /* 获取所有工位数据*/
 export function getAllStiation(page, size, sort) { // 自己写 'api/qe/findAllEnvironment'的形式失效，未取到 后面再讨论
   return request({// 即便是url地址 他也是个字符串啊 编程里面就那几种格式罢了
