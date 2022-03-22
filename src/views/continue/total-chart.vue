@@ -247,7 +247,6 @@ export default {
     month(newval) {
       this.getzhiliangtishen(newval)
       this.getContinuePiechartvalue(newval)
-      
     }
   }
 }

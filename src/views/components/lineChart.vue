@@ -111,7 +111,7 @@ export default {
         },
         xAxis: {
           type: 'category',
-          
+
           data: this.xdata,
           axisTick: {
             show: false
@@ -168,7 +168,7 @@ export default {
             name: '机加车间',
             type: 'bar',
             data: [this.chartdata[4].yiyue, this.chartdata[4].eryue, this.chartdata[4].sanyue, this.chartdata[4].siyue, this.chartdata[4].wuyue, this.chartdata[4].liuyue, this.chartdata[4].qiyue, this.chartdata[4].bayue, this.chartdata[4].jiuyue, this.chartdata[4].shiyue, this.chartdata[4].shiyiyue, this.chartdata[4].shieryue],
-           barWidth: 15,
+            barWidth: 15,
             label: {
               show: true,
               position: 'top'

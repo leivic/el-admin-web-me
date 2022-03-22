@@ -36,9 +36,6 @@ export function uploadzone(formdata) {
   })
 }
 
-
-
-
 /* 获取所有工位数据*/
 export function getAllStiation(page, size, sort) { // 自己写 'api/qe/findAllEnvironment'的形式失效，未取到 后面再讨论
   return request({// 即便是url地址 他也是个字符串啊 编程里面就那几种格式罢了

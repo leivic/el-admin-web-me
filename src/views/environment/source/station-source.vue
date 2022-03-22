@@ -2,40 +2,40 @@
   <div class="app-container">
     <div class="filter-container">
       <!--后端导入工位服务--><!--文件上传成功钩子 绑定属性仍然可以绑定方法 这里不能getList() 会直接调用的，毕竟不是v-on-->
-    
-       <el-button v-permission="['environmentstationimport']" size="large" type="nomal" @click="addfile">新增</el-button>
-    <!--表单渲染--><!--el-dialog elment－ui中的弹出框--><!--:visible 是是否显示 .sync是修饰符 指是否显示和数据状态同步改变 crud.status.cu此处是对mixin混入的使用 可没有html表达式中绑定import进来的表达式的先例  -->
-    <el-dialog append-to-body :close-on-click-modal="false" :visible.sync="crud1.status.cu  > 0" :title="crud1.status.title" width="580px">
-      <el-form ref="form" :inline="true" :model="form" size="small" label-width="60px">
-        <el-form-item label="日期" required>
-          <el-date-picker
-            v-model="form.date"
-            type="month"
-            placeholder="Pick a date"
-            style="width: 100%"
-            value-format="yyyy-MM"
-          />
-        </el-form-item>
-        <el-upload
-          ref="upload"
-          v-model:fileList="form.fileList"
-          class="upload-demo"
-          action="/"
-          :on-preview="handlePreview"
-          :on-remove="handleRemove"
-          :auto-upload="false"
-          :limit="1"
-        >
-          <el-button slot="trigger" size="small" type="primary" style="margin-left:20px">选取文件</el-button>
-          <div slot="tip" class="el-upload__tip">文件不超过5mb</div>
-        </el-upload>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button type="text" @click="dialogcancel">取消</el-button>
-        <el-button :loading="crud1.status.cu === 2" type="primary" @click="upload()">确认</el-button>
-      </div>
 
-    </el-dialog>
+      <el-button v-permission="['environmentstationimport']" size="large" type="nomal" @click="addfile">新增</el-button>
+      <!--表单渲染--><!--el-dialog elment－ui中的弹出框--><!--:visible 是是否显示 .sync是修饰符 指是否显示和数据状态同步改变 crud.status.cu此处是对mixin混入的使用 可没有html表达式中绑定import进来的表达式的先例  -->
+      <el-dialog append-to-body :close-on-click-modal="false" :visible.sync="crud1.status.cu > 0" :title="crud1.status.title" width="580px">
+        <el-form ref="form" :inline="true" :model="form" size="small" label-width="60px">
+          <el-form-item label="日期" required>
+            <el-date-picker
+              v-model="form.date"
+              type="month"
+              placeholder="Pick a date"
+              style="width: 100%"
+              value-format="yyyy-MM"
+            />
+          </el-form-item>
+          <el-upload
+            ref="upload"
+            v-model:fileList="form.fileList"
+            class="upload-demo"
+            action="/"
+            :on-preview="handlePreview"
+            :on-remove="handleRemove"
+            :auto-upload="false"
+            :limit="1"
+          >
+            <el-button slot="trigger" size="small" type="primary" style="margin-left:20px">选取文件</el-button>
+            <div slot="tip" class="el-upload__tip">文件不超过5mb</div>
+          </el-upload>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button type="text" @click="dialogcancel">取消</el-button>
+          <el-button :loading="crud1.status.cu === 2" type="primary" @click="upload()">确认</el-button>
+        </div>
+
+      </el-dialog>
     <!--表单渲染-->
     </div>
 
@@ -167,7 +167,7 @@
 
 <script>
 import { getToken } from '@/utils/auth'
-import { getAllStiation, getAllStiationByZone, deletestationByid,uploadstation } from '@/api/qe/environment'
+import { getAllStiation, getAllStiationByZone, deletestationByid, uploadstation } from '@/api/qe/environment'
 import Pagination from '@/components/Pagination'// 分页组件
 import { mapGetters } from 'vuex'
 
@@ -176,7 +176,7 @@ export default {
 
   data() {
     return {
-       crud1: {
+      crud1: {
         status: {
           cu: 0,
           title: '新建'
@@ -229,15 +229,14 @@ export default {
     },
     dialogcancel() {
       this.crud1.status.cu = 0
-      
     },
-     handleRemove(file, fileList) {
+    handleRemove(file, fileList) {
       console.log(file, fileList)
     },
     handlePreview(file) {
       console.log(file)
     },
-     upload(){
+    upload() {
       if (this.form.date == undefined) {
         this.$notify({ // 封装的通知功能
           title: '新增失败',
@@ -251,56 +250,56 @@ export default {
       const file = this.$refs.upload.uploadFiles.pop().raw // 从html元素取到文件对象
 
       formData.append('file', file) // 第一个参数对应java程序里面的形参名
-      formData.append('nickName',this.user.nickName)
+      formData.append('nickName', this.user.nickName)
       formData.append('date1', this.form.date)
       const that = this
       uploadstation(formData).then(res => { // upload1来自于import的方法
         this.crud1.status.cu = 0
         console.log(res)
         if (res == 0) {
-        this.$notify({ // 封装的通知功能
-          title: 'Error',
-          message: '导入的excel没有sheet1',
-          type: 'error',
-          duration: 30000
-        })
-      } else if (res == 1) {
-        this.$notify({ // 封装的通知功能
-          title: 'Error',
-          message: '第一行第三个单元格格式只能为 [时间:xx年xx月xx日] （年月日都是两位）',
-          type: 'error',
-          duration: 30000
-        })
-      } else if (res == 2) {
-        this.$notify({ // 封装的通知功能
-          title: 'Error',
-          message: "第一行第六个单元格只能输入 '冲压车间' '车身车间' '涂装车间' '总装车间' '机加车间' '装配车间' 其中之一 ",
-          type: 'error',
-          duration: 30000
-        })
-      } else if (res == 3) {
-        this.$notify({ // 封装的通知功能
-          title: 'Error',
-          message: '工位数据模版有且仅有12行，请检查模版',
-          type: 'error',
-          duration: 30000
-        })
-      } else if (res == 99) {
-        this.$notify({ // 封装的通知功能
-          title: 'Sucess',
-          message: '导入成功',
-          type: 'sucess',
-          duration: 30000
-        })
-      } else if (res == 77) {
-        this.$notify({ // 封装的通知功能
-          title: '新增失败',
-          message: '新增失败，不能导入空白数据',
-          type: 'error',
-          duration: 30000
-        })
-      }
-      this.getList() 
+          this.$notify({ // 封装的通知功能
+            title: 'Error',
+            message: '导入的excel没有sheet1',
+            type: 'error',
+            duration: 30000
+          })
+        } else if (res == 1) {
+          this.$notify({ // 封装的通知功能
+            title: 'Error',
+            message: '第一行第三个单元格格式只能为 [时间:xx年xx月xx日] （年月日都是两位）',
+            type: 'error',
+            duration: 30000
+          })
+        } else if (res == 2) {
+          this.$notify({ // 封装的通知功能
+            title: 'Error',
+            message: "第一行第六个单元格只能输入 '冲压车间' '车身车间' '涂装车间' '总装车间' '机加车间' '装配车间' 其中之一 ",
+            type: 'error',
+            duration: 30000
+          })
+        } else if (res == 3) {
+          this.$notify({ // 封装的通知功能
+            title: 'Error',
+            message: '工位数据模版有且仅有12行，请检查模版',
+            type: 'error',
+            duration: 30000
+          })
+        } else if (res == 99) {
+          this.$notify({ // 封装的通知功能
+            title: 'Sucess',
+            message: '导入成功',
+            type: 'sucess',
+            duration: 30000
+          })
+        } else if (res == 77) {
+          this.$notify({ // 封装的通知功能
+            title: '新增失败',
+            message: '新增失败，不能导入空白数据',
+            type: 'error',
+            duration: 30000
+          })
+        }
+        this.getList()
       })
     },
     getList() { // 获取数据 res是el-upload 封装的返回值  consle.log(打印失败，不报错)
