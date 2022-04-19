@@ -189,3 +189,31 @@ export function deletefile(id) {
 
   })
 }
+
+export function gettablelabel(year) { //获得
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/continue/gettablelabel',
+    method: 'post',
+    params: {	year: year
+    }
+
+  })
+}
+
+export function uploadgoaldata(formdata) {
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/continue/uploadgoaldata',
+    method: 'post',
+    data: formdata 
+  })
+}
+
+export function getgoaldata(year) { //获得
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/continue/getgoaldata',
+    method: 'post',
+    params: {	year: year
+    }
+
+  })
+}

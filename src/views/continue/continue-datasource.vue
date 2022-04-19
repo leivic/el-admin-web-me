@@ -116,7 +116,7 @@
 </template>
 
 <script>
-import { findByzoneanddate, updateorsavecontinuedatasource, findCountcontinuedatasource } from '@/api/qe/continue'
+import { findByzoneanddate, updateorsavecontinuedatasource, findCountcontinuedatasource, gettablelabel } from '@/api/qe/continue'
 import { mapGetters } from 'vuex'
 import SelectMonth from '@/components/SelectMonth'
 export default {
@@ -187,6 +187,7 @@ export default {
     }
   },
   created() {
+    gettablelabel('2022').then(res=>console.log('2022',res))
     findCountcontinuedatasource(this.value, this.month).then(res => { // 加载表格数据和改变表单绑定数据的方法
       this.form = this.form1 // form1是初始值，让form回归初始值
       this.form.month = this.month

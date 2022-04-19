@@ -68,5 +68,5 @@ export const loadMenus = (next, to) => { // 定义一个函数
 }
 
 router.afterEach(() => {
-  NProgress.done() // finish progress bar
+  NProgress.done() // finish progress bar 
 })

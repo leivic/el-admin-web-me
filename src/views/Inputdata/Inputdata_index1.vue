@@ -7,15 +7,18 @@
       style="width: 200px;float: left"
       value-format="yyyy-MM"
     />
-    <el-button type="primary" @click="updatedata">更新数据</el-button>
+    <el-button type="primary" @click="updatedata">更新数据</el-button>  
     <el-table :data="datalist">
-      <el-table-column align="center" header-align="center" label="id" width="50">
+      <el-table-column align="center" header-align="center" label="id" width="50"><!--<template slot-scope="{row,$index}"> <!--row是子组件中slot标签上绑定的子组件数据 作用域插槽是在父组件使用子组件的数据-->
+          <span v-if="!showEdit[$index]">{{ row.eryue }}</span>
+          <el-input v-else v-model="show2[$index]" type="text" placeholder="请输入" />
+        </template>
         <template slot-scope="{row,$index}"> <!--template 没有语义和表现 用来包裹-->
           <span>{{ row.id }}</span>
         </template>
       </el-table-column>
       <el-table-column align="center" header-align="center" label="车间" width="90">
-        <template slot-scope="{row,$index}"><!--作用域插槽 数据来自子组件--><!--此处作用域插槽的数据就是row（来自子组件的数据被el-table封装） index是一个序号-->
+        <template slot-scope="{row,$index}"> <!--作用域插槽 数据来自子组件--><!--此处作用域插槽的数据就是row（来自子组件的数据被el-table封装） index是一个序号-->
           <!--作用域插槽就是父组件在调用子组件的时候给子组件传了一个插槽，这个插槽为作用域插槽，该插槽必须放在template标签里面，同时声明从子组件接收的数据放在一个自定义属性内，并定义该数据的渲染方式-->
           <span>{{ row.chejian }}</span>
         </template>
@@ -27,7 +30,7 @@
         </template>
       </el-table-column>
       <el-table-column align="center" header-align="center" label="二月" width="70">
-        <template slot-scope="{row,$index}">
+        <template slot-scope="{row,$index}"> <!--row是子组件中slot标签上绑定的子组件数据 作用域插槽是在父组件使用子组件的数据-->
           <span v-if="!showEdit[$index]">{{ row.eryue }}</span>
           <el-input v-else v-model="show2[$index]" type="text" placeholder="请输入" />
         </template>
@@ -51,43 +54,43 @@
         </template>
       </el-table-column>
       <el-table-column align="center" header-align="center" label="六月" width="70">
-        <template slot-scope="{row,$index}"> <!--template 没有语义和表现 用来包裹-->
+        <template slot-scope="{row,$index}"> <!--template 没有语义和表现 用来包裹-->  
           <span v-if="!showEdit[$index]">{{ row.liuyue }}</span>
           <el-input v-else v-model="show6[$index]" type="text" placeholder="请输入" />
         </template>
       </el-table-column>
       <el-table-column align="center" header-align="center" label="七月" width="70">
-        <template slot-scope="{row,$index}"> <!--template 没有语义和表现 用来包裹-->
+        <template slot-scope="{row,$index}"> <!--template 没有语义和表现 用来包裹-->  
           <span v-if="!showEdit[$index]">{{ row.qiyue }}</span>
           <el-input v-else v-model="show7[$index]" type="text" placeholder="请输入" />
         </template>
       </el-table-column>
       <el-table-column align="center" header-align="center" label="八月" width="70">
-        <template slot-scope="{row,$index}"> <!--template 没有语义和表现 用来包裹-->
+        <template slot-scope="{row,$index}"> <!--template 没有语义和表现 用来包裹-->  
           <span v-if="!showEdit[$index]">{{ row.bayue }}</span>
           <el-input v-else v-model="show8[$index]" type="text" placeholder="请输入" />
         </template><!--这个v-model里面的数据 并不会直接改变 row  改变 datalist里面的数据 它双向绑定 你在输入框改变数据时，这个数组里的数据也会变，所以传新的数据用 这种show8[$index]-->
       </el-table-column>
       <el-table-column align="center" header-align="center" label="九月" width="70">
-        <template slot-scope="{row,$index}"> <!--template 没有语义和表现 用来包裹-->
+        <template slot-scope="{row,$index}"> <!--template 没有语义和表现 用来包裹-->  
           <span v-if="!showEdit[$index]">{{ row.jiuyue }}</span>
           <el-input v-else v-model="show9[$index]" type="text" placeholder="请输入" />
         </template>
       </el-table-column>
       <el-table-column align="center" header-align="center" label="十月" width="70">
-        <template slot-scope="{row,$index}"> <!--template 没有语义和表现 用来包裹-->
+        <template slot-scope="{row,$index}"> <!--template 没有语义和表现 用来包裹-->  
           <span v-if="!showEdit[$index]">{{ row.shiyue }}</span>
           <el-input v-else v-model="show10[$index]" type="text" placeholder="请输入" />
         </template>
       </el-table-column>
       <el-table-column align="center" header-align="center" label="十一月" width="70">
-        <template slot-scope="{row,$index}"> <!--template 没有语义和表现 用来包裹-->
+        <template slot-scope="{row,$index}"> <!--template 没有语义和表现 用来包裹-->  
           <span v-if="!showEdit[$index]">{{ row.shiyiyue }}</span>
           <el-input v-else v-model="show11[$index]" type="text" placeholder="请输入" />
         </template>
       </el-table-column>
       <el-table-column align="center" header-align="center" label="十二月" width="70">
-        <template slot-scope="{row,$index}"> <!--template 没有语义和表现 用来包裹-->
+        <template slot-scope="{row,$index}"> <!--template 没有语义和表现 用来包裹-->  
           <span v-if="!showEdit[$index]">{{ row.shieryue }}</span>
           <el-input v-else v-model="show12[$index]" type="text" placeholder="请输入" />
         </template>
@@ -193,7 +196,7 @@ export default {
     // 点击修改
     showUpdate(index) { // 传入序号 切换 showEdit[index]的值 ture
       this.showEdit[index] = true
-      this.$set(this.showEdit, index, true) // 这里要用$set方法，否则页面状态不更新 传值 并更新页面
+      this.$set(this.showEdit, index, true) // 这里要用$set方法，否则页面状态不更新 传值 并更新页面 因为vue不能监听对象内部的属性增加与删除（数组也是对象） 在组件初始化的过程中 vue给data中的属性添加setter 和getter 属性当时不存在是无法监听的 也就不能vue监听data更新页面样式
     },
     // 取消修改
     cancelUpdate(index) {
