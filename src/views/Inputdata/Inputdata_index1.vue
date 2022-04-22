@@ -7,12 +7,12 @@
       style="width: 200px;float: left"
       value-format="yyyy-MM"
     />
-    <el-button type="primary" @click="updatedata">更新数据</el-button>  
+    <el-button type="primary" @click="updatedata">更新数据</el-button>
     <el-table :data="datalist">
       <el-table-column align="center" header-align="center" label="id" width="50"><!--<template slot-scope="{row,$index}"> <!--row是子组件中slot标签上绑定的子组件数据 作用域插槽是在父组件使用子组件的数据-->
-          <span v-if="!showEdit[$index]">{{ row.eryue }}</span>
-          <el-input v-else v-model="show2[$index]" type="text" placeholder="请输入" />
-        </template>
+        <span v-if="!showEdit[$index]">{{ row.eryue }}</span>
+        <el-input v-else v-model="show2[$index]" type="text" placeholder="请输入" />
+      </el-table-column></el-table></div></template>
         <template slot-scope="{row,$index}"> <!--template 没有语义和表现 用来包裹-->
           <span>{{ row.id }}</span>
         </template>
@@ -54,43 +54,43 @@
         </template>
       </el-table-column>
       <el-table-column align="center" header-align="center" label="六月" width="70">
-        <template slot-scope="{row,$index}"> <!--template 没有语义和表现 用来包裹-->  
+        <template slot-scope="{row,$index}"> <!--template 没有语义和表现 用来包裹-->
           <span v-if="!showEdit[$index]">{{ row.liuyue }}</span>
           <el-input v-else v-model="show6[$index]" type="text" placeholder="请输入" />
         </template>
       </el-table-column>
       <el-table-column align="center" header-align="center" label="七月" width="70">
-        <template slot-scope="{row,$index}"> <!--template 没有语义和表现 用来包裹-->  
+        <template slot-scope="{row,$index}"> <!--template 没有语义和表现 用来包裹-->
           <span v-if="!showEdit[$index]">{{ row.qiyue }}</span>
           <el-input v-else v-model="show7[$index]" type="text" placeholder="请输入" />
         </template>
       </el-table-column>
       <el-table-column align="center" header-align="center" label="八月" width="70">
-        <template slot-scope="{row,$index}"> <!--template 没有语义和表现 用来包裹-->  
+        <template slot-scope="{row,$index}"> <!--template 没有语义和表现 用来包裹-->
           <span v-if="!showEdit[$index]">{{ row.bayue }}</span>
           <el-input v-else v-model="show8[$index]" type="text" placeholder="请输入" />
         </template><!--这个v-model里面的数据 并不会直接改变 row  改变 datalist里面的数据 它双向绑定 你在输入框改变数据时，这个数组里的数据也会变，所以传新的数据用 这种show8[$index]-->
       </el-table-column>
       <el-table-column align="center" header-align="center" label="九月" width="70">
-        <template slot-scope="{row,$index}"> <!--template 没有语义和表现 用来包裹-->  
+        <template slot-scope="{row,$index}"> <!--template 没有语义和表现 用来包裹-->
           <span v-if="!showEdit[$index]">{{ row.jiuyue }}</span>
           <el-input v-else v-model="show9[$index]" type="text" placeholder="请输入" />
         </template>
       </el-table-column>
       <el-table-column align="center" header-align="center" label="十月" width="70">
-        <template slot-scope="{row,$index}"> <!--template 没有语义和表现 用来包裹-->  
+        <template slot-scope="{row,$index}"> <!--template 没有语义和表现 用来包裹-->
           <span v-if="!showEdit[$index]">{{ row.shiyue }}</span>
           <el-input v-else v-model="show10[$index]" type="text" placeholder="请输入" />
         </template>
       </el-table-column>
       <el-table-column align="center" header-align="center" label="十一月" width="70">
-        <template slot-scope="{row,$index}"> <!--template 没有语义和表现 用来包裹-->  
+        <template slot-scope="{row,$index}"> <!--template 没有语义和表现 用来包裹-->
           <span v-if="!showEdit[$index]">{{ row.shiyiyue }}</span>
           <el-input v-else v-model="show11[$index]" type="text" placeholder="请输入" />
         </template>
       </el-table-column>
       <el-table-column align="center" header-align="center" label="十二月" width="70">
-        <template slot-scope="{row,$index}"> <!--template 没有语义和表现 用来包裹-->  
+        <template slot-scope="{row,$index}"> <!--template 没有语义和表现 用来包裹-->
           <span v-if="!showEdit[$index]">{{ row.shieryue }}</span>
           <el-input v-else v-model="show12[$index]" type="text" placeholder="请输入" />
         </template>

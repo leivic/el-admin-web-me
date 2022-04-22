@@ -190,7 +190,7 @@ export function deletefile(id) {
   })
 }
 
-export function gettablelabel(year) { //获得
+export function gettablelabel(year) { // 获得
   return request({
     url: process.env.VUE_APP_BASE_API + '/qe/continue/gettablelabel',
     method: 'post',
@@ -204,15 +204,38 @@ export function uploadgoaldata(formdata) {
   return request({
     url: process.env.VUE_APP_BASE_API + '/qe/continue/uploadgoaldata',
     method: 'post',
-    data: formdata 
+    data: formdata
   })
 }
 
-export function getgoaldata(year) { //获得
+export function getgoaldata(year) { // 获得
   return request({
     url: process.env.VUE_APP_BASE_API + '/qe/continue/getgoaldata',
     method: 'post',
     params: {	year: year
+    }
+
+  })
+}
+
+export function updatezhiliangfenjiebyid(obj) { // 按id更新质量分解指标数据
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/continue/updatezhiliangfenjiebyid',
+    method: 'post',
+    params: {	consiciousControljson: obj
+    }
+
+  })
+}
+
+export function updatezhiliangzhuangtaibyid(id,zhuangtai,yuefen) { // 按id更新质量状态
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/continue/updatezhiliangzhuangtaibyid',
+    method: 'post',
+    params: {	
+      id:id,
+      zhaungtai:zhuangtai,
+      yuefen:yuefen
     }
 
   })
