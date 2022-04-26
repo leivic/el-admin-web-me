@@ -228,14 +228,49 @@ export function updatezhiliangfenjiebyid(obj) { // 按id更新质量分解指标
   })
 }
 
-export function updatezhiliangzhuangtaibyid(id,zhuangtai,yuefen) { // 按id更新质量状态
+export function updatezhiliangzhuangtaibyid(id, zhuangtai, yuefen) { // 按id更新质量状态
   return request({
     url: process.env.VUE_APP_BASE_API + '/qe/continue/updatezhiliangzhuangtaibyid',
     method: 'post',
-    params: {	
-      id:id,
-      zhaungtai:zhuangtai,
-      yuefen:yuefen
+    params: {
+      id: id,
+      zhaungtai: zhuangtai,
+      yuefen: yuefen
+    }
+
+  })
+}
+
+export function finddepartmentbyyear(year) { 
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/continue/finddepartmentbyyear',
+    method: 'post',
+    params: {
+      year:year
+    }
+
+  })
+}
+
+export function findtargetnumberbyyear(year) { // 获取质量分解月份级报表每个部门总共多少个指标
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/continue/findtargetnumberbyyear',
+    method: 'post',
+    params: {
+      year:year
+    }
+
+  })
+}
+
+export function finddepartmenthegezhiliang(year,yiyuezhuangtai,jiyue) { 
+  return request({
+    url: process.env.VUE_APP_BASE_API + '/qe/continue/finddepartmenthegezhiliang',
+    method: 'post',
+    params: {
+      year:year,
+      yiyuezhuangtai:yiyuezhuangtai,
+      jiyue:jiyue
     }
 
   })

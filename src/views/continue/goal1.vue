@@ -59,7 +59,7 @@
       :cell-style="tableCellStyle"
       @cell-dblclick="celldblclick"
     ><!--tableCellStyle 从一个方法获取返回值，作为组件的一个属性值-->
-    <!--<el-table-column v-for="(col,i) in cols" :prop="col.label" :key="i" :label="col.prop">
+      <!--<el-table-column v-for="(col,i) in cols" :prop="col.label" :key="i" :label="col.prop">
 
 			</el-table-column> 动态循环渲染列写法-->
       <el-table-column fixed align="center" header-align="center" label="序号" width="50"><!--<template slot-scope="{row,$index}"> <!--row是子组件中slot标签上绑定的子组件数据 作用域插槽是在父组件使用子组件的数据-->
@@ -202,7 +202,7 @@
           <el-input v-else v-model="tableDatas[$index].qiyueshiji" type="text" placeholder="请输入" />
         </template>
       </el-table-column>
-      <el-table-column align="center" header-align="center" label="8月目标"  width="70">
+      <el-table-column align="center" header-align="center" label="8月目标" width="70">
         <template slot-scope="{row,$index}">
           <span v-if="!showEdit[$index]">{{ row.bayuegoal }}</span>
           <el-input v-else v-model="tableDatas[$index].bayuegoal" type="text" placeholder="请输入" />
@@ -277,7 +277,7 @@
   </div>
 </template>
 <script>
-import {  uploadgoaldata, getgoaldata,updatezhiliangfenjiebyid,updatezhiliangzhuangtaibyid } from '@/api/qe/continue'
+import { uploadgoaldata, getgoaldata, updatezhiliangfenjiebyid, updatezhiliangzhuangtaibyid,finddepartmentbyyear,findtargetnumberbyyear,finddepartmenthegezhiliang } from '@/api/qe/continue'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -307,11 +307,20 @@ export default {
       cols: [ // 获得表头信息
 
       ],
-      row:'',
-	    column:''
+      row: '',
+	    column: ''
     }
   },
   created() {
+    finddepartmentbyyear(this.year).then(res=>{
+      console.log('----->department',res)
+    })
+    findtargetnumberbyyear(this.year).then(res=>{
+      console.log('----->targetnumber',res)
+    })
+    finddepartmenthegezhiliang(this.year,1,1).then(res=>{
+      console.log('------>number',res)
+    })
     console.log('year', this.year)
     getgoaldata(this.year).then(
       res => {
@@ -335,314 +344,283 @@ export default {
     	...mapGetters(['year'])
   	},
   methods: {
-    celldblclick(row, column, cell, event){ //控制台打印cell，这个cell即dom节点 可直接操作dom改变颜色
-      
-
-      if(column.property=="yiyueshiji"){ //奇怪的是取 column.property 判断成功 ，取column.label判断失败 
-        
-         if(cell.style.backgroundColor=="rgb(255, 255, 255)"){
-           updatezhiliangzhuangtaibyid(row.id,1,1).then(res=>{
-              cell.style.backgroundColor="rgb(0, 255, 0)"       
-           }) 
-          }
-          else if(cell.style.backgroundColor=="rgb(0, 255, 0)"){
-            updatezhiliangzhuangtaibyid(row.id,2,1).then(res=>{
-              cell.style.backgroundColor="rgb(255, 0, 0)" 
-           }) 
-          }else if(cell.style.backgroundColor=="rgb(255, 0, 0)"){
-           updatezhiliangzhuangtaibyid(row.id,0,1).then(res=>{
-              cell.style.backgroundColor="rgb(255, 255, 255)" 
-           }) 
-          }
-          }else if(column.property=="eryueshiji"){ 
-        
-         if(cell.style.backgroundColor=="rgb(255, 255, 255)"){
-           updatezhiliangzhuangtaibyid(row.id,1,2).then(res=>{
-              cell.style.backgroundColor="rgb(0, 255, 0)"       
-           }) 
-          }
-          else if(cell.style.backgroundColor=="rgb(0, 255, 0)"){
-            updatezhiliangzhuangtaibyid(row.id,2,2).then(res=>{
-              cell.style.backgroundColor="rgb(255, 0, 0)" 
-           }) 
-          }else if(cell.style.backgroundColor=="rgb(255, 0, 0)"){
-           updatezhiliangzhuangtaibyid(row.id,0,2).then(res=>{
-              cell.style.backgroundColor="rgb(255, 255, 255)" 
-           }) 
-          }
-          }else if(column.property=="sanyueshiji"){ 
-        
-         if(cell.style.backgroundColor=="rgb(255, 255, 255)"){
-           updatezhiliangzhuangtaibyid(row.id,1,3).then(res=>{
-              cell.style.backgroundColor="rgb(0, 255, 0)"       
-           }) 
-          }
-          else if(cell.style.backgroundColor=="rgb(0, 255, 0)"){
-            updatezhiliangzhuangtaibyid(row.id,2,3).then(res=>{
-              cell.style.backgroundColor="rgb(255, 0, 0)" 
-           }) 
-          }else if(cell.style.backgroundColor=="rgb(255, 0, 0)"){
-           updatezhiliangzhuangtaibyid(row.id,0,3).then(res=>{
-              cell.style.backgroundColor="rgb(255, 255, 255)" 
-           }) 
-          }
-          }  else if(column.property=="siyueshiji"){ 
-        
-         if(cell.style.backgroundColor=="rgb(255, 255, 255)"){
-           updatezhiliangzhuangtaibyid(row.id,1,4).then(res=>{
-              cell.style.backgroundColor="rgb(0, 255, 0)"       
-           }) 
-          }
-          else if(cell.style.backgroundColor=="rgb(0, 255, 0)"){
-            updatezhiliangzhuangtaibyid(row.id,2,4).then(res=>{
-              cell.style.backgroundColor="rgb(255, 0, 0)" 
-           }) 
-          }else if(cell.style.backgroundColor=="rgb(255, 0, 0)"){
-           updatezhiliangzhuangtaibyid(row.id,0,4).then(res=>{
-              cell.style.backgroundColor="rgb(255, 255, 255)" 
-           }) 
-          }
-          }  else if(column.property=="wuyueshiji"){ 
-        
-         if(cell.style.backgroundColor=="rgb(255, 255, 255)"){
-           updatezhiliangzhuangtaibyid(row.id,1,5).then(res=>{
-              cell.style.backgroundColor="rgb(0, 255, 0)"       
-           }) 
-          }
-          else if(cell.style.backgroundColor=="rgb(0, 255, 0)"){
-            updatezhiliangzhuangtaibyid(row.id,2,5).then(res=>{
-              cell.style.backgroundColor="rgb(255, 0, 0)" 
-           }) 
-          }else if(cell.style.backgroundColor=="rgb(255, 0, 0)"){
-           updatezhiliangzhuangtaibyid(row.id,0,5).then(res=>{
-              cell.style.backgroundColor="rgb(255, 255, 255)" 
-           }) 
-          }
-          }  else if(column.property=="liuyueshiji"){ //六月的情况
-        
-         if(cell.style.backgroundColor=="rgb(255, 255, 255)"){
-           updatezhiliangzhuangtaibyid(row.id,1,6).then(res=>{
-              cell.style.backgroundColor="rgb(0, 255, 0)"       
-           }) 
-          }
-          else if(cell.style.backgroundColor=="rgb(0, 255, 0)"){
-            updatezhiliangzhuangtaibyid(row.id,2,6).then(res=>{
-              cell.style.backgroundColor="rgb(255, 0, 0)" 
-           }) 
-          }else if(cell.style.backgroundColor=="rgb(255, 0, 0)"){
-           updatezhiliangzhuangtaibyid(row.id,0,6).then(res=>{
-              cell.style.backgroundColor="rgb(255, 255, 255)" 
-           }) 
-          }
-          }  else if(column.property=="qiyueshiji"){ 
-        
-         if(cell.style.backgroundColor=="rgb(255, 255, 255)"){
-           updatezhiliangzhuangtaibyid(row.id,1,7).then(res=>{
-              cell.style.backgroundColor="rgb(0, 255, 0)"       
-           }) 
-          }
-          else if(cell.style.backgroundColor=="rgb(0, 255, 0)"){
-            updatezhiliangzhuangtaibyid(row.id,2,7).then(res=>{
-              cell.style.backgroundColor="rgb(255, 0, 0)" 
-           }) 
-          }else if(cell.style.backgroundColor=="rgb(255, 0, 0)"){
-           updatezhiliangzhuangtaibyid(row.id,0,7).then(res=>{
-              cell.style.backgroundColor="rgb(255, 255, 255)" 
-           }) 
-          }
-          }  else if(column.property=="bayueshiji"){ 
-        
-         if(cell.style.backgroundColor=="rgb(255, 255, 255)"){
-           updatezhiliangzhuangtaibyid(row.id,1,8).then(res=>{
-              cell.style.backgroundColor="rgb(0, 255, 0)"       
-           }) 
-          }
-          else if(cell.style.backgroundColor=="rgb(0, 255, 0)"){
-            updatezhiliangzhuangtaibyid(row.id,2,8).then(res=>{
-              cell.style.backgroundColor="rgb(255, 0, 0)" 
-           }) 
-          }else if(cell.style.backgroundColor=="rgb(255, 0, 0)"){
-           updatezhiliangzhuangtaibyid(row.id,0,8).then(res=>{
-              cell.style.backgroundColor="rgb(255, 255, 255)" 
-           }) 
-          }
-          }  else if(column.property=="jiuyueshiji"){ 
-        
-         if(cell.style.backgroundColor=="rgb(255, 255, 255)"){
-           updatezhiliangzhuangtaibyid(row.id,1,9).then(res=>{
-              cell.style.backgroundColor="rgb(0, 255, 0)"       
-           }) 
-          }
-          else if(cell.style.backgroundColor=="rgb(0, 255, 0)"){
-            updatezhiliangzhuangtaibyid(row.id,2,9).then(res=>{
-              cell.style.backgroundColor="rgb(255, 0, 0)" 
-           }) 
-          }else if(cell.style.backgroundColor=="rgb(255, 0, 0)"){
-           updatezhiliangzhuangtaibyid(row.id,0,9).then(res=>{
-              cell.style.backgroundColor="rgb(255, 255, 255)" 
-           }) 
-          }
-          }  else if(column.property=="shiyueshiji"){ 
-        
-         if(cell.style.backgroundColor=="rgb(255, 255, 255)"){
-           updatezhiliangzhuangtaibyid(row.id,1,10).then(res=>{
-              cell.style.backgroundColor="rgb(0, 255, 0)"       
-           }) 
-          }
-          else if(cell.style.backgroundColor=="rgb(0, 255, 0)"){
-            updatezhiliangzhuangtaibyid(row.id,2,10).then(res=>{
-              cell.style.backgroundColor="rgb(255, 0, 0)" 
-           }) 
-          }else if(cell.style.backgroundColor=="rgb(255, 0, 0)"){
-           updatezhiliangzhuangtaibyid(row.id,0,10).then(res=>{
-              cell.style.backgroundColor="rgb(255, 255, 255)" 
-           }) 
-          }
-          }  else if(column.property=="shiyiyueshiji"){ 
-        
-         if(cell.style.backgroundColor=="rgb(255, 255, 255)"){
-           updatezhiliangzhuangtaibyid(row.id,1,11).then(res=>{
-              cell.style.backgroundColor="rgb(0, 255, 0)"       
-           }) 
-          }
-          else if(cell.style.backgroundColor=="rgb(0, 255, 0)"){
-            updatezhiliangzhuangtaibyid(row.id,2,11).then(res=>{
-              cell.style.backgroundColor="rgb(255, 0, 0)" 
-           }) 
-          }else if(cell.style.backgroundColor=="rgb(255, 0, 0)"){
-           updatezhiliangzhuangtaibyid(row.id,0,11).then(res=>{
-              cell.style.backgroundColor="rgb(255, 255, 255)" 
-           }) 
-          }
-          }  else if(column.property=="shieryueshiji"){ 
-        
-         if(cell.style.backgroundColor=="rgb(255, 255, 255)"){
-           updatezhiliangzhuangtaibyid(row.id,1,12).then(res=>{
-              cell.style.backgroundColor="rgb(0, 255, 0)"       
-           }) 
-          }
-          else if(cell.style.backgroundColor=="rgb(0, 255, 0)"){
-            updatezhiliangzhuangtaibyid(row.id,2,12).then(res=>{
-              cell.style.backgroundColor="rgb(255, 0, 0)" 
-           }) 
-          }else if(cell.style.backgroundColor=="rgb(255, 0, 0)"){
-           updatezhiliangzhuangtaibyid(row.id,0,12).then(res=>{
-              cell.style.backgroundColor="rgb(255, 255, 255)" 
-           }) 
-          }
-          }    
-      
-      
+    celldblclick(row, column, cell, event) { // 控制台打印cell，这个cell即dom节点 可直接操作dom改变颜色
+      if (column.property == 'yiyueshiji') { // 奇怪的是取 column.property 判断成功 ，取column.label判断失败
+        if (cell.style.backgroundColor == 'rgb(255, 255, 255)') {
+          updatezhiliangzhuangtaibyid(row.id, 1, 1).then(res => {
+            cell.style.backgroundColor = 'rgb(0, 255, 0)'
+          })
+        } else if (cell.style.backgroundColor == 'rgb(0, 255, 0)') {
+          updatezhiliangzhuangtaibyid(row.id, 2, 1).then(res => {
+            cell.style.backgroundColor = 'rgb(255, 0, 0)'
+          })
+        } else if (cell.style.backgroundColor == 'rgb(255, 0, 0)') {
+          updatezhiliangzhuangtaibyid(row.id, 0, 1).then(res => {
+            cell.style.backgroundColor = 'rgb(255, 255, 255)'
+          })
+        }
+      } else if (column.property == 'eryueshiji') {
+        if (cell.style.backgroundColor == 'rgb(255, 255, 255)') {
+          updatezhiliangzhuangtaibyid(row.id, 1, 2).then(res => {
+            cell.style.backgroundColor = 'rgb(0, 255, 0)'
+          })
+        } else if (cell.style.backgroundColor == 'rgb(0, 255, 0)') {
+          updatezhiliangzhuangtaibyid(row.id, 2, 2).then(res => {
+            cell.style.backgroundColor = 'rgb(255, 0, 0)'
+          })
+        } else if (cell.style.backgroundColor == 'rgb(255, 0, 0)') {
+          updatezhiliangzhuangtaibyid(row.id, 0, 2).then(res => {
+            cell.style.backgroundColor = 'rgb(255, 255, 255)'
+          })
+        }
+      } else if (column.property == 'sanyueshiji') {
+        if (cell.style.backgroundColor == 'rgb(255, 255, 255)') {
+          updatezhiliangzhuangtaibyid(row.id, 1, 3).then(res => {
+            cell.style.backgroundColor = 'rgb(0, 255, 0)'
+          })
+        } else if (cell.style.backgroundColor == 'rgb(0, 255, 0)') {
+          updatezhiliangzhuangtaibyid(row.id, 2, 3).then(res => {
+            cell.style.backgroundColor = 'rgb(255, 0, 0)'
+          })
+        } else if (cell.style.backgroundColor == 'rgb(255, 0, 0)') {
+          updatezhiliangzhuangtaibyid(row.id, 0, 3).then(res => {
+            cell.style.backgroundColor = 'rgb(255, 255, 255)'
+          })
+        }
+      } else if (column.property == 'siyueshiji') {
+        if (cell.style.backgroundColor == 'rgb(255, 255, 255)') {
+          updatezhiliangzhuangtaibyid(row.id, 1, 4).then(res => {
+            cell.style.backgroundColor = 'rgb(0, 255, 0)'
+          })
+        } else if (cell.style.backgroundColor == 'rgb(0, 255, 0)') {
+          updatezhiliangzhuangtaibyid(row.id, 2, 4).then(res => {
+            cell.style.backgroundColor = 'rgb(255, 0, 0)'
+          })
+        } else if (cell.style.backgroundColor == 'rgb(255, 0, 0)') {
+          updatezhiliangzhuangtaibyid(row.id, 0, 4).then(res => {
+            cell.style.backgroundColor = 'rgb(255, 255, 255)'
+          })
+        }
+      } else if (column.property == 'wuyueshiji') {
+        if (cell.style.backgroundColor == 'rgb(255, 255, 255)') {
+          updatezhiliangzhuangtaibyid(row.id, 1, 5).then(res => {
+            cell.style.backgroundColor = 'rgb(0, 255, 0)'
+          })
+        } else if (cell.style.backgroundColor == 'rgb(0, 255, 0)') {
+          updatezhiliangzhuangtaibyid(row.id, 2, 5).then(res => {
+            cell.style.backgroundColor = 'rgb(255, 0, 0)'
+          })
+        } else if (cell.style.backgroundColor == 'rgb(255, 0, 0)') {
+          updatezhiliangzhuangtaibyid(row.id, 0, 5).then(res => {
+            cell.style.backgroundColor = 'rgb(255, 255, 255)'
+          })
+        }
+      } else if (column.property == 'liuyueshiji') { // 六月的情况
+        if (cell.style.backgroundColor == 'rgb(255, 255, 255)') {
+          updatezhiliangzhuangtaibyid(row.id, 1, 6).then(res => {
+            cell.style.backgroundColor = 'rgb(0, 255, 0)'
+          })
+        } else if (cell.style.backgroundColor == 'rgb(0, 255, 0)') {
+          updatezhiliangzhuangtaibyid(row.id, 2, 6).then(res => {
+            cell.style.backgroundColor = 'rgb(255, 0, 0)'
+          })
+        } else if (cell.style.backgroundColor == 'rgb(255, 0, 0)') {
+          updatezhiliangzhuangtaibyid(row.id, 0, 6).then(res => {
+            cell.style.backgroundColor = 'rgb(255, 255, 255)'
+          })
+        }
+      } else if (column.property == 'qiyueshiji') {
+        if (cell.style.backgroundColor == 'rgb(255, 255, 255)') {
+          updatezhiliangzhuangtaibyid(row.id, 1, 7).then(res => {
+            cell.style.backgroundColor = 'rgb(0, 255, 0)'
+          })
+        } else if (cell.style.backgroundColor == 'rgb(0, 255, 0)') {
+          updatezhiliangzhuangtaibyid(row.id, 2, 7).then(res => {
+            cell.style.backgroundColor = 'rgb(255, 0, 0)'
+          })
+        } else if (cell.style.backgroundColor == 'rgb(255, 0, 0)') {
+          updatezhiliangzhuangtaibyid(row.id, 0, 7).then(res => {
+            cell.style.backgroundColor = 'rgb(255, 255, 255)'
+          })
+        }
+      } else if (column.property == 'bayueshiji') {
+        if (cell.style.backgroundColor == 'rgb(255, 255, 255)') {
+          updatezhiliangzhuangtaibyid(row.id, 1, 8).then(res => {
+            cell.style.backgroundColor = 'rgb(0, 255, 0)'
+          })
+        } else if (cell.style.backgroundColor == 'rgb(0, 255, 0)') {
+          updatezhiliangzhuangtaibyid(row.id, 2, 8).then(res => {
+            cell.style.backgroundColor = 'rgb(255, 0, 0)'
+          })
+        } else if (cell.style.backgroundColor == 'rgb(255, 0, 0)') {
+          updatezhiliangzhuangtaibyid(row.id, 0, 8).then(res => {
+            cell.style.backgroundColor = 'rgb(255, 255, 255)'
+          })
+        }
+      } else if (column.property == 'jiuyueshiji') {
+        if (cell.style.backgroundColor == 'rgb(255, 255, 255)') {
+          updatezhiliangzhuangtaibyid(row.id, 1, 9).then(res => {
+            cell.style.backgroundColor = 'rgb(0, 255, 0)'
+          })
+        } else if (cell.style.backgroundColor == 'rgb(0, 255, 0)') {
+          updatezhiliangzhuangtaibyid(row.id, 2, 9).then(res => {
+            cell.style.backgroundColor = 'rgb(255, 0, 0)'
+          })
+        } else if (cell.style.backgroundColor == 'rgb(255, 0, 0)') {
+          updatezhiliangzhuangtaibyid(row.id, 0, 9).then(res => {
+            cell.style.backgroundColor = 'rgb(255, 255, 255)'
+          })
+        }
+      } else if (column.property == 'shiyueshiji') {
+        if (cell.style.backgroundColor == 'rgb(255, 255, 255)') {
+          updatezhiliangzhuangtaibyid(row.id, 1, 10).then(res => {
+            cell.style.backgroundColor = 'rgb(0, 255, 0)'
+          })
+        } else if (cell.style.backgroundColor == 'rgb(0, 255, 0)') {
+          updatezhiliangzhuangtaibyid(row.id, 2, 10).then(res => {
+            cell.style.backgroundColor = 'rgb(255, 0, 0)'
+          })
+        } else if (cell.style.backgroundColor == 'rgb(255, 0, 0)') {
+          updatezhiliangzhuangtaibyid(row.id, 0, 10).then(res => {
+            cell.style.backgroundColor = 'rgb(255, 255, 255)'
+          })
+        }
+      } else if (column.property == 'shiyiyueshiji') {
+        if (cell.style.backgroundColor == 'rgb(255, 255, 255)') {
+          updatezhiliangzhuangtaibyid(row.id, 1, 11).then(res => {
+            cell.style.backgroundColor = 'rgb(0, 255, 0)'
+          })
+        } else if (cell.style.backgroundColor == 'rgb(0, 255, 0)') {
+          updatezhiliangzhuangtaibyid(row.id, 2, 11).then(res => {
+            cell.style.backgroundColor = 'rgb(255, 0, 0)'
+          })
+        } else if (cell.style.backgroundColor == 'rgb(255, 0, 0)') {
+          updatezhiliangzhuangtaibyid(row.id, 0, 11).then(res => {
+            cell.style.backgroundColor = 'rgb(255, 255, 255)'
+          })
+        }
+      } else if (column.property == 'shieryueshiji') {
+        if (cell.style.backgroundColor == 'rgb(255, 255, 255)') {
+          updatezhiliangzhuangtaibyid(row.id, 1, 12).then(res => {
+            cell.style.backgroundColor = 'rgb(0, 255, 0)'
+          })
+        } else if (cell.style.backgroundColor == 'rgb(0, 255, 0)') {
+          updatezhiliangzhuangtaibyid(row.id, 2, 12).then(res => {
+            cell.style.backgroundColor = 'rgb(255, 0, 0)'
+          })
+        } else if (cell.style.backgroundColor == 'rgb(255, 0, 0)') {
+          updatezhiliangzhuangtaibyid(row.id, 0, 12).then(res => {
+            cell.style.backgroundColor = 'rgb(255, 255, 255)'
+          })
+        }
+      }
     },
     addfile() {
       this.crud1.status.cu = 1
     },
-    tableCellStyle({ row, column, rowIndex, columnIndex }){   //这样声明函数时，形参本应不是一个固定值,而在声明函数时形参传入固定值的形式 是由于js声明函数时，并不知道参数会是什么类型，所以函数内部可以任意对参数进行调用 这样的形式就是因为在这个声明的函数之外 必然还有一层对未知的参数／函数进行了某种处理，只有你传入固定的参数类型时，外层调用时才能处理成功 所以看起来就是这个函数声明了固定参数，其实函数调用结果是由实参而不是形参来决定的，只不过是在你声明的这个参数之外还有一层 
-      
-      let rowBackground = {};
-          if(columnIndex == 13){ //列数据为13时
-          if(row.yiyuezhuangtai == 1){  //那一行13的yiyuezhaungtai字段==1时  通过columnIndex定位列 然后这个方法外层封装了一套循环每一行的逻辑
-            rowBackground.background= "#00FF00"
-          }else if(row.yiyuezhuangtai == 2){
-            rowBackground.background="#FF0000"
-          }else{
-            rowBackground.background= "#FFFFFF" 
-          }
-          }else if(columnIndex == 15){
-            if(row.eryuezhuangtai == 1){  
-            rowBackground.background= "#00FF00"
-            }else if(row.eryuezhuangtai == 2){
-            rowBackground.background="#FF0000"
-            }else{
-            rowBackground.background= "#FFFFFF" 
-          } 
-          }else if(columnIndex == 17){
-            if(row.sanyuezhuangtai == 1){  
-            rowBackground.background= "#00FF00"
-            }else if(row.sanyuezhuangtai == 2){
-            rowBackground.background="#FF0000"
-            }else{
-            rowBackground.background= "#FFFFFF" 
-          } 
-          }else if(columnIndex == 19){
-            if(row.siyuezhuangtai == 1){  
-            rowBackground.background= "#00FF00"
-            }else if(row.siyuezhuangtai == 2){
-            rowBackground.background="#FF0000"
-            }else{
-            rowBackground.background= "#FFFFFF" 
-          } 
-          }else if(columnIndex == 21){
-            if(row.wuyuezhuangtai == 1){  
-            rowBackground.background= "#00FF00"
-            }else if(row.wuyuezhuangtai == 2){
-            rowBackground.background="#FF0000"
-            }else{
-            rowBackground.background= "#FFFFFF" 
-          } 
-          }else if(columnIndex == 23){
-            if(row.liuyuezhuangtai == 1){  
-            rowBackground.background= "#00FF00"
-            }else if(row.liuyuezhuangtai == 2){
-            rowBackground.background="#FF0000"
-            }else{
-            rowBackground.background= "#FFFFFF" 
-          } 
-          }else if(columnIndex == 25){
-            if(row.qiyuezhuangtai == 1){  
-            rowBackground.background= "#00FF00"
-            }else if(row.qiyuezhuangtai == 2){
-            rowBackground.background="#FF0000"
-            }else{
-            rowBackground.background= "#FFFFFF" 
-          } 
-          }else if(columnIndex == 27){
-            if(row.bayuezhuangtai == 1){  
-            rowBackground.background= "#00FF00"
-            }else if(row.bayuezhuangtai == 2){
-            rowBackground.background="#FF0000"
-            }else{
-            rowBackground.background= "#FFFFFF" 
-          } 
-          }else if(columnIndex == 29){
-            if(row.jiuyuezhuangtai == 1){  
-            rowBackground.background= "#00FF00"
-            }else if(row.jiuyuezhuangtai == 2){
-            rowBackground.background="#FF0000"
-            }else{
-            rowBackground.background= "#FFFFFF" 
-          } 
-          }else if(columnIndex == 31){
-            if(row.shiyuezhuangtai == 1){  
-            rowBackground.background= "#00FF00"
-            }else if(row.shiyuezhuangtai == 2){
-            rowBackground.background="#FF0000"
-            }else{
-            rowBackground.background= "#FFFFFF" 
-          } 
-          }else if(columnIndex == 33){
-            if(row.shiyiyuezhuangtai == 1){  
-            rowBackground.background= "#00FF00"
-            }else if(row.shiyiyuezhuangtai == 2){
-            rowBackground.background="#FF0000"
-            }else{
-            rowBackground.background= "#FFFFFF" 
-          } 
-          }else if(columnIndex == 35){
-            if(row.shieryuezhuangtai == 1){  
-            rowBackground.background= "#00FF00"
-            }else if(row.shieryuezhuangtai == 2){
-            rowBackground.background="#FF0000"
-            }else{
-            rowBackground.background= "#FFFFFF" 
-          } 
-          }
-          else{
-            rowBackground.background= "#FFFFFF"  
-          }
+    tableCellStyle({ row, column, rowIndex, columnIndex }) { // 这样声明函数时，形参本应不是一个固定值,而在声明函数时形参传入固定值的形式 是由于js声明函数时，并不知道参数会是什么类型，所以函数内部可以任意对参数进行调用 这样的形式就是因为在这个声明的函数之外 必然还有一层对未知的参数／函数进行了某种处理，只有你传入固定的参数类型时，外层调用时才能处理成功 所以看起来就是这个函数声明了固定参数，其实函数调用结果是由实参而不是形参来决定的，只不过是在你声明的这个参数之外还有一层
+      const rowBackground = {}
+      if (columnIndex == 13) { // 列数据为13时
+        if (row.yiyuezhuangtai == 1) { // 那一行13的yiyuezhaungtai字段==1时  通过columnIndex定位列 然后这个方法外层封装了一套循环每一行的逻辑
+          rowBackground.background = '#00FF00'
+        } else if (row.yiyuezhuangtai == 2) {
+          rowBackground.background = '#FF0000'
+        } else {
+          rowBackground.background = '#FFFFFF'
+        }
+      } else if (columnIndex == 15) {
+        if (row.eryuezhuangtai == 1) {
+          rowBackground.background = '#00FF00'
+        } else if (row.eryuezhuangtai == 2) {
+          rowBackground.background = '#FF0000'
+        } else {
+          rowBackground.background = '#FFFFFF'
+        }
+      } else if (columnIndex == 17) {
+        if (row.sanyuezhuangtai == 1) {
+          rowBackground.background = '#00FF00'
+        } else if (row.sanyuezhuangtai == 2) {
+          rowBackground.background = '#FF0000'
+        } else {
+          rowBackground.background = '#FFFFFF'
+        }
+      } else if (columnIndex == 19) {
+        if (row.siyuezhuangtai == 1) {
+          rowBackground.background = '#00FF00'
+        } else if (row.siyuezhuangtai == 2) {
+          rowBackground.background = '#FF0000'
+        } else {
+          rowBackground.background = '#FFFFFF'
+        }
+      } else if (columnIndex == 21) {
+        if (row.wuyuezhuangtai == 1) {
+          rowBackground.background = '#00FF00'
+        } else if (row.wuyuezhuangtai == 2) {
+          rowBackground.background = '#FF0000'
+        } else {
+          rowBackground.background = '#FFFFFF'
+        }
+      } else if (columnIndex == 23) {
+        if (row.liuyuezhuangtai == 1) {
+          rowBackground.background = '#00FF00'
+        } else if (row.liuyuezhuangtai == 2) {
+          rowBackground.background = '#FF0000'
+        } else {
+          rowBackground.background = '#FFFFFF'
+        }
+      } else if (columnIndex == 25) {
+        if (row.qiyuezhuangtai == 1) {
+          rowBackground.background = '#00FF00'
+        } else if (row.qiyuezhuangtai == 2) {
+          rowBackground.background = '#FF0000'
+        } else {
+          rowBackground.background = '#FFFFFF'
+        }
+      } else if (columnIndex == 27) {
+        if (row.bayuezhuangtai == 1) {
+          rowBackground.background = '#00FF00'
+        } else if (row.bayuezhuangtai == 2) {
+          rowBackground.background = '#FF0000'
+        } else {
+          rowBackground.background = '#FFFFFF'
+        }
+      } else if (columnIndex == 29) {
+        if (row.jiuyuezhuangtai == 1) {
+          rowBackground.background = '#00FF00'
+        } else if (row.jiuyuezhuangtai == 2) {
+          rowBackground.background = '#FF0000'
+        } else {
+          rowBackground.background = '#FFFFFF'
+        }
+      } else if (columnIndex == 31) {
+        if (row.shiyuezhuangtai == 1) {
+          rowBackground.background = '#00FF00'
+        } else if (row.shiyuezhuangtai == 2) {
+          rowBackground.background = '#FF0000'
+        } else {
+          rowBackground.background = '#FFFFFF'
+        }
+      } else if (columnIndex == 33) {
+        if (row.shiyiyuezhuangtai == 1) {
+          rowBackground.background = '#00FF00'
+        } else if (row.shiyiyuezhuangtai == 2) {
+          rowBackground.background = '#FF0000'
+        } else {
+          rowBackground.background = '#FFFFFF'
+        }
+      } else if (columnIndex == 35) {
+        if (row.shieryuezhuangtai == 1) {
+          rowBackground.background = '#00FF00'
+        } else if (row.shieryuezhuangtai == 2) {
+          rowBackground.background = '#FF0000'
+        } else {
+          rowBackground.background = '#FFFFFF'
+        }
+      } else {
+        rowBackground.background = '#FFFFFF'
+      }
 
-         
-      return rowBackground;
+      return rowBackground
     },
     dialogcancel() {
       this.crud1.status.cu = 0 // 变量改变后保存在内存里，只要没有销毁
@@ -688,7 +666,7 @@ export default {
     submit(index) {
       updatezhiliangfenjiebyid(this.tableDatas[index]).then(
         this.$set(this.showEdit, index, false)
-		    
+
       )
     }
   },
