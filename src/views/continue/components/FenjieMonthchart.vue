@@ -9,7 +9,7 @@ import resize from './mixins/resize'
 
 export default {
   mixins: [resize],
-  props: { //子组件的prop在父组件中使用时成为父组件的属性
+  props: { // 子组件的prop在父组件中使用时成为父组件的属性
     className: {
       type: String,
       default: 'chart'
@@ -26,23 +26,23 @@ export default {
       type: Boolean,
       default: true
     },
-    title:{
-      type: String,
+    title: {
+      type: String
     },
-    xdata:{
+    xdata: {
       type: Array
     },
-    zhibiaoshu:{
+    zhibiaoshu: {
       type: Array
     },
-    lvsedata:{
+    lvsedata: {
       type: Array
     },
-    hongsedata:{
+    hongsedata: {
       type: Array
     },
-    dabiaolv:{
-      type:Array
+    dabiaolv: {
+      type: Array
     }
   },
   data() {
@@ -72,22 +72,22 @@ export default {
     hongsedata: {
       deep: true,
       handler(val) {
-        console.log('-----子组件红色项更新后',val)
+        console.log('-----子组件红色项更新后', val)
         this.setOptions(val)
       }
     },
     dabiaolv: {
       deep: true,
       handler(val) {
-        console.log('-----子组件达标率更新后',val)
+        console.log('-----子组件达标率更新后', val)
         this.setOptions(val)
       }
-    },
+    }
   },
   mounted() {
-    this.$nextTick(() => { //dom更新后的调用
+    this.$nextTick(() => { // dom更新后的调用
       this.initChart()
-      console.log('-----子组件达标率',this.dabiaolv)
+      console.log('-----子组件达标率', this.dabiaolv)
     })
   },
   beforeDestroy() {
@@ -128,7 +128,7 @@ export default {
           }
         },
         legend: {
-          data: ['指标数','绿色项','红色项','达标率'],
+          data: ['指标数', '绿色项', '红色项', '达标率'],
           top: 30
         },
         grid: {
@@ -141,12 +141,12 @@ export default {
           type: 'category',
           data: this.xdata,
           axisLabel: {
-              interval: 0, // 横轴信息全部显示
-              rotate: -90// -30度角倾斜显示
-            },
-            axisTick: {
-              show: false
-            }
+            interval: 0, // 横轴信息全部显示
+            rotate: -90// -30度角倾斜显示
+          },
+          axisTick: {
+            show: false
+          }
         },
         yAxis: [
           {
@@ -159,7 +159,7 @@ export default {
         series: [
 
 	     {
-            name: '指标数', 
+            name: '指标数',
 	          type: 'bar',
             emphasis: {
               focus: 'series'
@@ -199,7 +199,7 @@ export default {
             type: 'line',
             data: this.dabiaolv,
             smooth: false
-          },
+          }
 
         ]
       })

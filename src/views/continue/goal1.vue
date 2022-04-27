@@ -277,7 +277,7 @@
   </div>
 </template>
 <script>
-import { uploadgoaldata, getgoaldata, updatezhiliangfenjiebyid, updatezhiliangzhuangtaibyid,finddepartmentbyyear,findtargetnumberbyyear,finddepartmenthegezhiliang } from '@/api/qe/continue'
+import { uploadgoaldata, getgoaldata, updatezhiliangfenjiebyid, updatezhiliangzhuangtaibyid, finddepartmentbyyear, findtargetnumberbyyear, finddepartmenthegezhiliang } from '@/api/qe/continue'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -312,14 +312,14 @@ export default {
     }
   },
   created() {
-    finddepartmentbyyear(this.year).then(res=>{
-      console.log('----->department',res)
+    finddepartmentbyyear(this.year).then(res => {
+      console.log('----->department', res)
     })
-    findtargetnumberbyyear(this.year).then(res=>{
-      console.log('----->targetnumber',res)
+    findtargetnumberbyyear(this.year).then(res => {
+      console.log('----->targetnumber', res)
     })
-    finddepartmenthegezhiliang(this.year,1,1).then(res=>{
-      console.log('------>number',res)
+    finddepartmenthegezhiliang(this.year, 1, 1).then(res => {
+      console.log('------>number', res)
     })
     console.log('year', this.year)
     getgoaldata(this.year).then(
